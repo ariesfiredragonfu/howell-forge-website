@@ -1,4 +1,10 @@
 # Options +FollowSymLinks removed - causes 500 on IONOS
+# Security headers (Security agent)
+<IfModule mod_headers.c>
+    Header set X-Content-Type-Options "nosniff"
+    Header set X-Frame-Options "SAMEORIGIN"
+</IfModule>
+
 DirectoryIndex index.html
 
 RewriteEngine On
