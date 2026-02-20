@@ -22,70 +22,241 @@
             50% { opacity: 1; }
             100% { opacity: 0.6; }
         }
+        @keyframes modalIn {
+            from { opacity: 0; transform: translateY(-20px) scale(0.97); }
+            to   { opacity: 1; transform: translateY(0) scale(1); }
+        }
+
+        *, *::before, *::after { box-sizing: border-box; }
+
         body {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
             line-height: 1.6;
+            background: #111;
+            color: #eee;
         }
         .header {
-            background-color: black;
+            background-color: #000;
             color: white;
             padding: 1rem;
             text-align: center;
         }
+        .header h1 { margin: 0 0 0.5rem 0; font-size: 1.8rem; letter-spacing: 0.05em; }
         .nav-buttons {
             display: flex;
             justify-content: center;
-            gap: 1rem;
-            padding: 1rem;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.5rem 1rem;
+            flex-wrap: wrap;
         }
         .main-content {
             padding: 2rem;
             max-width: 1200px;
             margin: 0 auto;
             min-height: calc(100vh - 200px);
+            padding-bottom: 5rem;
         }
         .footer {
-            background-color: black;
-            color: white;
+            background-color: #000;
+            color: #aaa;
             padding: 1rem;
             text-align: center;
             position: fixed;
             bottom: 0;
             width: 100%;
+            font-size: 0.85rem;
         }
         .nav-button {
             display: inline-block;
             color: white;
             text-decoration: none;
             padding: 8px 16px;
-            margin: 0 10px;
             border-radius: 4px;
-            background-color: #555;
+            background-color: #444;
             cursor: pointer;
             border: none;
-            font-size: 1rem;
-            transition: all 0.3s ease;
+            font-size: 0.9rem;
+            transition: all 0.2s ease;
         }
         .nav-button:hover { background-color: #666; transform: translateY(-1px); }
         .nav-button:active { transform: translateY(1px); }
-        .nav-button:focus { outline: 2px solid #888; outline-offset: 2px; }
+        .nav-button.primary { background-color: #0052ff; }
+        .nav-button.primary:hover { background-color: #0040cc; }
+        .nav-button.success { background-color: #28a745; }
+        .nav-button.success:hover { background-color: #218838; }
+        .nav-button.danger { background-color: #666; font-size: 0.8rem; padding: 6px 12px; }
+        .nav-button.danger:hover { background-color: #c0392b; }
+
         .loading {
             text-align: center;
             padding: 2rem;
             font-size: 1.2rem;
-            color: #666;
+            color: #888;
             animation: pulse 1.5s infinite;
         }
         .error-boundary {
             padding: 20px;
             text-align: center;
-            background-color: #fff3f3;
-            color: #cc0000;
+            background-color: #2a0000;
+            color: #ff6b6b;
             border-radius: 4px;
             margin: 20px;
         }
+
+        /* ── Auth Modal ── */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.82);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            padding: 1rem;
+        }
+        .modal {
+            background: #1a1a1a;
+            border: 1px solid #333;
+            border-radius: 12px;
+            padding: 2rem;
+            width: 100%;
+            max-width: 420px;
+            animation: modalIn 0.2s ease;
+            position: relative;
+        }
+        .modal h2 { margin: 0 0 1.25rem 0; color: #fff; font-size: 1.4rem; }
+        .modal-close {
+            position: absolute;
+            top: 1rem; right: 1rem;
+            background: none;
+            border: none;
+            color: #888;
+            font-size: 1.4rem;
+            cursor: pointer;
+            line-height: 1;
+        }
+        .modal-close:hover { color: #fff; }
+        .modal-tabs {
+            display: flex;
+            gap: 0;
+            margin-bottom: 1.5rem;
+            border-bottom: 1px solid #333;
+        }
+        .modal-tab {
+            flex: 1;
+            padding: 0.6rem;
+            background: none;
+            border: none;
+            color: #888;
+            cursor: pointer;
+            font-size: 0.95rem;
+            border-bottom: 2px solid transparent;
+            transition: all 0.2s;
+        }
+        .modal-tab.active { color: #0052ff; border-bottom-color: #0052ff; }
+        .modal-tab:hover:not(.active) { color: #ccc; }
+
+        .form-group { margin-bottom: 1rem; }
+        .form-group label { display: block; color: #aaa; font-size: 0.85rem; margin-bottom: 0.3rem; }
+        .form-group input {
+            width: 100%;
+            padding: 0.6rem 0.8rem;
+            background: #111;
+            border: 1px solid #444;
+            border-radius: 6px;
+            color: #fff;
+            font-size: 0.95rem;
+            transition: border-color 0.2s;
+        }
+        .form-group input:focus { outline: none; border-color: #0052ff; }
+        .form-error { color: #ff6b6b; font-size: 0.82rem; margin: -0.5rem 0 0.75rem 0; }
+        .form-success { color: #51cf66; font-size: 0.85rem; margin: 0.5rem 0; }
+        .btn-full {
+            width: 100%;
+            padding: 0.7rem;
+            background: #0052ff;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 1rem;
+            cursor: pointer;
+            margin-top: 0.5rem;
+            transition: background 0.2s;
+        }
+        .btn-full:hover { background: #0040cc; }
+        .btn-full:disabled { background: #333; color: #666; cursor: not-allowed; }
+        .auth-divider { text-align: center; color: #555; font-size: 0.8rem; margin: 0.75rem 0; }
+        .guest-link { color: #888; font-size: 0.82rem; text-align: center; margin-top: 0.75rem; }
+        .guest-link a { color: #0052ff; cursor: pointer; text-decoration: underline; }
+
+        /* ── Account Banner ── */
+        .account-banner {
+            background: linear-gradient(135deg, #0a0a1a, #111133);
+            border: 1px solid #0052ff44;
+            border-radius: 10px;
+            padding: 1rem 1.25rem;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+        }
+        .account-banner .welcome { color: #cce0ff; font-size: 0.95rem; }
+        .account-banner .welcome strong { color: #fff; }
+        .account-badge {
+            background: #0052ff;
+            color: white;
+            font-size: 0.7rem;
+            padding: 2px 8px;
+            border-radius: 20px;
+            margin-left: 0.5rem;
+            vertical-align: middle;
+        }
+        .account-badge.admin { background: #e67e22; }
+
+        /* ── My Account Section ── */
+        .account-section { margin-top: 1.5rem; }
+        .account-section h2 { color: #fff; margin-bottom: 1rem; }
+        .account-card {
+            background: #1a1a1a;
+            border: 1px solid #333;
+            border-radius: 10px;
+            padding: 1.25rem;
+            margin-bottom: 1rem;
+        }
+        .account-card h3 { color: #ccc; margin: 0 0 0.75rem 0; font-size: 1rem; }
+        .account-info-row { display: flex; justify-content: space-between; padding: 0.4rem 0; border-bottom: 1px solid #222; font-size: 0.9rem; }
+        .account-info-row:last-child { border-bottom: none; }
+        .account-info-row .label { color: #888; }
+        .account-info-row .value { color: #eee; }
+        .empty-state { color: #555; font-size: 0.9rem; text-align: center; padding: 1.5rem 0; }
+
+        /* ── Quote Form ── */
+        .quote-section {
+            background: #1a1a1a;
+            border: 1px solid #333;
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-top: 2rem;
+        }
+        .quote-section h3 { color: #fff; margin: 0 0 1rem 0; }
+        .quote-section textarea {
+            width: 100%;
+            padding: 0.6rem 0.8rem;
+            background: #111;
+            border: 1px solid #444;
+            border-radius: 6px;
+            color: #fff;
+            font-size: 0.9rem;
+            resize: vertical;
+            min-height: 100px;
+            font-family: Arial, sans-serif;
+        }
+        .quote-section textarea:focus { outline: none; border-color: #0052ff; }
 
         /* ── USDC Payment Section ── */
         .payment-section {
@@ -95,12 +266,8 @@
             border: 1.5px solid #0052ff44;
             border-radius: 12px;
         }
-        .payment-section h3 {
-            margin: 0 0 0.4rem 0;
-            color: #0033cc;
-            font-size: 1.15rem;
-        }
-        .payment-section .network-badge {
+        .payment-section h3 { margin: 0 0 0.4rem 0; color: #4d9fff; font-size: 1.15rem; }
+        .network-badge {
             display: inline-block;
             background: #0052ff;
             color: white;
@@ -124,37 +291,20 @@
             border-radius: 8px;
             display: block;
         }
-        .payment-qr p {
-            text-align: center;
-            font-size: 0.7rem;
-            color: #555;
-            margin: 4px 0 0 0;
-        }
-        .payment-details {
-            flex: 1;
-            min-width: 200px;
-        }
-        .payment-details p {
-            margin: 0 0 0.5rem 0;
-            font-size: 0.9rem;
-            color: #333;
-        }
+        .payment-qr p { text-align: center; font-size: 0.7rem; color: #888; margin: 4px 0 0 0; }
+        .payment-details { flex: 1; min-width: 200px; }
+        .payment-details p { margin: 0 0 0.5rem 0; font-size: 0.9rem; color: #ccc; }
         .address-box {
             display: flex;
             align-items: center;
             gap: 8px;
-            background: #fff;
-            border: 1px solid #cce0ff;
+            background: #111;
+            border: 1px solid #0052ff44;
             border-radius: 6px;
             padding: 8px 12px;
             margin: 0.5rem 0;
         }
-        .address-box code {
-            font-size: 0.75rem;
-            color: #0033cc;
-            word-break: break-all;
-            flex: 1;
-        }
+        .address-box code { font-size: 0.75rem; color: #4d9fff; word-break: break-all; flex: 1; }
         .copy-btn {
             background: #0052ff;
             color: white;
@@ -170,20 +320,20 @@
         .copy-btn.copied { background: #28a745; }
         .payment-note {
             font-size: 0.78rem;
-            color: #666;
+            color: #aaa;
             margin-top: 0.75rem;
             padding: 8px 10px;
-            background: #fffbe6;
+            background: #1a1500;
             border-left: 3px solid #f0ad00;
             border-radius: 0 4px 4px 0;
         }
 
-        /* ── Web3 Wallet Section ── */
+        /* ── Web3 ── */
         .wallet-section {
             text-align: center;
             margin: 1.5rem 0 0 0;
             padding: 1rem;
-            background-color: #f5f5f5;
+            background: #1a1a1a;
             border-radius: 8px;
         }
         .wallet-option {
@@ -196,26 +346,48 @@
             font-size: 15px;
         }
         .wallet-option:hover { background-color: #45a049; }
-        .wallet-option:disabled { background-color: #ccc; cursor: not-allowed; }
+        .wallet-option:disabled { background-color: #333; color: #666; cursor: not-allowed; }
         .wallet-option.metamask { background-color: #f6851b; }
         .wallet-option.metamask:hover { background-color: #e67e22; }
 
         @media (prefers-reduced-motion: reduce) {
-            .nav-button, .loading { transition: none; animation: none; }
+            .nav-button, .loading, .modal { transition: none; animation: none; }
         }
         @media (max-width: 600px) {
             .payment-layout { flex-direction: column; }
             .payment-qr img { width: 100px; height: 100px; }
+            .account-banner { flex-direction: column; align-items: flex-start; }
         }
     </style>
 </head>
 <body>
-    <div id="root">Loading...</div>
+    <div id="root"><div class="loading">Loading...</div></div>
 
     <script type="text/babel">
         const BUSINESS_WALLET = "0x62eF356e555BCb06E4aD3328367df9e2d9d74168";
         const QR_URL = `https://api.qrserver.com/v1/create-qr-code/?size=130x130&data=${BUSINESS_WALLET}`;
+        const API = "https://howell-forge-shop-production.up.railway.app";
 
+        // ── Auth helpers ──────────────────────────────────────────────────────
+        const getToken = () => localStorage.getItem('hf_token');
+        const getUser  = () => { try { return JSON.parse(localStorage.getItem('hf_user') || 'null'); } catch { return null; } };
+        const saveAuth = (token, user) => { localStorage.setItem('hf_token', token); localStorage.setItem('hf_user', JSON.stringify(user)); };
+        const clearAuth = () => { localStorage.removeItem('hf_token'); localStorage.removeItem('hf_user'); };
+
+        async function apiFetch(path, options = {}) {
+            const token = getToken();
+            const res = await fetch(`${API}${path}`, {
+                ...options,
+                headers: {
+                    'Content-Type': 'application/json',
+                    ...(token ? { Authorization: `Bearer ${token}` } : {}),
+                    ...(options.headers || {}),
+                },
+            });
+            return res.json();
+        }
+
+        // ── Error Boundary ────────────────────────────────────────────────────
         class ErrorBoundary extends React.Component {
             constructor(props) { super(props); this.state = { hasError: false, error: null }; }
             static getDerivedStateFromError(error) { return { hasError: true, error }; }
@@ -232,8 +404,226 @@
             }
         }
 
+        // ── Auth Modal ────────────────────────────────────────────────────────
+        function AuthModal({ onClose, onAuth }) {
+            const [tab, setTab] = React.useState('login');
+            const [form, setForm] = React.useState({ name: '', email: '', password: '' });
+            const [error, setError] = React.useState('');
+            const [loading, setLoading] = React.useState(false);
+
+            const set = (k) => (e) => setForm(f => ({ ...f, [k]: e.target.value }));
+
+            const submit = async (e) => {
+                e.preventDefault();
+                setError('');
+                setLoading(true);
+                try {
+                    const body = tab === 'login'
+                        ? { email: form.email, password: form.password }
+                        : { name: form.name, email: form.email, password: form.password };
+                    const data = await apiFetch(`/auth/${tab}`, { method: 'POST', body: JSON.stringify(body) });
+                    if (data.error) { setError(data.error); return; }
+                    saveAuth(data.token, data.user);
+                    onAuth(data.user);
+                    onClose();
+                } catch (err) {
+                    setError('Connection error. Please try again.');
+                } finally {
+                    setLoading(false);
+                }
+            };
+
+            return (
+                <div className="modal-overlay" onClick={(e) => e.target === e.currentTarget && onClose()}>
+                    <div className="modal">
+                        <button className="modal-close" onClick={onClose}>✕</button>
+                        <h2>Howell Forge Account</h2>
+                        <div className="modal-tabs">
+                            <button className={`modal-tab${tab === 'login' ? ' active' : ''}`} onClick={() => { setTab('login'); setError(''); }}>Sign In</button>
+                            <button className={`modal-tab${tab === 'register' ? ' active' : ''}`} onClick={() => { setTab('register'); setError(''); }}>Create Account</button>
+                        </div>
+
+                        <form onSubmit={submit}>
+                            {tab === 'register' && (
+                                <div className="form-group">
+                                    <label>Full Name</label>
+                                    <input type="text" value={form.name} onChange={set('name')} placeholder="Your name" required autoFocus />
+                                </div>
+                            )}
+                            <div className="form-group">
+                                <label>Email</label>
+                                <input type="email" value={form.email} onChange={set('email')} placeholder="you@example.com" required autoFocus={tab === 'login'} />
+                            </div>
+                            <div className="form-group">
+                                <label>Password {tab === 'register' && <span style={{color:'#555', fontSize:'0.75rem'}}>(min 8 characters)</span>}</label>
+                                <input type="password" value={form.password} onChange={set('password')} placeholder="••••••••" required minLength={tab === 'register' ? 8 : 1} />
+                            </div>
+                            {error && <p className="form-error">{error}</p>}
+                            <button type="submit" className="btn-full" disabled={loading}>
+                                {loading ? 'Please wait...' : tab === 'login' ? 'Sign In' : 'Create Account'}
+                            </button>
+                        </form>
+
+                        <div className="auth-divider">or</div>
+                        <div className="guest-link">
+                            <a onClick={onClose}>Continue as guest →</a>
+                        </div>
+                    </div>
+                </div>
+            );
+        }
+
+        // ── Quote Form ────────────────────────────────────────────────────────
+        function QuoteForm({ user }) {
+            const [form, setForm] = React.useState({
+                name: user?.name || '',
+                email: user?.email || '',
+                details: '',
+            });
+            const [status, setStatus] = React.useState(null);
+            const [loading, setLoading] = React.useState(false);
+
+            const set = (k) => (e) => setForm(f => ({ ...f, [k]: e.target.value }));
+
+            const submit = async (e) => {
+                e.preventDefault();
+                setLoading(true);
+                setStatus(null);
+                try {
+                    const data = await apiFetch('/api/quote', { method: 'POST', body: JSON.stringify(form) });
+                    if (data.error) { setStatus({ type: 'error', msg: data.error }); return; }
+                    setStatus({ type: 'success', msg: data.message });
+                    setForm(f => ({ ...f, details: '' }));
+                } catch {
+                    setStatus({ type: 'error', msg: 'Failed to send. Please email us directly.' });
+                } finally {
+                    setLoading(false);
+                }
+            };
+
+            return (
+                <div className="quote-section">
+                    <h3>Request a Quote</h3>
+                    <form onSubmit={submit}>
+                        {!user && (
+                            <div style={{display:'flex', gap:'1rem', flexWrap:'wrap', marginBottom:'0.5rem'}}>
+                                <div className="form-group" style={{flex:1, minWidth:'140px'}}>
+                                    <label>Your Name</label>
+                                    <input type="text" value={form.name} onChange={set('name')} placeholder="Full name" required />
+                                </div>
+                                <div className="form-group" style={{flex:1, minWidth:'140px'}}>
+                                    <label>Email</label>
+                                    <input type="email" value={form.email} onChange={set('email')} placeholder="you@example.com" required />
+                                </div>
+                            </div>
+                        )}
+                        {user && (
+                            <p style={{color:'#888', fontSize:'0.85rem', marginBottom:'0.75rem'}}>
+                                Submitting as <strong style={{color:'#ccc'}}>{user.name}</strong> ({user.email})
+                            </p>
+                        )}
+                        <div className="form-group">
+                            <label>Project Details</label>
+                            <textarea
+                                value={form.details}
+                                onChange={set('details')}
+                                placeholder="Describe your part: material, dimensions, quantity, tolerances, finish, timeline..."
+                                required
+                            />
+                        </div>
+                        {status && (
+                            <p className={status.type === 'success' ? 'form-success' : 'form-error'}>{status.msg}</p>
+                        )}
+                        <button type="submit" className="btn-full" disabled={loading}>
+                            {loading ? 'Sending...' : 'Send Quote Request'}
+                        </button>
+                    </form>
+                </div>
+            );
+        }
+
+        // ── My Account Page ───────────────────────────────────────────────────
+        function AccountPage({ user, onLogout }) {
+            const [orders, setOrders] = React.useState([]);
+            const [quotes, setQuotes] = React.useState([]);
+            const [loading, setLoading] = React.useState(true);
+
+            React.useEffect(() => {
+                Promise.all([
+                    apiFetch('/auth/orders'),
+                    apiFetch('/auth/quotes'),
+                ]).then(([o, q]) => {
+                    setOrders(o.orders || []);
+                    setQuotes(q.quotes || []);
+                }).finally(() => setLoading(false));
+            }, []);
+
+            return (
+                <div className="account-section">
+                    <h2>My Account
+                        {user.role === 'admin' && <span className="account-badge admin">ADMIN</span>}
+                    </h2>
+
+                    <div className="account-card">
+                        <h3>Account Details</h3>
+                        <div className="account-info-row"><span className="label">Name</span><span className="value">{user.name}</span></div>
+                        <div className="account-info-row"><span className="label">Email</span><span className="value">{user.email}</span></div>
+                        <div className="account-info-row"><span className="label">Role</span><span className="value" style={{textTransform:'capitalize'}}>{user.role}</span></div>
+                    </div>
+
+                    {loading ? (
+                        <p className="loading">Loading your history...</p>
+                    ) : (
+                        <>
+                            <div className="account-card">
+                                <h3>Quote Requests ({quotes.length})</h3>
+                                {quotes.length === 0 ? (
+                                    <p className="empty-state">No quote requests yet. Submit one from the home page.</p>
+                                ) : quotes.map(q => (
+                                    <div key={q.id} className="account-info-row">
+                                        <span className="label" style={{fontSize:'0.8rem'}}>{new Date(q.created_at).toLocaleDateString()}</span>
+                                        <span className="value" style={{fontSize:'0.8rem', textTransform:'capitalize'}}>{q.status}</span>
+                                    </div>
+                                ))}
+                            </div>
+
+                            <div className="account-card">
+                                <h3>Orders ({orders.length})</h3>
+                                {orders.length === 0 ? (
+                                    <p className="empty-state">No orders yet.</p>
+                                ) : orders.map(o => (
+                                    <div key={o.id} className="account-info-row">
+                                        <span className="label" style={{fontSize:'0.8rem'}}>{new Date(o.created_at).toLocaleDateString()} — {o.amount_usdc ? `${o.amount_usdc} USDC` : 'Pending'}</span>
+                                        <span className="value" style={{fontSize:'0.8rem', textTransform:'capitalize'}}>{o.status}</span>
+                                    </div>
+                                ))}
+                            </div>
+                        </>
+                    )}
+
+                    {user.role === 'admin' && (
+                        <div className="account-card">
+                            <h3>Admin</h3>
+                            <p style={{color:'#888', fontSize:'0.85rem', margin:'0 0 0.75rem 0'}}>Full admin dashboard coming soon.</p>
+                            <div style={{display:'flex', gap:'0.5rem', flexWrap:'wrap'}}>
+                                <a href="https://howell-forge-shop-production.up.railway.app/admin/stats" target="_blank" rel="noopener" className="nav-button primary" style={{fontSize:'0.82rem', padding:'6px 12px'}}>Shop Stats API</a>
+                                <a href="https://railway.app" target="_blank" rel="noopener" className="nav-button" style={{fontSize:'0.82rem', padding:'6px 12px'}}>Railway</a>
+                            </div>
+                        </div>
+                    )}
+
+                    <button className="nav-button danger" onClick={onLogout} style={{marginTop:'0.5rem'}}>
+                        Sign Out
+                    </button>
+                </div>
+            );
+        }
+
+        // ── Main App ──────────────────────────────────────────────────────────
         const App = () => {
             const [page, setPage] = React.useState('home');
+            const [authUser, setAuthUser] = React.useState(getUser);
+            const [showAuth, setShowAuth] = React.useState(false);
             const [account, setAccount] = React.useState(null);
             const [isConnecting, setIsConnecting] = React.useState(false);
             const [error, setError] = React.useState(null);
@@ -251,6 +641,21 @@
                     setProviderType('Legacy');
                 }
             }, []);
+
+            // Verify stored token is still valid on load
+            React.useEffect(() => {
+                if (authUser && getToken()) {
+                    apiFetch('/auth/me').then(data => {
+                        if (data.error) { clearAuth(); setAuthUser(null); }
+                    }).catch(() => {});
+                }
+            }, []);
+
+            const handleLogout = () => {
+                clearAuth();
+                setAuthUser(null);
+                setPage('home');
+            };
 
             const copyAddress = () => {
                 navigator.clipboard.writeText(BUSINESS_WALLET).then(() => {
@@ -291,16 +696,12 @@
                             <p><strong>Send USDC to this address on Base:</strong></p>
                             <div className="address-box">
                                 <code>{BUSINESS_WALLET}</code>
-                                <button
-                                    className={`copy-btn${copied ? ' copied' : ''}`}
-                                    onClick={copyAddress}
-                                >
+                                <button className={`copy-btn${copied ? ' copied' : ''}`} onClick={copyAddress}>
                                     {copied ? '✓ Copied' : 'Copy'}
                                 </button>
                             </div>
-                            <p style={{fontSize:'0.85rem', color:'#444', marginTop:'0.75rem'}}>
-                                <strong>Token:</strong> USDC &nbsp;|&nbsp;
-                                <strong>Network:</strong> Base (Coinbase L2)
+                            <p style={{fontSize:'0.85rem', color:'#888', marginTop:'0.75rem'}}>
+                                <strong>Token:</strong> USDC &nbsp;|&nbsp; <strong>Network:</strong> Base (Coinbase L2)
                             </p>
                             <div className="payment-note">
                                 ⚠️ Only send <strong>USDC on the Base network</strong>. Sending other tokens or using a different network may result in permanent loss of funds.
@@ -314,10 +715,10 @@
                 const shortAddr = account ? `${account.slice(0,6)}...${account.slice(-4)}` : '';
                 return (
                     <div className="wallet-section">
-                        <p style={{marginBottom:'0.75rem', color:'#444'}}>
+                        <p style={{marginBottom:'0.75rem', color:'#888'}}>
                             Or connect your Web3 wallet to pay directly from your browser.
                         </p>
-                        {error && <p style={{color:'#cc0000', fontSize:'0.85rem', marginBottom:'0.5rem'}}>{error}</p>}
+                        {error && <p style={{color:'#ff6b6b', fontSize:'0.85rem', marginBottom:'0.5rem'}}>{error}</p>}
                         <button
                             className={`wallet-option${providerType === 'MetaMask' ? ' metamask' : ''}`}
                             onClick={connectWallet}
@@ -337,6 +738,14 @@
                             <button className="nav-button" onClick={() => setPage('home')}>Home</button>
                             <button className="nav-button" onClick={() => setPage('about')}>About</button>
                             <button className="nav-button" onClick={() => setPage('contact')}>Contact</button>
+                            {authUser ? (
+                                <button className="nav-button success" onClick={() => setPage('account')}>
+                                    {authUser.name.split(' ')[0]}
+                                    {authUser.role === 'admin' && <span className="account-badge admin" style={{marginLeft:'6px'}}>ADMIN</span>}
+                                </button>
+                            ) : (
+                                <button className="nav-button primary" onClick={() => setShowAuth(true)}>Sign In</button>
+                            )}
                         </div>
                     </div>
                 );
@@ -345,28 +754,47 @@
             function MainContent() {
                 return (
                     <div className="main-content">
+                        {authUser && page !== 'account' && (
+                            <div className="account-banner">
+                                <span className="welcome">
+                                    Welcome back, <strong>{authUser.name.split(' ')[0]}</strong>
+                                    {authUser.role === 'admin' && <span className="account-badge admin">ADMIN</span>}
+                                </span>
+                                <div style={{display:'flex', gap:'0.5rem'}}>
+                                    <button className="nav-button" style={{fontSize:'0.8rem', padding:'5px 12px'}} onClick={() => setPage('account')}>My Account</button>
+                                    <button className="nav-button danger" onClick={handleLogout}>Sign Out</button>
+                                </div>
+                            </div>
+                        )}
+
+                        {page === 'account' && authUser && (
+                            <AccountPage user={authUser} onLogout={handleLogout} />
+                        )}
+
                         {page === 'home' && (
                             <>
-                                <h2>Welcome to Howell Forge</h2>
-                                <p>We specialize in high-quality metal parts production with a focus on precision and reliability.</p>
+                                <h2 style={{color:'#fff'}}>Welcome to Howell Forge</h2>
+                                <p style={{color:'#ccc'}}>We specialize in high-quality metal parts production with a focus on precision and reliability.</p>
                                 <UsdcPaymentSection />
                                 <WalletSection />
+                                <QuoteForm user={authUser} />
                             </>
                         )}
                         {page === 'about' && (
                             <>
-                                <h2>About Us</h2>
-                                <p>At Howell Forge, we combine traditional craftsmanship with modern technology to create exceptional metal parts. Our commitment to quality and precision ensures that each piece meets the highest standards.</p>
-                                <p>With years of experience in metal parts production, we have developed expertise in creating custom solutions for various industries.</p>
+                                <h2 style={{color:'#fff'}}>About Us</h2>
+                                <p style={{color:'#ccc'}}>At Howell Forge, we combine traditional craftsmanship with modern technology to create exceptional metal parts. Our commitment to quality and precision ensures that each piece meets the highest standards.</p>
+                                <p style={{color:'#ccc'}}>With years of experience in metal parts production, we have developed expertise in creating custom solutions for various industries.</p>
                             </>
                         )}
                         {page === 'contact' && (
                             <>
-                                <h2>Contact Us</h2>
-                                <p>We're here to help with your metal parts production needs.</p>
-                                <p>Email: <a href="mailto:chrishowell@howell-forge.com">chrishowell@howell-forge.com</a></p>
-                                <p>Business Hours: Monday - Friday, 9:00 AM - 5:00 PM EST</p>
-                                <p>Please include project details in your email for a faster response.</p>
+                                <h2 style={{color:'#fff'}}>Contact Us</h2>
+                                <p style={{color:'#ccc'}}>We're here to help with your metal parts production needs.</p>
+                                <p style={{color:'#ccc'}}>Email: <a href="mailto:chrishowell@howell-forge.com" style={{color:'#4d9fff'}}>chrishowell@howell-forge.com</a></p>
+                                <p style={{color:'#ccc'}}>Business Hours: Monday - Friday, 9:00 AM - 5:00 PM EST</p>
+                                <p style={{color:'#ccc'}}>Please include project details in your email for a faster response.</p>
+                                <QuoteForm user={authUser} />
                             </>
                         )}
                     </div>
@@ -378,7 +806,13 @@
                     <div>
                         <Header />
                         <MainContent />
-                        <div className="footer">&copy; 2024 Howell Forge. All rights reserved.</div>
+                        <div className="footer">&copy; 2025 Howell Forge. All rights reserved.</div>
+                        {showAuth && (
+                            <AuthModal
+                                onClose={() => setShowAuth(false)}
+                                onAuth={(user) => { setAuthUser(user); setPage('home'); }}
+                            />
+                        )}
                     </div>
                 </ErrorBoundary>
             );
