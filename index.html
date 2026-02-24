@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="Permissions-Policy" content="geolocation=(), microphone=self, camera=()">
+    <meta name="referrer" content="strict-origin">
+
+    <title>Howell Forge — From Cursor to CNC | Precision Metal & AI Automation</title>
+    <meta name="description" content="Howell Forge — precision metal fabrication and AI business automation. Deploy an 8-agent AI crew for your business. Custom CNC parts. Get a quote today.">
+    <meta property="og:title" content="Howell Forge — From Cursor to CNC | Precision Metal & AI Automation">
+    <meta property="og:description" content="Precision metal fabrication and AI-powered business automation. Built by makers, for makers and entrepreneurs.">
+    <meta property="og:image" content="https://howell-forge.com/og-image.jpg">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://howell-forge.com/og-image.jpg">
+
+    <script crossorigin src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
+    <script crossorigin src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
+    <script crossorigin src="https://cdn.jsdelivr.net/npm/web3@1.10.0/dist/web3.min.js"></script>
+    <script crossorigin src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.23.5/babel.min.js"></script>
+
+    <!-- ARIA chat (do not remove) -->
+    <script>if (typeof window !== "undefined" && (window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1")) { window.ARIA_CHAT_WS_URL = ""; }</script>
+    <script src="aria-chat.js?v=8" defer></script>
+
+    <style>
+        @keyframes pulse {
+            0% { opacity: 0.6; }
+            50% { opacity: 1; }
+            100% { opacity: 0.6; }
+        }
+        @keyframes modalIn {
+            from { opacity: 0; transform: translateY(-20px) scale(0.97); }
+            to   { opacity: 1; transform: translateY(0) scale(1); }
+        }
+
+        *, *::before, *::after { box-sizing: border-box; }
+
+        body { font-family: Arial, sans-serif; margin: 0; padding: 0; line-height: 1.6; background: #111; color: #eee; }
+        .header { background-color: #000; color: white; padding: 1rem; text-align: center; }
+        .header h1 { margin: 0 0 0.5rem 0; font-size: 1.8rem; letter-spacing: 0.05em; }
+        .nav-buttons { display: flex; justify-content: center; align-items: center; gap: 0.75rem; padding: 0.5rem 1rem; flex-wrap: wrap; }
+        .main-content { padding: 2rem; max-width: 1200px; margin: 0 auto; min-height: calc(100vh - 200px); padding-bottom: 5rem; }
+        .footer { background-color: #000; color: #aaa; padding: 1rem; text-align: center; position: fixed; bottom: 0; width: 100%; font-size: 0.85rem; }
+        .nav-button { display: inline-block; color: white; text-decoration: none; padding: 8px 16px; border-radius: 4px; background-color: #444; cursor: pointer; border: none; font-size: 0.9rem; transition: all 0.2s ease; }
+        .nav-button:hover { background-color: #666; transform: translateY(-1px); }
+        .nav-button:active { transform: translateY(1px); }
+        .nav-button.primary { background-color: #0052ff; }
+        .nav-button.primary:hover { background-color: #0040cc; }
+        .nav-button.success { background-color: #28a745; }
+        .nav-button.success:hover { background-color: #218838; }
+        .nav-button.danger { background-color: #666; font-size: 0.8rem; padding: 6px 12px; }
+        .nav-button.danger:hover { background-color: #c0392b; }
+        .loading { text-align: center; padding: 2rem; font-size: 1.2rem; color: #888; animation: pulse 1.5s infinite; }
+        .error-boundary { padding: 20px; text-align: center; background-color: #2a0000; color: #ff6b6b; border-radius: 4px; margin: 20px; }
+
+        /* ── Auth Modal ── */
+        .modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.82); display: flex; align-items: center; justify-content: center; z-index: 1000; padding: 1rem; }
+        .modal { background: #1a1a1a; border: 1px solid #333; border-radius: 12px; padding: 2rem; width: 100%; max-width: 420px; animation: modalIn 0.2s ease; position: relative; }
+        .modal h2 { margin: 0 0 1.25rem 0; color: #fff; font-size: 1.4rem; }
+        .modal-close { position: absolute; top: 1rem; right: 1rem; background: none; border: none; color: #888; font-size: 1.4rem; cursor: pointer; line-height: 1; }
+        .modal-close:hover { color: #fff; }
+        .modal-tabs { display: flex; gap: 0; margin-bottom: 1.5rem; border-bottom: 1px solid #333; }
+        .modal-tab { flex: 1; padding: 0.6rem; background: none; border: none; color: #888; cursor: pointer; font-size: 0.95rem; border-bottom: 2px solid transparent; transition: all 0.2s; }
+        .modal-tab.active { color: #0052ff; border-bottom-color: #0052ff; }
+        .modal-tab:hover:not(.active) { color: #ccc; }
+        .form-group { margin-bottom: 1rem; }
+        .form-group label { display: block; color: #aaa; font-size: 0.85rem; margin-bottom: 0.3rem; }
+        .form-group input { width: 100%; padding: 0.6rem 0.8rem; background: #111; border: 1px solid #444; border-radius: 6px; color: #fff; font-size: 0.95rem; transition: border-color 0.2s; }
+        .form-group input:focus { outline: none; border-color: #0052ff; }
+        .form-error { color: #ff6b6b; font-size: 0.82rem; margin: -0.5rem 0 0.75rem 0; }
+        .form-success { color: #51cf66; font-size: 0.85rem; margin: 0.5rem 0; }
+        .btn-full { width: 100%; padding: 0.7rem; background: #0052ff; color: white; border: none; border-radius: 6px; font-size: 1rem; cursor: pointer; margin-top: 0.5rem; transition: background 0.2s; }
+        .btn-full:hover { background: #0040cc; }
+        .btn-full:disabled { background: #333; color: #666; cursor: not-allowed; }
+        .auth-divider { text-align: center; color: #555; font-size: 0.8rem; margin: 0.75rem 0; }
+        .guest-link { color: #888; font-size: 0.82rem; text-align: center; margin-top: 0.75rem; }
+        .guest-link a { color: #0052ff; cursor: pointer; text-decoration: underline; }
+
+        /* ── Account Banner ── */
+        .account-banner { background: linear-gradient(135deg, #0a0a1a, #111133); border: 1px solid #0052ff44; border-radius: 10px; padding: 1rem 1.25rem; margin-bottom: 1.5rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.75rem; }
+        .account-banner .welcome { color: #cce0ff; font-size: 0.95rem; }
+        .account-banner .welcome strong { color: #fff; }
+        .account-badge { background: #0052ff; color: white; font-size: 0.7rem; padding: 2px 8px; border-radius: 20px; margin-left: 0.5rem; vertical-align: middle; }
+        .account-badge.admin { background: #e67e22; }
+        .account-section { margin-top: 1.5rem; }
+        .account-section h2 { color: #fff; margin-bottom: 1rem; }
+        .account-card { background: #1a1a1a; border: 1px solid #333; border-radius: 10px; padding: 1.25rem; margin-bottom: 1rem; }
+        .account-card h3 { color: #ccc; margin: 0 0 0.75rem 0; font-size: 1rem; }
+        .account-info-row { display: flex; justify-content: space-between; padding: 0.4rem 0; border-bottom: 1px solid #222; font-size: 0.9rem; }
+        .account-info-row:last-child { border-bottom: none; }
+        .account-info-row .label { color: #888; }
+        .account-info-row .value { color: #eee; }
+        .empty-state { color: #555; font-size: 0.9rem; text-align: center; padding: 1.5rem 0; }
+
+        /* ── Quote Form ── */
+        .quote-section { background: #1a1a1a; border: 1px solid #333; border-radius: 12px; padding: 1.5rem; margin-top: 2rem; }
+        .quote-section h3 { color: #fff; margin: 0 0 1rem 0; }
+        .quote-section textarea { width: 100%; padding: 0.6rem 0.8rem; background: #111; border: 1px solid #444; border-radius: 6px; color: #fff; font-size: 0.9rem; resize: vertical; min-height: 100px; font-family: Arial, sans-serif; }
+        .quote-section textarea:focus { outline: none; border-color: #0052ff; }
+
+        /* ── USDC Payment ── */
+        .payment-section { margin-top: 2rem; padding: 1.5rem; background: linear-gradient(135deg, #0052ff11, #0052ff05); border: 1.5px solid #0052ff44; border-radius: 12px; }
+        .payment-section h3 { margin: 0 0 0.4rem 0; color: #4d9fff; font-size: 1.15rem; }
+        .network-badge { display: inline-block; background: #0052ff; color: white; font-size: 0.72rem; font-weight: bold; padding: 2px 8px; border-radius: 20px; margin-bottom: 1rem; letter-spacing: 0.05em; }
+        .payment-layout { display: flex; gap: 1.5rem; align-items: flex-start; flex-wrap: wrap; }
+        .payment-qr img { width: 130px; height: 130px; border: 3px solid #0052ff33; border-radius: 8px; display: block; }
+        .payment-qr p { text-align: center; font-size: 0.7rem; color: #888; margin: 4px 0 0 0; }
+        .payment-details { flex: 1; min-width: 200px; }
+        .payment-details p { margin: 0 0 0.5rem 0; font-size: 0.9rem; color: #ccc; }
+        .address-box { display: flex; align-items: center; gap: 8px; background: #111; border: 1px solid #0052ff44; border-radius: 6px; padding: 8px 12px; margin: 0.5rem 0; }
+        .address-box code { font-size: 0.75rem; color: #4d9fff; word-break: break-all; flex: 1; }
+        .copy-btn { background: #0052ff; color: white; border: none; border-radius: 4px; padding: 4px 10px; font-size: 0.75rem; cursor: pointer; white-space: nowrap; transition: background 0.2s; }
+        .copy-btn:hover { background: #0040cc; }
+        .copy-btn.copied { background: #28a745; }
+        .payment-note { font-size: 0.78rem; color: #aaa; margin-top: 0.75rem; padding: 8px 10px; background: #1a1500; border-left: 3px solid #f0ad00; border-radius: 0 4px 4px 0; }
+        .wallet-section { text-align: center; margin: 1.5rem 0 0 0; padding: 1rem; background: #1a1a1a; border-radius: 8px; }
+        .wallet-option { background-color: #4CAF50; color: white; padding: 10px 24px; border: none; border-radius: 4px; cursor: pointer; font-size: 15px; }
+        .wallet-option:hover { background-color: #45a049; }
+        .wallet-option:disabled { background-color: #333; color: #666; cursor: not-allowed; }
+        .wallet-option.metamask { background-color: #f6851b; }
+        .wallet-option.metamask:hover { background-color: #e67e22; }
+
+        /* ── Products / Pricing ── */
+        .products-hero { text-align: center; padding: 2rem 0 1rem 0; }
+        .products-hero h2 { color: #fff; font-size: 2rem; margin: 0 0 0.5rem 0; }
+        .products-hero p { color: #aaa; font-size: 1.1rem; max-width: 600px; margin: 0 auto 0.5rem auto; }
+        .products-hero .highlight { color: #4d9fff; font-weight: bold; }
+        .crew-badge { display: inline-flex; gap: 0.4rem; flex-wrap: wrap; justify-content: center; margin: 1rem 0 2rem 0; }
+        .crew-badge span { background: #1a1a2e; border: 1px solid #0052ff44; color: #4d9fff; font-size: 0.75rem; padding: 3px 10px; border-radius: 20px; letter-spacing: 0.04em; }
+        .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin: 0 0 2rem 0; }
+        .pricing-card { background: #1a1a1a; border: 1px solid #333; border-radius: 14px; padding: 1.75rem 1.5rem; display: flex; flex-direction: column; position: relative; transition: border-color 0.2s, transform: 0.2s; }
+        .pricing-card:hover { border-color: #0052ff88; transform: translateY(-3px); }
+        .pricing-card.featured { border: 2px solid #0052ff; background: linear-gradient(135deg, #0a0a1e, #111133); }
+        .featured-badge { position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: #0052ff; color: white; font-size: 0.72rem; font-weight: bold; padding: 3px 14px; border-radius: 20px; letter-spacing: 0.06em; white-space: nowrap; }
+        .pricing-card .tier-name { color: #aaa; font-size: 0.85rem; letter-spacing: 0.08em; text-transform: uppercase; margin: 0 0 0.4rem 0; }
+        .pricing-card .price { font-size: 2.4rem; font-weight: bold; color: #fff; margin: 0 0 0.2rem 0; line-height: 1; }
+        .pricing-card .price span { font-size: 1rem; color: #888; font-weight: normal; }
+        .pricing-card .price-sub { color: #888; font-size: 0.82rem; margin: 0 0 1.25rem 0; }
+        .pricing-card .feature-list { list-style: none; padding: 0; margin: 0 0 1.5rem 0; flex: 1; }
+        .pricing-card .feature-list li { color: #ccc; font-size: 0.88rem; padding: 0.35rem 0; border-bottom: 1px solid #222; display: flex; align-items: flex-start; gap: 0.5rem; }
+        .pricing-card .feature-list li:last-child { border-bottom: none; }
+        .pricing-card .feature-list li::before { content: "✓"; color: #0052ff; font-weight: bold; flex-shrink: 0; }
+        .pricing-card .buy-btn { display: block; text-align: center; padding: 0.75rem; border-radius: 8px; font-size: 1rem; font-weight: bold; text-decoration: none; transition: background 0.2s; cursor: pointer; }
+        .pricing-card .buy-btn.primary { background: #0052ff; color: white; }
+        .pricing-card .buy-btn.primary:hover { background: #0040cc; }
+        .pricing-card .buy-btn.outline { background: transparent; color: #0052ff; border: 2px solid #0052ff; }
+        .pricing-card .buy-btn.outline:hover { background: #0052ff22; }
+        .value-callout { background: linear-gradient(135deg, #0a1500, #0d1c00); border: 1px solid #3a6b0044; border-radius: 10px; padding: 1.25rem 1.5rem; margin-bottom: 2rem; text-align: center; }
+        .value-callout p { margin: 0; color: #aaa; font-size: 0.95rem; }
+        .value-callout strong { color: #7bc67e; }
+        .includes-section { margin-bottom: 2rem; }
+        .includes-section h3 { color: #fff; margin: 0 0 1rem 0; font-size: 1.1rem; }
+        .includes-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 0.75rem; }
+        .include-item { background: #1a1a1a; border: 1px solid #2a2a2a; border-radius: 8px; padding: 0.75rem 1rem; display: flex; align-items: flex-start; gap: 0.6rem; }
+        .include-item .icon { font-size: 1.2rem; flex-shrink: 0; }
+        .include-item .text { font-size: 0.85rem; color: #ccc; }
+        .include-item .text strong { color: #fff; display: block; margin-bottom: 0.1rem; }
+
+        /* ── Landing / Home ── */
+        .landing-hero { text-align: center; padding: 2.5rem 0 1.5rem 0; }
+        .landing-hero h2 { color: #fff; font-size: 2.2rem; margin: 0 0 1rem 0; line-height: 1.2; letter-spacing: 0.02em; }
+        .landing-subhead { color: #bbb; font-size: 1.1rem; max-width: 640px; margin: 0 auto 1.5rem auto; line-height: 1.65; }
+        .landing-cta { display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; margin-bottom: 2rem; }
+        .landing-cta .nav-button { padding: 12px 24px; font-size: 1rem; }
+        .stripe-callout { background: linear-gradient(135deg, #0d1a0d, #0a1510); border: 1px solid #28a74544; border-radius: 10px; padding: 1rem 1.25rem; margin-bottom: 1.5rem; text-align: center; }
+        .stripe-callout p { margin: 0; color: #aaa; font-size: 0.95rem; }
+        .stripe-callout a { color: #4d9fff; font-weight: bold; text-decoration: none; }
+        .stripe-callout a:hover { text-decoration: underline; }
+        .landing-section-title { color: #888; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.1em; margin: 2rem 0 0.75rem 0; }
+
+        /* ── Quick Wins ── */
+        .current-build { background: #0a0a14; border: 1px solid #0052ff44; border-radius: 8px; padding: 0.6rem 1rem; margin: 1rem 0; display: inline-flex; align-items: center; gap: 0.5rem; font-size: 0.88rem; color: #aaa; }
+        .current-build .dot { width: 6px; height: 6px; background: #28a745; border-radius: 50%; animation: pulse 2s infinite; }
+        .stack-icons { display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem; margin: 1.5rem 0; }
+        .stack-icons a { color: #666; text-decoration: none; font-size: 0.8rem; padding: 4px 10px; border-radius: 4px; border: 1px solid #333; transition: color 0.2s, border-color 0.2s; }
+        .stack-icons a:hover { color: #4d9fff; border-color: #0052ff44; }
+
+        @media (prefers-reduced-motion: reduce) { .nav-button, .loading, .modal { transition: none; animation: none; } }
+        @media (max-width: 600px) { .payment-layout { flex-direction: column; } .payment-qr img { width: 100px; height: 100px; } .account-banner { flex-direction: column; align-items: flex-start; } .landing-hero h2 { font-size: 1.6rem; } }
+    </style>
+</head>
+<body>
+    <div id="root"><div class="loading">Loading...</div></div>
+
+    <script type="text/babel">
+        const BUSINESS_WALLET = "0x62eF356e555BCb06E4aD3328367df9e2d9d74168";
+        const QR_URL = `https://api.qrserver.com/v1/create-qr-code/?size=130x130&data=${BUSINESS_WALLET}`;
+        const API = "https://howell-forge-shop-production.up.railway.app";
+
+        const getToken = () => localStorage.getItem('hf_token');
+        const getUser  = () => { try { return JSON.parse(localStorage.getItem('hf_user') || 'null'); } catch { return null; } };
+        const saveAuth = (token, user) => { localStorage.setItem('hf_token', token); localStorage.setItem('hf_user', JSON.stringify(user)); };
+        const clearAuth = () => { localStorage.removeItem('hf_token'); localStorage.removeItem('hf_user'); };
+
+        async function apiFetch(path, options = {}) {
+            const token = getToken();
+            const res = await fetch(`${API}${path}`, {
+                ...options,
+                headers: { 'Content-Type': 'application/json', ...(token ? { Authorization: `Bearer ${token}` } : {}), ...(options.headers || {}) },
+            });
+            return res.json();
+        }
+
+        class ErrorBoundary extends React.Component {
+            constructor(props) { super(props); this.state = { hasError: false, error: null }; }
+            static getDerivedStateFromError(error) { return { hasError: true, error }; }
+            componentDidCatch(error, info) { console.error('Error:', error, info); }
+            render() {
+                if (this.state.hasError) return (<div className="error-boundary"><h3>Something went wrong</h3><p>{this.state.error?.message}</p><button onClick={() => window.location.reload()}>Refresh</button></div>);
+                return this.props.children;
+            }
+        }
+
+        function AuthModal({ onClose, onAuth }) {
+            const [tab, setTab] = React.useState('login');
+            const [form, setForm] = React.useState({ name: '', email: '', password: '' });
+            const [error, setError] = React.useState('');
+            const [loading, setLoading] = React.useState(false);
+            const set = (k) => (e) => setForm(f => ({ ...f, [k]: e.target.value }));
+            const submit = async (e) => {
+                e.preventDefault(); setError(''); setLoading(true);
+                try {
+                    const body = tab === 'login' ? { email: form.email, password: form.password } : { name: form.name, email: form.email, password: form.password };
+                    const data = await apiFetch(`/auth/${tab}`, { method: 'POST', body: JSON.stringify(body) });
+                    if (data.error) { setError(data.error); return; }
+                    saveAuth(data.token, data.user); onAuth(data.user); onClose();
+                } catch (err) { setError('Connection error. Please try again.'); } finally { setLoading(false); }
+            };
+            return (
+                <div className="modal-overlay" onClick={(e) => e.target === e.currentTarget && onClose()}>
+                    <div className="modal">
+                        <button className="modal-close" onClick={onClose}>✕</button>
+                        <h2>Howell Forge Account</h2>
+                        <div className="modal-tabs">
+                            <button className={`modal-tab${tab === 'login' ? ' active' : ''}`} onClick={() => { setTab('login'); setError(''); }}>Sign In</button>
+                            <button className={`modal-tab${tab === 'register' ? ' active' : ''}`} onClick={() => { setTab('register'); setError(''); }}>Create Account</button>
+                        </div>
+                        <form onSubmit={submit}>
+                            {tab === 'register' && (<div className="form-group"><label>Full Name</label><input type="text" value={form.name} onChange={set('name')} placeholder="Your name" required autoFocus /></div>)}
+                            <div className="form-group"><label>Email</label><input type="email" value={form.email} onChange={set('email')} placeholder="you@example.com" required autoFocus={tab === 'login'} /></div>
+                            <div className="form-group"><label>Password {tab === 'register' && <span style={{color:'#555',fontSize:'0.75rem'}}>(min 8 characters)</span>}</label><input type="password" value={form.password} onChange={set('password')} placeholder="••••••••" required minLength={tab === 'register' ? 8 : 1} /></div>
+                            {error && <p className="form-error">{error}</p>}
+                            <button type="submit" className="btn-full" disabled={loading}>{loading ? 'Please wait...' : tab === 'login' ? 'Sign In' : 'Create Account'}</button>
+                        </form>
+                        <div className="auth-divider">or</div>
+                        <div className="guest-link"><a onClick={onClose}>Continue as guest →</a></div>
+                    </div>
+                </div>
+            );
+        }
+
+        function QuoteForm({ user }) {
+            const [form, setForm] = React.useState({ name: user?.name || '', email: user?.email || '', details: '' });
+            const [status, setStatus] = React.useState(null);
+            const [loading, setLoading] = React.useState(false);
+            const set = (k) => (e) => setForm(f => ({ ...f, [k]: e.target.value }));
+            const submit = async (e) => {
+                e.preventDefault(); setLoading(true); setStatus(null);
+                try {
+                    const data = await apiFetch('/api/quote', { method: 'POST', body: JSON.stringify(form) });
+                    if (data.error) { setStatus({ type: 'error', msg: data.error }); return; }
+                    setStatus({ type: 'success', msg: data.message }); setForm(f => ({ ...f, details: '' }));
+                } catch { setStatus({ type: 'error', msg: 'Failed to send. Please email us directly.' }); } finally { setLoading(false); }
+            };
+            return (
+                <div className="quote-section">
+                    <h3>Request a Quote</h3>
+                    <form onSubmit={submit}>
+                        {!user && (
+                            <div style={{display:'flex',gap:'1rem',flexWrap:'wrap',marginBottom:'0.5rem'}}>
+                                <div className="form-group" style={{flex:1,minWidth:'140px'}}><label>Your Name</label><input type="text" value={form.name} onChange={set('name')} placeholder="Full name" required /></div>
+                                <div className="form-group" style={{flex:1,minWidth:'140px'}}><label>Email</label><input type="email" value={form.email} onChange={set('email')} placeholder="you@example.com" required /></div>
+                            </div>
+                        )}
+                        {user && <p style={{color:'#888',fontSize:'0.85rem',marginBottom:'0.75rem'}}>Submitting as <strong style={{color:'#ccc'}}>{user.name}</strong> ({user.email})</p>}
+                        <div className="form-group"><label>Project Details</label><textarea value={form.details} onChange={set('details')} placeholder="Describe your part: material, dimensions, quantity, tolerances, finish, timeline..." required /></div>
+                        {status && <p className={status.type === 'success' ? 'form-success' : 'form-error'}>{status.msg}</p>}
+                        <button type="submit" className="btn-full" disabled={loading}>{loading ? 'Sending...' : 'Send Quote Request'}</button>
+                    </form>
+                </div>
+            );
+        }
+
+        function AccountPage({ user, onLogout }) {
+            const [orders, setOrders] = React.useState([]);
+            const [quotes, setQuotes] = React.useState([]);
+            const [loading, setLoading] = React.useState(true);
+            React.useEffect(() => {
+                Promise.all([apiFetch('/auth/orders'), apiFetch('/auth/quotes')]).then(([o, q]) => { setOrders(o.orders || []); setQuotes(q.quotes || []); }).finally(() => setLoading(false));
+            }, []);
+            return (
+                <div className="account-section">
+                    <h2>My Account {user.role === 'admin' && <span className="account-badge admin">ADMIN</span>}</h2>
+                    <div className="account-card">
+                        <h3>Account Details</h3>
+                        <div className="account-info-row"><span className="label">Name</span><span className="value">{user.name}</span></div>
+                        <div className="account-info-row"><span className="label">Email</span><span className="value">{user.email}</span></div>
+                        <div className="account-info-row"><span className="label">Role</span><span className="value" style={{textTransform:'capitalize'}}>{user.role}</span></div>
+                    </div>
+                    {loading ? <p className="loading">Loading your history...</p> : (<>
+                        <div className="account-card">
+                            <h3>Quote Requests ({quotes.length})</h3>
+                            {quotes.length === 0 ? <p className="empty-state">No quote requests yet.</p> : quotes.map(q => (<div key={q.id} className="account-info-row"><span className="label" style={{fontSize:'0.8rem'}}>{new Date(q.created_at).toLocaleDateString()}</span><span className="value" style={{fontSize:'0.8rem',textTransform:'capitalize'}}>{q.status}</span></div>))}
+                        </div>
+                        <div className="account-card">
+                            <h3>Orders ({orders.length})</h3>
+                            {orders.length === 0 ? <p className="empty-state">No orders yet.</p> : orders.map(o => (<div key={o.id} className="account-info-row"><span className="label" style={{fontSize:'0.8rem'}}>{new Date(o.created_at).toLocaleDateString()} — {o.amount_usdc ? `${o.amount_usdc} USDC` : 'Pending'}</span><span className="value" style={{fontSize:'0.8rem',textTransform:'capitalize'}}>{o.status}</span></div>))}
+                        </div>
+                    </>)}
+                    {user.role === 'admin' && (
+                        <div className="account-card">
+                            <h3>Admin</h3>
+                            <div style={{display:'flex',gap:'0.5rem',flexWrap:'wrap'}}>
+                                <a href="https://howell-forge-shop-production.up.railway.app/admin/stats" target="_blank" rel="noopener" className="nav-button primary" style={{fontSize:'0.82rem',padding:'6px 12px'}}>Shop Stats API</a>
+                                <a href="https://railway.app" target="_blank" rel="noopener" className="nav-button" style={{fontSize:'0.82rem',padding:'6px 12px'}}>Railway</a>
+                            </div>
+                        </div>
+                    )}
+                    <button className="nav-button danger" onClick={onLogout} style={{marginTop:'0.5rem'}}>Sign Out</button>
+                </div>
+            );
+        }
+
+        const App = () => {
+            const [page, setPage] = React.useState('home');
+            const [authUser, setAuthUser] = React.useState(getUser);
+            const [showAuth, setShowAuth] = React.useState(false);
+            const [account, setAccount] = React.useState(null);
+            const [isConnecting, setIsConnecting] = React.useState(false);
+            const [error, setError] = React.useState(null);
+            const [web3, setWeb3] = React.useState(null);
+            const [providerType, setProviderType] = React.useState(null);
+            const [copied, setCopied] = React.useState(false);
+
+            React.useEffect(() => {
+                if (window.ethereum) { const w = new Web3(window.ethereum); setWeb3(w); setProviderType(window.ethereum.isMetaMask ? 'MetaMask' : window.ethereum.isBraveWallet ? 'Brave' : 'Wallet'); }
+                else if (window.web3) { setWeb3(new Web3(window.web3.currentProvider)); setProviderType('Legacy'); }
+            }, []);
+
+            React.useEffect(() => {
+                if (authUser && getToken()) { apiFetch('/auth/me').then(data => { if (data.error) { clearAuth(); setAuthUser(null); } }).catch(() => {}); }
+            }, []);
+
+            const handleLogout = () => { clearAuth(); setAuthUser(null); setPage('home'); };
+            const copyAddress = () => { navigator.clipboard.writeText(BUSINESS_WALLET).then(() => { setCopied(true); setTimeout(() => setCopied(false), 2000); }); };
+            const connectWallet = async () => {
+                if (!web3) { setError('Please install MetaMask or use Brave Browser'); return; }
+                setIsConnecting(true); setError(null);
+                try {
+                    const accounts = await web3.eth.requestAccounts();
+                    if (!accounts?.length) throw new Error('No accounts found. Please unlock your wallet.');
+                    setAccount(accounts[0]);
+                    if (window.ethereum) { window.ethereum.on('accountsChanged', a => a?.length ? setAccount(a[0]) : setAccount(null)); window.ethereum.on('chainChanged', () => window.location.reload()); }
+                } catch (err) { setError(err.code === 4001 ? 'Connection rejected.' : err.message || 'Failed to connect'); } finally { setIsConnecting(false); }
+            };
+
+            const UsdcPaymentSection = () => (
+                <div className="payment-section">
+                    <h3>Pay with USDC</h3>
+                    <span className="network-badge">BASE NETWORK</span>
+                    <div className="payment-layout">
+                        <div className="payment-qr"><img src={QR_URL} alt="Scan to pay with USDC on Base" /><p>Scan to pay</p></div>
+                        <div className="payment-details">
+                            <p><strong>Send USDC to this address on Base:</strong></p>
+                            <div className="address-box"><code>{BUSINESS_WALLET}</code><button className={`copy-btn${copied ? ' copied' : ''}`} onClick={copyAddress}>{copied ? '✓ Copied' : 'Copy'}</button></div>
+                            <p style={{fontSize:'0.85rem',color:'#888',marginTop:'0.75rem'}}><strong>Token:</strong> USDC &nbsp;|&nbsp; <strong>Network:</strong> Base (Coinbase L2)</p>
+                            <div className="payment-note">⚠️ Only send <strong>USDC on the Base network</strong>. Sending other tokens or using a different network may result in permanent loss of funds.</div>
+                        </div>
+                    </div>
+                </div>
+            );
+
+            const WalletSection = () => {
+                const shortAddr = account ? `${account.slice(0,6)}...${account.slice(-4)}` : '';
+                return (
+                    <div className="wallet-section">
+                        <p style={{marginBottom:'0.75rem',color:'#888'}}>Or connect your Web3 wallet to pay directly from your browser.</p>
+                        {error && <p style={{color:'#ff6b6b',fontSize:'0.85rem',marginBottom:'0.5rem'}}>{error}</p>}
+                        <button className={`wallet-option${providerType === 'MetaMask' ? ' metamask' : ''}`} onClick={connectWallet} disabled={isConnecting || !web3}>
+                            {isConnecting ? 'Connecting...' : account ? `✓ Connected: ${shortAddr}` : !web3 ? 'Install Web3 Wallet' : `Connect ${providerType || 'Wallet'}`}
+                        </button>
+                    </div>
+                );
+            };
+
+            function Header() {
+                return (
+                    <div className="header">
+                        <h1>Howell Forge</h1>
+                        <div className="nav-buttons">
+                            <button className="nav-button" onClick={() => setPage('home')}>Home</button>
+                            <button className="nav-button" onClick={() => setPage('contact')}>Shop</button>
+                            <button className="nav-button" onClick={() => setPage('products')} style={{background:'#0052ff'}}>AI Forge</button>
+                            <button className="nav-button" onClick={() => setPage('contact')}>Solutions</button>
+                            <button className="nav-button" onClick={() => setPage('about')}>The Stack</button>
+                            <button className="nav-button" onClick={() => setPage('about')}>About</button>
+                            <button className="nav-button" onClick={() => setPage('contact')}>Connect</button>
+                            {authUser ? (
+                                <button className="nav-button success" onClick={() => setPage('account')}>
+                                    {authUser.name.split(' ')[0]}
+                                    {authUser.role === 'admin' && <span className="account-badge admin" style={{marginLeft:'6px'}}>ADMIN</span>}
+                                </button>
+                            ) : (
+                                <button className="nav-button primary" onClick={() => setShowAuth(true)}>Sign In</button>
+                            )}
+                        </div>
+                    </div>
+                );
+            }
+
+            function MainContent() {
+                return (
+                    <div className="main-content">
+                        {authUser && page !== 'account' && (
+                            <div className="account-banner">
+                                <span className="welcome">Welcome back, <strong>{authUser.name.split(' ')[0]}</strong>{authUser.role === 'admin' && <span className="account-badge admin">ADMIN</span>}</span>
+                                <div style={{display:'flex',gap:'0.5rem'}}>
+                                    <button className="nav-button" style={{fontSize:'0.8rem',padding:'5px 12px'}} onClick={() => setPage('account')}>My Account</button>
+                                    <button className="nav-button danger" onClick={handleLogout}>Sign Out</button>
+                                </div>
+                            </div>
+                        )}
+
+                        {page === 'account' && authUser && <AccountPage user={authUser} onLogout={handleLogout} />}
+
+                        {page === 'home' && (
+                            <>
+                                <div className="landing-hero">
+                                    <h2 style={{color:'#fff'}}>From Cursor to CNC: Bridging the Gap Between Code and Cold Steel.</h2>
+                                    <p className="landing-subhead">Precision metal fabrication and AI-powered business automation. Built by makers, for makers and entrepreneurs.</p>
+                                    <div style={{display:'flex',gap:'1rem',flexWrap:'wrap',margin:'1.5rem 0'}}>
+                                        <button className="nav-button primary" onClick={() => setPage('products')} style={{padding:'12px 24px',fontSize:'1rem'}}>See AI Forge</button>
+                                        <button className="nav-button" onClick={() => setPage('contact')} style={{padding:'12px 24px',fontSize:'1rem'}}>Get a Quote</button>
+                                    </div>
+                                    <div className="current-build"><span className="dot"></span>Current Build: AgentForge template — MAVEN copy pass</div>
+                                    <div className="stack-icons">
+                                        <a href="https://railway.app" target="_blank" rel="noopener">Railway</a>
+                                        <a href="https://elizaos.ai" target="_blank" rel="noopener">ElizaOS</a>
+                                        <a href="https://buildbear.io" target="_blank" rel="noopener">BuildBear</a>
+                                    </div>
+                                </div>
+                                <UsdcPaymentSection />
+                                <WalletSection />
+                                <QuoteForm user={authUser} />
+                            </>
+                        )}
+
+                        {page === 'products' && (
+                            <>
+                                <div className="products-hero">
+                                    <h2>AgentForge — <span className="highlight">Your Business Crew, Ready to Deploy</span></h2>
+                                    <p>8 autonomous AI agents forged for your business. Running 24/7. Self-healing. Telegram-connected. Stripe-integrated. Deploy in a day.</p>
+                                    <div className="crew-badge">
+                                        <span>FORGE Commander</span>
+                                        <span>ARIA Monitor</span>
+                                        <span>NOVA Security</span>
+                                        <span>MAVEN Marketing</span>
+                                        <span>REX Shop Floor</span>
+                                        <span>KAITO CFO</span>
+                                        <span>FLUX Dev</span>
+                                        <span>SAGE Analytics</span>
+                                    </div>
+                                </div>
+                                <div className="value-callout">
+                                    <p>A human team doing this work costs <strong>$5,000+/month</strong>. Our crew does it for a one-time setup. That is a <strong>10:1 return on Day 1.</strong></p>
+                                </div>
+                                <div className="pricing-grid">
+                                    <div className="pricing-card">
+                                        <p className="tier-name">Starter</p>
+                                        <p className="price">$497</p>
+                                        <p className="price-sub">One-time — yours forever</p>
+                                        <ul className="feature-list">
+                                            <li>Full 8-agent ElizaOS crew (source code)</li>
+                                            <li>FORGE, ARIA, NOVA, MAVEN, REX, KAITO, FLUX, SAGE</li>
+                                            <li>Step-by-step setup guide</li>
+                                            <li>.env template — drop in your keys</li>
+                                            <li>Railway deployment config included</li>
+                                            <li>Telegram command center</li>
+                                            <li>Stripe payment integration</li>
+                                            <li>Self-healing Monitor + Security loop</li>
+                                        </ul>
+                                        <a href="https://buy.stripe.com/bJecMYcZPaimc4U5647Zu00" className="buy-btn outline" target="_blank" rel="noopener">Get AgentForge Starter — $497</a>
+                                    </div>
+                                    <div className="pricing-card featured">
+                                        <div className="featured-badge">MOST POPULAR</div>
+                                        <p className="tier-name">Done For You</p>
+                                        <p className="price">$1,497</p>
+                                        <p className="price-sub">One-time — we deploy everything</p>
+                                        <ul className="feature-list">
+                                            <li>Everything in Starter</li>
+                                            <li>We deploy it — your brand, your domain</li>
+                                            <li>All API keys configured for you</li>
+                                            <li>Live deployment session with Howell Forge</li>
+                                            <li>All 8 agents tested and running</li>
+                                            <li>Telegram connected and verified</li>
+                                            <li>Stripe live checkout configured</li>
+                                            <li>30-day post-launch support</li>
+                                        </ul>
+                                        <a href="https://buy.stripe.com/14A7sEcZP0HM4Cs0PO7Zu01" className="buy-btn primary" target="_blank" rel="noopener">Get AgentForge Done For You — $1,497</a>
+                                    </div>
+                                    <div className="pricing-card">
+                                        <p className="tier-name">Monthly Retainer</p>
+                                        <p className="price">$97 <span>/ mo</span></p>
+                                        <p className="price-sub">Ongoing — cancel anytime</p>
+                                        <ul className="feature-list">
+                                            <li>Monthly agent updates and upgrades</li>
+                                            <li>New agents as AI evolves</li>
+                                            <li>Priority Cursor sessions</li>
+                                            <li>Bug fixes and troubleshooting</li>
+                                            <li>Keep your crew sharp</li>
+                                        </ul>
+                                        <a href="https://buy.stripe.com/00waEQgc176a5Gw2XW7Zu02" className="buy-btn outline" target="_blank" rel="noopener">Subscribe — $97/mo</a>
+                                    </div>
+                                </div>
+                                <div className="includes-section">
+                                    <h3>What is Inside AgentForge</h3>
+                                    <div className="includes-grid">
+                                        <div className="include-item"><span className="icon">⚔️</span><div className="text"><strong>FORGE — Commander</strong>Your direct Telegram line. Oversees the crew. Speaks with authority.</div></div>
+                                        <div className="include-item"><span className="icon">📡</span><div className="text"><strong>ARIA — Monitor</strong>Watches uptime, SSL, Stripe, and latency 24/7. Alerts instantly.</div></div>
+                                        <div className="include-item"><span className="icon">🛡️</span><div className="text"><strong>NOVA — Security</strong>HTTPS, headers, CSP. Paranoid so you do not have to be.</div></div>
+                                        <div className="include-item"><span className="icon">📣</span><div className="text"><strong>MAVEN — Marketing</strong>Drafts content and monitors brand. You approve before anything posts.</div></div>
+                                        <div className="include-item"><span className="icon">🏭</span><div className="text"><strong>REX — Shop Floor</strong>Tracks orders and production pipeline. Keeps things moving.</div></div>
+                                        <div className="include-item"><span className="icon">💰</span><div className="text"><strong>KAITO — CFO</strong>Stripe revenue, wallet watch, Nest Egg monitoring. Cold precision.</div></div>
+                                        <div className="include-item"><span className="icon">⚡</span><div className="text"><strong>FLUX — Dev Agent</strong>Code fixes, deployments, GitHub ops. Keeps the stack healthy.</div></div>
+                                        <div className="include-item"><span className="icon">🔭</span><div className="text"><strong>SAGE — Analytics</strong>Patterns, insights, and strategic signals from your data.</div></div>
+                                    </div>
+                                </div>
+                                <div style={{textAlign:'center',padding:'1rem 0 3rem 0',color:'#666',fontSize:'0.82rem'}}>
+                                    Questions? <a href="mailto:chrishowell@howell-forge.com" style={{color:'#4d9fff'}}>chrishowell@howell-forge.com</a>
+                                </div>
+                            </>
+                        )}
+
+                        {page === 'about' && (
+                            <>
+                                <h2 style={{color:'#fff'}}>About Howell Forge</h2>
+                                <p style={{color:'#ccc'}}>We combine precision metal fabrication with AI-powered business automation. Built by a craftsman who codes — and codes for craftsmen.</p>
+                                <p style={{color:'#ccc'}}>AgentForge runs on ElizaOS, powered by Grok-3. Every agent was built, tested, and battle-hardened on our own live business before we packaged it for yours.</p>
+                            </>
+                        )}
+
+                        {page === 'contact' && (
+                            <>
+                                <h2 style={{color:'#fff'}}>Contact Us</h2>
+                                <p style={{color:'#ccc'}}>We are here to help with your metal parts production needs or AI business setup.</p>
+                                <p style={{color:'#ccc'}}>Email: <a href="mailto:chrishowell@howell-forge.com" style={{color:'#4d9fff'}}>chrishowell@howell-forge.com</a></p>
+                                <p style={{color:'#ccc'}}>Business Hours: Monday - Friday, 9:00 AM - 5:00 PM EST</p>
+                                <QuoteForm user={authUser} />
+                            </>
+                        )}
+                    </div>
+                );
+            }
+
+            return (
+                <ErrorBoundary>
+                    <div>
+                        <Header />
+                        <MainContent />
+                        <div className="footer">&copy; 2026 Howell Forge. All rights reserved. &nbsp;|&nbsp; Powered by <a href="https://elizaos.ai" target="_blank" rel="noopener" style={{color:'#4d9fff'}}>ElizaOS</a> &mdash; created by <a href="https://github.com/lalalune" target="_blank" rel="noopener" style={{color:'#4d9fff'}}>Shaw Walters</a></div>
+                        {showAuth && <AuthModal onClose={() => setShowAuth(false)} onAuth={(user) => { setAuthUser(user); setPage('home'); }} />}
+                    </div>
+                </ErrorBoundary>
+            );
+        };
+
+        ReactDOM.render(<ErrorBoundary><App /></ErrorBoundary>, document.getElementById('root'));
+    </script>
+</body>
+</html>
