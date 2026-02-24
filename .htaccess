@@ -1,8 +1,12 @@
 # Options +FollowSymLinks removed - causes 500 on IONOS
-# Security headers (Security agent)
+# Security headers (Security agent + HSTS)
 <IfModule mod_headers.c>
     Header set X-Content-Type-Options "nosniff"
     Header set X-Frame-Options "SAMEORIGIN"
+    Header set Referrer-Policy "strict-origin-when-cross-origin"
+    Header set Permissions-Policy "geolocation=(), microphone=(), camera=()"
+    Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains"
+    Header set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdnjs.cloudflare.com https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; img-src 'self' https: data: blob:; frame-ancestors 'self'; form-action 'self' https://howell-forge-shop-production.up.railway.app https://buy.stripe.com https://*.stripe.com; connect-src 'self' https://howell-forge-shop-production.up.railway.app https://*.stripe.com"
 </IfModule>
 
 DirectoryIndex index.html
