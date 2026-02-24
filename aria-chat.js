@@ -35,7 +35,7 @@
     wrap.innerHTML = [
         '<div id="aria-chat-panel">',
         '  <div class="head">Chat <span>— ARIA</span></div>',
-        "  <div class="msgs" id="aria-msgs"><div class="aria-msg bot">Hi, I'm ARIA. Ask about metal parts, AgentForge, pricing, or anything else.</div></div>",
+        '  <div class="msgs" id="aria-msgs"><div class="aria-msg bot">Hi, I\'m ARIA. Ask about metal parts, AgentForge, pricing, or anything else.</div></div>',
         '  <div class="row">',
         '    <input type="text" id="aria-input" placeholder="Type a message..." />',
         '    <button type="button" class="send" id="aria-send">Send</button>',
@@ -105,7 +105,7 @@
             if (data.type === 'done') {
                 ws.removeEventListener('message', handler);
                 removeStreamingPlaceholder();
-                addMsg('bot', buf || "Sorry, I didn't get a response. Try again or email chrishowell@howell-forge.com.");
+                addMsg('bot', buf || 'Sorry, I didn\'t get a response. Try again or email chrishowell@howell-forge.com.');
                 sendBtn.disabled = false;
             }
             if (data.type === 'error') {
