@@ -71,11 +71,46 @@
     }
 
     function stubReply(text) {
-        var lower = text.toLowerCase();
-        if (lower.indexOf('price') >= 0 || lower.indexOf('pricing') >= 0 || lower.indexOf('cost') >= 0) return 'AgentForge: Self-setup $497, Full $1,497, or $97/month. See AgentForge page for Stripe checkout.';
-        if (lower.indexOf('quote') >= 0 || lower.indexOf('metal') >= 0 || lower.indexOf('part') >= 0 || lower.indexOf('cnc') >= 0) return "Use the Get a Quote form on this site. We'll reply within one business day.";
-        if (lower.indexOf('contact') >= 0 || lower.indexOf('email') >= 0) return 'Email chrishowell@howell-forge.com. Mon–Fri 9–5 EST.';
-        return "I'm ARIA. I can help with metal fabrication, AgentForge, pricing, and quotes. What would you like to know?";
+        var lower = text.toLowerCase().trim();
+
+        /* Pricing / cost */
+        if (/price|pricing|cost|how much|497|1497|97\/?mo|monthly|one-?time/.test(lower))
+            return 'AgentForge pricing: Starter $497 (self-setup, yours forever), Done For You $1,497 (we deploy everything), or Monthly Retainer $97/mo (updates, cancel anytime). See the AI Forge page for Stripe checkout.';
+
+        /* Quote / metal / fabrication */
+        if (/quote|metal|part|cnc|machining|fabricat|order|prototype|custom part/.test(lower))
+            return "For metal parts or CNC work: use the Get a Quote form on this site. Include material, dimensions, quantity, tolerances, and timeline. We'll reply within one business day.";
+
+        /* Contact / email */
+        if (/contact|email|reach|phone|call|hours|est/.test(lower))
+            return 'Email chrishowell@howell-forge.com. Business hours: Mon–Fri 9–5 EST.';
+
+        /* AgentForge / agents / crew */
+        if (/agentforge|agent forge|agents?|crew|elizaos|eliza|deploy|forged?|business crew/.test(lower))
+            return 'AgentForge is an 8-agent AI crew for your business: FORGE (Commander), ARIA (Monitor), NOVA (Security), MAVEN (Marketing), REX (Shop Floor), KAITO (CFO), FLUX (Dev), SAGE (Analytics). Running 24/7, Telegram-connected, Stripe-integrated. Deploy in a day. See the AI Forge page for details.';
+
+        /* What is / how does / explain */
+        if (/what is|what\'s|howell forge|who are you|tell me about/.test(lower))
+            return 'Howell Forge combines precision metal fabrication with AI business automation. We build custom CNC parts and deploy AgentForge — an 8-agent AI crew for entrepreneurs. Built by makers, for makers.';
+
+        /* Stripe / payment / buy */
+        if (/stripe|payment|pay|buy|purchase|checkout|card/.test(lower))
+            return 'AgentForge uses Stripe for checkout. You can pay with card on the AI Forge page. For metal parts, we also accept USDC on Base — see the Pay with USDC section on the home page.';
+
+        /* USDC / crypto */
+        if (/usdc|crypto|base|wallet|0x/.test(lower))
+            return 'We accept USDC on the Base network for metal parts. Send to the address shown on the home page. Only USDC on Base — other tokens or networks may result in loss of funds.';
+
+        /* Greetings */
+        if (/^(hi|hello|hey|howdy|yo)\s*!?$|^hi there|good (morning|afternoon|evening)/.test(lower))
+            return "Hi! I'm ARIA. I can help with metal parts, AgentForge pricing, quotes, or how to get started. What would you like to know?";
+
+        /* Help */
+        if (/help|what can you|what do you|options?|assist/.test(lower))
+            return "I can answer about: AgentForge (8-agent AI crew, pricing, deployment), metal parts (CNC, quotes, fabrication), contact (email, hours), payment (Stripe, USDC). Just ask!";
+
+        /* Default — offer specific next steps */
+        return "I'm ARIA. I can help with metal fabrication, AgentForge, pricing, and quotes. Try asking: \"What is AgentForge?\" or \"How much does AgentForge cost?\" or \"How do I get a quote for metal parts?\"";
     }
 
     var ws = null;
