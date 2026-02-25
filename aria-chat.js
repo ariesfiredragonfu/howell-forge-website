@@ -17,8 +17,10 @@
         '#aria-chat-btn svg { width: 26px; height: 26px; }',
         '#aria-chat-panel { display: none; position: absolute; bottom: calc(100% + 10px); right: 0; width: 360px; max-width: calc(100vw - 2rem); height: 420px; background: #1a1a1a; border: 1px solid #333; border-radius: 12px; flex-direction: column; box-shadow: 0 8px 32px rgba(0,0,0,0.5); }',
         '#aria-chat-panel.open { display: flex; }',
-        '#aria-chat-panel .head { padding: 0.75rem 1rem; border-bottom: 1px solid #333; color: #fff; font-weight: bold; }',
+        '#aria-chat-panel .head { padding: 0.75rem 1rem; border-bottom: 1px solid #333; color: #fff; font-weight: bold; display: flex; align-items: center; justify-content: space-between; gap: 0.5rem; }',
         '#aria-chat-panel .head span { color: #4d9fff; font-size: 0.8rem; font-weight: normal; }',
+        '#aria-chat-panel .head .aria-close { background: none; border: none; color: #888; font-size: 1.4rem; cursor: pointer; line-height: 1; padding: 0.25rem; flex-shrink: 0; }',
+        '#aria-chat-panel .head .aria-close:hover { color: #fff; }',
         '#aria-chat-panel .msgs { flex: 1; overflow-y: auto; padding: 1rem; display: flex; flex-direction: column; gap: 0.75rem; }',
         '#aria-chat-panel .row { display: flex; gap: 0.5rem; padding: 0.75rem; border-top: 1px solid #333; }',
         '#aria-chat-panel input { flex: 1; padding: 0.5rem 0.75rem; background: #111; border: 1px solid #444; border-radius: 8px; color: #fff; font-size: 0.9rem; }',
@@ -34,7 +36,7 @@
     wrap.id = 'aria-chat-wrap';
     wrap.innerHTML = [
         '<div id="aria-chat-panel">',
-        '  <div class="head">Chat <span>— ARIA</span></div>',
+        '  <div class="head">Chat <span>— ARIA</span><button type="button" class="aria-close" id="aria-close-btn" aria-label="Minimize chat">×</button></div>',
         '  <div class="msgs" id="aria-msgs"><div class="aria-msg bot">Hi, I\'m ARIA. Ask about metal parts, AgentForge, pricing, or anything else.</div></div>',
         '  <div class="row">',
         '    <input type="text" id="aria-input" placeholder="Type a message..." />',
@@ -53,7 +55,10 @@
     var input = document.getElementById('aria-input');
     var sendBtn = document.getElementById('aria-send');
 
+    function closePanel() { panel.classList.remove('open'); }
     btn.onclick = function() { panel.classList.toggle('open'); };
+    var closeBtn = document.getElementById('aria-close-btn');
+    if (closeBtn) closeBtn.onclick = closePanel;
 
     function addMsg(role, text, isLoading) {
         var d = document.createElement('div');
