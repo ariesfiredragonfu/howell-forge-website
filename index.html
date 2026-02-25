@@ -23,7 +23,7 @@
     <script crossorigin src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.23.5/babel.min.js"></script>
 
     <!-- ARIA chat (do not remove) -->
-    <script>if (typeof window !== "undefined" && (window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1")) { window.ARIA_CHAT_WS_URL = ""; }</script>
+    <script>if (typeof window !== "undefined" && (window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1" || window.location.hostname.startsWith("192.168."))) { window.ARIA_CHAT_WS_URL = ""; }</script>
     <script src="aria-chat.js?v=9" defer></script>
 
     <style>
@@ -39,7 +39,7 @@
 
         *, *::before, *::after { box-sizing: border-box; }
 
-        body { font-family: Arial, sans-serif; margin: 0; padding: 0; line-height: 1.6; background: #111; color: #eee; }
+        body { font-family: Arial, sans-serif; margin: 0; padding: 0; line-height: 1.6; background-color: #111; background-image: url('3d-background.png'); background-size: cover; background-position: center; background-repeat: no-repeat; background-attachment: fixed; color: #eee; }
         .header { background-color: #000; color: white; padding: 1rem; text-align: center; }
         .header h1 { margin: 0 0 0.5rem 0; font-size: 1.8rem; letter-spacing: 0.05em; }
         .nav-buttons { display: flex; justify-content: center; align-items: center; gap: 0.75rem; padding: 0.5rem 1rem; flex-wrap: wrap; }
@@ -161,8 +161,32 @@
         .include-item .text strong { color: #fff; display: block; margin-bottom: 0.1rem; }
 
         /* ── Landing / Home ── */
-        .landing-hero { text-align: center; padding: 2.5rem 0 1.5rem 0; }
-        .landing-hero h2 { color: #fff; font-size: 2.2rem; margin: 0 0 1rem 0; line-height: 1.2; letter-spacing: 0.02em; }
+        .hero-above {
+            text-align: center;
+            color: #fff;
+            font-size: 2.2rem;
+            margin: 0 0 1rem 0;
+            line-height: 1.2;
+            letter-spacing: 0.02em;
+        }
+        .landing-hero {
+            position: relative;
+            min-height: 280px;
+            aspect-ratio: 1129/630;
+            border-radius: 12px;
+            overflow: hidden;
+            margin: 0 0 1.5rem 0;
+            background-image: url('og-image-small.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }
+        .hero-below {
+            text-align: center;
+            padding-top: 0;
+        }
+        .hero-below .landing-subhead { margin-bottom: 1rem; }
         .landing-subhead { color: #bbb; font-size: 1.1rem; max-width: 640px; margin: 0 auto 1.5rem auto; line-height: 1.65; }
         .landing-cta { display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; margin-bottom: 2rem; }
         .landing-cta .nav-button { padding: 12px 24px; font-size: 1rem; }
@@ -179,8 +203,137 @@
         .stack-icons a { color: #666; text-decoration: none; font-size: 0.8rem; padding: 4px 10px; border-radius: 4px; border: 1px solid #333; transition: color 0.2s, border-color 0.2s; }
         .stack-icons a:hover { color: #4d9fff; border-color: #0052ff44; }
 
-        @media (prefers-reduced-motion: reduce) { .nav-button, .loading, .modal { transition: none; animation: none; } }
-        @media (max-width: 600px) { .payment-layout { flex-direction: column; } .payment-qr img { width: 100px; height: 100px; } .account-banner { flex-direction: column; align-items: flex-start; } .landing-hero h2 { font-size: 1.6rem; } }
+        /* ── Phase 1: Grok enhancements ── */
+        html { scroll-behavior: smooth; }
+        .dither-accent {
+            height: 4px;
+            background: linear-gradient(to right, #000 50%, #333 50%);
+            background-size: 4px 4px;
+            image-rendering: pixelated;
+            margin: 1rem 0;
+        }
+        .stack-icons a, .footer a { position: relative; display: inline-block; }
+        .stack-icons a::after, .footer a::after {
+            content: '';
+            position: absolute;
+            left: 0; bottom: -2px;
+            width: 100%; height: 2px;
+            background: #00d4ff;
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+        .stack-icons a:hover, .footer a:hover { color: #00d4ff; }
+        .stack-icons a:hover::after, .footer a:hover::after { transform: scaleX(1); box-shadow: 0 0 8px rgba(0, 212, 255, 0.6); }
+        .nav-button:hover { box-shadow: 0 0 10px rgba(0, 212, 255, 0.3); }
+        .brutal-cta {
+            border: 3px solid rgba(0, 82, 255, 0.8);
+            position: relative;
+        }
+        .brutal-cta:hover {
+            animation: brutal-flash 0.6s ease;
+        }
+        @keyframes brutal-flash {
+            0%, 100% { border-color: rgba(0, 82, 255, 0.8); box-shadow: 0 0 0 rgba(0, 82, 255, 0); }
+            50% { border-color: #00d4ff; box-shadow: 0 0 12px rgba(0, 212, 255, 0.5); }
+        }
+
+        /* ── Phase 2: Scroll reveal + Text wipe ── */
+        .scroll-reveal {
+            opacity: 0;
+            transform: translateY(24px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out, box-shadow 0.6s ease-out;
+        }
+        .scroll-reveal.glow-visible {
+            opacity: 1;
+            transform: translateY(0);
+            box-shadow: 0 0 24px rgba(0, 212, 255, 0.2);
+        }
+        .reveal-text {
+            animation: textWipe 1.2s ease-out forwards;
+        }
+        @keyframes textWipe {
+            from { opacity: 0; transform: translateX(-24px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        /* ── Phase 3: Save spinner (A2) ── */
+        .btn-full.saving { display: flex; align-items: center; justify-content: center; gap: 0.5rem; }
+        .btn-full.saving .save-spinner {
+            width: 18px; height: 18px;
+            border: 2px solid rgba(255,255,255,0.3);
+            border-top-color: #fff;
+            border-radius: 50%;
+            animation: saveSpin 0.7s linear infinite;
+        }
+        @keyframes saveSpin { to { transform: rotate(360deg); } }
+        .btn-full.saved { background: #28a745 !important; color: white; }
+        .btn-full.saved:hover { background: #28a745 !important; }
+
+        /* ── Phase 3: Particle burst (A6) ── */
+        .particle-burst { position: fixed; pointer-events: none; z-index: 9999; transform: translate(-50%, -50%); }
+        .particle-burst .particle {
+            position: absolute; width: 6px; height: 6px; border-radius: 50%;
+            animation: particleOut 0.5s ease-out forwards;
+        }
+        @keyframes particleOut {
+            to { opacity: 0; transform: translate(var(--tx), var(--ty)) scale(0); }
+        }
+
+        /* ── Phase 4: Bento layout (#4) ── */
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-auto-rows: minmax(100px, auto);
+            gap: 1rem;
+        }
+        @media (min-width: 900px) {
+            .bento-grid .bento-span-2 { grid-column: span 2; }
+        }
+        @media (max-width: 768px) {
+            .bento-grid { grid-template-columns: repeat(2, 1fr); }
+            .bento-grid .bento-span-2 { grid-column: span 2; }
+        }
+        @media (max-width: 480px) {
+            .bento-grid { grid-template-columns: 1fr; }
+            .bento-grid .bento-span-2 { grid-column: span 1; }
+        }
+
+        /* ── Phase 4: Expand cards (A8) ── */
+        .include-item.expandable { cursor: pointer; transition: border-color 0.2s, background 0.2s; }
+        .include-item.expandable:hover { border-color: #0052ff66; background: #1e1e2e; }
+        .include-item.expandable .expand-content {
+            max-height: 0; overflow: hidden; transition: max-height 0.35s ease-out;
+        }
+        .include-item.expandable.active .expand-content { max-height: 120px; }
+        .include-item.expandable .expand-content { margin-top: 0.5rem; padding-top: 0.5rem; border-top: 1px solid #333; font-size: 0.8rem; color: #888; }
+
+        /* ── Phase 4: Typography pulse (A9) ── */
+        .typography-pulse-trigger { transition: transform 0.3s, filter 0.3s; }
+        .typography-pulse-trigger.typography-pulse-active {
+            animation: typographyPulse 1.5s ease-out;
+        }
+        @keyframes typographyPulse {
+            0% { transform: scale(1); filter: brightness(1); }
+            25% { transform: scale(1.02); filter: brightness(1.15); }
+            50% { transform: scale(1); filter: brightness(1); }
+            75% { transform: scale(1.01); filter: brightness(1.08); }
+            100% { transform: scale(1); filter: brightness(1); }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            html { scroll-behavior: auto; }
+            .nav-button, .loading, .modal { transition: none; animation: none; }
+            .brutal-cta:hover { animation: none; }
+            .scroll-reveal { opacity: 1; transform: none; }
+            .scroll-reveal.glow-visible { box-shadow: none; }
+            .reveal-text { animation: none; opacity: 1; transform: none; }
+            .btn-full.saving .save-spinner { animation: none; }
+            .particle-burst .particle { animation: none; }
+            .include-item.expandable .expand-content { transition: none; }
+            .typography-pulse-trigger.typography-pulse-active { animation: none; }
+            .landing-hero { background-attachment: scroll; }
+        }
+        @media (max-width: 600px) { .payment-layout { flex-direction: column; } .payment-qr img { width: 100px; height: 100px; } .account-banner { flex-direction: column; align-items: flex-start; } .hero-above { font-size: 1.6rem; } }
     </style>
 </head>
 <body>
@@ -195,6 +348,26 @@
         const getUser  = () => { try { return JSON.parse(localStorage.getItem('hf_user') || 'null'); } catch { return null; } };
         const saveAuth = (token, user) => { localStorage.setItem('hf_token', token); localStorage.setItem('hf_user', JSON.stringify(user)); };
         const clearAuth = () => { localStorage.removeItem('hf_token'); localStorage.removeItem('hf_user'); };
+
+        function particleBurst(e, onComplete) {
+            if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) { onComplete?.(); return; }
+            const colors = ['#00d4ff', '#ff9500', '#ffd700', '#ff6b35'];
+            const container = document.createElement('div');
+            container.className = 'particle-burst';
+            container.style.cssText = `left:${e.clientX}px;top:${e.clientY}px;`;
+            for (let i = 0; i < 12; i++) {
+                const angle = (i / 12) * Math.PI * 2 + Math.random() * 0.5;
+                const dist = 60 + Math.random() * 40;
+                const tx = Math.cos(angle) * dist;
+                const ty = Math.sin(angle) * dist;
+                const p = document.createElement('div');
+                p.className = 'particle';
+                p.style.cssText = `--tx:${tx}px;--ty:${ty}px;background:${colors[i % colors.length]};box-shadow:0 0 6px ${colors[i % colors.length]};`;
+                container.appendChild(p);
+            }
+            document.body.appendChild(container);
+            setTimeout(() => { container.remove(); onComplete?.(); }, 520);
+        }
 
         async function apiFetch(path, options = {}) {
             const token = getToken();
@@ -257,15 +430,18 @@
             const [form, setForm] = React.useState({ name: user?.name || '', email: user?.email || '', details: '' });
             const [status, setStatus] = React.useState(null);
             const [loading, setLoading] = React.useState(false);
+            const [saved, setSaved] = React.useState(false);
             const set = (k) => (e) => setForm(f => ({ ...f, [k]: e.target.value }));
             const submit = async (e) => {
-                e.preventDefault(); setLoading(true); setStatus(null);
+                e.preventDefault(); setLoading(true); setStatus(null); setSaved(false);
                 try {
                     const data = await apiFetch('/api/quote', { method: 'POST', body: JSON.stringify(form) });
                     if (data.error) { setStatus({ type: 'error', msg: data.error }); return; }
-                    setStatus({ type: 'success', msg: data.message }); setForm(f => ({ ...f, details: '' }));
+                    setStatus({ type: 'success', msg: data.message }); setForm(f => ({ ...f, details: '' })); setSaved(true);
+                    setTimeout(() => setSaved(false), 2200);
                 } catch { setStatus({ type: 'error', msg: 'Failed to send. Please email us directly.' }); } finally { setLoading(false); }
             };
+            const btnClass = ['btn-full', loading && 'saving', saved && 'saved'].filter(Boolean).join(' ');
             return (
                 <div className="quote-section">
                     <h3>Request a Quote</h3>
@@ -279,7 +455,10 @@
                         {user && <p style={{color:'#888',fontSize:'0.85rem',marginBottom:'0.75rem'}}>Submitting as <strong style={{color:'#ccc'}}>{user.name}</strong> ({user.email})</p>}
                         <div className="form-group"><label>Project Details</label><textarea value={form.details} onChange={set('details')} placeholder="Describe your part: material, dimensions, quantity, tolerances, finish, timeline..." required /></div>
                         {status && <p className={status.type === 'success' ? 'form-success' : 'form-error'}>{status.msg}</p>}
-                        <button type="submit" className="btn-full" disabled={loading}>{loading ? 'Sending...' : 'Send Quote Request'}</button>
+                        <button type="submit" className={btnClass} disabled={loading}>
+                            {loading && <span className="save-spinner" />}
+                            {loading ? 'Sending...' : saved ? 'Saved ✓' : 'Send Quote Request'}
+                        </button>
                     </form>
                 </div>
             );
@@ -327,6 +506,7 @@
 
         const App = () => {
             const [page, setPage] = React.useState('home');
+            const [expandedAgent, setExpandedAgent] = React.useState(null);
             const [authUser, setAuthUser] = React.useState(getUser);
             const [showAuth, setShowAuth] = React.useState(false);
             const [account, setAccount] = React.useState(null);
@@ -344,6 +524,48 @@
             React.useEffect(() => {
                 if (authUser && getToken()) { apiFetch('/auth/me').then(data => { if (data.error) { clearAuth(); setAuthUser(null); } }).catch(() => {}); }
             }, []);
+
+            React.useEffect(() => {
+                const els = document.querySelectorAll('.scroll-reveal');
+                if (!els.length) return;
+                const obs = new IntersectionObserver((entries) => {
+                    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('glow-visible'); });
+                }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+                els.forEach(el => obs.observe(el));
+                return () => obs.disconnect();
+            }, [page]);
+
+            React.useEffect(() => { setExpandedAgent(null); }, [page]);
+
+            React.useEffect(() => {
+                if (page !== 'home') return;
+                const img = document.getElementById('hero-parallax-img');
+                if (!img || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+                const hero = img.closest('.landing-hero');
+                if (!hero) return;
+                const onScroll = () => {
+                    const rect = hero.getBoundingClientRect();
+                    const rate = 0.35;
+                    let offset = -rect.top * rate;
+                    if (rect.top > window.innerHeight) offset = 0;
+                    else if (rect.bottom < 0) offset = 100;
+                    else offset = Math.max(0, Math.min(100, offset));
+                    img.style.transform = `translateY(${offset}px)`;
+                };
+                onScroll();
+                window.addEventListener('scroll', onScroll, { passive: true });
+                return () => window.removeEventListener('scroll', onScroll);
+            }, [page]);
+
+            React.useEffect(() => {
+                const els = document.querySelectorAll('.typography-pulse-trigger');
+                if (!els.length) return;
+                const obs = new IntersectionObserver((entries) => {
+                    entries.forEach(e => { if (e.isIntersecting && !e.target.classList.contains('typography-pulse-active')) e.target.classList.add('typography-pulse-active'); });
+                }, { threshold: 0.2 });
+                els.forEach(el => obs.observe(el));
+                return () => obs.disconnect();
+            }, [page]);
 
             const handleLogout = () => { clearAuth(); setAuthUser(null); setPage('home'); };
             const copyAddress = () => { navigator.clipboard.writeText(BUSINESS_WALLET).then(() => { setCopied(true); setTimeout(() => setCopied(false), 2000); }); };
@@ -393,12 +615,9 @@
                         <h1>Howell Forge</h1>
                         <div className="nav-buttons">
                             <button className="nav-button" onClick={() => setPage('home')}>Home</button>
-                            <button className="nav-button" onClick={() => setPage('contact')}>Shop</button>
                             <button className="nav-button" onClick={() => setPage('products')} style={{background:'#0052ff'}}>AI Forge</button>
-                            <button className="nav-button" onClick={() => setPage('contact')}>Solutions</button>
-                            <button className="nav-button" onClick={() => setPage('about')}>The Stack</button>
-                            <button className="nav-button" onClick={() => setPage('about')}>About</button>
                             <button className="nav-button" onClick={() => setPage('contact')}>Connect</button>
+                            <button className="nav-button" onClick={() => setPage('about')}>About</button>
                             {authUser ? (
                                 <button className="nav-button success" onClick={() => setPage('account')}>
                                     {authUser.name.split(' ')[0]}
@@ -429,11 +648,13 @@
 
                         {page === 'home' && (
                             <>
-                                <div className="landing-hero">
-                                    <h2 style={{color:'#fff'}}>From Cursor to CNC: Bridging the Gap Between Code and Cold Steel.</h2>
+                                <h2 className="hero-above reveal-text">From Cursor to CNC: Bridging the Gap Between Code and Cold Steel.</h2>
+                                <div className="landing-hero scroll-reveal glow-visible" role="img" aria-label="Howell Forge — metal fabrication and AI automation">
+                                </div>
+                                <div className="hero-below scroll-reveal glow-visible">
                                     <p className="landing-subhead">Precision metal fabrication and AI-powered business automation. Built by makers, for makers and entrepreneurs.</p>
-                                    <div style={{display:'flex',gap:'1rem',flexWrap:'wrap',margin:'1.5rem 0'}}>
-                                        <button className="nav-button primary" onClick={() => setPage('products')} style={{padding:'12px 24px',fontSize:'1rem'}}>See AI Forge</button>
+                                    <div style={{display:'flex',gap:'1rem',flexWrap:'wrap',margin:'1.5rem 0',justifyContent:'center'}}>
+                                        <button className="nav-button primary brutal-cta" onClick={() => setPage('products')} style={{padding:'12px 24px',fontSize:'1rem'}}>See AgentForge</button>
                                         <button className="nav-button" onClick={() => setPage('contact')} style={{padding:'12px 24px',fontSize:'1rem'}}>Get a Quote</button>
                                     </div>
                                     <div className="current-build"><span className="dot"></span>Current Build: AgentForge template — MAVEN copy pass</div>
@@ -443,16 +664,16 @@
                                         <a href="https://buildbear.io" target="_blank" rel="noopener">BuildBear</a>
                                     </div>
                                 </div>
-                                <UsdcPaymentSection />
-                                <WalletSection />
-                                <QuoteForm user={authUser} />
+                                <div className="scroll-reveal"><UsdcPaymentSection /></div>
+                                <div className="scroll-reveal"><WalletSection /></div>
+                                <div className="scroll-reveal"><QuoteForm user={authUser} /></div>
                             </>
                         )}
 
                         {page === 'products' && (
                             <>
-                                <div className="products-hero">
-                                    <h2>AgentForge — <span className="highlight">Your Business Crew, Ready to Deploy</span></h2>
+                                <div className="products-hero scroll-reveal glow-visible">
+                                    <h2 className="typography-pulse-trigger">AgentForge — <span className="highlight">Your Business Crew, Ready to Deploy</span></h2>
                                     <p>8 autonomous AI agents forged for your business. Running 24/7. Self-healing. Telegram-connected. Stripe-integrated. Deploy in a day.</p>
                                     <div className="crew-badge">
                                         <span>FORGE Commander</span>
@@ -465,10 +686,10 @@
                                         <span>SAGE Analytics</span>
                                     </div>
                                 </div>
-                                <div className="value-callout">
+                                <div className="value-callout scroll-reveal glow-visible">
                                     <p>A human team doing this work costs <strong>$5,000+/month</strong>. Our crew does it for a one-time setup. That is a <strong>10:1 return on Day 1.</strong></p>
                                 </div>
-                                <div className="pricing-grid">
+                                <div className="pricing-grid scroll-reveal glow-visible">
                                     <div className="pricing-card">
                                         <p className="tier-name">Starter</p>
                                         <p className="price">$497</p>
@@ -483,7 +704,7 @@
                                             <li>Stripe payment integration</li>
                                             <li>Self-healing Monitor + Security loop</li>
                                         </ul>
-                                        <a href="https://buy.stripe.com/bJecMYcZPaimc4U5647Zu00" className="buy-btn outline" target="_blank" rel="noopener">Get AgentForge Starter — $497</a>
+                                        <a href="https://buy.stripe.com/bJecMYcZPaimc4U5647Zu00" className="buy-btn outline" target="_blank" rel="noopener" onClick={(e)=>{e.preventDefault();particleBurst(e,()=>window.open(e.currentTarget.href,'_blank'));}}>Get AgentForge Starter — $497</a>
                                     </div>
                                     <div className="pricing-card featured">
                                         <div className="featured-badge">MOST POPULAR</div>
@@ -500,7 +721,7 @@
                                             <li>Stripe live checkout configured</li>
                                             <li>30-day post-launch support</li>
                                         </ul>
-                                        <a href="https://buy.stripe.com/14A7sEcZP0HM4Cs0PO7Zu01" className="buy-btn primary" target="_blank" rel="noopener">Get AgentForge Done For You — $1,497</a>
+                                        <a href="https://buy.stripe.com/14A7sEcZP0HM4Cs0PO7Zu01" className="buy-btn primary brutal-cta" target="_blank" rel="noopener" onClick={(e)=>{e.preventDefault();particleBurst(e,()=>window.open(e.currentTarget.href,'_blank'));}}>Get AgentForge Done For You — $1,497</a>
                                     </div>
                                     <div className="pricing-card">
                                         <p className="tier-name">Monthly Retainer</p>
@@ -513,20 +734,20 @@
                                             <li>Bug fixes and troubleshooting</li>
                                             <li>Keep your crew sharp</li>
                                         </ul>
-                                        <a href="https://buy.stripe.com/00waEQgc176a5Gw2XW7Zu02" className="buy-btn outline" target="_blank" rel="noopener">Subscribe — $97/mo</a>
+                                        <a href="https://buy.stripe.com/00waEQgc176a5Gw2XW7Zu02" className="buy-btn outline" target="_blank" rel="noopener" onClick={(e)=>{e.preventDefault();particleBurst(e,()=>window.open(e.currentTarget.href,'_blank'));}}>Subscribe — $97/mo</a>
                                     </div>
                                 </div>
-                                <div className="includes-section">
-                                    <h3>What is Inside AgentForge</h3>
-                                    <div className="includes-grid">
-                                        <div className="include-item"><span className="icon">⚔️</span><div className="text"><strong>FORGE — Commander</strong>Your direct Telegram line. Oversees the crew. Speaks with authority.</div></div>
-                                        <div className="include-item"><span className="icon">📡</span><div className="text"><strong>ARIA — Monitor</strong>Watches uptime, SSL, Stripe, and latency 24/7. Alerts instantly.</div></div>
-                                        <div className="include-item"><span className="icon">🛡️</span><div className="text"><strong>NOVA — Security</strong>HTTPS, headers, CSP. Paranoid so you do not have to be.</div></div>
-                                        <div className="include-item"><span className="icon">📣</span><div className="text"><strong>MAVEN — Marketing</strong>Drafts content and monitors brand. You approve before anything posts.</div></div>
-                                        <div className="include-item"><span className="icon">🏭</span><div className="text"><strong>REX — Shop Floor</strong>Tracks orders and production pipeline. Keeps things moving.</div></div>
-                                        <div className="include-item"><span className="icon">💰</span><div className="text"><strong>KAITO — CFO</strong>Stripe revenue, wallet watch, Nest Egg monitoring. Cold precision.</div></div>
-                                        <div className="include-item"><span className="icon">⚡</span><div className="text"><strong>FLUX — Dev Agent</strong>Code fixes, deployments, GitHub ops. Keeps the stack healthy.</div></div>
-                                        <div className="include-item"><span className="icon">🔭</span><div className="text"><strong>SAGE — Analytics</strong>Patterns, insights, and strategic signals from your data.</div></div>
+                                <div className="includes-section scroll-reveal glow-visible">
+                                    <h3 className="typography-pulse-trigger">What is Inside AgentForge</h3>
+                                    <div className="includes-grid bento-grid">
+                                        <div className={`include-item expandable bento-span-2${expandedAgent === 'forge' ? ' active' : ''}`} onClick={() => setExpandedAgent(expandedAgent === 'forge' ? null : 'forge')}><span className="icon">⚔️</span><div className="text"><strong>FORGE — Commander</strong> Your direct Telegram line. Oversees the crew. Speaks with authority.</div><div className="expand-content">Primary interface for your crew. Routes commands, coordinates agents, and reports status.</div></div>
+                                        <div className={`include-item expandable bento-span-2${expandedAgent === 'aria' ? ' active' : ''}`} onClick={() => setExpandedAgent(expandedAgent === 'aria' ? null : 'aria')}><span className="icon">📡</span><div className="text"><strong>ARIA — Monitor</strong> Watches uptime, SSL, Stripe, and latency 24/7. Alerts instantly.</div><div className="expand-content">Health checks, SSL expiry, payment status. Telegram alerts when something needs attention.</div></div>
+                                        <div className={`include-item expandable${expandedAgent === 'nova' ? ' active' : ''}`} onClick={() => setExpandedAgent(expandedAgent === 'nova' ? null : 'nova')}><span className="icon">🛡️</span><div className="text"><strong>NOVA — Security</strong> HTTPS, headers, CSP. Paranoid so you do not have to be.</div><div className="expand-content">Headers, CSP, security headers. Keeps your stack locked down.</div></div>
+                                        <div className={`include-item expandable${expandedAgent === 'maven' ? ' active' : ''}`} onClick={() => setExpandedAgent(expandedAgent === 'maven' ? null : 'maven')}><span className="icon">📣</span><div className="text"><strong>MAVEN — Marketing</strong> Drafts content and monitors brand. You approve before anything posts.</div><div className="expand-content">Social drafts, brand monitoring. Human-in-the-loop for all outbound content.</div></div>
+                                        <div className={`include-item expandable${expandedAgent === 'rex' ? ' active' : ''}`} onClick={() => setExpandedAgent(expandedAgent === 'rex' ? null : 'rex')}><span className="icon">🏭</span><div className="text"><strong>REX — Shop Floor</strong> Tracks orders and production pipeline. Keeps things moving.</div><div className="expand-content">Order tracking, inventory, production pipeline. Built for makers.</div></div>
+                                        <div className={`include-item expandable${expandedAgent === 'kaito' ? ' active' : ''}`} onClick={() => setExpandedAgent(expandedAgent === 'kaito' ? null : 'kaito')}><span className="icon">💰</span><div className="text"><strong>KAITO — CFO</strong> Stripe revenue, wallet watch, Nest Egg monitoring. Cold precision.</div><div className="expand-content">Revenue dashboards, USDC tracking, financial health. Numbers you can trust.</div></div>
+                                        <div className={`include-item expandable${expandedAgent === 'flux' ? ' active' : ''}`} onClick={() => setExpandedAgent(expandedAgent === 'flux' ? null : 'flux')}><span className="icon">⚡</span><div className="text"><strong>FLUX — Dev Agent</strong> Code fixes, deployments, GitHub ops. Keeps the stack healthy.</div><div className="expand-content">Deploys, fixes, GitHub ops. Your dev agent that never sleeps.</div></div>
+                                        <div className={`include-item expandable${expandedAgent === 'sage' ? ' active' : ''}`} onClick={() => setExpandedAgent(expandedAgent === 'sage' ? null : 'sage')}><span className="icon">🔭</span><div className="text"><strong>SAGE — Analytics</strong> Patterns, insights, and strategic signals from your data.</div><div className="expand-content">Patterns, trends, insights. Turns data into decisions.</div></div>
                                     </div>
                                 </div>
                                 <div style={{textAlign:'center',padding:'1rem 0 3rem 0',color:'#666',fontSize:'0.82rem'}}>
@@ -536,20 +757,22 @@
                         )}
 
                         {page === 'about' && (
-                            <>
+                            <div className="scroll-reveal">
                                 <h2 style={{color:'#fff'}}>About Howell Forge</h2>
                                 <p style={{color:'#ccc'}}>We combine precision metal fabrication with AI-powered business automation. Built by a craftsman who codes — and codes for craftsmen.</p>
                                 <p style={{color:'#ccc'}}>AgentForge runs on ElizaOS, powered by Grok-3. Every agent was built, tested, and battle-hardened on our own live business before we packaged it for yours.</p>
-                            </>
+                            </div>
                         )}
 
                         {page === 'contact' && (
                             <>
-                                <h2 style={{color:'#fff'}}>Contact Us</h2>
-                                <p style={{color:'#ccc'}}>We are here to help with your metal parts production needs or AI business setup.</p>
-                                <p style={{color:'#ccc'}}>Email: <a href="mailto:chrishowell@howell-forge.com" style={{color:'#4d9fff'}}>chrishowell@howell-forge.com</a></p>
-                                <p style={{color:'#ccc'}}>Business Hours: Monday - Friday, 9:00 AM - 5:00 PM EST</p>
-                                <QuoteForm user={authUser} />
+                                <div className="scroll-reveal">
+                                    <h2 style={{color:'#fff'}}>Contact Us</h2>
+                                    <p style={{color:'#ccc'}}>We are here to help with your metal parts production needs or AI business setup.</p>
+                                    <p style={{color:'#ccc'}}>Email: <a href="mailto:chrishowell@howell-forge.com" style={{color:'#4d9fff'}}>chrishowell@howell-forge.com</a></p>
+                                    <p style={{color:'#ccc'}}>Business Hours: Monday - Friday, 9:00 AM - 5:00 PM EST</p>
+                                </div>
+                                <div className="scroll-reveal"><QuoteForm user={authUser} /></div>
                             </>
                         )}
                     </div>
