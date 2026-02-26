@@ -12,10 +12,10 @@
     <meta name="description" content="Howell Forge — precision metal fabrication and AI business automation. Deploy an 8-agent AI crew for your business. Custom CNC parts. Get a quote today.">
     <meta property="og:title" content="Howell Forge — From Cursor to CNC | Precision Metal & AI Automation">
     <meta property="og:description" content="Precision metal fabrication and AI-powered business automation. Built by makers, for makers and entrepreneurs.">
-    <meta property="og:image" content="https://howell-forge.com/og-image.jpg">
+    <meta property="og:image" content="https://howforge.com/og-image.jpg">
     <meta property="og:type" content="website">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:image" content="https://howell-forge.com/og-image.jpg">
+    <meta name="twitter:image" content="https://howforge.com/og-image.jpg">
 
     <script crossorigin src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
     <script crossorigin src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
@@ -616,6 +616,7 @@
                         <div className="nav-buttons">
                             <button className="nav-button" onClick={() => setPage('home')}>Home</button>
                             <button className="nav-button" onClick={() => setPage('products')} style={{background:'#0052ff'}}>AI Forge</button>
+                            <button className="nav-button" onClick={() => setPage('groundchiflow')}>GroundChiFlow</button>
                             <button className="nav-button" onClick={() => setPage('contact')}>Connect</button>
                             <button className="nav-button" onClick={() => setPage('about')}>About</button>
                             {authUser ? (
@@ -655,6 +656,7 @@
                                     <p className="landing-subhead">Precision metal fabrication and AI-powered business automation. Built by makers, for makers and entrepreneurs.</p>
                                     <div style={{display:'flex',gap:'1rem',flexWrap:'wrap',margin:'1.5rem 0',justifyContent:'center'}}>
                                         <button className="nav-button primary brutal-cta" onClick={() => setPage('products')} style={{padding:'12px 24px',fontSize:'1rem'}}>See AgentForge</button>
+                                        <button className="nav-button" onClick={() => setPage('groundchiflow')} style={{padding:'12px 24px',fontSize:'1rem',background:'#28a745'}}>GroundChiFlow App</button>
                                         <button className="nav-button" onClick={() => setPage('contact')} style={{padding:'12px 24px',fontSize:'1rem'}}>Get a Quote</button>
                                     </div>
                                     <div className="current-build"><span className="dot"></span>Current Build: AgentForge template — MAVEN copy pass</div>
@@ -751,7 +753,7 @@
                                     </div>
                                 </div>
                                 <div style={{textAlign:'center',padding:'1rem 0 3rem 0',color:'#666',fontSize:'0.82rem'}}>
-                                    Questions? <a href="mailto:chrishowell@howell-forge.com" style={{color:'#4d9fff'}}>chrishowell@howell-forge.com</a>
+                                    Questions? <a href="mailto:chrishowell@howforge.com" style={{color:'#4d9fff'}}>chrishowell@howforge.com</a>
                                 </div>
                             </>
                         )}
@@ -764,12 +766,67 @@
                             </div>
                         )}
 
+                        {page === 'groundchiflow' && (
+                            <>
+                                <div className="products-hero scroll-reveal glow-visible">
+                                    <h2 className="typography-pulse-trigger">GroundChiFlow — <span className="highlight">Nervous System · Breathwork · Gut · Longevity</span></h2>
+                                    <p>Evidence-based wellness in one app. Breathwork, tai chi, rehab routines, gut health, nutrition, and longevity tools. No one else combines all of this.</p>
+                                    <div className="crew-badge">
+                                        <span>Breathwork</span>
+                                        <span>Tai Chi</span>
+                                        <span>Rehab Routines</span>
+                                        <span>Gut Health</span>
+                                        <span>Nutrition</span>
+                                        <span>Longevity</span>
+                                    </div>
+                                </div>
+                                <div className="value-callout scroll-reveal glow-visible">
+                                    <p>Competitors charge <strong>$14.99/mo</strong> for meditation alone. GroundChiFlow gives you breathwork, gut health, tai chi, rehab, nutrition, and more — at a fraction of the cost.</p>
+                                </div>
+                                <div className="pricing-grid scroll-reveal glow-visible">
+                                    <div className="pricing-card">
+                                        <p className="tier-name">Monthly</p>
+                                        <p className="price">$9.99 <span>/ mo</span></p>
+                                        <p className="price-sub">Cancel anytime</p>
+                                        <ul className="feature-list">
+                                            <li>Full app access — all routines and tools</li>
+                                            <li>Breathwork & nervous system regulation</li>
+                                            <li>Tai chi & rehab routines</li>
+                                            <li>Gut health & nutrition tracking</li>
+                                            <li>Longevity & blood work insights</li>
+                                            <li>Download on Google Play (coming soon)</li>
+                                        </ul>
+                                        <a href="https://buy.stripe.com/3cIbIUf7Xbmq5Gw1TS7Zu03" className="buy-btn outline" target="_blank" rel="noopener" onClick={(e)=>{e.preventDefault();particleBurst(e,()=>window.open(e.currentTarget.href,'_blank'));}}>Subscribe — $9.99/mo</a>
+                                    </div>
+                                    <div className="pricing-card featured">
+                                        <div className="featured-badge">BEST VALUE</div>
+                                        <p className="tier-name">Annual</p>
+                                        <p className="price">$79.99 <span>/ yr</span></p>
+                                        <p className="price-sub">Save 33% — ~$6.67/mo</p>
+                                        <ul className="feature-list">
+                                            <li>Everything in Monthly</li>
+                                            <li>2 months free vs monthly</li>
+                                            <li>Lock in this price</li>
+                                            <li>Cancel anytime — no commitment</li>
+                                        </ul>
+                                        <a href="https://buy.stripe.com/14A3co7Fv76a4Cs6a87Zu04" className="buy-btn primary brutal-cta" target="_blank" rel="noopener" onClick={(e)=>{e.preventDefault();particleBurst(e,()=>window.open(e.currentTarget.href,'_blank'));}}>Subscribe — $79.99/yr</a>
+                                    </div>
+                                </div>
+                                <div className="stripe-callout scroll-reveal glow-visible">
+                                    <p>Secure checkout via Stripe. After subscribing, sign in to the app with the same email to access your subscription.</p>
+                                </div>
+                                <div style={{textAlign:'center',padding:'1rem 0 3rem 0',color:'#666',fontSize:'0.82rem'}}>
+                                    Questions? <a href="mailto:chrishowell@howforge.com" style={{color:'#4d9fff'}}>chrishowell@howforge.com</a>
+                                </div>
+                            </>
+                        )}
+
                         {page === 'contact' && (
                             <>
                                 <div className="scroll-reveal">
                                     <h2 style={{color:'#fff'}}>Contact Us</h2>
                                     <p style={{color:'#ccc'}}>We are here to help with your metal parts production needs or AI business setup.</p>
-                                    <p style={{color:'#ccc'}}>Email: <a href="mailto:chrishowell@howell-forge.com" style={{color:'#4d9fff'}}>chrishowell@howell-forge.com</a></p>
+                                    <p style={{color:'#ccc'}}>Email: <a href="mailto:chrishowell@howforge.com" style={{color:'#4d9fff'}}>chrishowell@howforge.com</a></p>
                                     <p style={{color:'#ccc'}}>Business Hours: Monday - Friday, 9:00 AM - 5:00 PM EST</p>
                                 </div>
                                 <div className="scroll-reveal"><QuoteForm user={authUser} /></div>
