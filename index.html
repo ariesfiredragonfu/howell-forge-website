@@ -653,7 +653,7 @@
                                 <div className="landing-hero scroll-reveal glow-visible" role="img" aria-label="Howell Forge — metal fabrication and AI automation">
                                 </div>
                                 <div className="hero-below scroll-reveal glow-visible">
-                                    <p className="landing-subhead">Precision metal fabrication and AI-powered business automation. Built by makers, for makers and entrepreneurs.</p>
+                                    <p className="landing-subhead">We have built many businesses. In the process, we came up with an automated way to run them. That is how we created AgentForge — by automating the setup and startup so more time goes to <em>doing</em> the business, not setting it up or running it.</p>
                                     <div style={{display:'flex',gap:'1rem',flexWrap:'wrap',margin:'1.5rem 0',justifyContent:'center'}}>
                                         <button className="nav-button primary brutal-cta" onClick={() => setPage('products')} style={{padding:'12px 24px',fontSize:'1rem'}}>See AgentForge</button>
                                         <button className="nav-button" onClick={() => setPage('groundchiflow')} style={{padding:'12px 24px',fontSize:'1rem',background:'#28a745'}}>GroundChiFlow App</button>
@@ -761,7 +761,7 @@
                         {page === 'about' && (
                             <div className="scroll-reveal">
                                 <h2 style={{color:'#fff'}}>About Howell Forge</h2>
-                                <p style={{color:'#ccc'}}>We combine precision metal fabrication with AI-powered business automation. Built by a craftsman who codes — and codes for craftsmen.</p>
+                                <p style={{color:'#ccc'}}>We have built many businesses — precision metal, fabrication, software. In the process, we automated the setup and startup so we could focus on the actual work. That is AgentForge: the same 8-agent crew we run our own business with, packaged for yours.</p>
                                 <p style={{color:'#ccc'}}>AgentForge runs on ElizaOS, powered by Grok-3. Every agent was built, tested, and battle-hardened on our own live business before we packaged it for yours.</p>
                             </div>
                         )}
@@ -794,8 +794,9 @@
                                             <li>Tai chi & rehab routines</li>
                                             <li>Gut health & nutrition tracking</li>
                                             <li>Longevity & blood work insights</li>
-                                            <li>Download on Google Play (coming soon)</li>
+                                            <li>Use in browser — no app store needed</li>
                                         </ul>
+                                        <a href="/groundchiflow/" className="buy-btn primary" style={{marginBottom:'0.5rem'}}>Open GroundChiFlow App</a>
                                         <a href="https://buy.stripe.com/3cIbIUf7Xbmq5Gw1TS7Zu03" className="buy-btn outline" target="_blank" rel="noopener" onClick={(e)=>{e.preventDefault();particleBurst(e,()=>window.open(e.currentTarget.href,'_blank'));}}>Subscribe — $9.99/mo</a>
                                     </div>
                                     <div className="pricing-card featured">
