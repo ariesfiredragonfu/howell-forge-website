@@ -1,0 +1,20 @@
+# Dependencies and build output
+node_modules/
+
+# Env and secrets — never commit
+.env
+.env.*
+.env.local
+*.env.local
+
+# GroundChiFlow Expo web build — contains inlined Firebase config; build in CI with env, do not commit
+groundchiflow/_expo/
+
+# Common secret patterns (defense in depth)
+*.pem
+*.key
+*.p12
+*.jks
+credentials.json
+*-credentials.json
+secrets.json
