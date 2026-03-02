@@ -45,9 +45,17 @@ jobs:
           GITLAB_TOKEN: ${{ secrets.GITLAB_TOKEN }}
         run: |
           set -e
-          git clone --depth 1 \
+          if [ -z "${GITLAB_TOKEN}" ]; then
+            echo "::error::GITLAB_TOKEN secret is not set. Add it in GitHub → Settings → Secrets → Actions."
+            exit 1
+          fi
+          echo "Cloning GroundChiFlow from GitLab..."
+          if ! git clone --depth 1 \
             "https://oauth2:${GITLAB_TOKEN}@gitlab.com/ariesfiredragonfu/ground-chi-flow.git" \
-            groundchiflow-src
+            groundchiflow-src; then
+            echo "::error::Git clone failed. Check that GITLAB_TOKEN is valid and has read_repository for ground-chi-flow."
+            exit 1
+          fi
           cd groundchiflow-src
           npm ci --no-audit --no-fund
           npx expo export --platform web --output-dir dist
