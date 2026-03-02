@@ -6,7 +6,7 @@
     Header set Referrer-Policy "strict-origin-when-cross-origin"
     Header set Permissions-Policy "geolocation=(), microphone=(), camera=()"
     Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains"
-    Header set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdnjs.cloudflare.com https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; img-src 'self' https: data: blob:; frame-ancestors 'self'; form-action 'self' https://howell-forge-shop-production.up.railway.app https://buy.stripe.com https://*.stripe.com; connect-src 'self' https://howell-forge-shop-production.up.railway.app https://*.stripe.com"
+    Header set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdnjs.cloudflare.com https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; img-src 'self' https: data: blob:; frame-ancestors 'self'; form-action 'self' https://howell-forge-shop-production.up.railway.app https://buy.stripe.com https://*.stripe.com; connect-src 'self' https://howell-forge-shop-production.up.railway.app https://*.stripe.com https://*.googleapis.com https://*.firebaseio.com https://*.firebase.com https://firestore.googleapis.com https://*.google.com wss://*.firebaseio.com"
 </IfModule>
 
 DirectoryIndex index.html
