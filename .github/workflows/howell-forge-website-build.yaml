@@ -52,9 +52,9 @@ jobs:
           npm ci --no-audit --no-fund
           npx expo export --platform web --output-dir dist
           cd ..
-          rm -rf groundchiflow
-          cp -r groundchiflow-src/dist groundchiflow
-          echo "GroundChiFlow built at groundchiflow/"
+          rm -rf gcf
+          cp -r groundchiflow-src/dist gcf
+          echo "GroundChiFlow built at gcf/"
 
 # Please do not touch the following action
       - name: Store deployment content

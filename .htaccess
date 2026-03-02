@@ -13,6 +13,11 @@ DirectoryIndex index.html
 
 RewriteEngine On
 RewriteBase /
+
+# Serve GroundChiFlow app from gcf/ at /groundchiflow (gcf is built in CI, not in .gitignore so it deploys)
+RewriteRule ^groundchiflow/?$ gcf/ [L]
+RewriteRule ^groundchiflow/(.*)$ gcf/$1 [L]
+
 RewriteRule ^index\.html$ - [L]
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
