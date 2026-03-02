@@ -7,10 +7,18 @@ node_modules/
 .env.local
 *.env.local
 
-# GroundChiFlow Expo web build — contains inlined Firebase config; build in CI with env, do not commit
-groundchiflow/_expo/
+# GroundChiFlow — build in CI with secrets only; never commit source clone or built bundle
+groundchiflow/
+groundchiflow-src/
 
 # Common secret patterns (defense in depth)
+*.pem
+*.key
+*.p12
+*.jks
+credentials.json
+*-credentials.json
+secrets.json
 *.pem
 *.key
 *.p12
