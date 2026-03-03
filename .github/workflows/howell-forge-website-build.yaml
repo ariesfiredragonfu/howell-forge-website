@@ -21,6 +21,8 @@ jobs:
   build-project:
     name: build howell-forge-website
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
       - name: checkout
         uses: actions/checkout@v4
@@ -72,6 +74,9 @@ jobs:
           cp -r groundchiflow-src/dist gcf
           echo "GroundChiFlow built at gcf/"
 
+      - name: Remove build-only folder before GitHub Pages deploy
+        run: rm -rf groundchiflow-src
+
 # Please do not touch the following action
       - name: Store deployment content
         uses: ionos-deploy-now/artifact-action@v1
@@ -84,3 +89,11 @@ jobs:
           folder: ${{ env.DEPLOYMENT_FOLDER }}
           config-file: .deploy-now/howell-forge-website/config.yaml
           action: upload
+
+      # Deploy same build to GitHub Pages (live site without IONOS Docker/VPS)
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v2
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: .
+          force_orphan: true

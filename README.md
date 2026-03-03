@@ -2,28 +2,24 @@
 
 Backup, restore, and deploy source for https://howell-forge.com
 
+## Deploy (current setup)
+
+IONOS Deploy Now / Docker isn’t available on the current hosting plan. The site is deployed to **GitHub Pages** for now. See **[DEPLOY_OPTIONS.md](DEPLOY_OPTIONS.md)** for the full picture (GitHub Pages vs laptop+tunnel vs future IONOS VPS).
+
+**One-time:** Repo **Settings → Pages** → Source: **Deploy from a branch** → branch **gh-pages** → folder **/ (root)**. After the next successful build, the site is at `https://<username>.github.io/howell-forge-website/` (or your custom domain if set).
+
 ## Contents
 
 - **index.html** — Main site (React + Web3 wallet connect, Home/About/Contact)
 - **.htaccess** — IONOS-compatible SPA routing (fixes 500 on /about, /contact)
 
-## Connecting GitHub to IONOS (Deploy Now)
+## Connecting GitHub to IONOS (Deploy Now) — *paused*
 
-1. Log in to [IONOS](https://www.ionos.com)
-2. Go to **Websites & Apps** → select your howell-forge.com site (or create one)
-3. Look for **Deploy Now** or **Git** / **GitHub** integration
-4. Connect your GitHub account (authorize IONOS if prompted)
-5. Choose repo: **ariesfiredragonfu/howell-forge-website**
-6. Branch: **main**
-7. Set deployment path to your web root (e.g. `public_html`)
-8. Save and deploy — IONOS will pull from GitHub and serve the files
-9. Future changes: push to GitHub → IONOS auto-deploys
+*Deploy Now requires an IONOS plan that supports Docker; current plan doesn’t. Using GitHub Pages until you add an IONOS VPS or change plan. See [DEPLOY_OPTIONS.md](DEPLOY_OPTIONS.md).*
 
-## Manual deploy (if Deploy Now isn't set up yet)
+## Manual deploy (if you have FTP / File Manager on IONOS)
 
-1. Download or clone this repo
-2. Upload `index.html` and `.htaccess` to your IONOS web root (e.g. `public_html`) via File Manager or FTP
-3. Overwrite existing files
+If your IONOS plan allows uploads to web root: download or clone this repo, upload `index.html`, `.htaccess`, and the `gcf/` folder (from a successful Actions build artifact) to your web root. Otherwise use GitHub Pages; see [DEPLOY_OPTIONS.md](DEPLOY_OPTIONS.md).
 
 ## Local development
 
