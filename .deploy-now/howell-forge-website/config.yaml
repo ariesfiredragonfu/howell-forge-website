@@ -1,7 +1,7 @@
 # IONOS Deploy Now v2 – deployment config for howell-forge-website
 # See https://docs.ionos.space/docs/deployment-configuration
 # Empty excludes = deploy everything in the build folder (including gcf/)
-version: 2
+version: "2022-07-21"
 
 bootstrap:
   excludes: []
