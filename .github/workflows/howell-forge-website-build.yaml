@@ -57,9 +57,10 @@ jobs:
             exit 1
           fi
           cd groundchiflow-src
-          npm ci --no-audit --no-fund --legacy-peer-deps
+          npm install --legacy-peer-deps --no-audit --no-fund
           npx expo install react-native-web --fix
           npm install --legacy-peer-deps
+          npm ls react-native-web
           npx expo export --platform web --output-dir dist
           cd ..
           rm -rf gcf
