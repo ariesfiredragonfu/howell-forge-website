@@ -1,6 +1,6 @@
 # IONOS Deploy Now – root config (required by deploy-to-ionos action)
 # Project-specific: .deploy-now/howell-forge-website/config.yaml
-# No version key – optional for static sites; see docs.ionos.space deployment-configuration
+version: 1.0
 bootstrap:
   excludes: []
 recurring:
