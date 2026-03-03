@@ -57,6 +57,8 @@ jobs:
           echo "GroundChiFlow built at gcf/"
 
       - name: Deploy to GitHub Pages
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         uses: peaceiris/actions-gh-pages@v2
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
