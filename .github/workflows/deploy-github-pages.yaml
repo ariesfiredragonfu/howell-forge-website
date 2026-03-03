@@ -1,0 +1,64 @@
+# Deploy to GitHub Pages only (no IONOS). Runs on every push to main so the site is always live.
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  build-and-deploy:
+    name: build and deploy to Pages
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Build GroundChiFlow
+        env:
+          EXPO_PUBLIC_FIREBASE_API_KEY: ${{ secrets.EXPO_PUBLIC_FIREBASE_API_KEY }}
+          EXPO_PUBLIC_FIREBASE_AUTH_DOMAIN: ${{ secrets.EXPO_PUBLIC_FIREBASE_AUTH_DOMAIN }}
+          EXPO_PUBLIC_FIREBASE_PROJECT_ID: ${{ secrets.EXPO_PUBLIC_FIREBASE_PROJECT_ID }}
+          EXPO_PUBLIC_FIREBASE_STORAGE_BUCKET: ${{ secrets.EXPO_PUBLIC_FIREBASE_STORAGE_BUCKET }}
+          EXPO_PUBLIC_FIREBASE_MESSAGING_SENDER_ID: ${{ secrets.EXPO_PUBLIC_FIREBASE_MESSAGING_SENDER_ID }}
+          EXPO_PUBLIC_FIREBASE_APP_ID: ${{ secrets.EXPO_PUBLIC_FIREBASE_APP_ID }}
+          EXPO_PUBLIC_GROK_BRIDGE_URL: ${{ secrets.EXPO_PUBLIC_GROK_BRIDGE_URL }}
+          GITLAB_TOKEN: ${{ secrets.GITLAB_TOKEN }}
+        run: |
+          set -e
+          if [ -z "${GITLAB_TOKEN}" ]; then
+            echo "::error::GITLAB_TOKEN secret is not set. Add it in GitHub → Settings → Secrets → Actions."
+            exit 1
+          fi
+          echo "Cloning GroundChiFlow from GitLab..."
+          git clone --depth 1 \
+            "https://oauth2:${GITLAB_TOKEN}@gitlab.com/ariesfiredragonfu/ground-chi-flow.git" \
+            groundchiflow-src
+          cd groundchiflow-src
+          npm install --legacy-peer-deps --no-audit --no-fund
+          npm install react-native-web --legacy-peer-deps --no-audit --no-fund
+          npx expo install react-native-web --fix
+          npm install react-dom --legacy-peer-deps --no-audit --no-fund
+          npx expo install react-dom --fix
+          npm install react-native-worklets --legacy-peer-deps --no-audit --no-fund
+          npx expo install react-native-worklets --fix
+          npm install --legacy-peer-deps
+          npx expo export --platform web --output-dir dist
+          cd ..
+          rm -rf gcf
+          cp -r groundchiflow-src/dist gcf
+          rm -rf groundchiflow-src
+          echo "GroundChiFlow built at gcf/"
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v2
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: .
+          force_orphan: true
