@@ -60,6 +60,8 @@ jobs:
           npm install --legacy-peer-deps --no-audit --no-fund
           npm install react-native-web --legacy-peer-deps --no-audit --no-fund
           npx expo install react-native-web --fix
+          npm install react-dom --legacy-peer-deps --no-audit --no-fund
+          npx expo install react-dom --fix
           npm install --legacy-peer-deps
           npm ls react-native-web
           npx expo export --platform web --output-dir dist
