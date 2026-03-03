@@ -29,7 +29,7 @@ jobs:
         with:
           submodules: 'recursive'
 
-      # --- Build GroundChiFlow (key from secrets only; output never committed) ---
+      # --- Build GroundChiFlow (key from secrets only; output in gcf/) ---
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
@@ -59,6 +59,17 @@ jobs:
             exit 1
           fi
           cd groundchiflow-src
+          if [ -f app.json ]; then
+            node -e "
+            const fs = require('fs');
+            const app = JSON.parse(fs.readFileSync('app.json', 'utf8'));
+            if (!app.expo) app.expo = {};
+            if (!app.expo.experiments) app.expo.experiments = {};
+            app.expo.experiments.baseUrl = '/howell-forge-website/gcf';
+            fs.writeFileSync('app.json', JSON.stringify(app, null, 2));
+            console.log('Set baseUrl for GitHub Pages subpath');
+            "
+          fi
           npm install --legacy-peer-deps --no-audit --no-fund
           npm install react-native-web --legacy-peer-deps --no-audit --no-fund
           npx expo install react-native-web --fix
@@ -72,10 +83,8 @@ jobs:
           cd ..
           rm -rf gcf
           cp -r groundchiflow-src/dist gcf
+          rm -rf groundchiflow-src
           echo "GroundChiFlow built at gcf/"
-
-      - name: Remove build-only folder before GitHub Pages deploy
-        run: rm -rf groundchiflow-src
 
 # Please do not touch the following action
       - name: Store deployment content

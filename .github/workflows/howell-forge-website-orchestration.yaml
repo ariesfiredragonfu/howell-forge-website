@@ -6,6 +6,7 @@
 name: "Deploy Now: Orchestration"
 run-name: "Deploy Now: Build howell-forge-website · ${{ github.event.head_commit.message || format('Triggered by {0}', github.triggering_actor) }}"
 
+# Runs on push so deploys can happen automatically; also run manually if needed.
 on:
   - push
   - workflow_dispatch
