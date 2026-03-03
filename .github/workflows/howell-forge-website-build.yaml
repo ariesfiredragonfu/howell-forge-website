@@ -29,63 +29,7 @@ jobs:
         with:
           submodules: 'recursive'
 
-      # --- Build GroundChiFlow (key from secrets only; output in gcf/) ---
-      - name: Setup Node
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-
-      - name: Build GroundChiFlow
-        env:
-          EXPO_PUBLIC_FIREBASE_API_KEY: ${{ secrets.EXPO_PUBLIC_FIREBASE_API_KEY }}
-          EXPO_PUBLIC_FIREBASE_AUTH_DOMAIN: ${{ secrets.EXPO_PUBLIC_FIREBASE_AUTH_DOMAIN }}
-          EXPO_PUBLIC_FIREBASE_PROJECT_ID: ${{ secrets.EXPO_PUBLIC_FIREBASE_PROJECT_ID }}
-          EXPO_PUBLIC_FIREBASE_STORAGE_BUCKET: ${{ secrets.EXPO_PUBLIC_FIREBASE_STORAGE_BUCKET }}
-          EXPO_PUBLIC_FIREBASE_MESSAGING_SENDER_ID: ${{ secrets.EXPO_PUBLIC_FIREBASE_MESSAGING_SENDER_ID }}
-          EXPO_PUBLIC_FIREBASE_APP_ID: ${{ secrets.EXPO_PUBLIC_FIREBASE_APP_ID }}
-          EXPO_PUBLIC_GROK_BRIDGE_URL: ${{ secrets.EXPO_PUBLIC_GROK_BRIDGE_URL }}
-          GITLAB_TOKEN: ${{ secrets.GITLAB_TOKEN }}
-        run: |
-          set -e
-          if [ -z "${GITLAB_TOKEN}" ]; then
-            echo "::error::GITLAB_TOKEN secret is not set. Add it in GitHub → Settings → Secrets → Actions."
-            exit 1
-          fi
-          echo "Cloning GroundChiFlow from GitLab..."
-          if ! git clone --depth 1 \
-            "https://oauth2:${GITLAB_TOKEN}@gitlab.com/ariesfiredragonfu/ground-chi-flow.git" \
-            groundchiflow-src; then
-            echo "::error::Git clone failed. Check that GITLAB_TOKEN is valid and has read_repository for ground-chi-flow."
-            exit 1
-          fi
-          cd groundchiflow-src
-          if [ -f app.json ]; then
-            node -e "
-            const fs = require('fs');
-            const app = JSON.parse(fs.readFileSync('app.json', 'utf8'));
-            if (!app.expo) app.expo = {};
-            if (!app.expo.experiments) app.expo.experiments = {};
-            app.expo.experiments.baseUrl = '/howell-forge-website/gcf';
-            fs.writeFileSync('app.json', JSON.stringify(app, null, 2));
-            console.log('Set baseUrl for GitHub Pages subpath');
-            "
-          fi
-          npm install --legacy-peer-deps --no-audit --no-fund
-          npm install react-native-web --legacy-peer-deps --no-audit --no-fund
-          npx expo install react-native-web --fix
-          npm install react-dom --legacy-peer-deps --no-audit --no-fund
-          npx expo install react-dom --fix
-          npm install react-native-worklets --legacy-peer-deps --no-audit --no-fund
-          npx expo install react-native-worklets --fix
-          npm install --legacy-peer-deps
-          npm ls react-native-web
-          npx expo export --platform web --output-dir dist
-          cd ..
-          rm -rf gcf
-          cp -r groundchiflow-src/dist gcf
-          rm -rf groundchiflow-src
-          echo "GroundChiFlow built at gcf/"
-
+      # GroundChiFlow build skipped so IONOS deploy succeeds; add back when GCF build is fixed.
 # Please do not touch the following action
       - name: Store deployment content
         uses: ionos-deploy-now/artifact-action@v1
