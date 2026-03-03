@@ -43,16 +43,26 @@ Use this after adding Voice-to-Part to the products page.
 
 1. Merge `staging` into `main` (or push the changes to `main`).
 2. Let the deploy run (GitHub Pages or IONOS per your setup).
-3. Open **howell-forge.com** (or your live URL) → **AI Forge** → confirm Voice-to-Part at top, AgentForge below, and Stripe buttons work.
+3. Open **howell-forge.com** (or your live URL) → **AI Forge** → **Products** → confirm AgentForge first, Voice-to-Part below, and Stripe buttons work.
 4. Do a test checkout in Stripe test mode if you want (switch to live when ready).
 
 ---
 
-## 5. Quick reference
+## 5. Restore (if something goes wrong)
+
+- **Restore live to previous state:** In `howell-forge-website`, checkout branch `backup/pre-voice-to-part-live-2026-03-03`, then force-push to `main`:  
+  `git checkout backup/pre-voice-to-part-live-2026-03-03 && git push origin HEAD:main --force`  
+  (Only do this if you need to roll back the live site. Then fix issues on staging and try again.)
+- **Staging snapshot:** Tag `staging-voice-to-part-2026-03-03` points at the working staging commit before go-live. Use it to compare or restore staging:  
+  `git checkout staging-voice-to-part-2026-03-03`
+
+---
+
+## 6. Quick reference
 
 | Item | Where |
 |------|--------|
 | Voice-to-Part section | `index.html` — first block when `page === 'products'` |
 | Starter button URL | Search for `REPLACE_VOICE_PART_STARTER` |
 | Pro button URL | Search for `REPLACE_VOICE_PART_PRO` |
-| AgentForge | Unchanged; still below Voice-to-Part |
+| AgentForge | First on products page; then Voice-to-Part below |
