@@ -675,6 +675,49 @@
                         {page === 'products' && (
                             <>
                                 <div className="products-hero scroll-reveal glow-visible">
+                                    <h2 className="typography-pulse-trigger">Voice-to-Part — <span className="highlight">Say It. Get the Part.</span></h2>
+                                    <p>Turn spoken or typed descriptions into real parts: STL and STEP files, ready for your CNC or 3D printer. Works with Blender or FreeCAD. No CAD experience required.</p>
+                                    <div className="crew-badge">
+                                        <span>Voice or text</span>
+                                        <span>Blender / FreeCAD</span>
+                                        <span>STL + STEP</span>
+                                        <span>Manufacturing Sim</span>
+                                    </div>
+                                </div>
+                                <div className="value-callout scroll-reveal glow-visible">
+                                    <p>Competitors charge <strong>$20–60/mo</strong> for voice-to-CAD. Voice-to-Part gives you the full pipeline plus a <strong>free</strong> Blender add-on for toolpath simulation.</p>
+                                </div>
+                                <div className="pricing-grid scroll-reveal glow-visible">
+                                    <div className="pricing-card">
+                                        <p className="tier-name">Starter</p>
+                                        <p className="price">$19 <span>/ mo</span></p>
+                                        <p className="price-sub">or $199/year — save $29</p>
+                                        <ul className="feature-list">
+                                            <li>Voice or text → part script</li>
+                                            <li>Blender or FreeCAD output (STL + STEP)</li>
+                                            <li>Manufacturing Sim add-on (free, open source)</li>
+                                            <li>14-day free trial</li>
+                                        </ul>
+                                        <a href="#" className="buy-btn outline" target="_blank" rel="noopener" onClick={(e)=>{e.preventDefault(); var u = 'https://buy.stripe.com/REPLACE_VOICE_PART_STARTER'; if(u.includes('REPLACE')) { window.open('mailto:chrishowell@howell-forge.com?subject=Voice-to-Part%20Starter%20trial','_blank'); } else { particleBurst(e,()=>window.open(u,'_blank')); }}>Start free trial — $19/mo</a>
+                                    </div>
+                                    <div className="pricing-card featured">
+                                        <div className="featured-badge">BEST VALUE</div>
+                                        <p className="tier-name">Pro</p>
+                                        <p className="price">$49 <span>/ mo</span></p>
+                                        <p className="price-sub">or $499/year — save $89</p>
+                                        <ul className="feature-list">
+                                            <li>Everything in Starter</li>
+                                            <li>Higher volume, priority support</li>
+                                            <li>For shops and makers</li>
+                                        </ul>
+                                        <a href="#" className="buy-btn primary brutal-cta" target="_blank" rel="noopener" onClick={(e)=>{e.preventDefault(); var u = 'https://buy.stripe.com/REPLACE_VOICE_PART_PRO'; if(u.includes('REPLACE')) { window.open('mailto:chrishowell@howell-forge.com?subject=Voice-to-Part%20Pro','_blank'); } else { particleBurst(e,()=>window.open(u,'_blank')); }}>Get Voice-to-Part Pro — $49/mo</a>
+                                    </div>
+                                </div>
+                                <div className="stripe-callout scroll-reveal glow-visible" style={{marginBottom:'3rem'}}>
+                                    <p>Secure checkout via Stripe. Create Voice-to-Part products in Stripe Dashboard and paste the payment links into this page (see VOICE_TO_PART_STRIPE_CHECKLIST.md).</p>
+                                </div>
+
+                                <div className="products-hero scroll-reveal glow-visible">
                                     <h2 className="typography-pulse-trigger">AgentForge — <span className="highlight">Your Business Crew, Ready to Deploy</span></h2>
                                     <p>8 autonomous AI agents forged for your business. Running 24/7. Self-healing. Telegram-connected. Stripe-integrated. Deploy in a day.</p>
                                     <div className="crew-badge">
@@ -796,7 +839,7 @@
                                             <li>Longevity & blood work insights</li>
                                             <li>Use in browser — no app store needed</li>
                                         </ul>
-                                        <a href="/groundchiflow/" className="buy-btn primary" style={{marginBottom:'0.5rem'}}>Open GroundChiFlow App</a>
+                                        <a href="groundchiflow/" className="buy-btn primary" style={{marginBottom:'0.5rem'}}>Open GroundChiFlow App</a>
                                         <a href="https://buy.stripe.com/3cIbIUf7Xbmq5Gw1TS7Zu03" className="buy-btn outline" target="_blank" rel="noopener" onClick={(e)=>{e.preventDefault();particleBurst(e,()=>window.open(e.currentTarget.href,'_blank'));}}>Subscribe — $9.99/mo</a>
                                     </div>
                                     <div className="pricing-card featured">

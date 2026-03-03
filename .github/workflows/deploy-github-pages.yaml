@@ -49,6 +49,18 @@ jobs:
             "https://oauth2:${GITLAB_TOKEN}@gitlab.com/ariesfiredragonfu/ground-chi-flow.git" \
             groundchiflow-src
           cd groundchiflow-src
+          # So the app loads when served at /howell-forge-website/gcf/ (GitHub Pages)
+          if [ -f app.json ]; then
+            node -e "
+            const fs = require('fs');
+            const app = JSON.parse(fs.readFileSync('app.json', 'utf8'));
+            if (!app.expo) app.expo = {};
+            if (!app.expo.experiments) app.expo.experiments = {};
+            app.expo.experiments.baseUrl = '/howell-forge-website/gcf';
+            fs.writeFileSync('app.json', JSON.stringify(app, null, 2));
+            console.log('Set baseUrl for GitHub Pages subpath');
+            "
+          fi
           npm install --legacy-peer-deps --no-audit --no-fund
           npm install react-native-web --legacy-peer-deps --no-audit --no-fund
           npx expo install react-native-web --fix
