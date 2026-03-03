@@ -33,6 +33,8 @@ jobs:
     name: build
     needs: retrieve-project
     if: ${{ needs.retrieve-project.outputs.deployment-enabled == 'true' }}
+    permissions:
+      contents: write
     uses: ./.github/workflows/howell-forge-website-build.yaml
     with:
       site-url: https://IONOS_DEPLOY_NOW_SITE_URL
