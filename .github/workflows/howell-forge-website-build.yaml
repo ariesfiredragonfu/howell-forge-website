@@ -57,7 +57,7 @@ jobs:
             exit 1
           fi
           cd groundchiflow-src
-          npm ci --no-audit --no-fund
+          npm ci --no-audit --no-fund --legacy-peer-deps
           npx expo export --platform web --output-dir dist
           cd ..
           rm -rf gcf
