@@ -49,6 +49,7 @@ jobs:
             "https://oauth2:${GITLAB_TOKEN}@gitlab.com/ariesfiredragonfu/ground-chi-flow.git" \
             groundchiflow-src
           cd groundchiflow-src
+          echo "::notice title=GroundChiFlow source::Commit=$(git rev-parse --short HEAD) | DailyRoutine.ts lines=$(wc -l < constants/DailyRoutine.ts 2>/dev/null || echo 0)"
           if [ -f app.json ]; then
             node -e "
             const fs = require('fs');
