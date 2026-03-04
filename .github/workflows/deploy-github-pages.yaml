@@ -45,7 +45,7 @@ jobs:
             exit 1
           fi
           echo "Cloning GroundChiFlow from GitLab..."
-          git clone --depth 1 \
+          git clone --depth 1 --branch master \
             "https://oauth2:${GITLAB_TOKEN}@gitlab.com/ariesfiredragonfu/ground-chi-flow.git" \
             groundchiflow-src
           cd groundchiflow-src
