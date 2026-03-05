@@ -68,6 +68,20 @@ jobs:
           fi
           # Force bridge URL into .env so Expo web build definitely sees it (avoids CI env not inlining)
           printf 'EXPO_PUBLIC_GROK_BRIDGE_URL=%s\n' "$EXPO_PUBLIC_GROK_BRIDGE_URL" > .env
+          # Also patch grokBridge.ts so DEFAULT_BRIDGE_URL is literally the Railway URL (guarantees bundle has it)
+          if [ -n "$EXPO_PUBLIC_GROK_BRIDGE_URL" ] && [ -f lib/grokBridge.ts ]; then
+            node -e "
+              const fs = require('fs');
+              const path = 'lib/grokBridge.ts';
+              let s = fs.readFileSync(path, 'utf8');
+              const url = process.env.EXPO_PUBLIC_GROK_BRIDGE_URL.trim().replace(/\/$/, '');
+              if (url.startsWith('http')) {
+                s = s.replace(/const DEFAULT_BRIDGE_URL = '[^']*';/, 'const DEFAULT_BRIDGE_URL = ' + JSON.stringify(url) + ';');
+                fs.writeFileSync(path, s);
+                console.log('Patched grokBridge.ts DEFAULT_BRIDGE_URL to', url.substring(0, 40) + '...');
+              }
+            "
+          fi
           npm install --legacy-peer-deps --no-audit --no-fund
           npm install react-native-web --legacy-peer-deps --no-audit --no-fund
           npx expo install react-native-web --fix
