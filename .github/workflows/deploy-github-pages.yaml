@@ -44,6 +44,11 @@ jobs:
             echo "::error::GITLAB_TOKEN secret is not set. Add it in GitHub → Settings → Secrets → Actions."
             exit 1
           fi
+          if [ -z "${EXPO_PUBLIC_GROK_BRIDGE_URL}" ]; then
+            echo "::warning::EXPO_PUBLIC_GROK_BRIDGE_URL is not set. Coach will use default (grok.howell-forge.com). For Railway 24/7, add this secret with your Railway bridge URL."
+          else
+            echo "::notice::EXPO_PUBLIC_GROK_BRIDGE_URL is set (Coach will use Railway/custom bridge)."
+          fi
           echo "Cloning GroundChiFlow from GitLab..."
           git clone --depth 1 --branch master \
             "https://oauth2:${GITLAB_TOKEN}@gitlab.com/ariesfiredragonfu/ground-chi-flow.git" \
@@ -61,6 +66,8 @@ jobs:
             console.log('Set baseUrl for GitHub Pages subpath');
             "
           fi
+          # Force bridge URL into .env so Expo web build definitely sees it (avoids CI env not inlining)
+          printf 'EXPO_PUBLIC_GROK_BRIDGE_URL=%s\n' "$EXPO_PUBLIC_GROK_BRIDGE_URL" > .env
           npm install --legacy-peer-deps --no-audit --no-fund
           npm install react-native-web --legacy-peer-deps --no-audit --no-fund
           npx expo install react-native-web --fix
