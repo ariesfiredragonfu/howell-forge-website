@@ -37,7 +37,7 @@
     wrap.innerHTML = [
         '<div id="aria-chat-panel">',
         '  <div class="head">Chat <span>— ARIA</span><button type="button" class="aria-close" id="aria-close-btn" aria-label="Minimize chat">×</button></div>',
-        '  <div class="msgs" id="aria-msgs"><div class="aria-msg bot">Hi, I\'m ARIA. Ask about metal parts, AgentForge, pricing, or anything else.</div></div>',
+        '  <div class="msgs" id="aria-msgs"><div class="aria-msg bot">Hi, I\'m ARIA. Ask about metal parts, Quantum Agent Forge, pricing, or anything else.</div></div>',
         '  <div class="row">',
         '    <input type="text" id="aria-input" placeholder="Type a message..." />',
         '    <button type="button" class="send" id="aria-send">Send</button>',
@@ -80,7 +80,7 @@
 
         /* Pricing / cost */
         if (/price|pricing|cost|how much|497|1497|97\/?mo|monthly|one-?time/.test(lower))
-            return 'AgentForge pricing: Starter $497 (self-setup, yours forever), Done For You $1,497 (we deploy everything), or Monthly Retainer $97/mo (updates, cancel anytime). See the AI Forge page for Stripe checkout.';
+            return 'Quantum Agent Forge (Q Agent Forge) pricing: Starter $497 (self-setup, yours forever), Done For You $1,497 (we deploy everything), or Monthly Retainer $97/mo (updates, cancel anytime). See the AI Forge page for Stripe checkout.';
 
         /* Quote / metal / fabrication */
         if (/quote|metal|part|cnc|machining|fabricat|order|prototype|custom part/.test(lower))
@@ -90,17 +90,17 @@
         if (/contact|email|reach|phone|call|hours|est/.test(lower))
             return 'Email chrishowell@howell-forge.com. Business hours: Mon–Fri 9–5 EST.';
 
-        /* AgentForge / agents / crew */
-        if (/agentforge|agent forge|agents?|crew|elizaos|eliza|deploy|forged?|business crew/.test(lower))
-            return 'AgentForge is an 8-agent AI crew for your business: FORGE (Commander), ARIA (Monitor), NOVA (Security), MAVEN (Marketing), REX (Shop Floor), KAITO (CFO), FLUX (Dev), SAGE (Analytics). Running 24/7, Telegram-connected, Stripe-integrated. Deploy in a day. See the AI Forge page for details.';
+        /* Quantum Agent Forge / Q Agent Forge / agents / crew */
+        if (/quantum agent forge|q agent forge|agentforge|agent forge|agents?|crew|elizaos|eliza|deploy|forged?|business crew/.test(lower))
+            return 'Quantum Agent Forge (Q Agent Forge) is an 8-agent crew of quantum-enabled AI agents for your business: FORGE (Commander), ARIA (Monitor), NOVA (Security), MAVEN (Marketing), REX (Shop Floor), KAITO (CFO), FLUX (Dev), SAGE (Analytics). Running 24/7, Telegram-connected, Stripe-integrated. Deploy in a day. See the AI Forge page for details.';
 
         /* What is / how does / explain */
         if (/what is|what\'s|howell forge|who are you|tell me about/.test(lower))
-            return 'Howell Forge combines precision metal fabrication with AI business automation. We build custom CNC parts and deploy AgentForge — an 8-agent AI crew for entrepreneurs. Built by makers, for makers.';
+            return 'Howell Forge combines precision metal fabrication with AI business automation. We build custom CNC parts and deploy Quantum Agent Forge (Q Agent Forge) — an 8-agent crew of quantum-enabled AI agents for entrepreneurs. Built by makers, for makers.';
 
         /* Stripe / payment / buy */
         if (/stripe|payment|pay|buy|purchase|checkout|card/.test(lower))
-            return 'AgentForge uses Stripe for checkout. You can pay with card on the AI Forge page. For metal parts, we also accept USDC on Base — see the Pay with USDC section on the home page.';
+            return 'Q Agent Forge uses Stripe for checkout. You can pay with card on the AI Forge page. For metal parts, we also accept USDC on Base — see the Pay with USDC section on the home page.';
 
         /* USDC / crypto */
         if (/usdc|crypto|base|wallet|0x/.test(lower))
@@ -108,14 +108,14 @@
 
         /* Greetings */
         if (/^(hi|hello|hey|howdy|yo)\s*!?$|^hi there|good (morning|afternoon|evening)/.test(lower))
-            return "Hi! I'm ARIA. I can help with metal parts, AgentForge pricing, quotes, or how to get started. What would you like to know?";
+            return "Hi! I'm ARIA. I can help with metal parts, Quantum Agent Forge pricing, quotes, or how to get started. What would you like to know?";
 
         /* Help */
         if (/help|what can you|what do you|options?|assist/.test(lower))
-            return "I can answer about: AgentForge (8-agent AI crew, pricing, deployment), metal parts (CNC, quotes, fabrication), contact (email, hours), payment (Stripe, USDC). Just ask!";
+            return "I can answer about: Quantum Agent Forge (Q Agent Forge — 8 quantum-enabled agents, pricing, deployment), metal parts (CNC, quotes, fabrication), contact (email, hours), payment (Stripe, USDC). Just ask!";
 
         /* Default — offer specific next steps */
-        return "I'm ARIA. I can help with metal fabrication, AgentForge, pricing, and quotes. Try asking: \"What is AgentForge?\" or \"How much does AgentForge cost?\" or \"How do I get a quote for metal parts?\"";
+        return "I'm ARIA. I can help with metal fabrication, Quantum Agent Forge, pricing, and quotes. Try asking: \"What is Quantum Agent Forge?\" or \"How much does Q Agent Forge cost?\" or \"How do I get a quote for metal parts?\"";
     }
 
     var ws = null;

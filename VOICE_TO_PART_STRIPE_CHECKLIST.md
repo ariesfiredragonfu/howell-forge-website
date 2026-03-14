@@ -34,8 +34,8 @@ Use this after adding Voice-to-Part to the products page.
 
 ## 3. Staging (test before live)
 
-- **Option A — Branch preview:** Push to branch `staging` or `voice-to-part`. If you use GitHub Pages from a branch, open the staging URL and confirm Voice-to-Part appears above AgentForge and links look correct.
-- **Option B — Local:** Run a static server in the repo (`python3 -m http.server 8000` or `npx serve .`) and open `http://localhost:8000` → click **AI Forge** → scroll to see Voice-to-Part then AgentForge. Test both buy buttons (with placeholders they open mailto; after pasting Stripe links they open checkout).
+- **Option A — Branch preview:** Push to branch `staging` or `voice-to-part`. If you use GitHub Pages from a branch, open the staging URL and confirm Voice-to-Part appears above Quantum Agent Forge (Q Agent Forge) and links look correct.
+- **Option B — Local:** Run a static server in the repo (`python3 -m http.server 8000` or `npx serve .`) and open `http://localhost:8000` → click **AI Forge** → scroll to see Voice-to-Part then Quantum Agent Forge. Test both buy buttons (with placeholders they open mailto; after pasting Stripe links they open checkout).
 
 ---
 
@@ -43,7 +43,7 @@ Use this after adding Voice-to-Part to the products page.
 
 1. Merge `staging` into `main` (or push the changes to `main`).
 2. Let the deploy run (GitHub Pages or IONOS per your setup).
-3. Open **howell-forge.com** (or your live URL) → **AI Forge** → **Products** → confirm AgentForge first, Voice-to-Part below, and Stripe buttons work.
+3. Open **howell-forge.com** (or your live URL) → **AI Forge** → **Products** → confirm Quantum Agent Forge first, Voice-to-Part below, and Stripe buttons work.
 4. Do a test checkout in Stripe test mode if you want (switch to live when ready).
 
 ---
@@ -65,4 +65,4 @@ Use this after adding Voice-to-Part to the products page.
 | Voice-to-Part section | `index.html` — first block when `page === 'products'` |
 | Starter button URL | Search for `REPLACE_VOICE_PART_STARTER` |
 | Pro button URL | Search for `REPLACE_VOICE_PART_PRO` |
-| AgentForge | First on products page; then Voice-to-Part below |
+| Quantum Agent Forge (Q Agent Forge) | First on products page; then Voice-to-Part below |
