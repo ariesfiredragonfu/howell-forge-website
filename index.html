@@ -206,7 +206,10 @@
         .home-product-card .card-cta:hover { background: #0040cc; }
         .testimonials-placeholder { background: linear-gradient(135deg, #0a0a14, #111122); border: 1px solid #333; border-radius: 12px; padding: 2rem; margin: 2rem 0; text-align: center; }
         .testimonials-placeholder h3 { color: #888; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.1em; margin: 0 0 1rem 0; }
-        .testimonials-placeholder p { color: #666; font-size: 0.9rem; margin: 0; font-style: italic; }
+        .testimonials-placeholder p { color: #666; font-size: 0.9rem; margin: 0; }
+        .testimonial-quote { font-style: italic; color: #aaa !important; margin-bottom: 0.35rem !important; }
+        .testimonial-attribution { color: #888 !important; font-size: 0.85rem !important; }
+        .stripe-coming-soon { text-align: center; color: #666; font-size: 0.8rem; margin: 0.5rem 0 1.5rem 0; padding: 0.5rem 1rem; background: #1a1a1a; border: 1px dashed #333; border-radius: 6px; }
 
         /* ── Quick Wins ── */
         .current-build { background: #0a0a14; border: 1px solid #0052ff44; border-radius: 8px; padding: 0.6rem 1rem; margin: 1rem 0; display: inline-flex; align-items: center; gap: 0.5rem; font-size: 0.88rem; color: #aaa; }
@@ -692,11 +695,12 @@
                                 <div className="hero-below scroll-reveal glow-visible">
                                     <p className="landing-subhead">We have built many businesses. In the process, we came up with an automated way to run them. That is how we created Quantum Agent Forge — by automating the setup and startup so more time goes to <em>doing</em> the business, not setting it up or running it. Our agents are quantum-enabled.</p>
                                     <div className="landing-cta">
-                                        <a href={STRIPE_QUANTUM_FREE_TRIAL} className="nav-button primary brutal-cta" target="_blank" rel="noopener" style={{padding:'14px 28px',fontSize:'1.05rem'}} onClick={(e)=>{e.preventDefault();particleBurst(e,()=>window.open(STRIPE_QUANTUM_FREE_TRIAL,'_blank'));}}>Start with Quantum Agents Forge – Free Trial</a>
+                                        <button type="button" className="nav-button primary brutal-cta" style={{padding:'14px 28px',fontSize:'1.05rem'}} onClick={(e)=>{ particleBurst(e, ()=>{ var el = document.getElementById('pay-usdc'); if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' }); }); }}>Start with Quantum Agent Forge – Pay USDC Now or Request Quote</button>
                                         <button className="nav-button" onClick={() => setPage('products')} style={{padding:'12px 24px',fontSize:'1rem'}}>See All Products</button>
                                         <button className="nav-button" onClick={() => setPage('groundchiflow')} style={{padding:'12px 24px',fontSize:'1rem',background:'#28a745'}}>GroundChiFlow App</button>
                                         <button className="nav-button" onClick={() => setPage('contact')} style={{padding:'12px 24px',fontSize:'1rem'}}>Get a Quote</button>
                                     </div>
+                                    <div className="stripe-coming-soon scroll-reveal glow-visible">Stripe Coming Soon (test mode only)</div>
                                     <div className="current-build"><span className="dot"></span>Current Build: Quantum Agent Forge template — MAVEN copy pass</div>
                                     <div className="stack-icons">
                                         <a href="https://railway.app" target="_blank" rel="noopener">Railway</a>
@@ -741,9 +745,10 @@
                                 </div>
                                 <div className="testimonials-placeholder scroll-reveal glow-visible">
                                     <h3>Testimonials</h3>
-                                    <p>What makers and founders are saying about Quantum Agent Forge and Howell Forge — coming soon.</p>
+                                    <p className="testimonial-quote">"I've used this to automate my home business — saved hours weekly."</p>
+                                    <p className="testimonial-attribution">– Chris (Founder)</p>
                                 </div>
-                                <div className="scroll-reveal"><UsdcPaymentSection /></div>
+                                <div id="pay-usdc" className="scroll-reveal"><UsdcPaymentSection /></div>
                                 <div className="scroll-reveal"><WalletSection /></div>
                                 <div className="scroll-reveal"><QuoteForm user={authUser} /></div>
                             </>
