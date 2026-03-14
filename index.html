@@ -195,6 +195,18 @@
         .stripe-callout a { color: #4d9fff; font-weight: bold; text-decoration: none; }
         .stripe-callout a:hover { text-decoration: underline; }
         .landing-section-title { color: #888; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.1em; margin: 2rem 0 0.75rem 0; }
+        .home-products { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.25rem; margin: 2rem 0; }
+        .home-product-card { background: #1a1a1a; border: 1px solid #333; border-radius: 12px; padding: 1.25rem; transition: border-color 0.2s, transform 0.2s; }
+        .home-product-card:hover { border-color: #0052ff66; transform: translateY(-2px); }
+        .home-product-card h3 { color: #fff; margin: 0 0 0.5rem 0; font-size: 1.15rem; }
+        .home-product-card .price { color: #4d9fff; font-weight: bold; font-size: 1.1rem; margin: 0 0 0.75rem 0; }
+        .home-product-card ul { margin: 0 0 1rem 0; padding-left: 1.25rem; color: #ccc; font-size: 0.9rem; line-height: 1.6; }
+        .home-product-card ul li { margin-bottom: 0.35rem; }
+        .home-product-card .card-cta { display: inline-block; margin-top: 0.5rem; padding: 0.5rem 1rem; border-radius: 6px; font-size: 0.9rem; text-decoration: none; background: #0052ff; color: white; transition: background 0.2s; }
+        .home-product-card .card-cta:hover { background: #0040cc; }
+        .testimonials-placeholder { background: linear-gradient(135deg, #0a0a14, #111122); border: 1px solid #333; border-radius: 12px; padding: 2rem; margin: 2rem 0; text-align: center; }
+        .testimonials-placeholder h3 { color: #888; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.1em; margin: 0 0 1rem 0; }
+        .testimonials-placeholder p { color: #666; font-size: 0.9rem; margin: 0; font-style: italic; }
 
         /* ── Quick Wins ── */
         .current-build { background: #0a0a14; border: 1px solid #0052ff44; border-radius: 8px; padding: 0.6rem 1rem; margin: 1rem 0; display: inline-flex; align-items: center; gap: 0.5rem; font-size: 0.88rem; color: #aaa; }
@@ -333,7 +345,7 @@
             .typography-pulse-trigger.typography-pulse-active { animation: none; }
             .landing-hero { background-attachment: scroll; }
         }
-        @media (max-width: 600px) { .payment-layout { flex-direction: column; } .payment-qr img { width: 100px; height: 100px; } .account-banner { flex-direction: column; align-items: flex-start; } .hero-above { font-size: 1.6rem; } }
+        @media (max-width: 600px) { .payment-layout { flex-direction: column; } .payment-qr img { width: 100px; height: 100px; } .account-banner { flex-direction: column; align-items: flex-start; } .hero-above { font-size: 1.6rem; } .home-products { grid-template-columns: 1fr; } .landing-cta { flex-direction: column; } .landing-cta .nav-button, .landing-cta a { width: 100%; text-align: center; box-sizing: border-box; } }
     </style>
 </head>
 <body>
@@ -354,6 +366,7 @@
         const BUSINESS_WALLET = "0x62eF356e555BCb06E4aD3328367df9e2d9d74168";
         const QR_URL = `https://api.qrserver.com/v1/create-qr-code/?size=130x130&data=${BUSINESS_WALLET}`;
         const API = "https://howell-forge-shop-production.up.railway.app";
+        const STRIPE_QUANTUM_FREE_TRIAL = "https://buy.stripe.com/test_6oU9AM7FS8Qta1bgVKgrS09";
 
         const getToken = () => localStorage.getItem('hf_token');
         const getUser  = () => { try { return JSON.parse(localStorage.getItem('hf_user') || 'null'); } catch { return null; } };
@@ -678,8 +691,9 @@
                                 </div>
                                 <div className="hero-below scroll-reveal glow-visible">
                                     <p className="landing-subhead">We have built many businesses. In the process, we came up with an automated way to run them. That is how we created Quantum Agent Forge — by automating the setup and startup so more time goes to <em>doing</em> the business, not setting it up or running it. Our agents are quantum-enabled.</p>
-                                    <div style={{display:'flex',gap:'1rem',flexWrap:'wrap',margin:'1.5rem 0',justifyContent:'center'}}>
-                                        <button className="nav-button primary brutal-cta" onClick={() => setPage('products')} style={{padding:'12px 24px',fontSize:'1rem'}}>See Quantum Agent Forge</button>
+                                    <div className="landing-cta">
+                                        <a href={STRIPE_QUANTUM_FREE_TRIAL} className="nav-button primary brutal-cta" target="_blank" rel="noopener" style={{padding:'14px 28px',fontSize:'1.05rem'}} onClick={(e)=>{e.preventDefault();particleBurst(e,()=>window.open(STRIPE_QUANTUM_FREE_TRIAL,'_blank'));}}>Start with Quantum Agents Forge – Free Trial</a>
+                                        <button className="nav-button" onClick={() => setPage('products')} style={{padding:'12px 24px',fontSize:'1rem'}}>See All Products</button>
                                         <button className="nav-button" onClick={() => setPage('groundchiflow')} style={{padding:'12px 24px',fontSize:'1rem',background:'#28a745'}}>GroundChiFlow App</button>
                                         <button className="nav-button" onClick={() => setPage('contact')} style={{padding:'12px 24px',fontSize:'1rem'}}>Get a Quote</button>
                                     </div>
@@ -689,6 +703,45 @@
                                         <a href="https://elizaos.ai" target="_blank" rel="noopener">ElizaOS</a>
                                         <a href="https://buildbear.io" target="_blank" rel="noopener">BuildBear</a>
                                     </div>
+                                </div>
+                                <div className="landing-section-title scroll-reveal glow-visible">Products</div>
+                                <div className="home-products scroll-reveal glow-visible">
+                                    <div className="home-product-card">
+                                        <h3>Health App (GroundChiFlow)</h3>
+                                        <p className="price">$9.99/mo</p>
+                                        <ul>
+                                            <li>Breathwork &amp; nervous system regulation</li>
+                                            <li>Tai chi &amp; rehab routines</li>
+                                            <li>Gut health &amp; nutrition tracking</li>
+                                            <li>Longevity &amp; blood work insights</li>
+                                            <li>Use in browser — no app store needed</li>
+                                        </ul>
+                                        <a href="https://buy.stripe.com/3cIbIUf7Xbmq5Gw1TS7Zu03" className="card-cta" target="_blank" rel="noopener" onClick={(e)=>{e.preventDefault();particleBurst(e,()=>window.open('https://buy.stripe.com/3cIbIUf7Xbmq5Gw1TS7Zu03','_blank'));}}>Subscribe — $9.99/mo</a>
+                                    </div>
+                                    <div className="home-product-card">
+                                        <h3>Kaito Template</h3>
+                                        <p className="price">$49 one-time</p>
+                                        <ul>
+                                            <li>CFO agent template — Stripe revenue, ledger, reporting</li>
+                                            <li>Drop-in for your stack</li>
+                                            <li>Documentation and .env template</li>
+                                        </ul>
+                                        <button type="button" className="card-cta" style={{border:'none',cursor:'pointer',fontFamily:'inherit'}} onClick={() => setPage('products')}>See AI Forge — Kaito from $49</button>
+                                    </div>
+                                    <div className="home-product-card">
+                                        <h3>Voice-to-Part</h3>
+                                        <p className="price">$20/job</p>
+                                        <ul>
+                                            <li>Say it or type it — get STL and STEP</li>
+                                            <li>Blender or FreeCAD output</li>
+                                            <li>Manufacturing Sim add-on included</li>
+                                        </ul>
+                                        <a href="https://buy.stripe.com/test_6oU9AM7FS8Qta1bgVKgrS09" className="card-cta" target="_blank" rel="noopener" onClick={(e)=>{e.preventDefault();particleBurst(e,()=>window.open('https://buy.stripe.com/test_6oU9AM7FS8Qta1bgVKgrS09','_blank'));}}>Start — $20/job (test)</a>
+                                    </div>
+                                </div>
+                                <div className="testimonials-placeholder scroll-reveal glow-visible">
+                                    <h3>Testimonials</h3>
+                                    <p>What makers and founders are saying about Quantum Agent Forge and Howell Forge — coming soon.</p>
                                 </div>
                                 <div className="scroll-reveal"><UsdcPaymentSection /></div>
                                 <div className="scroll-reveal"><WalletSection /></div>
