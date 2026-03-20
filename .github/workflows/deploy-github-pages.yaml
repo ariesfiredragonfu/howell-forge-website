@@ -50,7 +50,7 @@ jobs:
             echo "::notice::EXPO_PUBLIC_GROK_BRIDGE_URL is set (Coach will use Railway/custom bridge)."
           fi
           echo "Cloning GroundChiFlow from GitLab..."
-          git clone --depth 1 --branch master \
+          git clone --depth 1 --branch gcf-staging-exercise-ladders-20260320 \
             "https://oauth2:${GITLAB_TOKEN}@gitlab.com/ariesfiredragonfu/ground-chi-flow.git" \
             groundchiflow-src
           cd groundchiflow-src
