@@ -180,6 +180,8 @@
         .pricing-card .buy-btn.primary:hover { background: #0040cc; }
         .pricing-card .buy-btn.outline { background: transparent; color: #0052ff; border: 2px solid #0052ff; }
         .pricing-card .buy-btn.outline:hover { background: #0052ff22; }
+        .vtp-starter-ctas { display: flex; flex-direction: column; gap: 0.65rem; width: 100%; margin-top: 0.25rem; }
+        .vtp-starter-ctas .buy-btn { margin: 0; }
         .value-callout { background: var(--hf-panel); border: var(--hf-panel-border); border-radius: var(--hf-panel-radius-sm); padding: 1.25rem 1.5rem; margin-bottom: 2rem; text-align: center; box-shadow: var(--hf-panel-shadow); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); }
         .value-callout p { margin: 0; color: #ccc; font-size: 0.95rem; }
         .value-callout strong { color: #7bc67e; }
@@ -498,7 +500,8 @@
         const API = "https://howell-forge-shop-production.up.railway.app";
         const STRIPE_PLAYBOOK = "https://buy.stripe.com/3cIfZa1h7cqu8SI8ig7Zu05";
         const STRIPE_VOICE_PART_PER_JOB = "https://buy.stripe.com/cNi3co4tj76ad8Yaqo7Zu06";
-        const STRIPE_VOICE_PART_STARTER = "https://buy.stripe.com/fZuaEQaRHaim9WM0PO7Zu07";
+        const STRIPE_VOICE_PART_STARTER_MONTHLY = "https://buy.stripe.com/fZuaEQaRHaim9WM0PO7Zu07";
+        const STRIPE_VOICE_PART_STARTER_YEARLY = "https://buy.stripe.com/5kQaEQ3pf2PU6KAfKI7Zu09";
         const STRIPE_VOICE_PART_PRO = "https://buy.stripe.com/8x200c5xn0HMb0Q4207Zu08";
 
         const getToken = () => localStorage.getItem('hf_token');
@@ -526,9 +529,13 @@
             setTimeout(() => { container.remove(); onComplete?.(); }, 520);
         }
 
-        function handleVoicePartStarter(e) {
+        function handleVoicePartStarterMonthly(e) {
             e.preventDefault();
-            particleBurst(e, () => { window.open(STRIPE_VOICE_PART_STARTER, '_blank'); });
+            particleBurst(e, () => { window.open(STRIPE_VOICE_PART_STARTER_MONTHLY, '_blank'); });
+        }
+        function handleVoicePartStarterYearly(e) {
+            e.preventDefault();
+            particleBurst(e, () => { window.open(STRIPE_VOICE_PART_STARTER_YEARLY, '_blank'); });
         }
         function handleVoicePartPro(e) {
             e.preventDefault();
@@ -986,15 +993,18 @@
                                 <div className="pricing-grid scroll-reveal glow-visible">
                                     <div className="pricing-card">
                                         <p className="tier-name">Starter</p>
-                                        <p className="price">$19 <span>/ mo</span></p>
-                                        <p className="price-sub">or $199/year — save $29</p>
+                                        <p className="price">$19 <span>/ mo</span> &nbsp;·&nbsp; $199 <span>/ yr</span></p>
+                                        <p className="price-sub">14-day free trial on both — then pay monthly, or choose yearly and save about <strong style={{color:'#9fdf9f'}}>$29</strong> vs 12 months at $19.</p>
                                         <ul className="feature-list">
                                             <li>Voice or text → part script</li>
                                             <li>Blender or FreeCAD output (STL + STEP)</li>
                                             <li>Manufacturing Sim add-on (free, open source)</li>
-                                            <li>14-day free trial</li>
+                                            <li>Same 14-day trial whether you pick monthly or yearly</li>
                                         </ul>
-                                        <a href="#" className="buy-btn outline" target="_blank" rel="noopener" onClick={handleVoicePartStarter}>Start free trial — $19/mo</a>
+                                        <div className="vtp-starter-ctas">
+                                            <a href="#" className="buy-btn primary brutal-cta" target="_blank" rel="noopener" onClick={handleVoicePartStarterYearly}>Best deal — $199/year (14-day trial)</a>
+                                            <a href="#" className="buy-btn outline" target="_blank" rel="noopener" onClick={handleVoicePartStarterMonthly}>Or $19/month (14-day trial)</a>
+                                        </div>
                                     </div>
                                     <div className="pricing-card featured">
                                         <div className="featured-badge">BEST VALUE</div>

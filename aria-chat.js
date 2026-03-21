@@ -80,7 +80,7 @@
 
         /* Pricing / cost */
         if (/price|pricing|cost|how much|497|1497|97\/?mo|monthly|one-?time|playbook|39|voice|20\/?job|19|49/.test(lower))
-            return 'Pricing on the AI Forge page: The Playbook $39 one-time; Voice-to-Part $20 per job, or $19/mo Starter and $49/mo Pro; Quantum Agent Forge Starter $497, Done For You $1,497, or Retainer $97/mo. All checkout is via Stripe on the site.';
+            return 'Pricing on the AI Forge page: The Playbook $39 one-time; Voice-to-Part $20 per job; Starter is $19/mo or $199/yr (both with a 14-day free trial — yearly saves about $29); Pro $49/mo. Quantum Agent Forge Starter $497, Done For You $1,497, or Retainer $97/mo. Checkout is via Stripe on the site.';
 
         /* Quote / metal / fabrication */
         if (/quote|metal|part|cnc|machining|fabricat|order|prototype|custom part/.test(lower))
