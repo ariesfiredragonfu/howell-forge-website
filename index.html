@@ -43,9 +43,11 @@
             /* Banner row (Howell Forge header + footer): prior “regular box” opacity, lighter gray */
             --hf-panel-banner: rgba(32, 32, 40, 0.76);
             /* Content blocks (~20% more transparent than banner for hex to shine through) */
-            --hf-panel: rgba(32, 32, 40, 0.61);
-            --hf-panel-soft: rgba(32, 32, 40, 0.61);
-            --hf-panel-mute: rgba(32, 32, 40, 0.50);
+            --hf-panel: rgba(32, 32, 40, 0.54);
+            --hf-panel-soft: rgba(32, 32, 40, 0.54);
+            --hf-panel-mute: rgba(32, 32, 40, 0.44);
+            /* Home: “From Cursor to CNC…” — extra transparent vs other content */
+            --hf-panel-hero-lead: rgba(36, 36, 44, 0.40);
             --hf-panel-border: 1px solid rgba(96, 96, 108, 0.38);
             --hf-panel-shadow: 0 4px 20px rgba(0, 0, 0, 0.18);
             --hf-panel-radius: 14px;
@@ -160,7 +162,7 @@
         .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin: 0 0 2rem 0; }
         .pricing-card { background: var(--hf-panel); border: var(--hf-panel-border); border-radius: var(--hf-panel-radius); padding: 1.75rem 1.5rem; display: flex; flex-direction: column; position: relative; transition: border-color 0.2s, transform: 0.2s; box-shadow: var(--hf-panel-shadow); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); }
         .pricing-card:hover { border-color: #0052ff88; transform: translateY(-3px); }
-        .pricing-card.featured { border: 2px solid rgba(0, 82, 255, 0.55); background: linear-gradient(135deg, rgba(24, 26, 44, 0.62), rgba(20, 22, 48, 0.58)); box-shadow: var(--hf-panel-shadow), 0 0 18px rgba(0, 82, 255, 0.08); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); }
+        .pricing-card.featured { border: 2px solid rgba(0, 82, 255, 0.55); background: linear-gradient(135deg, rgba(26, 28, 46, 0.55), rgba(22, 24, 50, 0.50)); box-shadow: var(--hf-panel-shadow), 0 0 18px rgba(0, 82, 255, 0.08); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); }
         .featured-badge { position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: #0052ff; color: white; font-size: 0.72rem; font-weight: bold; padding: 3px 14px; border-radius: 20px; letter-spacing: 0.06em; white-space: nowrap; }
         .pricing-card .tier-name { color: #aaa; font-size: 0.85rem; letter-spacing: 0.08em; text-transform: uppercase; margin: 0 0 0.4rem 0; }
         .pricing-card .price { font-size: 2.4rem; font-weight: bold; color: #fff; margin: 0 0 0.2rem 0; line-height: 1; }
@@ -211,13 +213,13 @@
             padding: 1.1rem 1.25rem;
             line-height: 1.2;
             letter-spacing: 0.02em;
-            background: var(--hf-panel);
+            background: var(--hf-panel-hero-lead);
             border: var(--hf-panel-border);
             border-radius: var(--hf-panel-radius);
             box-shadow: var(--hf-panel-shadow);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            text-shadow: 0 2px 18px rgba(0, 0, 0, 0.55);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            text-shadow: 0 2px 14px rgba(0, 0, 0, 0.75), 0 0 1px rgba(0, 0, 0, 0.9);
         }
         .landing-hero {
             position: relative;
