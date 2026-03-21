@@ -40,28 +40,27 @@
         *, *::before, *::after { box-sizing: border-box; }
 
         :root {
-            /* Top bar + footer: same alpha tier content blocks used before this pass (0.43) */
-            --hf-panel-banner: rgba(32, 32, 40, 0.43);
-            /* Rest of site: ~20% more transparent than that (0.43 × 0.8) */
-            --hf-panel: rgba(32, 32, 40, 0.34);
-            --hf-panel-soft: rgba(32, 32, 40, 0.34);
-            --hf-panel-mute: rgba(32, 32, 40, 0.27);
-            /* “From Cursor to CNC…” — slightly airier than body panels */
-            --hf-panel-hero-lead: rgba(36, 36, 44, 0.26);
-            --hf-panel-border: 1px solid rgba(120, 120, 132, 0.28);
-            --hf-panel-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+            /* Top bar + footer: ~50% more transparent than prior 0.43 */
+            --hf-panel-banner: rgba(32, 32, 40, 0.21);
+            /* Body panels: ~20% more transparent than prior 0.34 */
+            --hf-panel: rgba(32, 32, 40, 0.27);
+            --hf-panel-soft: rgba(32, 32, 40, 0.27);
+            --hf-panel-mute: rgba(32, 32, 40, 0.22);
+            --hf-panel-hero-lead: rgba(36, 36, 44, 0.21);
+            --hf-panel-border: 1px solid rgba(120, 120, 132, 0.24);
+            --hf-panel-shadow: 0 4px 16px rgba(0, 0, 0, 0.09);
             --hf-panel-radius: 14px;
             --hf-panel-radius-sm: 10px;
         }
 
         body { font-family: Arial, sans-serif; margin: 0; padding: 0; line-height: 1.6; background-color: #111; background-image: url('3d-background.png'); background-size: cover; background-position: center; background-repeat: no-repeat; background-attachment: fixed; color: #eee; }
-        .header { background: var(--hf-panel-banner); color: white; padding: 1rem; text-align: center; border-bottom: var(--hf-panel-border); box-shadow: var(--hf-panel-shadow); backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px); }
-        .header h1 { margin: 0 0 0.25rem 0; font-size: 1.8rem; letter-spacing: 0.05em; text-shadow: 0 2px 18px rgba(0, 0, 0, 0.7), 0 0 2px rgba(0, 0, 0, 0.9); }
-        .header-tagline { margin: 0 0 0.65rem 0; font-size: 0.95rem; font-weight: normal; color: #c8c8d0; letter-spacing: 0.04em; text-shadow: 0 1px 12px rgba(0, 0, 0, 0.65); }
+        .header { background: var(--hf-panel-banner); color: white; padding: 1rem; text-align: center; border-bottom: var(--hf-panel-border); box-shadow: var(--hf-panel-shadow); backdrop-filter: blur(22px); -webkit-backdrop-filter: blur(22px); }
+        .header h1 { margin: 0 0 0.25rem 0; font-size: 1.8rem; letter-spacing: 0.05em; text-shadow: 0 2px 20px rgba(0, 0, 0, 0.78), 0 0 3px rgba(0, 0, 0, 0.92); }
+        .header-tagline { margin: 0 0 0.65rem 0; font-size: 0.95rem; font-weight: normal; color: #d4d4dc; letter-spacing: 0.04em; text-shadow: 0 1px 14px rgba(0, 0, 0, 0.75), 0 0 1px rgba(0, 0, 0, 0.9); }
         .nav-buttons { display: flex; justify-content: center; align-items: center; gap: 0.75rem; padding: 0.5rem 1rem; flex-wrap: wrap; }
         .main-content { padding: 2rem; max-width: 1200px; margin: 0 auto; min-height: calc(100vh - 200px); padding-bottom: 5rem; }
-        .footer { background: var(--hf-panel-banner); color: #aaa; padding: 1rem; text-align: center; position: fixed; bottom: 0; width: 100%; font-size: 0.85rem; border-top: var(--hf-panel-border); box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.12); backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px); }
-        .nav-button { display: inline-block; color: white; text-decoration: none; padding: 8px 16px; border-radius: 6px; background: rgba(36, 36, 44, 0.28); cursor: pointer; border: var(--hf-panel-border); font-size: 0.9rem; transition: all 0.2s ease; backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); text-shadow: 0 1px 10px rgba(0, 0, 0, 0.6); }
+        .footer { background: var(--hf-panel-banner); color: #aaa; padding: 1rem; text-align: center; position: fixed; bottom: 0; width: 100%; font-size: 0.85rem; border-top: var(--hf-panel-border); box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.09); backdrop-filter: blur(22px); -webkit-backdrop-filter: blur(22px); }
+        .nav-button { display: inline-block; color: white; text-decoration: none; padding: 8px 16px; border-radius: 6px; background: rgba(36, 36, 44, 0.22); cursor: pointer; border: var(--hf-panel-border); font-size: 0.9rem; transition: all 0.2s ease; backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08); text-shadow: 0 1px 12px rgba(0, 0, 0, 0.68); }
         .nav-button:hover { background-color: #666; transform: translateY(-1px); }
         .nav-button:active { transform: translateY(1px); }
         .nav-button.primary { background-color: #0052ff; }
@@ -163,7 +162,7 @@
         .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin: 0 0 2rem 0; }
         .pricing-card { background: var(--hf-panel); border: var(--hf-panel-border); border-radius: var(--hf-panel-radius); padding: 1.75rem 1.5rem; display: flex; flex-direction: column; position: relative; transition: border-color 0.2s, transform: 0.2s; box-shadow: var(--hf-panel-shadow); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); }
         .pricing-card:hover { border-color: #0052ff88; transform: translateY(-3px); }
-        .pricing-card.featured { border: 2px solid rgba(0, 82, 255, 0.45); background: linear-gradient(135deg, rgba(26, 28, 46, 0.35), rgba(22, 24, 50, 0.32)); box-shadow: var(--hf-panel-shadow), 0 0 14px rgba(0, 82, 255, 0.06); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); }
+        .pricing-card.featured { border: 2px solid rgba(0, 82, 255, 0.4); background: linear-gradient(135deg, rgba(26, 28, 46, 0.28), rgba(22, 24, 50, 0.26)); box-shadow: var(--hf-panel-shadow), 0 0 14px rgba(0, 82, 255, 0.05); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); }
         .featured-badge { position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: #0052ff; color: white; font-size: 0.72rem; font-weight: bold; padding: 3px 14px; border-radius: 20px; letter-spacing: 0.06em; white-space: nowrap; }
         .pricing-card .tier-name { color: #aaa; font-size: 0.85rem; letter-spacing: 0.08em; text-transform: uppercase; margin: 0 0 0.4rem 0; }
         .pricing-card .price { font-size: 2.4rem; font-weight: bold; color: #fff; margin: 0 0 0.2rem 0; line-height: 1; }
@@ -218,9 +217,9 @@
             border: var(--hf-panel-border);
             border-radius: var(--hf-panel-radius);
             box-shadow: var(--hf-panel-shadow);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            text-shadow: 0 2px 20px rgba(0, 0, 0, 0.82), 0 0 2px rgba(0, 0, 0, 0.95);
+            backdrop-filter: blur(22px);
+            -webkit-backdrop-filter: blur(22px);
+            text-shadow: 0 2px 22px rgba(0, 0, 0, 0.84), 0 0 3px rgba(0, 0, 0, 0.95);
         }
         .landing-hero {
             position: relative;
