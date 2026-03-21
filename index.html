@@ -496,9 +496,10 @@
         const BUSINESS_WALLET = "0x62eF356e555BCb06E4aD3328367df9e2d9d74168";
         const QR_URL = `https://api.qrserver.com/v1/create-qr-code/?size=130x130&data=${BUSINESS_WALLET}`;
         const API = "https://howell-forge-shop-production.up.railway.app";
-        const STRIPE_QUANTUM_FREE_TRIAL = "https://buy.stripe.com/test_6oU9AM7FS8Qta1bgVKgrS09";
-        /* The Playbook — $39 one-time (live). Test link verified in Stripe test mode: test_eVq5kw9O0giV6OZ34UgrS0b */
         const STRIPE_PLAYBOOK = "https://buy.stripe.com/3cIfZa1h7cqu8SI8ig7Zu05";
+        const STRIPE_VOICE_PART_PER_JOB = "https://buy.stripe.com/cNi3co4tj76ad8Yaqo7Zu06";
+        const STRIPE_VOICE_PART_STARTER = "https://buy.stripe.com/fZuaEQaRHaim9WM0PO7Zu07";
+        const STRIPE_VOICE_PART_PRO = "https://buy.stripe.com/8x200c5xn0HMb0Q4207Zu08";
 
         const getToken = () => localStorage.getItem('hf_token');
         const getUser  = () => { try { return JSON.parse(localStorage.getItem('hf_user') || 'null'); } catch { return null; } };
@@ -527,15 +528,11 @@
 
         function handleVoicePartStarter(e) {
             e.preventDefault();
-            var u = 'https://buy.stripe.com/test_6oU9AM7FS8Qta1bgVKgrS09';
-            if (u.indexOf('REPLACE') !== -1) { window.open('mailto:chrishowell@howell-forge.com?subject=Voice-to-Part%20Starter%20trial', '_blank'); }
-            else { particleBurst(e, function() { window.open(u, '_blank'); }); }
+            particleBurst(e, () => { window.open(STRIPE_VOICE_PART_STARTER, '_blank'); });
         }
         function handleVoicePartPro(e) {
             e.preventDefault();
-            var u = 'https://buy.stripe.com/test_eVq3co7FS3w9gpzeNCgrS0a';
-            if (u.indexOf('REPLACE') !== -1) { window.open('mailto:chrishowell@howell-forge.com?subject=Voice-to-Part%20Pro', '_blank'); }
-            else { particleBurst(e, function() { window.open(u, '_blank'); }); }
+            particleBurst(e, () => { window.open(STRIPE_VOICE_PART_PRO, '_blank'); });
         }
 
         async function apiFetch(path, options = {}) {
@@ -870,7 +867,7 @@
                                             <li>Blender or FreeCAD output</li>
                                             <li>Manufacturing Sim add-on included</li>
                                         </ul>
-                                        <a href="https://buy.stripe.com/test_6oU9AM7FS8Qta1bgVKgrS09" className="card-cta" target="_blank" rel="noopener" onClick={(e)=>{e.preventDefault();particleBurst(e,()=>window.open('https://buy.stripe.com/test_6oU9AM7FS8Qta1bgVKgrS09','_blank'));}}>Start — $20/job (test)</a>
+                                        <a href={STRIPE_VOICE_PART_PER_JOB} className="card-cta" target="_blank" rel="noopener" onClick={(e)=>{e.preventDefault();particleBurst(e,()=>window.open(STRIPE_VOICE_PART_PER_JOB,'_blank'));}}>Start — $20/job</a>
                                     </div>
                                 </div>
                                 <div className="testimonials-placeholder scroll-reveal glow-visible">

@@ -79,8 +79,8 @@
         var lower = text.toLowerCase().trim();
 
         /* Pricing / cost */
-        if (/price|pricing|cost|how much|497|1497|97\/?mo|monthly|one-?time|playbook|39/.test(lower))
-            return 'Quantum Agent Forge (Q Agent Forge) pricing: The Playbook $39 (one-time guide), Starter $497 (self-setup, yours forever), Done For You $1,497 (we deploy everything), or Monthly Retainer $97/mo (updates, cancel anytime). See the AI Forge page for Stripe checkout.';
+        if (/price|pricing|cost|how much|497|1497|97\/?mo|monthly|one-?time|playbook|39|voice|20\/?job|19|49/.test(lower))
+            return 'Pricing on the AI Forge page: The Playbook $39 one-time; Voice-to-Part $20 per job, or $19/mo Starter and $49/mo Pro; Quantum Agent Forge Starter $497, Done For You $1,497, or Retainer $97/mo. All checkout is via Stripe on the site.';
 
         /* Quote / metal / fabrication */
         if (/quote|metal|part|cnc|machining|fabricat|order|prototype|custom part/.test(lower))
