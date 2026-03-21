@@ -140,6 +140,9 @@
         .pricing-card .price { font-size: 2.4rem; font-weight: bold; color: #fff; margin: 0 0 0.2rem 0; line-height: 1; }
         .pricing-card .price span { font-size: 1rem; color: #888; font-weight: normal; }
         .pricing-card .price-sub { color: #888; font-size: 0.82rem; margin: 0 0 1.25rem 0; }
+        .pricing-card .price-coming-soon { font-size: 1.65rem; font-weight: bold; color: #888; margin: 0 0 0.2rem 0; letter-spacing: 0.04em; text-transform: uppercase; }
+        .pricing-card .price-coming-soon-sub { color: #666; font-size: 0.82rem; margin: 0 0 1.25rem 0; }
+        .pricing-card .buy-btn.disabled-soon { background: #2a2a2a !important; color: #777 !important; border-color: #444 !important; cursor: default; pointer-events: none; }
         .pricing-card .feature-list { list-style: none; padding: 0; margin: 0 0 1.5rem 0; flex: 1; }
         .pricing-card .feature-list li { color: #ccc; font-size: 0.88rem; padding: 0.35rem 0; border-bottom: 1px solid #222; display: flex; align-items: flex-start; gap: 0.5rem; }
         .pricing-card .feature-list li:last-child { border-bottom: none; }
@@ -876,6 +879,42 @@
                                         <a href="#" className="buy-btn primary brutal-cta" target="_blank" rel="noopener" onClick={handleVoicePartPro}>Get Voice-to-Part Pro — $49/mo</a>
                                     </div>
                                 </div>
+                                <div className="products-hero scroll-reveal glow-visible" style={{paddingTop:'2.5rem'}}>
+                                    <h2 className="typography-pulse-trigger">Voice-to-PCB — <span className="highlight">Power Control Board</span></h2>
+                                    <p>Turn spoken or typed requirements into PCB-oriented deliverables — schematics, layout direction, and manufacturing handoff. Same philosophy as Voice-to-Part; not available for purchase yet.</p>
+                                    <div className="crew-badge">
+                                        <span>Voice or text</span>
+                                        <span>Schematic + layout</span>
+                                        <span>BOM aware</span>
+                                        <span>Manufacturing ready</span>
+                                    </div>
+                                </div>
+                                <div className="pricing-grid scroll-reveal glow-visible">
+                                    <div className="pricing-card">
+                                        <p className="tier-name">Starter</p>
+                                        <p className="price-coming-soon">Coming soon</p>
+                                        <p className="price-coming-soon-sub">No checkout yet — join the waitlist via email</p>
+                                        <ul className="feature-list">
+                                            <li>Voice or text → board requirements & constraints</li>
+                                            <li>Schematic-first workflow (when launched)</li>
+                                            <li>BOM and design-rules guidance</li>
+                                            <li>Aligned with Howell Forge fab pipeline</li>
+                                        </ul>
+                                        <span className="buy-btn outline disabled-soon" role="status" aria-label="Voice-to-PCB Starter coming soon">Coming soon</span>
+                                    </div>
+                                    <div className="pricing-card featured">
+                                        <div className="featured-badge">COMING SOON</div>
+                                        <p className="tier-name">Pro</p>
+                                        <p className="price-coming-soon">Coming soon</p>
+                                        <p className="price-coming-soon-sub">No checkout yet — join the waitlist via email</p>
+                                        <ul className="feature-list">
+                                            <li>Everything in Starter</li>
+                                            <li>Higher complexity boards &amp; revisions</li>
+                                            <li>Priority support when we launch</li>
+                                        </ul>
+                                        <span className="buy-btn primary disabled-soon brutal-cta" role="status" aria-label="Voice-to-PCB Pro coming soon">Coming soon</span>
+                                    </div>
+                                </div>
                                 <div className="stripe-callout scroll-reveal glow-visible">
                                     <p>Secure checkout via Stripe.</p>
                                 </div>
@@ -971,7 +1010,7 @@
                     <div>
                         <Header />
                         <MainContent />
-                        <div className="footer">&copy; 2026 Howell Forge. All rights reserved. &nbsp;|&nbsp; Powered by <a href="https://elizaos.ai" target="_blank" rel="noopener" style={{color:'#4d9fff'}}>ElizaOS</a> &mdash; created by <a href="https://github.com/lalalune" target="_blank" rel="noopener" style={{color:'#4d9fff'}}>Shaw Walters</a></div>
+                        <div className="footer">&copy; 2026 Howell Forge. All rights reserved. &nbsp;|&nbsp; Website created by Agent Forge. Created by Chris Howell. &nbsp;|&nbsp; Powered by <a href="https://elizaos.ai" target="_blank" rel="noopener" style={{color:'#4d9fff'}}>ElizaOS</a> &mdash; created by <a href="https://github.com/lalalune" target="_blank" rel="noopener" style={{color:'#4d9fff'}}>Shaw Walters</a></div>
                         {showAuth && <AuthModal onClose={() => setShowAuth(false)} onAuth={(user) => { setAuthUser(user); setPage('home'); }} />}
                     </div>
                 </ErrorBoundary>
