@@ -125,9 +125,20 @@
         .wallet-option.metamask:hover { background-color: #e67e22; }
 
         /* ── Products / Pricing ── */
-        .products-hero { text-align: center; padding: 2rem 0 1rem 0; }
+        .products-hero {
+            text-align: center;
+            padding: 1.65rem 1.35rem;
+            margin-left: auto;
+            margin-right: auto;
+            margin-bottom: 1rem;
+            max-width: 940px;
+            background: rgba(22, 22, 28, 0.92);
+            border: 1px solid #333;
+            border-radius: 14px;
+            box-shadow: 0 4px 28px rgba(0, 0, 0, 0.4);
+        }
         .products-hero h2 { color: #fff; font-size: 2rem; margin: 0 0 0.5rem 0; }
-        .products-hero p { color: #aaa; font-size: 1.1rem; max-width: 600px; margin: 0 auto 0.5rem auto; }
+        .products-hero p { color: #d0d0d0; font-size: 1.1rem; max-width: 600px; margin: 0 auto 0.5rem auto; line-height: 1.6; }
         .products-hero .highlight { color: #4d9fff; font-weight: bold; }
         .crew-badge { display: inline-flex; gap: 0.4rem; flex-wrap: wrap; justify-content: center; margin: 1rem 0 2rem 0; }
         .crew-badge span { background: #1a1a2e; border: 1px solid #0052ff44; color: #4d9fff; font-size: 0.75rem; padding: 3px 10px; border-radius: 20px; letter-spacing: 0.04em; }
@@ -156,7 +167,17 @@
         .value-callout p { margin: 0; color: #aaa; font-size: 0.95rem; }
         .value-callout strong { color: #7bc67e; }
         .includes-section { margin-bottom: 2rem; }
-        .includes-section h3 { color: #fff; margin: 0 0 1rem 0; font-size: 1.1rem; }
+        .includes-section h3 {
+            color: #fff;
+            margin: 0 0 1rem 0;
+            font-size: 1.1rem;
+            display: inline-block;
+            padding: 0.45rem 1rem;
+            background: rgba(22, 22, 28, 0.92);
+            border: 1px solid #333;
+            border-radius: 10px;
+            box-shadow: 0 2px 16px rgba(0, 0, 0, 0.35);
+        }
         .includes-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 0.75rem; }
         .include-item { background: #1a1a1a; border: 1px solid #2a2a2a; border-radius: 8px; padding: 0.75rem 1rem; display: flex; align-items: flex-start; gap: 0.6rem; }
         .include-item .icon { font-size: 1.2rem; flex-shrink: 0; }
@@ -168,9 +189,15 @@
             text-align: center;
             color: #fff;
             font-size: 2.2rem;
-            margin: 0 0 1rem 0;
+            margin: 0 auto 1rem auto;
+            max-width: 920px;
+            padding: 1.1rem 1.25rem;
             line-height: 1.2;
             letter-spacing: 0.02em;
+            background: rgba(22, 22, 28, 0.92);
+            border: 1px solid #333;
+            border-radius: 14px;
+            box-shadow: 0 4px 28px rgba(0, 0, 0, 0.4);
         }
         .landing-hero {
             position: relative;
@@ -187,17 +214,50 @@
         }
         .hero-below {
             text-align: center;
-            padding-top: 0;
+            padding: 1.2rem 1.35rem 1.5rem;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+            background: rgba(22, 22, 28, 0.9);
+            border: 1px solid #333;
+            border-radius: 14px;
+            box-shadow: 0 4px 28px rgba(0, 0, 0, 0.35);
         }
         .hero-below .landing-subhead { margin-bottom: 1rem; }
-        .landing-subhead { color: #bbb; font-size: 1.1rem; max-width: 640px; margin: 0 auto 1.5rem auto; line-height: 1.65; }
+        .landing-subhead { color: #d8d8d8; font-size: 1.1rem; max-width: 640px; margin: 0 auto 1.5rem auto; line-height: 1.65; }
         .landing-cta { display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; margin-bottom: 2rem; }
         .landing-cta .nav-button { padding: 12px 24px; font-size: 1rem; }
         .stripe-callout { background: linear-gradient(135deg, #0d1a0d, #0a1510); border: 1px solid #28a74544; border-radius: 10px; padding: 1rem 1.25rem; margin-bottom: 1.5rem; text-align: center; }
         .stripe-callout p { margin: 0; color: #aaa; font-size: 0.95rem; }
         .stripe-callout a { color: #4d9fff; font-weight: bold; text-decoration: none; }
         .stripe-callout a:hover { text-decoration: underline; }
-        .landing-section-title { color: #888; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.1em; margin: 2rem 0 0.75rem 0; }
+        .landing-section-title {
+            color: #c8c8c8;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin: 2rem auto 0.75rem auto;
+            display: table;
+            padding: 0.4rem 1rem;
+            background: rgba(22, 22, 28, 0.9);
+            border: 1px solid #333;
+            border-radius: 10px;
+            box-shadow: 0 2px 16px rgba(0, 0, 0, 0.35);
+        }
+        .readability-panel {
+            background: rgba(22, 22, 28, 0.92);
+            border: 1px solid #333;
+            border-radius: 14px;
+            padding: 1.35rem 1.5rem;
+            margin-left: auto;
+            margin-right: auto;
+            margin-bottom: 1.5rem;
+            max-width: 920px;
+            box-shadow: 0 4px 28px rgba(0, 0, 0, 0.4);
+        }
+        .readability-panel h2 { color: #fff; margin: 0 0 0.75rem 0; }
+        .readability-panel p { color: #d8d8d8; margin: 0 0 0.75rem 0; line-height: 1.65; }
+        .readability-panel p:last-child { margin-bottom: 0; }
         .home-products { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.25rem; margin: 2rem 0; }
         .home-product-card { background: #1a1a1a; border: 1px solid #333; border-radius: 12px; padding: 1.25rem; transition: border-color 0.2s, transform 0.2s; }
         .home-product-card:hover { border-color: #0052ff66; transform: translateY(-2px); }
@@ -836,7 +896,7 @@
                                         <div className={`include-item expandable${expandedAgent === 'sage' ? ' active' : ''}`} onClick={() => setExpandedAgent(expandedAgent === 'sage' ? null : 'sage')}><span className="icon">🔭</span><div className="text"><strong>SAGE — Analytics</strong> Patterns, insights, and strategic signals from your data.</div><div className="expand-content">Patterns, trends, insights. Turns data into decisions.</div></div>
                                     </div>
                                 </div>
-                                <div style={{textAlign:'center',padding:'1rem 0 3rem 0',color:'#666',fontSize:'0.82rem'}}>
+                                <div className="readability-panel" style={{textAlign:'center',padding:'1rem 1.25rem 1.5rem',marginBottom:'2rem',maxWidth:'720px',color:'#b0b0b0',fontSize:'0.82rem'}}>
                                     Questions? <a href="mailto:chrishowell@howell-forge.com" style={{color:'#4d9fff'}}>chrishowell@howell-forge.com</a>
                                 </div>
 
@@ -922,10 +982,10 @@
                         )}
 
                         {page === 'about' && (
-                            <div className="scroll-reveal">
-                                <h2 style={{color:'#fff'}}>About Howell Forge</h2>
-                                <p style={{color:'#ccc'}}>We have built many businesses — precision metal, fabrication, software. In the process, we automated the setup and startup so we could focus on the actual work. That is Quantum Agent Forge (Q Agent Forge): the same 8 quantum-enabled agents we run our own business with, packaged for yours.</p>
-                                <p style={{color:'#ccc'}}>Quantum Agent Forge runs on ElizaOS, powered by Grok-3. Every agent is quantum-enabled — built, tested, and battle-hardened on our own live business before we packaged it for yours.</p>
+                            <div className="scroll-reveal readability-panel">
+                                <h2>About Howell Forge</h2>
+                                <p>We have built many businesses — precision metal, fabrication, software. In the process, we automated the setup and startup so we could focus on the actual work. That is Quantum Agent Forge (Q Agent Forge): the same 8 quantum-enabled agents we run our own business with, packaged for yours.</p>
+                                <p>Quantum Agent Forge runs on ElizaOS, powered by Grok-3. Every agent is quantum-enabled — built, tested, and battle-hardened on our own live business before we packaged it for yours.</p>
                             </div>
                         )}
 
@@ -984,7 +1044,7 @@
                                 <div className="stripe-callout scroll-reveal glow-visible">
                                     <p>Secure checkout via Stripe. After subscribing, sign in to the app with the same email to access your subscription.</p>
                                 </div>
-                                <div style={{textAlign:'center',padding:'1rem 0 3rem 0',color:'#666',fontSize:'0.82rem'}}>
+                                <div className="readability-panel" style={{textAlign:'center',padding:'1rem 1.25rem 1.5rem',marginBottom:'2rem',maxWidth:'720px',color:'#b0b0b0',fontSize:'0.82rem'}}>
                                     Questions? <a href="mailto:chrishowell@howell-forge.com" style={{color:'#4d9fff'}}>chrishowell@howell-forge.com</a>
                                 </div>
                             </>
@@ -992,11 +1052,11 @@
 
                         {page === 'contact' && (
                             <>
-                                <div className="scroll-reveal">
-                                    <h2 style={{color:'#fff'}}>Contact Us</h2>
-                                    <p style={{color:'#ccc'}}>We are here to help with your metal parts production needs or AI business setup.</p>
-                                    <p style={{color:'#ccc'}}>Email: <a href="mailto:chrishowell@howell-forge.com" style={{color:'#4d9fff'}}>chrishowell@howell-forge.com</a></p>
-                                    <p style={{color:'#ccc'}}>Business Hours: Monday - Friday, 9:00 AM - 5:00 PM EST</p>
+                                <div className="scroll-reveal readability-panel">
+                                    <h2>Contact Us</h2>
+                                    <p>We are here to help with your metal parts production needs or AI business setup.</p>
+                                    <p>Email: <a href="mailto:chrishowell@howell-forge.com" style={{color:'#4d9fff'}}>chrishowell@howell-forge.com</a></p>
+                                    <p>Business Hours: Monday - Friday, 9:00 AM - 5:00 PM EST</p>
                                 </div>
                                 <div className="scroll-reveal"><QuoteForm user={authUser} /></div>
                             </>
