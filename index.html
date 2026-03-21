@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta http-equiv="X-Content-Type-Options" content="nosniff">
-    <meta http-equiv="Permissions-Policy" content="geolocation=(), microphone=self, camera=()">
+    <meta http-equiv="Permissions-Policy" content="geolocation=(), camera=()">
     <meta name="referrer" content="strict-origin">
 
     <title>Howell Forge — From Cursor to CNC | Precision Metal & AI Automation</title>
@@ -16,6 +16,7 @@
     <meta property="og:type" content="website">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content="https://howell-forge.com/og-image.jpg">
+    <link rel="icon" type="image/png" href="assets/howell-forge-icon.png">
 
     <script crossorigin src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
     <script crossorigin src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
@@ -132,7 +133,7 @@
         .crew-badge { display: inline-flex; gap: 0.4rem; flex-wrap: wrap; justify-content: center; margin: 1rem 0 2rem 0; }
         .crew-badge span { background: #1a1a2e; border: 1px solid #0052ff44; color: #4d9fff; font-size: 0.75rem; padding: 3px 10px; border-radius: 20px; letter-spacing: 0.04em; }
         .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin: 0 0 2rem 0; }
-        .pricing-card { background: #1a1a1a; border: 1px solid #333; border-radius: 14px; padding: 1.75rem 1.5rem; display: flex; flex-direction: column; position: relative; transition: border-color 0.2s, transform: 0.2s; }
+        .pricing-card { background: #1a1a1a; border: 1px solid #333; border-radius: 14px; padding: 1.75rem 1.5rem; display: flex; flex-direction: column; position: relative; transition: border-color 0.2s, transform 0.2s; }
         .pricing-card:hover { border-color: #0052ff88; transform: translateY(-3px); }
         .pricing-card.featured { border: 2px solid #0052ff; background: linear-gradient(135deg, #0a0a1e, #111133); }
         .featured-badge { position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: #0052ff; color: white; font-size: 0.72rem; font-weight: bold; padding: 3px 14px; border-radius: 20px; letter-spacing: 0.06em; white-space: nowrap; }
@@ -368,8 +369,6 @@
         const BUSINESS_WALLET = "0x62eF356e555BCb06E4aD3328367df9e2d9d74168";
         const QR_URL = `https://api.qrserver.com/v1/create-qr-code/?size=130x130&data=${BUSINESS_WALLET}`;
         const API = "https://howell-forge-shop-production.up.railway.app";
-        const STRIPE_QUANTUM_FREE_TRIAL = "https://buy.stripe.com/test_6oU9AM7FS8Qta1bgVKgrS09";
-
         const getToken = () => localStorage.getItem('hf_token');
         const getUser  = () => { try { return JSON.parse(localStorage.getItem('hf_user') || 'null'); } catch { return null; } };
         const saveAuth = (token, user) => { localStorage.setItem('hf_token', token); localStorage.setItem('hf_user', JSON.stringify(user)); };
@@ -414,6 +413,10 @@
                 ...options,
                 headers: { 'Content-Type': 'application/json', ...(token ? { Authorization: `Bearer ${token}` } : {}), ...(options.headers || {}) },
             });
+            if (!res.ok) {
+                const text = await res.text();
+                try { return JSON.parse(text); } catch { return { error: `Server error (${res.status})` }; }
+            }
             return res.json();
         }
 
@@ -459,7 +462,7 @@
                             <button type="submit" className="btn-full" disabled={loading}>{loading ? 'Please wait...' : tab === 'login' ? 'Sign In' : 'Create Account'}</button>
                         </form>
                         <div className="auth-divider">or</div>
-                        <div className="guest-link"><a onClick={onClose}>Continue as guest →</a></div>
+                        <div className="guest-link"><a href="#" onClick={(e) => { e.preventDefault(); onClose(); }}>Continue as guest →</a></div>
                     </div>
                 </div>
             );
@@ -978,7 +981,7 @@
             );
         };
 
-        ReactDOM.render(<ErrorBoundary><App /></ErrorBoundary>, document.getElementById('root'));
+        ReactDOM.render(<App />, document.getElementById('root'));
     </script>
 </body>
 </html>
