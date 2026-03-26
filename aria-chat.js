@@ -79,12 +79,12 @@
         var lower = text.toLowerCase().trim();
 
         /* Quantum Agent Health (before generic “quantum” / forge) */
-        if (/\bquantum agent health\b|\bqah\b|rehab planning agent|pennylane.*rehab|rehab.*pennylane/.test(lower))
-            return 'Quantum Agent Health (QAH) is PT-adjacent rehab planning: evidence-based protocols, clinical modifiers, variational-circuit setback risk (PennyLane on high-quality simulators in the default product path), and handoff to GroundChiFlow. Pilot: $99/mo or $999.99/yr on the Quantum Agent Health tab. We also use allocated cloud quantum elsewhere in our stack; enterprise can discuss optional cloud backends — we do not claim FDA clearance or exclusive quantum hardware.';
+        if (/\bquantum agent health\b|\bqah\b|reforge|rehab planning agent|pennylane.*rehab|rehab.*pennylane/.test(lower))
+            return 'Quantum Agent Health / ReForge is PT-adjacent rehab planning: evidence-based protocols, clinical modifiers, variational-circuit setback risk (PennyLane on high-quality simulators in the default product path), and handoff to GroundChiFlow. Founding: $25/mo or $250/yr on the Quantum Agent Health tab. We do not claim FDA clearance or exclusive quantum hardware.';
 
         /* Pricing / cost */
-        if (/price|pricing|cost|how much|497|1497|97\/?mo|monthly|one-?time|playbook|39|voice|20\/?job|19|49|\b99\b|999/.test(lower))
-            return 'Pricing: Quantum Agent Health pilot $99/mo or $999.99/yr (Quantum Agent Health tab). AI Forge: Playbook $39; Voice-to-Part $20/job; Starter $19/mo or $199/yr (14-day trial); Pro $49/mo; Q Agent Forge Starter $497, Done For You $1,497, Retainer $97/mo. GroundChiFlow $9.99/mo. Stripe checkout on the site.';
+        if (/price|pricing|cost|how much|497|1497|97\/?mo|monthly|one-?time|playbook|39|voice|20\/?job|19|49|\b25\b|\b250\b/.test(lower))
+            return 'Pricing: Quantum Agent Health / ReForge founding $25/mo or $250/yr (Quantum Agent Health tab). AI Forge: Playbook $39; Voice-to-Part $20/job; Starter $19/mo or $199/yr (14-day trial); Pro $49/mo; Q Agent Forge Starter $497, Done For You $1,497, Retainer $97/mo. GroundChiFlow $9.99/mo. Stripe checkout on the site.';
 
         /* Quote / metal / fabrication */
         if (/quote|metal|part|cnc|machining|fabricat|order|prototype|custom part/.test(lower))
@@ -104,7 +104,7 @@
 
         /* Stripe / payment / buy */
         if (/stripe|payment|pay|buy|purchase|checkout|card/.test(lower))
-            return 'Stripe checkout on the site: AI Forge, Quantum Agent Health ($99/mo or $999.99/yr — paste Payment Links in index.html until live), GroundChiFlow, Voice-to-Part. For metal parts we also accept USDC on Base — see Pay with USDC on the home page.';
+            return 'Stripe checkout on the site: AI Forge, Quantum Agent Health / ReForge ($25/mo or $250/yr founding), GroundChiFlow, Voice-to-Part. For metal parts we also accept USDC on Base — see Pay with USDC on the home page.';
 
         /* USDC / crypto */
         if (/usdc|crypto|base|wallet|0x/.test(lower))
@@ -116,7 +116,7 @@
 
         /* Help */
         if (/help|what can you|what do you|options?|assist/.test(lower))
-            return "I can answer about: Quantum Agent Forge (8 agents), Quantum Agent Health (rehab planning, $99/mo pilot), metal parts, quotes, Stripe/USDC, and contact. Just ask!";
+            return "I can answer about: Quantum Agent Forge (8 agents), Quantum Agent Health / ReForge (rehab planning, $25/mo founding), metal parts, quotes, Stripe/USDC, and contact. Just ask!";
 
         /* Default — offer specific next steps */
         return "I'm ARIA. I can help with metal fabrication, Quantum Agent Forge, pricing, and quotes. Try asking: \"What is Quantum Agent Forge?\" or \"How much does Q Agent Forge cost?\" or \"How do I get a quote for metal parts?\"";
