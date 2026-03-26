@@ -24,7 +24,7 @@
 
     <!-- ARIA chat (do not remove) -->
     <script>if (typeof window !== "undefined" && (window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1" || window.location.hostname.startsWith("192.168."))) { window.ARIA_CHAT_WS_URL = ""; }</script>
-    <script src="aria-chat.js?v=15" defer></script>
+    <script src="aria-chat.js?v=16" defer></script>
 
     <style>
         @keyframes pulse {
@@ -972,23 +972,7 @@
                                         <a href="https://buy.stripe.com/00waEQgc176a5Gw2XW7Zu02" className="buy-btn outline" target="_blank" rel="noopener" onClick={(e)=>{e.preventDefault();particleBurst(e,()=>window.open(e.currentTarget.href,'_blank'));}}>Subscribe — $97/mo</a>
                                     </div>
                                 </div>
-                                <div className="includes-section scroll-reveal glow-visible">
-                                    <h3 className="typography-pulse-trigger">What is Inside Quantum Agent Forge</h3>
-                                    <div className="includes-grid bento-grid">
-                                        <div className={`include-item expandable bento-span-2${expandedAgent === 'forge' ? ' active' : ''}`} onClick={() => setExpandedAgent(expandedAgent === 'forge' ? null : 'forge')}><span className="icon">⚔️</span><div className="text"><strong>FORGE — Commander</strong> Your direct Telegram line. Oversees the crew. Speaks with authority.</div><div className="expand-content">Primary interface for your crew. Routes commands, coordinates agents, and reports status.</div></div>
-                                        <div className={`include-item expandable bento-span-2${expandedAgent === 'aria' ? ' active' : ''}`} onClick={() => setExpandedAgent(expandedAgent === 'aria' ? null : 'aria')}><span className="icon">📡</span><div className="text"><strong>ARIA — Monitor</strong> Watches uptime, SSL, Stripe, and latency 24/7. Alerts instantly.</div><div className="expand-content">Health checks, SSL expiry, payment status. Telegram alerts when something needs attention.</div></div>
-                                        <div className={`include-item expandable${expandedAgent === 'nova' ? ' active' : ''}`} onClick={() => setExpandedAgent(expandedAgent === 'nova' ? null : 'nova')}><span className="icon">🛡️</span><div className="text"><strong>NOVA — Security</strong> HTTPS, headers, CSP. Paranoid so you do not have to be.</div><div className="expand-content">Headers, CSP, security headers. Keeps your stack locked down.</div></div>
-                                        <div className={`include-item expandable${expandedAgent === 'maven' ? ' active' : ''}`} onClick={() => setExpandedAgent(expandedAgent === 'maven' ? null : 'maven')}><span className="icon">📣</span><div className="text"><strong>MAVEN — Marketing</strong> Drafts content and monitors brand. You approve before anything posts.</div><div className="expand-content">Social drafts, brand monitoring. Human-in-the-loop for all outbound content.</div></div>
-                                        <div className={`include-item expandable${expandedAgent === 'rex' ? ' active' : ''}`} onClick={() => setExpandedAgent(expandedAgent === 'rex' ? null : 'rex')}><span className="icon">🏭</span><div className="text"><strong>REX — Shop Floor</strong> Tracks orders and production pipeline. Keeps things moving.</div><div className="expand-content">Order tracking, inventory, production pipeline. Built for makers.</div></div>
-                                        <div className={`include-item expandable${expandedAgent === 'kaito' ? ' active' : ''}`} onClick={() => setExpandedAgent(expandedAgent === 'kaito' ? null : 'kaito')}><span className="icon">💰</span><div className="text"><strong>KAITO — CFO</strong> Stripe revenue, wallet watch, Nest Egg monitoring. Cold precision.</div><div className="expand-content">Revenue dashboards, USDC tracking, financial health. Numbers you can trust.</div></div>
-                                        <div className={`include-item expandable${expandedAgent === 'flux' ? ' active' : ''}`} onClick={() => setExpandedAgent(expandedAgent === 'flux' ? null : 'flux')}><span className="icon">⚡</span><div className="text"><strong>FLUX — Dev Agent</strong> Code fixes, deployments, GitHub ops. Keeps the stack healthy.</div><div className="expand-content">Deploys, fixes, GitHub ops. Your dev agent that never sleeps.</div></div>
-                                        <div className={`include-item expandable${expandedAgent === 'sage' ? ' active' : ''}`} onClick={() => setExpandedAgent(expandedAgent === 'sage' ? null : 'sage')}><span className="icon">🔭</span><div className="text"><strong>SAGE — Analytics</strong> Patterns, insights, and strategic signals from your data.</div><div className="expand-content">Patterns, trends, insights. Turns data into decisions.</div></div>
-                                    </div>
-                                </div>
-                                <div className="readability-panel" style={{textAlign:'center',padding:'1rem 1.25rem 1.5rem',marginBottom:'2rem',maxWidth:'720px',color:'#b0b0b0',fontSize:'0.82rem'}}>
-                                    Questions? <a href="mailto:chrishowell@howell-forge.com" style={{color:'#4d9fff'}}>chrishowell@howell-forge.com</a>
-                                </div>
-
+                                <p className="landing-section-title scroll-reveal glow-visible" style={{marginTop:'1.25rem'}}>Voice-to-Part</p>
                                 <div className="products-hero scroll-reveal glow-visible">
                                     <h2 className="typography-pulse-trigger">Voice-to-Part — <span className="highlight">Say It. Get the Part.</span></h2>
                                     <p>Turn spoken or typed descriptions into real parts: STL and STEP files, ready for your CNC or 3D printer. Works with Blender or FreeCAD. No CAD experience required.</p>
@@ -1018,6 +1002,17 @@
                                             <a href="#" className="buy-btn outline" target="_blank" rel="noopener" onClick={handleVoicePartStarterMonthly}>Or $19/month (14-day trial)</a>
                                         </div>
                                     </div>
+                                    <div className="pricing-card">
+                                        <p className="tier-name">Pay per job</p>
+                                        <p className="price">$20 <span>/ job</span></p>
+                                        <p className="price-sub">No subscription — one checkout per part</p>
+                                        <ul className="feature-list">
+                                            <li>Voice or text → STL + STEP</li>
+                                            <li>Blender or FreeCAD output</li>
+                                            <li>Manufacturing Sim add-on included</li>
+                                        </ul>
+                                        <a href={STRIPE_VOICE_PART_PER_JOB} className="buy-btn outline" target="_blank" rel="noopener" onClick={(e)=>{e.preventDefault();particleBurst(e,()=>window.open(STRIPE_VOICE_PART_PER_JOB,'_blank'));}}>Start — $20/job</a>
+                                    </div>
                                     <div className="pricing-card featured">
                                         <div className="featured-badge">BEST VALUE</div>
                                         <p className="tier-name">Pro</p>
@@ -1031,7 +1026,8 @@
                                         <a href="#" className="buy-btn primary brutal-cta" target="_blank" rel="noopener" onClick={handleVoicePartPro}>Get Voice-to-Part Pro — $49/mo</a>
                                     </div>
                                 </div>
-                                <div className="products-hero scroll-reveal glow-visible" style={{paddingTop:'2.5rem'}}>
+                                <p className="landing-section-title scroll-reveal glow-visible" style={{marginTop:'2rem'}}>Voice-to-PCB</p>
+                                <div className="products-hero scroll-reveal glow-visible" style={{paddingTop:'0.35rem'}}>
                                     <h2 className="typography-pulse-trigger">Voice-to-PCB — <span className="highlight">Power Control Board</span></h2>
                                     <p>Turn spoken or typed requirements into PCB-oriented deliverables — schematics, layout direction, and manufacturing handoff. Same philosophy as Voice-to-Part; not available for purchase yet.</p>
                                     <div className="crew-badge">
@@ -1047,7 +1043,7 @@
                                         <p className="price-coming-soon">Coming soon</p>
                                         <p className="price-coming-soon-sub">No checkout yet — join the waitlist via email</p>
                                         <ul className="feature-list">
-                                            <li>Voice or text → board requirements & constraints</li>
+                                            <li>Voice or text → board requirements and constraints</li>
                                             <li>Schematic-first workflow (when launched)</li>
                                             <li>BOM and design-rules guidance</li>
                                             <li>Aligned with Howell Forge fab pipeline</li>
@@ -1067,8 +1063,24 @@
                                         <span className="buy-btn primary disabled-soon brutal-cta" role="status" aria-label="Voice-to-PCB Pro coming soon">Coming soon</span>
                                     </div>
                                 </div>
+                                <div className="includes-section scroll-reveal glow-visible">
+                                    <h3 className="typography-pulse-trigger">What is Inside Quantum Agent Forge</h3>
+                                    <div className="includes-grid bento-grid">
+                                        <div className={`include-item expandable bento-span-2${expandedAgent === 'forge' ? ' active' : ''}`} onClick={() => setExpandedAgent(expandedAgent === 'forge' ? null : 'forge')}><span className="icon">⚔️</span><div className="text"><strong>FORGE — Commander</strong> Your direct Telegram line. Oversees the crew. Speaks with authority.</div><div className="expand-content">Primary interface for your crew. Routes commands, coordinates agents, and reports status.</div></div>
+                                        <div className={`include-item expandable bento-span-2${expandedAgent === 'aria' ? ' active' : ''}`} onClick={() => setExpandedAgent(expandedAgent === 'aria' ? null : 'aria')}><span className="icon">📡</span><div className="text"><strong>ARIA — Monitor</strong> Watches uptime, SSL, Stripe, and latency 24/7. Alerts instantly.</div><div className="expand-content">Health checks, SSL expiry, payment status. Telegram alerts when something needs attention.</div></div>
+                                        <div className={`include-item expandable${expandedAgent === 'nova' ? ' active' : ''}`} onClick={() => setExpandedAgent(expandedAgent === 'nova' ? null : 'nova')}><span className="icon">🛡️</span><div className="text"><strong>NOVA — Security</strong> HTTPS, headers, CSP. Paranoid so you do not have to be.</div><div className="expand-content">Headers, CSP, security headers. Keeps your stack locked down.</div></div>
+                                        <div className={`include-item expandable${expandedAgent === 'maven' ? ' active' : ''}`} onClick={() => setExpandedAgent(expandedAgent === 'maven' ? null : 'maven')}><span className="icon">📣</span><div className="text"><strong>MAVEN — Marketing</strong> Drafts content and monitors brand. You approve before anything posts.</div><div className="expand-content">Social drafts, brand monitoring. Human-in-the-loop for all outbound content.</div></div>
+                                        <div className={`include-item expandable${expandedAgent === 'rex' ? ' active' : ''}`} onClick={() => setExpandedAgent(expandedAgent === 'rex' ? null : 'rex')}><span className="icon">🏭</span><div className="text"><strong>REX — Shop Floor</strong> Tracks orders and production pipeline. Keeps things moving.</div><div className="expand-content">Order tracking, inventory, production pipeline. Built for makers.</div></div>
+                                        <div className={`include-item expandable${expandedAgent === 'kaito' ? ' active' : ''}`} onClick={() => setExpandedAgent(expandedAgent === 'kaito' ? null : 'kaito')}><span className="icon">💰</span><div className="text"><strong>KAITO — CFO</strong> Stripe revenue, wallet watch, Nest Egg monitoring. Cold precision.</div><div className="expand-content">Revenue dashboards, USDC tracking, financial health. Numbers you can trust.</div></div>
+                                        <div className={`include-item expandable${expandedAgent === 'flux' ? ' active' : ''}`} onClick={() => setExpandedAgent(expandedAgent === 'flux' ? null : 'flux')}><span className="icon">⚡</span><div className="text"><strong>FLUX — Dev Agent</strong> Code fixes, deployments, GitHub ops. Keeps the stack healthy.</div><div className="expand-content">Deploys, fixes, GitHub ops. Your dev agent that never sleeps.</div></div>
+                                        <div className={`include-item expandable${expandedAgent === 'sage' ? ' active' : ''}`} onClick={() => setExpandedAgent(expandedAgent === 'sage' ? null : 'sage')}><span className="icon">🔭</span><div className="text"><strong>SAGE — Analytics</strong> Patterns, insights, and strategic signals from your data.</div><div className="expand-content">Patterns, trends, insights. Turns data into decisions.</div></div>
+                                    </div>
+                                </div>
+                                <div className="readability-panel" style={{textAlign:'center',padding:'1rem 1.25rem 1.5rem',marginBottom:'2rem',maxWidth:'720px',color:'#b0b0b0',fontSize:'0.82rem'}}>
+                                    Questions? <a href="mailto:chrishowell@howell-forge.com" style={{color:'#4d9fff'}}>chrishowell@howell-forge.com</a>
+                                </div>
                                 <div className="stripe-callout scroll-reveal glow-visible">
-                                    <p>Secure checkout via Stripe.</p>
+                                    <p>Secure checkout via Stripe. Voice-to-PCB tiers are not available for purchase yet.</p>
                                 </div>
                             </>
                         )}
