@@ -38,22 +38,28 @@ jobs:
           EXPO_PUBLIC_FIREBASE_MESSAGING_SENDER_ID: ${{ secrets.EXPO_PUBLIC_FIREBASE_MESSAGING_SENDER_ID }}
           EXPO_PUBLIC_FIREBASE_APP_ID: ${{ secrets.EXPO_PUBLIC_FIREBASE_APP_ID }}
           EXPO_PUBLIC_GROK_BRIDGE_URL: ${{ secrets.EXPO_PUBLIC_GROK_BRIDGE_URL }}
-          GITLAB_TOKEN: ${{ secrets.GITLAB_TOKEN }}
+          # Optional: fine-grained PAT with read access to ground-chi-flow if the repo is private.
+          GROUNDFLOW_GITHUB_TOKEN: ${{ secrets.GROUNDFLOW_GITHUB_TOKEN }}
         run: |
           set -e
-          if [ -z "${GITLAB_TOKEN}" ]; then
-            echo "::error::GITLAB_TOKEN secret is not set. Add it in GitHub → Settings → Secrets → Actions."
-            exit 1
-          fi
           if [ -z "${EXPO_PUBLIC_GROK_BRIDGE_URL}" ]; then
             echo "::warning::EXPO_PUBLIC_GROK_BRIDGE_URL is not set. Coach will use default (grok.howell-forge.com). For Railway 24/7, add this secret with your Railway bridge URL."
           else
             echo "::notice::EXPO_PUBLIC_GROK_BRIDGE_URL is set (Coach will use Railway/custom bridge)."
           fi
-          echo "Cloning GroundChiFlow from GitLab..."
-          git clone --depth 1 --branch gcf-staging-exercise-ladders-20260320 \
-            "https://oauth2:${GITLAB_TOKEN}@gitlab.com/ariesfiredragonfu/ground-chi-flow.git" \
-            groundchiflow-src
+          GCF_REPO="ariesfiredragonfu/ground-chi-flow"
+          GCF_BRANCH="master"
+          echo "Cloning GroundChiFlow from GitHub (${GCF_REPO}@${GCF_BRANCH})..."
+          rm -rf groundchiflow-src
+          if [ -n "${GROUNDFLOW_GITHUB_TOKEN}" ]; then
+            git clone --depth 1 --branch "${GCF_BRANCH}" \
+              "https://x-access-token:${GROUNDFLOW_GITHUB_TOKEN}@github.com/${GCF_REPO}.git" \
+              groundchiflow-src
+          else
+            git clone --depth 1 --branch "${GCF_BRANCH}" \
+              "https://github.com/${GCF_REPO}.git" \
+              groundchiflow-src
+          fi
           cd groundchiflow-src
           echo "::notice title=GroundChiFlow source::Commit=$(git rev-parse --short HEAD) | DailyRoutine.ts lines=$(wc -l < constants/DailyRoutine.ts 2>/dev/null || echo 0)"
           if [ -f app.json ]; then
