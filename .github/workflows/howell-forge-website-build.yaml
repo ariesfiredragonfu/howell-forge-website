@@ -27,7 +27,54 @@ jobs:
         with:
           submodules: 'recursive'
 
-      # GroundChiFlow build skipped so IONOS deploy succeeds; add back when GCF build is fixed.
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Build GroundChiFlow for /gcf
+        env:
+          EXPO_PUBLIC_GROK_BRIDGE_URL: ${{ secrets.EXPO_PUBLIC_GROK_BRIDGE_URL }}
+          GROUNDFLOW_GITHUB_TOKEN: ${{ secrets.GROUNDFLOW_GITHUB_TOKEN }}
+        run: |
+          set -e
+          BRIDGE_URL="${EXPO_PUBLIC_GROK_BRIDGE_URL}"
+          if [ -z "$BRIDGE_URL" ]; then
+            BRIDGE_URL="https://grok.howell-forge.com"
+            echo "::warning::EXPO_PUBLIC_GROK_BRIDGE_URL not set; defaulting to ${BRIDGE_URL}"
+          else
+            echo "::notice::Using EXPO_PUBLIC_GROK_BRIDGE_URL from secrets."
+          fi
+
+          GCF_REPO="ariesfiredragonfu/ground-chi-flow"
+          GCF_BRANCH="master"
+          rm -rf groundchiflow-src
+          if [ -n "${GROUNDFLOW_GITHUB_TOKEN}" ]; then
+            git clone --depth 1 --branch "${GCF_BRANCH}" \
+              "https://x-access-token:${GROUNDFLOW_GITHUB_TOKEN}@github.com/${GCF_REPO}.git" \
+              groundchiflow-src
+          else
+            git clone --depth 1 --branch "${GCF_BRANCH}" \
+              "https://github.com/${GCF_REPO}.git" \
+              groundchiflow-src
+          fi
+
+          cd groundchiflow-src
+          printf 'EXPO_PUBLIC_GROK_BRIDGE_URL=%s\n' "$BRIDGE_URL" > .env
+          npm install --legacy-peer-deps --no-audit --no-fund
+          npx expo install react-native-web --fix
+          npx expo install react-dom --fix
+          npx expo install react-native-worklets --fix
+          npx expo export --platform web --output-dir dist
+          cd ..
+
+          rm -rf gcf
+          cp -r groundchiflow-src/dist gcf
+          rm -rf groundchiflow-src
+
+          mkdir -p groundchiflow
+          echo '<!DOCTYPE html><html><head><meta charset="utf-8"><meta http-equiv="refresh" content="0;url=../gcf/"><title>Redirect to GroundChiFlow</title></head><body><p>Redirecting to <a href="../gcf/">GroundChiFlow</a>...</p></body></html>' > groundchiflow/index.html
+
 # Please do not touch the following action
       - name: Store deployment content
         uses: ionos-deploy-now/artifact-action@v1
