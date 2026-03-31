@@ -382,6 +382,24 @@
         .home-product-card ul li { margin-bottom: 0.35rem; }
         .home-product-card .card-cta { display: inline-block; margin-top: 0.5rem; padding: 0.5rem 1rem; border-radius: 6px; font-size: 0.9rem; text-decoration: none; background: #0052ff; color: white; transition: background 0.2s; }
         .home-product-card .card-cta:hover { background: #0040cc; }
+        /* Lead offer — between hero and Products grid */
+        .audit-spotlight {
+            max-width: 920px;
+            margin: 0 auto 1.5rem auto;
+            padding: 1.35rem 1.5rem;
+            background: var(--hf-panel);
+            border: 1px solid rgba(0, 82, 255, 0.28);
+            border-radius: var(--hf-panel-radius);
+            box-shadow: var(--hf-panel-shadow);
+            backdrop-filter: var(--hf-glass);
+            -webkit-backdrop-filter: var(--hf-glass);
+        }
+        .audit-spotlight h3 { color: #fff; margin: 0 0 0.35rem 0; font-size: 1.2rem; }
+        .audit-spotlight .price { color: #4d9fff; font-weight: bold; font-size: 1.05rem; margin: 0 0 0.65rem 0; }
+        .audit-spotlight ul { margin: 0 0 1rem 0; padding-left: 1.25rem; color: #ccc; font-size: 0.9rem; line-height: 1.55; }
+        .audit-spotlight .audit-cta-row { display: flex; flex-wrap: wrap; gap: 0.45rem; align-items: center; }
+        .audit-spotlight .card-cta { display: inline-block; padding: 0.5rem 1rem; border-radius: 6px; font-size: 0.9rem; text-decoration: none; background: #0052ff; color: white; transition: background 0.2s; border: none; cursor: pointer; font-family: inherit; }
+        .audit-spotlight .card-cta:hover { background: #0040cc; }
         .testimonials-placeholder { background: var(--hf-panel); border: var(--hf-panel-border); border-radius: var(--hf-panel-radius); padding: 2rem; margin: 2rem 0; text-align: center; box-shadow: var(--hf-panel-shadow); backdrop-filter: var(--hf-glass); -webkit-backdrop-filter: var(--hf-glass); }
         .testimonials-placeholder h3 { color: #aaa; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.1em; margin: 0 0 1rem 0; }
         .testimonials-placeholder p { color: #b0b0b0; font-size: 0.9rem; margin: 0; }
@@ -464,6 +482,7 @@
         .stripe-callout.scroll-reveal.glow-visible,
         .value-callout.scroll-reveal.glow-visible,
         .playbook-wide.scroll-reveal.glow-visible,
+        .audit-spotlight.scroll-reveal.glow-visible,
         .testimonials-placeholder.scroll-reveal.glow-visible {
             box-shadow: var(--hf-panel-shadow);
         }
@@ -541,7 +560,7 @@
 
         @media (prefers-reduced-motion: reduce) {
             html { scroll-behavior: auto; }
-            .header, .footer, .modal, .products-hero, .hero-above, .hero-below, .playbook-wide, .pricing-card, .home-product-card, .readability-panel, .include-item, .stack-icons, .nav-button, .landing-hero { backdrop-filter: none !important; -webkit-backdrop-filter: none !important; }
+            .header, .footer, .modal, .products-hero, .hero-above, .hero-below, .playbook-wide, .pricing-card, .home-product-card, .audit-spotlight, .readability-panel, .include-item, .stack-icons, .nav-button, .landing-hero { backdrop-filter: none !important; -webkit-backdrop-filter: none !important; }
             .nav-button, .loading, .modal { transition: none; animation: none; }
             .brutal-cta:hover { animation: none; }
             .scroll-reveal { opacity: 1; transform: none; }
@@ -917,6 +936,22 @@
                                 <div className="landing-hero scroll-reveal glow-visible" role="img" aria-label="Howell Forge — metal fabrication and AI automation">
                                     <img id="hero-parallax-img" className="hero-parallax-layer" src="og-image-small.jpg" alt="" decoding="async" />
                                 </div>
+                                <div className="audit-spotlight scroll-reveal glow-visible" style={{marginTop:'0.35rem'}}>
+                                    <h3>Business AI Audit</h3>
+                                    <p className="price">$397 · $997 one-time</p>
+                                    <ul>
+                                        <li>Agent Forge–powered structured audit &amp; prioritized fixes</li>
+                                        <li>Core vs deep dive — implementation sold separately</li>
+                                        <li>Not legal or tax advice</li>
+                                    </ul>
+                                    <div className="audit-cta-row">
+                                        <a href={STRIPE_AI_AUDIT_CORE || '#'} className="card-cta" target="_blank" rel="noopener" onClick={(e)=>{e.preventDefault(); if (!STRIPE_AI_AUDIT_CORE) { window.alert('Checkout is not configured yet. Email chrishowell@howell-forge.com to book your audit.'); return; } particleBurst(e,()=>window.open(STRIPE_AI_AUDIT_CORE,'_blank'));}}>Book — Core ($397)</a>
+                                        <a href={STRIPE_AI_AUDIT_DEEP || '#'} className="card-cta" style={{background:'#0040a8'}} target="_blank" rel="noopener" onClick={(e)=>{e.preventDefault(); if (!STRIPE_AI_AUDIT_DEEP) { window.alert('Checkout is not configured yet. Email chrishowell@howell-forge.com to book your audit.'); return; } particleBurst(e,()=>window.open(STRIPE_AI_AUDIT_DEEP,'_blank'));}}>Book — Deep dive ($997)</a>
+                                    </div>
+                                    {(!STRIPE_AI_AUDIT_CORE || !STRIPE_AI_AUDIT_DEEP) && (typeof window !== 'undefined' && (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' || window.location.hostname.startsWith('192.168.'))) ? (
+                                        <p style={{fontSize:'0.72rem',color:'#888',marginTop:'0.65rem',lineHeight:1.4}}>Local preview: add Payment Link URLs in <code style={{fontSize:'0.65rem'}}>STRIPE_AI_AUDIT_*</code> after running the create script.</p>
+                                    ) : null}
+                                </div>
                                 <div className="hero-below scroll-reveal glow-visible">
                                     <p className="landing-subhead">We have built many businesses. In the process, we came up with an automated way to run them. That is how we created Quantum Agent Forge — by automating the setup and startup so more time goes to <em>doing</em> the business, not setting it up or running it. Our agents are quantum-enabled.</p>
                                     <div className="landing-cta">
@@ -981,22 +1016,6 @@
                                             <li>Manufacturing Sim add-on included</li>
                                         </ul>
                                         <a href={STRIPE_VOICE_PART_PER_JOB} className="card-cta" target="_blank" rel="noopener" onClick={(e)=>{e.preventDefault();particleBurst(e,()=>window.open(STRIPE_VOICE_PART_PER_JOB,'_blank'));}}>Start — $20/job</a>
-                                    </div>
-                                    <div className="home-product-card">
-                                        <h3>Business AI Audit</h3>
-                                        <p className="price">$397 · $997 one-time</p>
-                                        <ul>
-                                            <li>Agent Forge–powered structured audit &amp; prioritized fixes</li>
-                                            <li>Core vs deep dive — implementation sold separately</li>
-                                            <li>Not legal or tax advice</li>
-                                        </ul>
-                                        <div style={{display:'flex',flexDirection:'column',gap:'0.45rem'}}>
-                                            <a href={STRIPE_AI_AUDIT_CORE || '#'} className="card-cta" target="_blank" rel="noopener" onClick={(e)=>{e.preventDefault(); if (!STRIPE_AI_AUDIT_CORE) { window.alert('Checkout is not configured yet. Email chrishowell@howell-forge.com to book your audit.'); return; } particleBurst(e,()=>window.open(STRIPE_AI_AUDIT_CORE,'_blank'));}}>Book — Core ($397)</a>
-                                            <a href={STRIPE_AI_AUDIT_DEEP || '#'} className="card-cta" style={{background:'#0040a8'}} target="_blank" rel="noopener" onClick={(e)=>{e.preventDefault(); if (!STRIPE_AI_AUDIT_DEEP) { window.alert('Checkout is not configured yet. Email chrishowell@howell-forge.com to book your audit.'); return; } particleBurst(e,()=>window.open(STRIPE_AI_AUDIT_DEEP,'_blank'));}}>Book — Deep dive ($997)</a>
-                                        </div>
-                                        {(!STRIPE_AI_AUDIT_CORE || !STRIPE_AI_AUDIT_DEEP) && (typeof window !== 'undefined' && (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' || window.location.hostname.startsWith('192.168.'))) ? (
-                                            <p style={{fontSize:'0.72rem',color:'#888',marginTop:'0.5rem',lineHeight:1.4}}>Local preview: add Payment Link URLs in <code style={{fontSize:'0.65rem'}}>STRIPE_AI_AUDIT_*</code> after running the create script.</p>
-                                        ) : null}
                                     </div>
                                 </div>
                                 <div className="testimonials-placeholder scroll-reveal glow-visible">
