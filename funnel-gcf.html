@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GroundChiFlow — Daily movement, breathwork &amp; longevity | Howell Forge</title>
+    <meta name="description" content="GroundChiFlow — nervous system, breathwork, gut health, tai chi, rehab &amp; nutrition in one app. Subscribe from $9.99/mo. Secure Stripe checkout.">
+    <meta property="og:title" content="GroundChiFlow — Howell Forge">
+    <meta property="og:description" content="Health app: breathwork, gut, longevity &amp; more. Founder-tested. Subscribe on Stripe.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://howell-forge.com/og-image.jpg">
+    <link rel="canonical" href="https://howell-forge.com/funnel-gcf.html">
+    <style>
+        :root {
+            --hf-panel: rgba(20, 20, 28, 0.21);
+            --hf-panel-border: 1px solid rgba(160, 160, 178, 0.155);
+            --hf-panel-radius: 14px;
+            --hf-panel-shadow: 0 2px 12px rgba(0, 0, 0, 0.045);
+            --hf-glass: blur(6px) saturate(1.03);
+            --hf-chrome-fill: rgba(0, 0, 0, 0.14);
+            --hf-chrome-border: 1px solid rgba(255, 255, 255, 0.07);
+            --hf-chrome-glass: blur(2px) saturate(1.02);
+        }
+        *, *::before, *::after { box-sizing: border-box; }
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            background-color: #111;
+            background-image: url('3d-background.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            color: #eee;
+        }
+        .header {
+            background: var(--hf-chrome-fill);
+            color: white;
+            padding: 1rem;
+            text-align: center;
+            border-bottom: var(--hf-chrome-border);
+            backdrop-filter: var(--hf-chrome-glass);
+            -webkit-backdrop-filter: var(--hf-chrome-glass);
+        }
+        .header h1 { margin: 0; font-size: 1.35rem; letter-spacing: 0.05em; text-shadow: 0 2px 20px rgba(0, 0, 0, 0.78); }
+        .header a { color: #4d9fff; text-decoration: none; font-size: 0.9rem; }
+        .header a:hover { text-decoration: underline; }
+        .wrap {
+            max-width: 720px;
+            margin: 0 auto;
+            padding: 2rem 1.25rem 4rem;
+        }
+        .panel {
+            background: var(--hf-panel);
+            border: var(--hf-panel-border);
+            border-radius: var(--hf-panel-radius);
+            padding: 1.75rem 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: var(--hf-panel-shadow);
+            backdrop-filter: var(--hf-glass);
+            -webkit-backdrop-filter: var(--hf-glass);
+        }
+        .hero h2 {
+            margin: 0 0 0.75rem 0;
+            font-size: 1.75rem;
+            line-height: 1.25;
+            color: #fff;
+            text-shadow: 0 2px 18px rgba(0, 0, 0, 0.7);
+        }
+        .hero .lead { color: #c8c8d0; font-size: 1.05rem; margin: 0 0 1.25rem 0; }
+        .hero .highlight { color: #4d9fff; font-weight: bold; }
+        .stripe-note {
+            font-size: 0.82rem;
+            color: #aaa;
+            margin: 0 0 1rem 0;
+            padding: 0.65rem 0.75rem;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 8px;
+            border: var(--hf-panel-border);
+        }
+        .cta-row {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+        @media (min-width: 520px) {
+            .cta-row.dual { flex-direction: row; flex-wrap: wrap; }
+            .cta-row.dual .buy-btn { flex: 1; min-width: 200px; }
+        }
+        .buy-btn {
+            display: block;
+            text-align: center;
+            padding: 0.85rem 1rem;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: bold;
+            text-decoration: none;
+            transition: background 0.2s, border-color 0.2s;
+            cursor: pointer;
+            border: 2px solid transparent;
+        }
+        .buy-btn.primary { background: #0052ff; color: white; }
+        .buy-btn.primary:hover { background: #0040cc; }
+        .buy-btn.outline { background: transparent; color: #4d9fff; border-color: #0052ff; }
+        .buy-btn.outline:hover { background: rgba(0, 82, 255, 0.12); }
+        .buy-btn.brutal { background: linear-gradient(135deg, #0a4, #063); color: #fff; border: none; }
+        .buy-btn.brutal:hover { filter: brightness(1.08); }
+        .quote {
+            font-style: italic;
+            color: #d4d4dc;
+            margin: 0;
+            font-size: 1rem;
+            border-left: 3px solid #0052ff;
+            padding-left: 1rem;
+        }
+        .quote cite { display: block; margin-top: 0.5rem; font-style: normal; font-size: 0.88rem; color: #888; }
+        .panel h3 { margin: 0 0 1rem 0; font-size: 1.1rem; color: #fff; }
+        .feature-list { list-style: none; padding: 0; margin: 0; }
+        .feature-list li {
+            padding: 0.4rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+            color: #ccc;
+            font-size: 0.95rem;
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+        }
+        .feature-list li:last-child { border-bottom: none; }
+        .feature-list li::before { content: "✓"; position: absolute; left: 0; color: #0052ff; font-weight: bold; }
+        .price-hint { font-size: 0.92rem; color: #aaa; margin: 0 0 1rem 0; text-align: center; }
+        .secondary {
+            text-align: center;
+            padding-top: 0.5rem;
+        }
+        .secondary a { color: #4d9fff; }
+        .fine-print {
+            font-size: 0.78rem;
+            color: #777;
+            line-height: 1.5;
+            margin: 1rem 0 0 0;
+        }
+        .footer {
+            text-align: center;
+            padding: 1.5rem 1rem;
+            font-size: 0.85rem;
+            color: #888;
+            border-top: var(--hf-chrome-border);
+            background: var(--hf-chrome-fill);
+            backdrop-filter: var(--hf-chrome-glass);
+        }
+        .footer a { color: #4d9fff; }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <h1>Howell Forge</h1>
+        <p style="margin:0.35rem 0 0 0;"><a href="index.html">← Full site</a></p>
+    </header>
+
+    <main class="wrap">
+        <section class="panel hero" id="top">
+            <h2>Daily movement &amp; calm — <span class="highlight">GroundChiFlow</span></h2>
+            <p class="lead">Breathwork, gut health, tai chi, rehab, nutrition &amp; nervous-system care in <strong>one</strong> app — paired with <span class="highlight">Quantum Agent Health</span> thinking for your long-game. Built by someone who uses it every day.</p>
+            <p class="stripe-note">Secure checkout via Stripe. Card on file — cancel anytime in the customer portal.</p>
+            <div class="cta-row dual">
+                <a class="buy-btn primary" href="https://buy.stripe.com/3cIbIUf7Xbmq5Gw1TS7Zu03" target="_blank" rel="noopener noreferrer">Start GroundChiFlow — $9.99/mo</a>
+                <a class="buy-btn brutal" href="https://buy.stripe.com/14A3co7Fv76a4Cs6a87Zu04" target="_blank" rel="noopener noreferrer">Save with annual — $79.99/yr</a>
+            </div>
+        </section>
+
+        <section class="panel">
+            <blockquote class="quote">
+                “I built this because I needed it — daily structure for movement and health without paying meditation-app prices for half the value.”
+                <cite>— Christopher Howell, Howell Forge</cite>
+            </blockquote>
+        </section>
+
+        <section class="panel">
+            <h3>What you get</h3>
+            <ul class="feature-list">
+                <li>One app for breathwork, gut, tai chi, rehab, nutrition &amp; longevity — not a single-feature tracker.</li>
+                <li>Honest, practical routines you can repeat — not medical diagnosis or a substitute for your clinician.</li>
+                <li>Same subscription experience as our main site: Stripe receipt, email support at <a href="mailto:chrishowell@howell-forge.com" style="color:#4d9fff;">chrishowell@howell-forge.com</a>.</li>
+                <li>Works with our <strong>Quantum Agent Health</strong> story: coaching &amp; rehab planning live alongside GroundChiFlow when you use both.</li>
+                <li>Open the web app after checkout with the email you used at Stripe.</li>
+            </ul>
+        </section>
+
+        <section class="panel">
+            <p class="price-hint">Choose monthly or annual — same app, same account.</p>
+            <div class="cta-row dual">
+                <a class="buy-btn primary" href="https://buy.stripe.com/3cIbIUf7Xbmq5Gw1TS7Zu03" target="_blank" rel="noopener noreferrer">Subscribe — $9.99/mo</a>
+                <a class="buy-btn outline" href="https://buy.stripe.com/14A3co7Fv76a4Cs6a87Zu04" target="_blank" rel="noopener noreferrer">Subscribe — $79.99/yr</a>
+            </div>
+            <div class="secondary">
+                <p style="margin:0.75rem 0 0 0;"><a class="buy-btn outline" style="display:inline-block; min-width: 220px;" href="/gcf/" target="_blank" rel="noopener">Open GroundChiFlow app</a></p>
+            </div>
+            <p class="fine-print">GroundChiFlow is a wellness and education product. We do not claim to diagnose, treat, or cure disease. For medical decisions, consult a licensed professional.</p>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p><a href="index.html">howell-forge.com</a> · <a href="mailto:chrishowell@howell-forge.com">Support</a></p>
+        <p style="margin:0.5rem 0 0 0;">Campaign URL for tracking: add <code style="color:#aaa;">?utm_source=…&amp;utm_medium=…&amp;utm_campaign=gcf_funnel_v1</code> when sharing this page.</p>
+    </footer>
+</body>
+</html>
