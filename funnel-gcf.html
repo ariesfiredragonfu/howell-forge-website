@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GroundChiFlow — Daily movement, breathwork &amp; longevity | Howell Forge</title>
+    <title>[Campaign] GroundChiFlow funnel — Howell Forge</title>
     <meta name="description" content="GroundChiFlow — nervous system, breathwork, gut health, tai chi, rehab &amp; nutrition in one app. Subscribe from $9.99/mo. Secure Stripe checkout.">
     <meta property="og:title" content="GroundChiFlow — Howell Forge">
     <meta property="og:description" content="Health app: breathwork, gut, longevity &amp; more. Founder-tested. Subscribe on Stripe.">
@@ -47,6 +47,18 @@
         .header h1 { margin: 0; font-size: 1.35rem; letter-spacing: 0.05em; text-shadow: 0 2px 20px rgba(0, 0, 0, 0.78); }
         .header a { color: #4d9fff; text-decoration: none; font-size: 0.9rem; }
         .header a:hover { text-decoration: underline; }
+        /* Makes this page unmistakable vs the main React homepage (same background, different job). */
+        .funnel-ribbon {
+            background: linear-gradient(90deg, #0d4a2e, #1a6b45);
+            color: #e8fff0;
+            text-align: center;
+            padding: 0.65rem 1rem;
+            font-size: 0.88rem;
+            font-weight: bold;
+            letter-spacing: 0.04em;
+            border-bottom: 2px solid #2ecc71;
+        }
+        .funnel-ribbon a { color: #b8ffd9; font-weight: 600; }
         .wrap {
             max-width: 720px;
             margin: 0 auto;
@@ -155,8 +167,11 @@
 <body>
     <header class="header">
         <h1>Howell Forge</h1>
-        <p style="margin:0.35rem 0 0 0;"><a href="index.html">← Full site</a></p>
+        <p style="margin:0.35rem 0 0 0;"><a href="/index.html">← Full site (all products)</a></p>
     </header>
+    <div class="funnel-ribbon">
+        CAMPAIGN PAGE — short funnel for GroundChiFlow only. Main marketing site: <a href="/index.html">howell-forge.com</a>
+    </div>
 
     <main class="wrap">
         <section class="panel hero" id="top">
