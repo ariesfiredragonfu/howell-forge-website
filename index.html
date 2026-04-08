@@ -87,6 +87,26 @@
             backdrop-filter: var(--hf-chrome-glass);
             -webkit-backdrop-filter: var(--hf-chrome-glass);
         }
+
+        /* AI Ecosystem embedded in main shell (iframe — inner topnav hidden via ai-ecosystem/app.js) */
+        .ae-shell-subnav {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 0.45rem;
+            margin-bottom: 1rem;
+            padding: 0.35rem 0.25rem;
+        }
+        .ae-embed-shell { padding: 0.75rem !important; }
+        .ae-embed-frame {
+            width: 100%;
+            min-height: 74vh;
+            border: none;
+            border-radius: var(--hf-panel-radius-sm);
+            display: block;
+            background: rgba(0, 0, 0, 0.15);
+        }
         .nav-button { display: inline-block; color: white; text-decoration: none; padding: 8px 16px; border-radius: 6px; background: rgba(0, 0, 0, 0.20); cursor: pointer; border: var(--hf-chrome-border); font-size: 0.9rem; transition: all 0.2s ease; backdrop-filter: var(--hf-chrome-glass); -webkit-backdrop-filter: var(--hf-chrome-glass); box-shadow: var(--hf-chrome-shadow); text-shadow: 0 1px 12px rgba(0, 0, 0, 0.68); }
         .nav-button:hover { background-color: #666; transform: translateY(-1px); }
         .nav-button:active { transform: translateY(1px); }
@@ -187,7 +207,7 @@
         .crew-badge { display: inline-flex; gap: 0.4rem; flex-wrap: wrap; justify-content: center; margin: 1rem 0 2rem 0; }
         .crew-badge span { background: var(--hf-panel-mute); border: var(--hf-panel-border); color: #4d9fff; font-size: 0.75rem; padding: 3px 10px; border-radius: 20px; letter-spacing: 0.04em; backdrop-filter: var(--hf-glass); -webkit-backdrop-filter: var(--hf-glass); }
         .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin: 0 0 2rem 0; }
-        .pricing-card { background: var(--hf-panel); border: var(--hf-panel-border); border-radius: var(--hf-panel-radius); padding: 1.75rem 1.5rem; display: flex; flex-direction: column; position: relative; transition: border-color 0.2s, transform: 0.2s; box-shadow: var(--hf-panel-shadow); backdrop-filter: var(--hf-glass); -webkit-backdrop-filter: var(--hf-glass); }
+        .pricing-card { background: var(--hf-panel); border: var(--hf-panel-border); border-radius: var(--hf-panel-radius); padding: 1.75rem 1.5rem; display: flex; flex-direction: column; position: relative; transition: border-color 0.2s, transform 0.2s; box-shadow: var(--hf-panel-shadow); backdrop-filter: var(--hf-glass); -webkit-backdrop-filter: var(--hf-glass); }
         .pricing-card:hover { border-color: #0052ff88; transform: translateY(-3px); }
         .pricing-card.featured { border: 2px solid rgba(0, 82, 255, 0.38); background: linear-gradient(135deg, rgba(22, 24, 42, 0.22), rgba(12, 18, 52, 0.18)); box-shadow: var(--hf-panel-shadow), 0 0 14px rgba(0, 82, 255, 0.07); backdrop-filter: var(--hf-glass); -webkit-backdrop-filter: var(--hf-glass); }
         .featured-badge { position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: #0052ff; color: white; font-size: 0.72rem; font-weight: bold; padding: 3px 14px; border-radius: 20px; letter-spacing: 0.06em; white-space: nowrap; }
@@ -284,6 +304,7 @@
             overflow: hidden;
             margin: 0 auto 1.5rem auto;
             max-width: 960px;
+            background-color: #1a1a22;
             background-image: url('og-image-small.jpg');
             background-size: cover;
             background-position: center;
@@ -291,6 +312,34 @@
             background-attachment: fixed;
             border: var(--hf-panel-border);
             box-shadow: var(--hf-panel-shadow);
+        }
+        .landing-hero .hero-parallax-layer {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            pointer-events: none;
+            z-index: 0;
+            will-change: transform;
+        }
+        .staging-banner {
+            width: 100%;
+            background: linear-gradient(90deg, #92400e, #f59e0b, #92400e);
+            background-size: 200% 100%;
+            animation: stagingShine 8s ease infinite;
+            color: #111;
+            text-align: center;
+            font-weight: bold;
+            font-size: 0.72rem;
+            letter-spacing: 0.18em;
+            padding: 0.4rem 1rem;
+            text-transform: uppercase;
+            border-bottom: 1px solid rgba(0,0,0,0.2);
+        }
+        @keyframes stagingShine {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
         }
         .hero-below {
             text-align: center;
@@ -353,6 +402,24 @@
         .home-product-card ul li { margin-bottom: 0.35rem; }
         .home-product-card .card-cta { display: inline-block; margin-top: 0.5rem; padding: 0.5rem 1rem; border-radius: 6px; font-size: 0.9rem; text-decoration: none; background: #0052ff; color: white; transition: background 0.2s; }
         .home-product-card .card-cta:hover { background: #0040cc; }
+        /* Lead offer — between hero and Products grid */
+        .audit-spotlight {
+            max-width: 920px;
+            margin: 0 auto 1.5rem auto;
+            padding: 1.35rem 1.5rem;
+            background: var(--hf-panel);
+            border: 1px solid rgba(0, 82, 255, 0.28);
+            border-radius: var(--hf-panel-radius);
+            box-shadow: var(--hf-panel-shadow);
+            backdrop-filter: var(--hf-glass);
+            -webkit-backdrop-filter: var(--hf-glass);
+        }
+        .audit-spotlight h3 { color: #fff; margin: 0 0 0.35rem 0; font-size: 1.2rem; }
+        .audit-spotlight .price { color: #4d9fff; font-weight: bold; font-size: 1.05rem; margin: 0 0 0.65rem 0; }
+        .audit-spotlight ul { margin: 0 0 1rem 0; padding-left: 1.25rem; color: #ccc; font-size: 0.9rem; line-height: 1.55; }
+        .audit-spotlight .audit-cta-row { display: flex; flex-wrap: wrap; gap: 0.45rem; align-items: center; }
+        .audit-spotlight .card-cta { display: inline-block; padding: 0.5rem 1rem; border-radius: 6px; font-size: 0.9rem; text-decoration: none; background: #0052ff; color: white; transition: background 0.2s; border: none; cursor: pointer; font-family: inherit; }
+        .audit-spotlight .card-cta:hover { background: #0040cc; }
         .testimonials-placeholder { background: var(--hf-panel); border: var(--hf-panel-border); border-radius: var(--hf-panel-radius); padding: 2rem; margin: 2rem 0; text-align: center; box-shadow: var(--hf-panel-shadow); backdrop-filter: var(--hf-glass); -webkit-backdrop-filter: var(--hf-glass); }
         .testimonials-placeholder h3 { color: #aaa; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.1em; margin: 0 0 1rem 0; }
         .testimonials-placeholder p { color: #b0b0b0; font-size: 0.9rem; margin: 0; }
@@ -365,6 +432,20 @@
         .stack-icons { display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem; margin: 1.5rem 0; padding: 1rem 1.25rem; background: var(--hf-panel-soft); border: var(--hf-panel-border); border-radius: var(--hf-panel-radius-sm); box-shadow: var(--hf-panel-shadow); max-width: 520px; margin-left: auto; margin-right: auto; backdrop-filter: var(--hf-glass); -webkit-backdrop-filter: var(--hf-glass); }
         .stack-icons a { color: #aaa; text-decoration: none; font-size: 0.8rem; padding: 4px 10px; border-radius: 4px; border: var(--hf-panel-border); transition: color 0.2s, border-color 0.2s; background: var(--hf-panel-mute); backdrop-filter: var(--hf-glass); -webkit-backdrop-filter: var(--hf-glass); }
         .stack-icons a:hover { color: #4d9fff; border-color: #0052ff44; }
+        .automation-hint {
+            text-align: center;
+            color: #9a9aaa;
+            font-size: 0.88rem;
+            margin: 1rem auto 0 auto;
+            max-width: 640px;
+            line-height: 1.5;
+            padding: 0.65rem 1rem;
+            background: var(--hf-panel-mute);
+            border: var(--hf-panel-border);
+            border-radius: var(--hf-panel-radius-sm);
+            box-shadow: var(--hf-panel-shadow);
+        }
+        .automation-hint strong { color: #c8c8d4; }
 
         /* ── Phase 1: Grok enhancements ── */
         html { scroll-behavior: smooth; }
@@ -421,6 +502,7 @@
         .stripe-callout.scroll-reveal.glow-visible,
         .value-callout.scroll-reveal.glow-visible,
         .playbook-wide.scroll-reveal.glow-visible,
+        .audit-spotlight.scroll-reveal.glow-visible,
         .testimonials-placeholder.scroll-reveal.glow-visible {
             box-shadow: var(--hf-panel-shadow);
         }
@@ -498,7 +580,7 @@
 
         @media (prefers-reduced-motion: reduce) {
             html { scroll-behavior: auto; }
-            .header, .footer, .modal, .products-hero, .hero-above, .hero-below, .playbook-wide, .pricing-card, .home-product-card, .readability-panel, .include-item, .stack-icons, .nav-button, .landing-hero { backdrop-filter: none !important; -webkit-backdrop-filter: none !important; }
+            .header, .footer, .modal, .products-hero, .hero-above, .hero-below, .playbook-wide, .pricing-card, .home-product-card, .audit-spotlight, .readability-panel, .include-item, .stack-icons, .nav-button, .landing-hero { backdrop-filter: none !important; -webkit-backdrop-filter: none !important; }
             .nav-button, .loading, .modal { transition: none; animation: none; }
             .brutal-cta:hover { animation: none; }
             .scroll-reveal { opacity: 1; transform: none; }
@@ -509,6 +591,7 @@
             .include-item.expandable .expand-content { transition: none; }
             .typography-pulse-trigger.typography-pulse-active { animation: none; }
             .landing-hero { background-attachment: scroll; }
+            .staging-banner { animation: none; background: #b45309; }
         }
         @media (max-width: 600px) { .payment-layout { flex-direction: column; } .payment-qr img { width: 100px; height: 100px; } .account-banner { flex-direction: column; align-items: flex-start; } .hero-above { font-size: 1.6rem; } .header-tagline { font-size: 0.85rem; } .home-products { grid-template-columns: 1fr; } .landing-cta { flex-direction: column; } .landing-cta .nav-button, .landing-cta a { width: 100%; text-align: center; box-sizing: border-box; } }
     </style>
@@ -536,10 +619,67 @@
         const STRIPE_VOICE_PART_STARTER_MONTHLY = "https://buy.stripe.com/fZuaEQaRHaim9WM0PO7Zu07";
         const STRIPE_VOICE_PART_STARTER_YEARLY = "https://buy.stripe.com/5kQaEQ3pf2PU6KAfKI7Zu09";
         const STRIPE_VOICE_PART_PRO = "https://buy.stripe.com/8x200c5xn0HMb0Q4207Zu08";
+        // Staging / test checkout — create links: Hardware_Factory/scripts/stripe_create_business_ai_audit_test.py
+        // Snippet file: Hardware_Factory/fulfillment/stripe_ai_audit_links.staging.txt (after running script)
+        const STRIPE_AI_AUDIT_CORE_TEST = "";
+        const STRIPE_AI_AUDIT_DEEP_TEST = "";
         const getToken = () => localStorage.getItem('hf_token');
         const getUser  = () => { try { return JSON.parse(localStorage.getItem('hf_user') || 'null'); } catch { return null; } };
         const saveAuth = (token, user) => { localStorage.setItem('hf_token', token); localStorage.setItem('hf_user', JSON.stringify(user)); };
         const clearAuth = () => { localStorage.removeItem('hf_token'); localStorage.removeItem('hf_user'); };
+
+        const AI_ECOSYSTEM_IFRAME_SRC = {
+            aiEcosystem: 'ai-ecosystem/index.html',
+            aiEcosystemStartup: 'ai-ecosystem/startup-package.html',
+            aiEcosystemGrowth: 'ai-ecosystem/growth-package.html',
+            aiEcosystemEnterprise: 'ai-ecosystem/enterprise-solution.html',
+            aiEcosystemCompare: 'ai-ecosystem/features-comparison.html',
+            aiEcosystemTechnical: 'ai-ecosystem/technical-specifications.html',
+            aiEcosystemGuides: 'ai-ecosystem/integration-guides.html',
+            aiEcosystemDemo: 'ai-ecosystem/demo-request.html',
+            aiEcosystemSales: 'ai-ecosystem/contact-sales.html',
+        };
+        const AI_ECOSYSTEM_PAGE_KEYS = Object.keys(AI_ECOSYSTEM_IFRAME_SRC);
+        const AI_ECOSYSTEM_SUBNAV = [
+            { key: 'aiEcosystem', label: 'Overview' },
+            { key: 'aiEcosystemStartup', label: 'Startup' },
+            { key: 'aiEcosystemGrowth', label: 'Growth' },
+            { key: 'aiEcosystemEnterprise', label: 'Enterprise' },
+            { key: 'aiEcosystemCompare', label: 'Compare' },
+            { key: 'aiEcosystemTechnical', label: 'Technical' },
+            { key: 'aiEcosystemGuides', label: 'Guides' },
+            { key: 'aiEcosystemDemo', label: 'Demo' },
+            { key: 'aiEcosystemSales', label: 'Sales' },
+        ];
+
+        function AiEcosystemShell({ page, setPage }) {
+            const src = AI_ECOSYSTEM_IFRAME_SRC[page];
+            if (!src) return null;
+            return (
+                <>
+                    <div className="ae-shell-subnav scroll-reveal glow-visible" role="navigation" aria-label="AI Ecosystem sections">
+                        {AI_ECOSYSTEM_SUBNAV.map(({ key, label }) => (
+                            <button
+                                key={key}
+                                type="button"
+                                className="nav-button"
+                                style={{
+                                    fontSize: '0.78rem',
+                                    padding: '5px 10px',
+                                    ...(page === key ? { background: '#0052ff' } : {}),
+                                }}
+                                onClick={() => setPage(key)}
+                            >
+                                {label}
+                            </button>
+                        ))}
+                    </div>
+                    <div className="readability-panel ae-embed-shell scroll-reveal glow-visible">
+                        <iframe key={page} className="ae-embed-frame" title="AI Ecosystem" src={src} />
+                    </div>
+                </>
+            );
+        }
 
         function particleBurst(e, onComplete) {
             if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) { onComplete?.(); return; }
@@ -815,17 +955,35 @@
             };
 
             function Header() {
+                const showStaging =
+                    typeof window !== 'undefined' &&
+                    (window.location.hostname === 'localhost' ||
+                        window.location.hostname === '127.0.0.1' ||
+                        window.location.hostname.startsWith('192.168.'));
                 return (
                     <div className="header">
+                        {showStaging && (
+                            <div className="staging-banner" role="status">
+                                Staging — local preview · animations on · not production
+                            </div>
+                        )}
                         <h1>Howell Forge</h1>
                         <p className="header-tagline">Metal parts &amp; AI business tools</p>
                         <div className="nav-buttons">
-                            <button className="nav-button" onClick={() => setPage('home')}>Home</button>
-                            <button className="nav-button" onClick={() => setPage('products')} style={{background:'#0052ff'}}>AI Forge</button>
-                            <button className="nav-button" onClick={() => setPage('quantumAgentHealth')}>Quantum Agent Health</button>
-                            <button className="nav-button" onClick={() => setPage('groundchiflow')}>GroundChiFlow</button>
-                            <button className="nav-button" onClick={() => setPage('contact')}>Connect</button>
-                            <button className="nav-button" onClick={() => setPage('about')}>About</button>
+                            <button className="nav-button" onClick={() => setPage('home')} style={page === 'home' ? { background: '#0052ff' } : {}}>Home</button>
+                            <button className="nav-button" onClick={() => setPage('products')} style={{ background: '#0052ff', opacity: page === 'products' ? 1 : 0.92 }}>AI Forge</button>
+                            <button
+                                type="button"
+                                className="nav-button"
+                                onClick={() => setPage('aiEcosystem')}
+                                style={AI_ECOSYSTEM_PAGE_KEYS.includes(page) ? { background: '#0052ff' } : {}}
+                            >
+                                AI Ecosystem
+                            </button>
+                            <button className="nav-button" onClick={() => setPage('quantumAgentHealth')} style={page === 'quantumAgentHealth' ? { background: '#0052ff' } : {}}>Quantum Agent Health</button>
+                            <button className="nav-button" onClick={() => setPage('groundchiflow')} style={page === 'groundchiflow' ? { background: '#0052ff' } : {}}>GroundChiFlow</button>
+                            <button className="nav-button" onClick={() => setPage('contact')} style={page === 'contact' ? { background: '#0052ff' } : {}}>Connect</button>
+                            <button className="nav-button" onClick={() => setPage('about')} style={page === 'about' ? { background: '#0052ff' } : {}}>About</button>
                             {authUser ? (
                                 <button className="nav-button success" onClick={() => setPage('account')}>
                                     {authUser.name.split(' ')[0]}
@@ -854,10 +1012,29 @@
 
                         {page === 'account' && authUser && <AccountPage user={authUser} onLogout={handleLogout} />}
 
+                        {AI_ECOSYSTEM_PAGE_KEYS.includes(page) && <AiEcosystemShell page={page} setPage={setPage} />}
+
                         {page === 'home' && (
                             <>
                                 <h2 className="hero-above reveal-text">From Cursor to CNC: Bridging the Gap Between Code and Cold Steel.</h2>
                                 <div className="landing-hero scroll-reveal glow-visible" role="img" aria-label="Howell Forge — metal fabrication and AI automation">
+                                    <img id="hero-parallax-img" className="hero-parallax-layer" src="og-image-small.jpg" alt="" decoding="async" />
+                                </div>
+                                <div className="audit-spotlight scroll-reveal glow-visible" style={{marginTop:'0.35rem'}}>
+                                    <h3>Business AI Audit</h3>
+                                    <p className="price">$397 · $997 one-time (staging)</p>
+                                    <ul>
+                                        <li>Agent Forge–powered structured audit &amp; prioritized fixes</li>
+                                        <li>Core vs deep dive — implementation sold separately</li>
+                                        <li>Not legal or tax advice</li>
+                                    </ul>
+                                    <div className="audit-cta-row">
+                                        <a href={STRIPE_AI_AUDIT_CORE_TEST || '#'} className="card-cta" target="_blank" rel="noopener" onClick={(e)=>{e.preventDefault(); if (!STRIPE_AI_AUDIT_CORE_TEST) { window.alert('Add test Payment Links: run Hardware_Factory/scripts/stripe_create_business_ai_audit_test.py'); return; } particleBurst(e,()=>window.open(STRIPE_AI_AUDIT_CORE_TEST,'_blank'));}}>Book — Core ($397)</a>
+                                        <a href={STRIPE_AI_AUDIT_DEEP_TEST || '#'} className="card-cta" style={{background:'#0040a8'}} target="_blank" rel="noopener" onClick={(e)=>{e.preventDefault(); if (!STRIPE_AI_AUDIT_DEEP_TEST) { window.alert('Add test Payment Links: run Hardware_Factory/scripts/stripe_create_business_ai_audit_test.py'); return; } particleBurst(e,()=>window.open(STRIPE_AI_AUDIT_DEEP_TEST,'_blank'));}}>Book — Deep dive ($997)</a>
+                                    </div>
+                                    {(!STRIPE_AI_AUDIT_CORE_TEST || !STRIPE_AI_AUDIT_DEEP_TEST) ? (
+                                        <p style={{fontSize:'0.72rem',color:'#888',marginTop:'0.65rem',lineHeight:1.4}}>Local staging: paste URLs from <code style={{fontSize:'0.65rem'}}>stripe_ai_audit_links.staging.txt</code> after creating test products.</p>
+                                    ) : null}
                                 </div>
                                 <div className="hero-below scroll-reveal glow-visible">
                                     <p className="landing-subhead">We have built many businesses. In the process, we came up with an automated way to run them. That is how we created Quantum Agent Forge — by automating the setup and startup so more time goes to <em>doing</em> the business, not setting it up or running it. Our agents are quantum-enabled.</p>
@@ -875,6 +1052,9 @@
                                         <a href="https://elizaos.ai" target="_blank" rel="noopener">ElizaOS</a>
                                         <a href="https://buildbear.io" target="_blank" rel="noopener">BuildBear</a>
                                     </div>
+                                    <p className="automation-hint" role="note">
+                                        <strong>Where the automations live on this site:</strong> the 8-agent Quantum Agent Forge crew (FORGE, ARIA, MAVEN, KAITO, …), pricing, and &ldquo;what each agent does&rdquo; are all under <strong>AI Forge</strong> in the bar above. The floating <strong>blue chat</strong> button (lower-right, above the footer) is <strong>ARIA</strong> — answers questions about products and the forge; on localhost it runs in demo mode unless you point <code style={{fontSize:'0.8rem',color:'#6b9fff'}}>ARIA_CHAT_WS_URL</code> at a live backend.
+                                    </p>
                                 </div>
                                 <div className="landing-section-title scroll-reveal glow-visible">Products</div>
                                 <div className="home-products scroll-reveal glow-visible">
@@ -923,9 +1103,9 @@
                                     </div>
                                 </div>
                                 <div className="testimonials-placeholder scroll-reveal glow-visible">
-                                    <h3>Testimonials</h3>
-                                    <p className="testimonial-quote">"I've used this to automate my home business — saved hours weekly."</p>
-                                    <p className="testimonial-attribution">– Chris (Founder)</p>
+                                    <h3>Validation status</h3>
+                                    <p className="testimonial-quote">Product claims and marketing copy are under active validation.</p>
+                                    <p className="testimonial-attribution">– Howell Forge staging policy</p>
                                 </div>
                                 <div id="pay-usdc" className="scroll-reveal"><UsdcPaymentSection /></div>
                                 <div className="scroll-reveal"><WalletSection /></div>
@@ -937,7 +1117,7 @@
                             <>
                                 <div className="products-hero scroll-reveal glow-visible">
                                     <h2 className="typography-pulse-trigger">Quantum Agent Forge — <span className="highlight">Your Business Crew, Ready to Deploy</span></h2>
-                                    <p>8 quantum-enabled AI agents forged for your business. Running 24/7. Self-healing. Telegram-connected. Stripe-integrated. Deploy in a day.</p>
+                                    <p>8 quantum-enabled AI agents forged for your business. Telegram-connected and Stripe-integrated, with implementation scope finalized during onboarding.</p>
                                     <div className="crew-badge">
                                         <span>FORGE Commander</span>
                                         <span>ARIA Monitor</span>
@@ -950,7 +1130,7 @@
                                     </div>
                                 </div>
                                 <div className="value-callout scroll-reveal glow-visible">
-                                    <p>A human team doing this work costs <strong>$5,000+/month</strong>. Our crew does it for a one-time setup. That is a <strong>10:1 return on Day 1.</strong></p>
+                                    <p>This package is intended to reduce repetitive setup and operations work. Final outcomes depend on implementation quality, business process fit, and ongoing use.</p>
                                 </div>
                                 <div className="playbook-wide scroll-reveal glow-visible">
                                     <h3 className="typography-pulse-trigger">The Playbook</h3>
@@ -1009,7 +1189,7 @@
                                     <h3 className="typography-pulse-trigger">What is Inside Quantum Agent Forge</h3>
                                     <div className="includes-grid bento-grid">
                                         <div className={`include-item expandable bento-span-2${expandedAgent === 'forge' ? ' active' : ''}`} onClick={() => setExpandedAgent(expandedAgent === 'forge' ? null : 'forge')}><span className="icon">⚔️</span><div className="text"><strong>FORGE — Commander</strong> Your direct Telegram line. Oversees the crew. Speaks with authority.</div><div className="expand-content">Primary interface for your crew. Routes commands, coordinates agents, and reports status.</div></div>
-                                        <div className={`include-item expandable bento-span-2${expandedAgent === 'aria' ? ' active' : ''}`} onClick={() => setExpandedAgent(expandedAgent === 'aria' ? null : 'aria')}><span className="icon">📡</span><div className="text"><strong>ARIA — Monitor</strong> Watches uptime, SSL, Stripe, and latency 24/7. Alerts instantly.</div><div className="expand-content">Health checks, SSL expiry, payment status. Telegram alerts when something needs attention.</div></div>
+                                        <div className={`include-item expandable bento-span-2${expandedAgent === 'aria' ? ' active' : ''}`} onClick={() => setExpandedAgent(expandedAgent === 'aria' ? null : 'aria')}><span className="icon">📡</span><div className="text"><strong>ARIA — Monitor</strong> Tracks uptime, SSL, Stripe status, and latency with alerting.</div><div className="expand-content">Health checks, SSL expiry, payment status. Telegram alerts when something needs attention.</div></div>
                                         <div className={`include-item expandable${expandedAgent === 'nova' ? ' active' : ''}`} onClick={() => setExpandedAgent(expandedAgent === 'nova' ? null : 'nova')}><span className="icon">🛡️</span><div className="text"><strong>NOVA — Security</strong> HTTPS, headers, CSP. Paranoid so you do not have to be.</div><div className="expand-content">Headers, CSP, security headers. Keeps your stack locked down.</div></div>
                                         <div className={`include-item expandable${expandedAgent === 'maven' ? ' active' : ''}`} onClick={() => setExpandedAgent(expandedAgent === 'maven' ? null : 'maven')}><span className="icon">📣</span><div className="text"><strong>MAVEN — Marketing</strong> Drafts content and monitors brand. You approve before anything posts.</div><div className="expand-content">Social drafts, brand monitoring. Human-in-the-loop for all outbound content.</div></div>
                                         <div className={`include-item expandable${expandedAgent === 'rex' ? ' active' : ''}`} onClick={() => setExpandedAgent(expandedAgent === 'rex' ? null : 'rex')}><span className="icon">🏭</span><div className="text"><strong>REX — Shop Floor</strong> Tracks orders and production pipeline. Keeps things moving.</div><div className="expand-content">Order tracking, inventory, production pipeline. Built for makers.</div></div>
@@ -1039,7 +1219,7 @@
                                     <div className="pricing-card">
                                         <p className="tier-name">Starter</p>
                                         <p className="price">$19 <span>/ mo</span> &nbsp;·&nbsp; $199 <span>/ yr</span></p>
-                                        <p className="price-sub">14-day free trial on both — then pay monthly, or choose yearly and save about <strong style={{color:'#9fdf9f'}}>$29</strong> vs 12 months at $19.</p>
+                                        <p className="price-sub">14-day free trial on both monthly and yearly plans.</p>
                                         <ul className="feature-list">
                                             <li>Voice or text → part script</li>
                                             <li>Blender or FreeCAD output (STL + STEP)</li>
@@ -1066,7 +1246,7 @@
                                         <div className="featured-badge">BEST VALUE</div>
                                         <p className="tier-name">Pro</p>
                                         <p className="price">$49 <span>/ mo</span></p>
-                                        <p className="price-sub">or $499/year — save $89</p>
+                                        <p className="price-sub">or $499/year</p>
                                         <ul className="feature-list">
                                             <li>Everything in Starter</li>
                                             <li>Higher volume, priority support</li>
@@ -1145,7 +1325,7 @@
                                 </div>
                                 <div className="testimonials-placeholder scroll-reveal glow-visible" style={{maxWidth:'720px',marginLeft:'auto',marginRight:'auto'}}>
                                     <h3>Founding pricing</h3>
-                                    <p className="testimonial-quote">While we expand the exercise video library. Cancel anytime on monthly; annual saves vs 12× monthly.</p>
+                                    <p className="testimonial-quote">Early pricing while we continue expanding the exercise video library. Cancel anytime on monthly.</p>
                                 </div>
                                 <div className="pricing-grid scroll-reveal glow-visible">
                                     <div className="pricing-card">
@@ -1165,7 +1345,7 @@
                                         <div className="featured-badge">FOUNDING</div>
                                         <p className="tier-name">Annual</p>
                                         <p className="price">$250 <span>/ yr</span></p>
-                                        <p className="price-sub">Save vs monthly — ~$20.83/mo</p>
+                                        <p className="price-sub">Annual plan option</p>
                                         <ul className="feature-list">
                                             <li>Everything in Monthly</li>
                                             <li>About two months free vs monthly</li>
@@ -1202,7 +1382,7 @@
                                     </div>
                                 </div>
                                 <div className="value-callout scroll-reveal glow-visible">
-                                    <p>Competitors charge <strong>$14.99/mo</strong> for meditation alone. GroundChiFlow gives you breathwork, gut health, tai chi, rehab, nutrition, and more — at a fraction of the cost.</p>
+                                    <p>GroundChiFlow combines breathwork, tai chi, rehab routines, gut health, nutrition, and longevity tools in one browser-based app.</p>
                                 </div>
                                 <div className="testimonials-placeholder scroll-reveal glow-visible" style={{maxWidth:'640px',marginLeft:'auto',marginRight:'auto'}}>
                                     <h3>Founder story</h3>
@@ -1229,10 +1409,10 @@
                                         <div className="featured-badge">BEST VALUE</div>
                                         <p className="tier-name">Annual</p>
                                         <p className="price">$79.99 <span>/ yr</span></p>
-                                        <p className="price-sub">Save 33% — ~$6.67/mo</p>
+                                        <p className="price-sub">Annual plan option</p>
                                         <ul className="feature-list">
                                             <li>Everything in Monthly</li>
-                                            <li>2 months free vs monthly</li>
+                                            <li>Annual billing option</li>
                                             <li>Lock in this price</li>
                                             <li>Cancel anytime — no commitment</li>
                                         </ul>
