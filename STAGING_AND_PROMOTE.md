@@ -64,3 +64,43 @@ git push origin main --force   # only if you must revert remote — coordinate f
 ```
 
 Or restore a single file from `backups/` in the repo.
+
+---
+
+## AI Ecosystem live (2026-04-08) — tags + rollback
+
+**Tags on `main`**
+
+- **`pre-ai-ecosystem-live-2026-04-08`** — last commit before AI Ecosystem + `ai-ecosystem/` on the hub.
+- **`post-ai-ecosystem-live-2026-04-08`** — commit that introduced AI Ecosystem in the main shell + `ai-ecosystem/*` (+ tracked `qah.html`).
+
+**Full rollback (rewrites `main` on remote — coordinate first)**
+
+```bash
+git fetch origin
+git checkout main && git pull origin main
+git reset --hard pre-ai-ecosystem-live-2026-04-08
+git push origin main --force
+```
+
+**Revert via new commit (no force-push)** — use `git revert` on the promote commit(s) instead.
+
+**Staging folder** (`~/howell-forge-website-staging`): same remote as this repo; after a promote, align with `git fetch origin && git reset --hard origin/main` if you want the tree to match live. Local-only files (`STAGING_README.md`, test scripts) can stay untracked.
+
+---
+
+## Think Tank — collaborative review of staging (Grok + Gemini + OpenClaw)
+
+From **`Hardware_Factory`** (Jarvis up, Discord bot token + Think Tank channel set in `.env`):
+
+```bash
+# Local staging (run ./start_staging.sh in howell-forge-website-staging first; default port 8900)
+/home/christopher-c-howell/Hardware_Factory/venv/bin/python \
+  /home/christopher-c-howell/Hardware_Factory/scripts/think_tank_staging_site_collab_review.py \
+  --base-url "http://127.0.0.1:8900" \
+  --snapshot-mode both
+```
+
+**Discord:** `/staging-collab-review` with optional `base_url` (see script docstring for GitHub Pages URL default).
+
+Posts a panel review to **#think-tank**; treat suggestions as input — verify before changing copy or claims (`ai-ecosystem/SAFE_TO_CLAIM_MATRIX.md`).
