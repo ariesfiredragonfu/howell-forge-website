@@ -87,6 +87,26 @@
             backdrop-filter: var(--hf-chrome-glass);
             -webkit-backdrop-filter: var(--hf-chrome-glass);
         }
+
+        /* AI Ecosystem embedded in main shell (iframe — inner topnav hidden via ai-ecosystem/app.js) */
+        .ae-shell-subnav {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 0.45rem;
+            margin-bottom: 1rem;
+            padding: 0.35rem 0.25rem;
+        }
+        .ae-embed-shell { padding: 0.75rem !important; }
+        .ae-embed-frame {
+            width: 100%;
+            min-height: 74vh;
+            border: none;
+            border-radius: var(--hf-panel-radius-sm);
+            display: block;
+            background: rgba(0, 0, 0, 0.15);
+        }
         .nav-button { display: inline-block; color: white; text-decoration: none; padding: 8px 16px; border-radius: 6px; background: rgba(0, 0, 0, 0.20); cursor: pointer; border: var(--hf-chrome-border); font-size: 0.9rem; transition: all 0.2s ease; backdrop-filter: var(--hf-chrome-glass); -webkit-backdrop-filter: var(--hf-chrome-glass); box-shadow: var(--hf-chrome-shadow); text-shadow: 0 1px 12px rgba(0, 0, 0, 0.68); }
         .nav-button:hover { background-color: #666; transform: translateY(-1px); }
         .nav-button:active { transform: translateY(1px); }
@@ -599,18 +619,70 @@
         const STRIPE_VOICE_PART_STARTER_MONTHLY = "https://buy.stripe.com/fZuaEQaRHaim9WM0PO7Zu07";
         const STRIPE_VOICE_PART_STARTER_YEARLY = "https://buy.stripe.com/5kQaEQ3pf2PU6KAfKI7Zu09";
         const STRIPE_VOICE_PART_PRO = "https://buy.stripe.com/8x200c5xn0HMb0Q4207Zu08";
-        // Business AI Audit — paste Stripe Payment Link URLs after creating products (Dashboard or Hardware_Factory/scripts/stripe_create_business_ai_audit_test.py).
-        const STRIPE_AI_AUDIT_CORE = "";
-        const STRIPE_AI_AUDIT_DEEP = "";
+        // Staging / test checkout — create links: Hardware_Factory/scripts/stripe_create_business_ai_audit_test.py
+        // Snippet file: Hardware_Factory/fulfillment/stripe_ai_audit_links.staging.txt (after running script)
+        const STRIPE_AI_AUDIT_CORE_TEST = "";
+        const STRIPE_AI_AUDIT_DEEP_TEST = "";
         const getToken = () => localStorage.getItem('hf_token');
         const getUser  = () => { try { return JSON.parse(localStorage.getItem('hf_user') || 'null'); } catch { return null; } };
         const saveAuth = (token, user) => { localStorage.setItem('hf_token', token); localStorage.setItem('hf_user', JSON.stringify(user)); };
         const clearAuth = () => { localStorage.removeItem('hf_token'); localStorage.removeItem('hf_user'); };
 
+        const AI_ECOSYSTEM_IFRAME_SRC = {
+            aiEcosystem: 'ai-ecosystem/index.html',
+            aiEcosystemStartup: 'ai-ecosystem/startup-package.html',
+            aiEcosystemGrowth: 'ai-ecosystem/growth-package.html',
+            aiEcosystemEnterprise: 'ai-ecosystem/enterprise-solution.html',
+            aiEcosystemCompare: 'ai-ecosystem/features-comparison.html',
+            aiEcosystemTechnical: 'ai-ecosystem/technical-specifications.html',
+            aiEcosystemGuides: 'ai-ecosystem/integration-guides.html',
+            aiEcosystemDemo: 'ai-ecosystem/demo-request.html',
+            aiEcosystemSales: 'ai-ecosystem/contact-sales.html',
+        };
+        const AI_ECOSYSTEM_PAGE_KEYS = Object.keys(AI_ECOSYSTEM_IFRAME_SRC);
+        const AI_ECOSYSTEM_SUBNAV = [
+            { key: 'aiEcosystem', label: 'Overview' },
+            { key: 'aiEcosystemStartup', label: 'Startup' },
+            { key: 'aiEcosystemGrowth', label: 'Growth' },
+            { key: 'aiEcosystemEnterprise', label: 'Enterprise' },
+            { key: 'aiEcosystemCompare', label: 'Compare' },
+            { key: 'aiEcosystemTechnical', label: 'Technical' },
+            { key: 'aiEcosystemGuides', label: 'Guides' },
+            { key: 'aiEcosystemDemo', label: 'Demo' },
+            { key: 'aiEcosystemSales', label: 'Sales' },
+        ];
+
+        function AiEcosystemShell({ page, setPage }) {
+            const src = AI_ECOSYSTEM_IFRAME_SRC[page];
+            if (!src) return null;
+            return (
+                <>
+                    <div className="ae-shell-subnav scroll-reveal glow-visible" role="navigation" aria-label="AI Ecosystem sections">
+                        {AI_ECOSYSTEM_SUBNAV.map(({ key, label }) => (
+                            <button
+                                key={key}
+                                type="button"
+                                className="nav-button"
+                                style={{
+                                    fontSize: '0.78rem',
+                                    padding: '5px 10px',
+                                    ...(page === key ? { background: '#0052ff' } : {}),
+                                }}
+                                onClick={() => setPage(key)}
+                            >
+                                {label}
+                            </button>
+                        ))}
+                    </div>
+                    <div className="readability-panel ae-embed-shell scroll-reveal glow-visible">
+                        <iframe key={page} className="ae-embed-frame" title="AI Ecosystem" src={src} />
+                    </div>
+                </>
+            );
+        }
+
         function particleBurst(e, onComplete) {
             if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) { onComplete?.(); return; }
-            // Run onComplete immediately so window.open stays in the user-gesture chain (delayed open was often blocked as a popup).
-            onComplete?.();
             const colors = ['#00d4ff', '#ff9500', '#ffd700', '#ff6b35'];
             const container = document.createElement('div');
             container.className = 'particle-burst';
@@ -626,7 +698,7 @@
                 container.appendChild(p);
             }
             document.body.appendChild(container);
-            setTimeout(() => { container.remove(); }, 520);
+            setTimeout(() => { container.remove(); onComplete?.(); }, 520);
         }
 
         function handleVoicePartStarterMonthly(e) {
@@ -898,12 +970,20 @@
                         <h1>Howell Forge</h1>
                         <p className="header-tagline">Metal parts &amp; AI business tools</p>
                         <div className="nav-buttons">
-                            <button className="nav-button" onClick={() => setPage('home')}>Home</button>
-                            <button className="nav-button" onClick={() => setPage('products')} style={{background:'#0052ff'}}>AI Forge</button>
-                            <button className="nav-button" onClick={() => setPage('quantumAgentHealth')}>Quantum Agent Health</button>
-                            <button className="nav-button" onClick={() => setPage('groundchiflow')}>GroundChiFlow</button>
-                            <button className="nav-button" onClick={() => setPage('contact')}>Connect</button>
-                            <button className="nav-button" onClick={() => setPage('about')}>About</button>
+                            <button className="nav-button" onClick={() => setPage('home')} style={page === 'home' ? { background: '#0052ff' } : {}}>Home</button>
+                            <button className="nav-button" onClick={() => setPage('products')} style={{ background: '#0052ff', opacity: page === 'products' ? 1 : 0.92 }}>AI Forge</button>
+                            <button
+                                type="button"
+                                className="nav-button"
+                                onClick={() => setPage('aiEcosystem')}
+                                style={AI_ECOSYSTEM_PAGE_KEYS.includes(page) ? { background: '#0052ff' } : {}}
+                            >
+                                AI Ecosystem
+                            </button>
+                            <button className="nav-button" onClick={() => setPage('quantumAgentHealth')} style={page === 'quantumAgentHealth' ? { background: '#0052ff' } : {}}>Quantum Agent Health</button>
+                            <button className="nav-button" onClick={() => setPage('groundchiflow')} style={page === 'groundchiflow' ? { background: '#0052ff' } : {}}>GroundChiFlow</button>
+                            <button className="nav-button" onClick={() => setPage('contact')} style={page === 'contact' ? { background: '#0052ff' } : {}}>Connect</button>
+                            <button className="nav-button" onClick={() => setPage('about')} style={page === 'about' ? { background: '#0052ff' } : {}}>About</button>
                             {authUser ? (
                                 <button className="nav-button success" onClick={() => setPage('account')}>
                                     {authUser.name.split(' ')[0]}
@@ -932,6 +1012,8 @@
 
                         {page === 'account' && authUser && <AccountPage user={authUser} onLogout={handleLogout} />}
 
+                        {AI_ECOSYSTEM_PAGE_KEYS.includes(page) && <AiEcosystemShell page={page} setPage={setPage} />}
+
                         {page === 'home' && (
                             <>
                                 <h2 className="hero-above reveal-text">From Cursor to CNC: Bridging the Gap Between Code and Cold Steel.</h2>
@@ -940,18 +1022,18 @@
                                 </div>
                                 <div className="audit-spotlight scroll-reveal glow-visible" style={{marginTop:'0.35rem'}}>
                                     <h3>Business AI Audit</h3>
-                                    <p className="price">$397 · $997 one-time</p>
+                                    <p className="price">$397 · $997 one-time (staging)</p>
                                     <ul>
                                         <li>Agent Forge–powered structured audit &amp; prioritized fixes</li>
                                         <li>Core vs deep dive — implementation sold separately</li>
                                         <li>Not legal or tax advice</li>
                                     </ul>
                                     <div className="audit-cta-row">
-                                        <a href={STRIPE_AI_AUDIT_CORE || '#'} className="card-cta" target="_blank" rel="noopener" onClick={(e)=>{e.preventDefault(); if (!STRIPE_AI_AUDIT_CORE) { window.alert('Checkout is not configured yet. Email chrishowell@howell-forge.com to book your audit.'); return; } particleBurst(e,()=>window.open(STRIPE_AI_AUDIT_CORE,'_blank'));}}>Book — Core ($397)</a>
-                                        <a href={STRIPE_AI_AUDIT_DEEP || '#'} className="card-cta" style={{background:'#0040a8'}} target="_blank" rel="noopener" onClick={(e)=>{e.preventDefault(); if (!STRIPE_AI_AUDIT_DEEP) { window.alert('Checkout is not configured yet. Email chrishowell@howell-forge.com to book your audit.'); return; } particleBurst(e,()=>window.open(STRIPE_AI_AUDIT_DEEP,'_blank'));}}>Book — Deep dive ($997)</a>
+                                        <a href={STRIPE_AI_AUDIT_CORE_TEST || '#'} className="card-cta" target="_blank" rel="noopener" onClick={(e)=>{e.preventDefault(); if (!STRIPE_AI_AUDIT_CORE_TEST) { window.alert('Add test Payment Links: run Hardware_Factory/scripts/stripe_create_business_ai_audit_test.py'); return; } particleBurst(e,()=>window.open(STRIPE_AI_AUDIT_CORE_TEST,'_blank'));}}>Book — Core ($397)</a>
+                                        <a href={STRIPE_AI_AUDIT_DEEP_TEST || '#'} className="card-cta" style={{background:'#0040a8'}} target="_blank" rel="noopener" onClick={(e)=>{e.preventDefault(); if (!STRIPE_AI_AUDIT_DEEP_TEST) { window.alert('Add test Payment Links: run Hardware_Factory/scripts/stripe_create_business_ai_audit_test.py'); return; } particleBurst(e,()=>window.open(STRIPE_AI_AUDIT_DEEP_TEST,'_blank'));}}>Book — Deep dive ($997)</a>
                                     </div>
-                                    {(!STRIPE_AI_AUDIT_CORE || !STRIPE_AI_AUDIT_DEEP) && (typeof window !== 'undefined' && (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' || window.location.hostname.startsWith('192.168.'))) ? (
-                                        <p style={{fontSize:'0.72rem',color:'#888',marginTop:'0.65rem',lineHeight:1.4}}>Local preview: add Payment Link URLs in <code style={{fontSize:'0.65rem'}}>STRIPE_AI_AUDIT_*</code> after running the create script.</p>
+                                    {(!STRIPE_AI_AUDIT_CORE_TEST || !STRIPE_AI_AUDIT_DEEP_TEST) ? (
+                                        <p style={{fontSize:'0.72rem',color:'#888',marginTop:'0.65rem',lineHeight:1.4}}>Local staging: paste URLs from <code style={{fontSize:'0.65rem'}}>stripe_ai_audit_links.staging.txt</code> after creating test products.</p>
                                     ) : null}
                                 </div>
                                 <div className="hero-below scroll-reveal glow-visible">
@@ -964,9 +1046,6 @@
                                         <button className="nav-button" onClick={() => setPage('contact')} style={{padding:'12px 24px',fontSize:'1rem'}}>Get a Quote</button>
                                     </div>
                                     <div className="stripe-callout scroll-reveal glow-visible" style={{marginTop:'0.5rem',marginBottom:'1rem'}}><p>Secure checkout via Stripe — pay with card on AI Forge, Quantum Agent Health, &amp; GroundChiFlow.</p></div>
-                                    <p className="scroll-reveal glow-visible" style={{textAlign:'center',fontSize:'0.88rem',margin:'0 0 0.75rem 0'}}>
-                                        <a href="/funnel-gcf.html" style={{color:'#7bc67e'}}>GroundChiFlow — short landing page</a> (for ads &amp; links; same prices as Products)
-                                    </p>
                                     <div className="current-build"><span className="dot"></span>Current Build: Quantum Agent Forge template — MAVEN copy pass</div>
                                     <div className="stack-icons">
                                         <a href="https://railway.app" target="_blank" rel="noopener">Railway</a>
@@ -1024,9 +1103,9 @@
                                     </div>
                                 </div>
                                 <div className="testimonials-placeholder scroll-reveal glow-visible">
-                                    <h3>Testimonials</h3>
-                                    <p className="testimonial-quote">"I've used this to automate my home business — saved hours weekly."</p>
-                                    <p className="testimonial-attribution">– Chris (Founder)</p>
+                                    <h3>Validation status</h3>
+                                    <p className="testimonial-quote">Product claims and marketing copy are under active validation.</p>
+                                    <p className="testimonial-attribution">– Howell Forge staging policy</p>
                                 </div>
                                 <div id="pay-usdc" className="scroll-reveal"><UsdcPaymentSection /></div>
                                 <div className="scroll-reveal"><WalletSection /></div>
@@ -1038,7 +1117,7 @@
                             <>
                                 <div className="products-hero scroll-reveal glow-visible">
                                     <h2 className="typography-pulse-trigger">Quantum Agent Forge — <span className="highlight">Your Business Crew, Ready to Deploy</span></h2>
-                                    <p>8 quantum-enabled AI agents forged for your business. Running 24/7. Self-healing. Telegram-connected. Stripe-integrated. Deploy in a day.</p>
+                                    <p>8 quantum-enabled AI agents forged for your business. Telegram-connected and Stripe-integrated, with implementation scope finalized during onboarding.</p>
                                     <div className="crew-badge">
                                         <span>FORGE Commander</span>
                                         <span>ARIA Monitor</span>
@@ -1051,7 +1130,7 @@
                                     </div>
                                 </div>
                                 <div className="value-callout scroll-reveal glow-visible">
-                                    <p>A human team doing this work costs <strong>$5,000+/month</strong>. Our crew does it for a one-time setup. That is a <strong>10:1 return on Day 1.</strong></p>
+                                    <p>This package is intended to reduce repetitive setup and operations work. Final outcomes depend on implementation quality, business process fit, and ongoing use.</p>
                                 </div>
                                 <div className="playbook-wide scroll-reveal glow-visible">
                                     <h3 className="typography-pulse-trigger">The Playbook</h3>
@@ -1110,7 +1189,7 @@
                                     <h3 className="typography-pulse-trigger">What is Inside Quantum Agent Forge</h3>
                                     <div className="includes-grid bento-grid">
                                         <div className={`include-item expandable bento-span-2${expandedAgent === 'forge' ? ' active' : ''}`} onClick={() => setExpandedAgent(expandedAgent === 'forge' ? null : 'forge')}><span className="icon">⚔️</span><div className="text"><strong>FORGE — Commander</strong> Your direct Telegram line. Oversees the crew. Speaks with authority.</div><div className="expand-content">Primary interface for your crew. Routes commands, coordinates agents, and reports status.</div></div>
-                                        <div className={`include-item expandable bento-span-2${expandedAgent === 'aria' ? ' active' : ''}`} onClick={() => setExpandedAgent(expandedAgent === 'aria' ? null : 'aria')}><span className="icon">📡</span><div className="text"><strong>ARIA — Monitor</strong> Watches uptime, SSL, Stripe, and latency 24/7. Alerts instantly.</div><div className="expand-content">Health checks, SSL expiry, payment status. Telegram alerts when something needs attention.</div></div>
+                                        <div className={`include-item expandable bento-span-2${expandedAgent === 'aria' ? ' active' : ''}`} onClick={() => setExpandedAgent(expandedAgent === 'aria' ? null : 'aria')}><span className="icon">📡</span><div className="text"><strong>ARIA — Monitor</strong> Tracks uptime, SSL, Stripe status, and latency with alerting.</div><div className="expand-content">Health checks, SSL expiry, payment status. Telegram alerts when something needs attention.</div></div>
                                         <div className={`include-item expandable${expandedAgent === 'nova' ? ' active' : ''}`} onClick={() => setExpandedAgent(expandedAgent === 'nova' ? null : 'nova')}><span className="icon">🛡️</span><div className="text"><strong>NOVA — Security</strong> HTTPS, headers, CSP. Paranoid so you do not have to be.</div><div className="expand-content">Headers, CSP, security headers. Keeps your stack locked down.</div></div>
                                         <div className={`include-item expandable${expandedAgent === 'maven' ? ' active' : ''}`} onClick={() => setExpandedAgent(expandedAgent === 'maven' ? null : 'maven')}><span className="icon">📣</span><div className="text"><strong>MAVEN — Marketing</strong> Drafts content and monitors brand. You approve before anything posts.</div><div className="expand-content">Social drafts, brand monitoring. Human-in-the-loop for all outbound content.</div></div>
                                         <div className={`include-item expandable${expandedAgent === 'rex' ? ' active' : ''}`} onClick={() => setExpandedAgent(expandedAgent === 'rex' ? null : 'rex')}><span className="icon">🏭</span><div className="text"><strong>REX — Shop Floor</strong> Tracks orders and production pipeline. Keeps things moving.</div><div className="expand-content">Order tracking, inventory, production pipeline. Built for makers.</div></div>
@@ -1140,7 +1219,7 @@
                                     <div className="pricing-card">
                                         <p className="tier-name">Starter</p>
                                         <p className="price">$19 <span>/ mo</span> &nbsp;·&nbsp; $199 <span>/ yr</span></p>
-                                        <p className="price-sub">14-day free trial on both — then pay monthly, or choose yearly and save about <strong style={{color:'#9fdf9f'}}>$29</strong> vs 12 months at $19.</p>
+                                        <p className="price-sub">14-day free trial on both monthly and yearly plans.</p>
                                         <ul className="feature-list">
                                             <li>Voice or text → part script</li>
                                             <li>Blender or FreeCAD output (STL + STEP)</li>
@@ -1167,7 +1246,7 @@
                                         <div className="featured-badge">BEST VALUE</div>
                                         <p className="tier-name">Pro</p>
                                         <p className="price">$49 <span>/ mo</span></p>
-                                        <p className="price-sub">or $499/year — save $89</p>
+                                        <p className="price-sub">or $499/year</p>
                                         <ul className="feature-list">
                                             <li>Everything in Starter</li>
                                             <li>Higher volume, priority support</li>
@@ -1250,7 +1329,7 @@
                                 </div>
                                 <div className="testimonials-placeholder scroll-reveal glow-visible" style={{maxWidth:'720px',marginLeft:'auto',marginRight:'auto'}}>
                                     <h3>Founding pricing</h3>
-                                    <p className="testimonial-quote">While we expand the exercise video library. Cancel anytime on monthly; annual saves vs 12× monthly.</p>
+                                    <p className="testimonial-quote">Early pricing while we continue expanding the exercise video library. Cancel anytime on monthly.</p>
                                 </div>
                                 <div className="pricing-grid scroll-reveal glow-visible">
                                     <div className="pricing-card">
@@ -1270,7 +1349,7 @@
                                         <div className="featured-badge">FOUNDING</div>
                                         <p className="tier-name">Annual</p>
                                         <p className="price">$250 <span>/ yr</span></p>
-                                        <p className="price-sub">Save vs monthly — ~$20.83/mo</p>
+                                        <p className="price-sub">Annual plan option</p>
                                         <ul className="feature-list">
                                             <li>Everything in Monthly</li>
                                             <li>About two months free vs monthly</li>
@@ -1305,13 +1384,9 @@
                                         <span>Nutrition</span>
                                         <span>Longevity</span>
                                     </div>
-                                    <p style={{marginTop:'1rem',marginBottom:0,fontSize:'0.95rem'}}>
-                                        <a href="/funnel-gcf.html" style={{color:'#7bc67e'}}>Campaign landing page</a>
-                                        {' '}— short single-page path for ads &amp; social (same checkout as below).
-                                    </p>
                                 </div>
                                 <div className="value-callout scroll-reveal glow-visible">
-                                    <p>Competitors charge <strong>$14.99/mo</strong> for meditation alone. GroundChiFlow gives you breathwork, gut health, tai chi, rehab, nutrition, and more — at a fraction of the cost.</p>
+                                    <p>GroundChiFlow combines breathwork, tai chi, rehab routines, gut health, nutrition, and longevity tools in one browser-based app.</p>
                                 </div>
                                 <div className="testimonials-placeholder scroll-reveal glow-visible" style={{maxWidth:'640px',marginLeft:'auto',marginRight:'auto'}}>
                                     <h3>Founder story</h3>
@@ -1338,10 +1413,10 @@
                                         <div className="featured-badge">BEST VALUE</div>
                                         <p className="tier-name">Annual</p>
                                         <p className="price">$79.99 <span>/ yr</span></p>
-                                        <p className="price-sub">Save 33% — ~$6.67/mo</p>
+                                        <p className="price-sub">Annual plan option</p>
                                         <ul className="feature-list">
                                             <li>Everything in Monthly</li>
-                                            <li>2 months free vs monthly</li>
+                                            <li>Annual billing option</li>
                                             <li>Lock in this price</li>
                                             <li>Cancel anytime — no commitment</li>
                                         </ul>
