@@ -90,12 +90,12 @@ jobs:
               }
             "
           fi
-          npm install --legacy-peer-deps --no-audit --no-fund
-          npm install react-native-web --legacy-peer-deps --no-audit --no-fund
+          npm install --legacy-peer-deps --no-fund
+          npm install react-native-web --legacy-peer-deps --no-fund
           npx expo install react-native-web --fix
-          npm install react-dom --legacy-peer-deps --no-audit --no-fund
+          npm install react-dom --legacy-peer-deps --no-fund
           npx expo install react-dom --fix
-          npm install react-native-worklets --legacy-peer-deps --no-audit --no-fund
+          npm install react-native-worklets --legacy-peer-deps --no-fund
           npx expo install react-native-worklets --fix
           npm install --legacy-peer-deps
           npx expo export --platform web --output-dir dist
