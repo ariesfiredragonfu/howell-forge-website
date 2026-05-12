@@ -1,5 +1,25 @@
 # Deploy options (current plan)
 
+## CDN (what it is and how to “enable” it)
+
+A **CDN** (content delivery network) caches copies of your **static files** (HTML, CSS, JS, images) on servers **closer to visitors** around the world. Browsers download from a nearby edge node, which usually means **faster first paint** and less load on your origin server. CDNs also often provide **HTTP/2 or HTTP/3**, compression, and DDoS absorption at the edge.
+
+**This repo cannot flip IONOS’s CDN switch for you**—that lives in your **hosting / domain control panel**. Typical paths:
+
+1. **IONOS built-in CDN** (if included on your plan): IONOS Help Center → search “CDN” or open **Domains & SSL** / **Performance** for the site and enable CDN or “Website Accelerator” for `howell-forge.com`. Exact names vary by product line (Deploy Now vs shared hosting vs VPS).
+
+2. **Cloudflare (common, generous free tier)**  
+   - Add the site to Cloudflare and point **nameservers** at Cloudflare (at your registrar or IONOS DNS, depending where DNS is managed).  
+   - Put the **orange-cloud “Proxied”** toggle on for `A`/`AAAA` or `CNAME` records so traffic goes **through** Cloudflare—that turns on their CDN and TLS edge.  
+   - After cutover, purge cache when you deploy big static changes.
+
+3. **Already using CDNs for libraries**  
+   The homepage loads React and other scripts from **cdnjs** and **jsdelivr**—those are third-party CDNs. Your **first-party** assets (`index.html`, images, `aria-chat.js`) still come from **howell-forge.com** until you put a CDN/proxy in front of the origin or use a static asset host.
+
+**After enabling a CDN:** wait for DNS TTL, hard-refresh the site, and re-run the IONOS optimizer so it sees the new delivery path.
+
+---
+
 ## Current constraint
 
 **IONOS Deploy Now (Docker)** and **VPS/SSH/SFTP** are not available on the current IONOS hosting contract. So we can’t use the “Deploy to IONOS” workflow or upload via SSH/SFTP to IONOS until the plan is upgraded.

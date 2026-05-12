@@ -16,6 +16,41 @@
     <meta property="og:type" content="website">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content="https://howell-forge.com/og-image.jpg">
+    <meta property="og:url" content="https://howell-forge.com/">
+    <link rel="canonical" href="https://howell-forge.com/">
+
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <meta name="theme-color" content="#111111">
+    <link rel="sitemap" type="application/xml" title="Sitemap" href="https://howell-forge.com/sitemap.xml">
+
+    <meta name="keywords" content="Howell Forge, Voice to Part, CNC machining, precision metal fabrication, G-code, CAM, CAD, prototyping, sheet metal, job shop, US manufacturing, hardware startup, maker, indie maker, build in public, business automation, AI agents, agent orchestration, Stripe checkout, GroundChiFlow, health coaching app, industrial automation, shop floor, mechanical engineering, product design, small batch, metal fab, toolpath, fixture design, enclosure, bracket, audit, Business AI Audit, Fortress, Grok bridge, voice UI, MQTT, n8n, ElizaOS, Agent Forge, Cursor to CNC, SaaS, B2B, manufacturing software">
+    <meta property="article:tag" content="Howell Forge">
+    <meta property="article:tag" content="Voice to Part">
+    <meta property="article:tag" content="CNC machining">
+    <meta property="article:tag" content="precision metal fabrication">
+    <meta property="article:tag" content="AI business automation">
+    <meta property="article:tag" content="hardware startup">
+    <meta property="article:tag" content="GroundChiFlow">
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "name": "Howell Forge — From Cursor to CNC",
+      "url": "https://howell-forge.com/",
+      "description": "Precision metal fabrication and AI-powered business automation for makers and operators.",
+      "inLanguage": "en-US",
+      "keywords": [
+        "Howell Forge", "Voice to Part", "CNC", "precision metal", "G-code", "CAM", "CAD", "prototyping",
+        "manufacturing", "hardware startup", "AI agents", "business automation", "GroundChiFlow",
+        "industrial automation", "shop floor", "Stripe", "Business AI Audit", "US manufacturing"
+      ]
+    }
+    </script>
 
     <script crossorigin src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
     <script crossorigin src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
@@ -594,10 +629,73 @@
             .staging-banner { animation: none; background: #b45309; }
         }
         @media (max-width: 600px) { .payment-layout { flex-direction: column; } .payment-qr img { width: 100px; height: 100px; } .account-banner { flex-direction: column; align-items: flex-start; } .hero-above { font-size: 1.6rem; } .header-tagline { font-size: 0.85rem; } .home-products { grid-template-columns: 1fr; } .landing-cta { flex-direction: column; } .landing-cta .nav-button, .landing-cta a { width: 100%; text-align: center; box-sizing: border-box; } }
+
+        /* Site overview for crawlers and SEO audits (visible below the interactive app) */
+        .hf-seo-narrative {
+            max-width: 760px;
+            margin: 0 auto 3rem;
+            padding: 2rem 1.5rem 2.5rem;
+            background: var(--hf-panel);
+            border: var(--hf-panel-border);
+            border-radius: var(--hf-panel-radius);
+            box-shadow: var(--hf-panel-shadow);
+            color: #d8d8e0;
+            font-size: 0.95rem;
+            line-height: 1.7;
+            backdrop-filter: var(--hf-glass);
+            -webkit-backdrop-filter: var(--hf-glass);
+        }
+        .hf-seo-narrative h2 { color: #fff; font-size: 1.35rem; margin-top: 0; letter-spacing: 0.02em; }
+        .hf-seo-narrative h3 { color: #e8e8f0; font-size: 1.05rem; margin: 1.5rem 0 0.5rem; }
+        .hf-seo-narrative p { margin: 0.75rem 0; }
+        .hf-seo-narrative ul { margin: 0.5rem 0 0.75rem 1.2rem; }
+        .hf-seo-hashtags {
+            font-size: 0.82rem;
+            color: #a8a8bc;
+            line-height: 1.7;
+            word-break: break-word;
+            margin-top: 0.5rem;
+        }
     </style>
 </head>
 <body>
     <div id="root"><div class="loading" id="loading-msg">Loading...</div></div>
+
+    <article class="hf-seo-narrative" id="site-overview">
+        <h2>About Howell Forge</h2>
+        <p>Howell Forge is a precision metal fabrication and software studio built for makers, hardware startups, and operators who want serious manufacturing without losing velocity. We combine CNC-ready workflows, careful tolerances, and modern automation so you can move from idea to cutting code with fewer surprises on the shop floor.</p>
+        <p>Our roots are in real parts: fixtures, brackets, enclosures, and one-off components where fit and finish matter. Whether you are iterating on a prototype or locking a release for production, we care about traceable steps, clear drawings, and honest communication about what the machines can and cannot promise.</p>
+
+        <h3>From design intent to toolpaths</h3>
+        <p>Voice-to-Part and related tooling are part of our broader story: reduce friction between intent and execution. The goal is not novelty for its own sake; it is to shorten the loop between what you say you need and what the CAM stack can safely produce. Along the way we emphasize guardrails, human review at the right checkpoints, and documentation that survives handoff to another engineer six months later.</p>
+
+        <h3>AI automation that respects boundaries</h3>
+        <p>On the automation side, Howell Forge packages an eight-agent crew concept—command, monitoring, security, marketing, shop floor, finance, development, and analytics personas—so business owners can see a coherent system instead of a pile of disconnected bots. We are explicit about human-in-the-loop approvals for outbound content, financial moves, and anything that touches customer trust.</p>
+        <p>Security and reliability are treated as product features, not afterthoughts. HTTPS, sane headers, Stripe-backed checkout where payments apply, and operational habits like monitoring and alerting are described in plain language so non-specialists can understand what is automated and what still needs a human signature.</p>
+
+        <h3>Who we work best with</h3>
+        <ul>
+            <li>Founders shipping a first hardware SKU who need a partner that speaks both G-code and go-to-market.</li>
+            <li>Small teams modernizing quoting, intake, and follow-up without hiring a full internal IT department.</li>
+            <li>Shops that want repeatable packaging around audits, assessments, and improvement backlogs.</li>
+        </ul>
+
+        <h3>Offers and how to engage</h3>
+        <p>This site highlights Voice-to-Part services, AI ecosystem bundles in staging, and pathways like the Business AI Audit where the deliverable is clarity: what to automate first, what to measure, and what to defer. Stripe links are used for transparent checkout when a product is live; staging and test flows are labeled so you always know which environment you are in.</p>
+        <p>GroundChiFlow, where featured, points to our health-and-longevity product lane—separate from metal work but aligned on the same principle: build calm systems people can sustain. Across lanes we avoid hype language about guaranteed outcomes; we prefer checklists, runbooks, and evidence you can verify.</p>
+
+        <h3>Quality, safety, and ethics</h3>
+        <p>Manufacturing guidance on this site is general in nature until a formal engineering review is contracted for your specific geometry, material lot, and machine envelope. We do not substitute marketing copy for signed drawings. For AI features, we follow provider terms of service and encourage customers to run their own legal and compliance review where regulated industries apply.</p>
+        <p>If you are comparing vendors, ask about revision policy, source file handoff, and how changes propagate from CAD to CAM to QC. Those answers matter more than buzzwords. Howell Forge is happiest when expectations are written down early and updated as the design evolves.</p>
+
+        <h3>Contact and next steps</h3>
+        <p>Email remains the most reliable way to reach us for quotes, partnerships, and technical questions: use the contact page linked in the header when the app has finished loading, or write directly if you already have a thread. We read every serious inquiry and will tell you quickly if a job is outside our sweet spot rather than overpromising capacity.</p>
+        <p>Thank you for reading this far. Whether you came for metal, for automation, or for both, we built Howell Forge to reward careful operators—people who measure twice, automate once, and still leave room for craftsmanship.</p>
+
+        <h3>Topics for search and social</h3>
+        <p class="hf-seo-hashtags" aria-label="Suggested hashtags for social posts">Suggested hashtags when you share Howell Forge (copy as needed): #HowellForge #VoiceToPart #CursorToCNC #CNC #CNCMachining #PrecisionMetal #MetalFabrication #Manufacturing #USManufacturing #HardwareStartup #IndieMaker #BuildInPublic #MakerMovement #GCode #CAM #CAD #Prototype #Prototyping #Toolpath #MachineShop #JobShop #FabLab #SheetMetal #MechanicalEngineering #ProductDesign #IndustrialAutomation #ShopFloor #BusinessAutomation #AIAgents #AgentOrchestration #SaaS #B2B #Stripe #GroundChiFlow #HealthTech #VoiceUI #StartupLife #Metalworking #SmallBatch #QualityManufacturing #EngineeringTwitter #TechForGood</p>
+    </article>
+
     <script>
         setTimeout(function() {
             var root = document.getElementById('root');

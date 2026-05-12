@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://howell-forge.com/sitemap.xml

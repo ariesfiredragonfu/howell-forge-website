@@ -1,4 +1,8 @@
 # Options +FollowSymLinks removed - causes 500 on IONOS
+<IfModule mod_mime.c>
+    AddType application/manifest+json webmanifest
+</IfModule>
+
 # Security headers (Security agent + HSTS)
 <IfModule mod_headers.c>
     Header set X-Content-Type-Options "nosniff"

@@ -19,10 +19,6 @@ groundchiflow-src/
 credentials.json
 *-credentials.json
 secrets.json
-*.pem
-*.key
-*.p12
-*.jks
-credentials.json
-*-credentials.json
-secrets.json
+
+# Local HTML/JS snapshots (not for deploy)
+backups/
