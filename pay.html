@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Howell Forge — Pay / Contact</title>
+  <meta name="description" content="Pay Howell Forge via Venmo or Cash App, or email Chris." />
+  <meta name="robots" content="noindex" />
+  <style>
+    :root {
+      --bg: #0c1018;
+      --ink: #f2f4f7;
+      --muted: #a8b0bd;
+      --line: rgba(255, 255, 255, 0.12);
+      --venmo: #008cff;
+      --cash: #00c853;
+      --mail: #4d9fff;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: "Segoe UI", system-ui, sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(900px 420px at 15% -10%, rgba(0, 140, 255, 0.18), transparent 55%),
+        radial-gradient(700px 380px at 100% 0%, rgba(0, 200, 83, 0.12), transparent 50%),
+        var(--bg);
+      display: grid;
+      place-items: center;
+      padding: 1.5rem;
+    }
+    main {
+      width: min(420px, 100%);
+      text-align: center;
+    }
+    .brand {
+      font-size: clamp(1.6rem, 5vw, 2rem);
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      margin: 0 0 0.35rem;
+    }
+    .lead {
+      margin: 0 0 1.5rem;
+      color: var(--muted);
+      font-size: 0.98rem;
+      line-height: 1.45;
+    }
+    .links {
+      display: grid;
+      gap: 0.75rem;
+    }
+    a.pay {
+      display: block;
+      text-decoration: none;
+      color: #fff;
+      font-weight: 700;
+      font-size: 1.05rem;
+      padding: 0.95rem 1.1rem;
+      border-radius: 12px;
+      border: 1px solid var(--line);
+      transition: transform 0.15s ease, filter 0.15s ease;
+    }
+    a.pay:hover { transform: translateY(-2px); filter: brightness(1.06); }
+    a.pay:active { transform: translateY(0); }
+    a.venmo { background: var(--venmo); }
+    a.cash { background: var(--cash); }
+    a.mail { background: transparent; color: var(--mail); border-color: rgba(77, 159, 255, 0.45); }
+    .handles {
+      margin: 1.25rem 0 0;
+      padding: 0.9rem 1rem;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      text-align: left;
+      font-size: 0.86rem;
+      color: var(--muted);
+      line-height: 1.55;
+    }
+    .handles strong { color: var(--ink); font-weight: 600; }
+    .handles code {
+      font-family: ui-monospace, Menlo, Consolas, monospace;
+      font-size: 0.84rem;
+      color: #c5d4ea;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <h1 class="brand">Howell Forge</h1>
+    <p class="lead">Pay or reach out — tap a link below.</p>
+    <div class="links">
+      <a class="pay venmo" href="https://venmo.com/u/ChrisHowell76" target="_blank" rel="noopener noreferrer">Pay with Venmo</a>
+      <a class="pay cash" href="https://cash.app/$ChristopherHowell50" target="_blank" rel="noopener noreferrer">Pay with Cash App</a>
+      <a class="pay mail" href="mailto:chrishowell@howell-forge.com">Email Chris</a>
+    </div>
+    <div class="handles">
+      <div><strong>Venmo:</strong> <code>@ChrisHowell76</code></div>
+      <div><strong>Cash App:</strong> <code>$ChristopherHowell50</code></div>
+      <div><strong>Email:</strong> <code>chrishowell@howell-forge.com</code></div>
+    </div>
+  </main>
+</body>
+</html>
