@@ -214,6 +214,34 @@
         .copy-btn:hover { background: #0040cc; }
         .copy-btn.copied { background: #28a745; }
         .payment-note { font-size: 0.78rem; color: #ddd; margin-top: 0.75rem; padding: 8px 10px; background: var(--hf-panel-mute); border: var(--hf-panel-border); border-left: 3px solid #f0ad00; border-radius: 6px; backdrop-filter: var(--hf-glass); -webkit-backdrop-filter: var(--hf-glass); }
+
+        /* ── Venmo / Cash App ── */
+        .pay-methods { margin-top: 2rem; }
+        .pay-methods > h3 { margin: 0 0 0.35rem 0; color: #fff; font-size: 1.25rem; text-shadow: 0 2px 12px rgba(0,0,0,0.55); }
+        .pay-methods > .pay-methods-lead { margin: 0 0 1rem 0; color: #ccc; font-size: 0.95rem; line-height: 1.5; }
+        .pay-methods-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1rem; }
+        .pay-method-card { padding: 1.35rem 1.25rem; background: var(--hf-panel); border: var(--hf-panel-border); border-radius: var(--hf-panel-radius); box-shadow: var(--hf-panel-shadow); backdrop-filter: var(--hf-glass); -webkit-backdrop-filter: var(--hf-glass); display: flex; flex-direction: column; gap: 0.85rem; }
+        .pay-method-card.venmo { border-color: rgba(61, 149, 255, 0.35); }
+        .pay-method-card.cashapp { border-color: rgba(0, 200, 100, 0.35); }
+        .pay-method-head { display: flex; align-items: center; gap: 0.65rem; }
+        .pay-method-logo { width: 36px; height: 36px; border-radius: 10px; display: grid; place-items: center; flex-shrink: 0; font-weight: 800; font-size: 0.95rem; color: #fff; letter-spacing: -0.02em; }
+        .pay-method-logo.venmo { background: linear-gradient(145deg, #008cff, #3d95ff); }
+        .pay-method-logo.cashapp { background: linear-gradient(145deg, #00d632, #00a824); }
+        .pay-method-head h4 { margin: 0; color: #fff; font-size: 1.05rem; }
+        .pay-method-head span { display: block; color: #999; font-size: 0.75rem; margin-top: 2px; }
+        .pay-method-body { display: flex; gap: 1rem; align-items: flex-start; flex-wrap: wrap; }
+        .pay-method-qr img { width: 110px; height: 110px; border-radius: 8px; display: block; background: #fff; }
+        .pay-method-card.venmo .pay-method-qr img { border: 3px solid rgba(61, 149, 255, 0.35); }
+        .pay-method-card.cashapp .pay-method-qr img { border: 3px solid rgba(0, 200, 100, 0.35); }
+        .pay-method-meta { flex: 1; min-width: 140px; }
+        .pay-method-meta p { margin: 0 0 0.45rem 0; font-size: 0.88rem; color: #ccc; }
+        .pay-method-actions { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-top: 0.35rem; }
+        .pay-method-actions a, .pay-method-actions button { text-decoration: none; font-size: 0.8rem; padding: 7px 12px; border-radius: 6px; border: none; cursor: pointer; font-family: inherit; font-weight: 600; }
+        .pay-open-venmo { background: #008cff; color: #fff; }
+        .pay-open-venmo:hover { background: #0070d6; }
+        .pay-open-cashapp { background: #00c853; color: #fff; }
+        .pay-open-cashapp:hover { background: #00a844; }
+        .pay-mock-banner { font-size: 0.78rem; color: #f0d080; margin: 0 0 1rem 0; padding: 8px 10px; background: var(--hf-panel-mute); border: var(--hf-panel-border); border-left: 3px solid #f0ad00; border-radius: 6px; }
         .wallet-section { text-align: center; margin: 1.5rem 0 0 0; padding: 1rem 1.25rem; background: var(--hf-panel); border: var(--hf-panel-border); border-radius: var(--hf-panel-radius-sm); box-shadow: var(--hf-panel-shadow); backdrop-filter: var(--hf-glass); -webkit-backdrop-filter: var(--hf-glass); }
         .wallet-option { background-color: #4CAF50; color: white; padding: 10px 24px; border: none; border-radius: 4px; cursor: pointer; font-size: 15px; }
         .wallet-option:hover { background-color: #45a049; }
@@ -711,6 +739,13 @@
     <script type="text/babel">
         const BUSINESS_WALLET = "0x62eF356e555BCb06E4aD3328367df9e2d9d74168";
         const QR_URL = `https://api.qrserver.com/v1/create-qr-code/?size=130x130&data=${BUSINESS_WALLET}`;
+        const VENMO_HANDLE = "ChrisHowell76";
+        const CASHAPP_CASHTAG = "$ChristopherHowell50";
+        const VENMO_URL = `https://venmo.com/u/${encodeURIComponent(VENMO_HANDLE)}`;
+        const CASHAPP_URL = `https://cash.app/${encodeURIComponent(CASHAPP_CASHTAG)}`;
+        const VENMO_QR_URL = `https://api.qrserver.com/v1/create-qr-code/?size=110x110&data=${encodeURIComponent(VENMO_URL)}`;
+        const CASHAPP_QR_URL = `https://api.qrserver.com/v1/create-qr-code/?size=110x110&data=${encodeURIComponent(CASHAPP_URL)}`;
+        const PAY_HANDLES_ARE_MOCK = false;
         const API = "https://howell-forge-shop-production.up.railway.app";
         const STRIPE_PLAYBOOK = "https://buy.stripe.com/3cIfZa1h7cqu8SI8ig7Zu05";
         const STRIPE_VOICE_PART_PER_JOB = "https://buy.stripe.com/cNi3co4tj76ad8Yaqo7Zu06";
@@ -957,7 +992,7 @@
             const [error, setError] = React.useState(null);
             const [web3, setWeb3] = React.useState(null);
             const [providerType, setProviderType] = React.useState(null);
-            const [copied, setCopied] = React.useState(false);
+            const [copiedKey, setCopiedKey] = React.useState(null);
 
             React.useEffect(() => {
                 if (window.ethereum) { const w = new Web3(window.ethereum); setWeb3(w); setProviderType(window.ethereum.isMetaMask ? 'MetaMask' : window.ethereum.isBraveWallet ? 'Brave' : 'Wallet'); }
@@ -1011,7 +1046,13 @@
             }, [page]);
 
             const handleLogout = () => { clearAuth(); setAuthUser(null); setPage('home'); };
-            const copyAddress = () => { navigator.clipboard.writeText(BUSINESS_WALLET).then(() => { setCopied(true); setTimeout(() => setCopied(false), 2000); }); };
+            const copyText = (key, text) => {
+                navigator.clipboard.writeText(text).then(() => {
+                    setCopiedKey(key);
+                    setTimeout(() => setCopiedKey(null), 2000);
+                });
+            };
+            const copyAddress = () => copyText('usdc', BUSINESS_WALLET);
             const connectWallet = async () => {
                 if (!web3) { setError('Please install MetaMask or use Brave Browser'); return; }
                 setIsConnecting(true); setError(null);
@@ -1023,6 +1064,72 @@
                 } catch (err) { setError(err.code === 4001 ? 'Connection rejected.' : err.message || 'Failed to connect'); } finally { setIsConnecting(false); }
             };
 
+            const InstantPaySection = () => (
+                <div className="pay-methods scroll-reveal" id="pay-instant">
+                    <h3>Pay with Venmo or Cash App</h3>
+                    <p className="pay-methods-lead">Quick peer-to-peer options for deposits, invoices, and small jobs. Include your name or invoice # in the note.</p>
+                    {PAY_HANDLES_ARE_MOCK && (
+                        <p className="pay-mock-banner" role="status">
+                            Local mock — handles are placeholders (<code>@{VENMO_HANDLE}</code> / <code>{CASHAPP_CASHTAG}</code>). Tell me your real Venmo username and Cash App $Cashtag and I will swap them in before live.
+                        </p>
+                    )}
+                    <div className="pay-methods-grid">
+                        <div className="pay-method-card venmo">
+                            <div className="pay-method-head">
+                                <div className="pay-method-logo venmo" aria-hidden="true">V</div>
+                                <div>
+                                    <h4>Venmo</h4>
+                                    <span>@{VENMO_HANDLE}</span>
+                                </div>
+                            </div>
+                            <div className="pay-method-body">
+                                <div className="pay-method-qr">
+                                    <img src={VENMO_QR_URL} alt={`Venmo QR for @${VENMO_HANDLE}`} />
+                                </div>
+                                <div className="pay-method-meta">
+                                    <p>Scan or open Venmo, then send to <strong>@{VENMO_HANDLE}</strong>.</p>
+                                    <div className="address-box">
+                                        <code>@{VENMO_HANDLE}</code>
+                                        <button type="button" className={`copy-btn${copiedKey === 'venmo' ? ' copied' : ''}`} onClick={() => copyText('venmo', `@${VENMO_HANDLE}`)}>
+                                            {copiedKey === 'venmo' ? '✓ Copied' : 'Copy'}
+                                        </button>
+                                    </div>
+                                    <div className="pay-method-actions">
+                                        <a className="pay-open-venmo" href={VENMO_URL} target="_blank" rel="noopener noreferrer">Open Venmo</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="pay-method-card cashapp">
+                            <div className="pay-method-head">
+                                <div className="pay-method-logo cashapp" aria-hidden="true">$</div>
+                                <div>
+                                    <h4>Cash App</h4>
+                                    <span>{CASHAPP_CASHTAG}</span>
+                                </div>
+                            </div>
+                            <div className="pay-method-body">
+                                <div className="pay-method-qr">
+                                    <img src={CASHAPP_QR_URL} alt={`Cash App QR for ${CASHAPP_CASHTAG}`} />
+                                </div>
+                                <div className="pay-method-meta">
+                                    <p>Scan or open Cash App, then send to <strong>{CASHAPP_CASHTAG}</strong>.</p>
+                                    <div className="address-box">
+                                        <code>{CASHAPP_CASHTAG}</code>
+                                        <button type="button" className={`copy-btn${copiedKey === 'cashapp' ? ' copied' : ''}`} onClick={() => copyText('cashapp', CASHAPP_CASHTAG)}>
+                                            {copiedKey === 'cashapp' ? '✓ Copied' : 'Copy'}
+                                        </button>
+                                    </div>
+                                    <div className="pay-method-actions">
+                                        <a className="pay-open-cashapp" href={CASHAPP_URL} target="_blank" rel="noopener noreferrer">Open Cash App</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            );
+
             const UsdcPaymentSection = () => (
                 <div className="payment-section">
                     <h3>Pay with USDC</h3>
@@ -1031,7 +1138,7 @@
                         <div className="payment-qr"><img src={QR_URL} alt="Scan to pay with USDC on Base" /><p>Scan to pay</p></div>
                         <div className="payment-details">
                             <p><strong>Send USDC to this address on Base:</strong></p>
-                            <div className="address-box"><code>{BUSINESS_WALLET}</code><button className={`copy-btn${copied ? ' copied' : ''}`} onClick={copyAddress}>{copied ? '✓ Copied' : 'Copy'}</button></div>
+                            <div className="address-box"><code>{BUSINESS_WALLET}</code><button className={`copy-btn${copiedKey === 'usdc' ? ' copied' : ''}`} onClick={copyAddress}>{copiedKey === 'usdc' ? '✓ Copied' : 'Copy'}</button></div>
                             <p style={{fontSize:'0.85rem',color:'#888',marginTop:'0.75rem'}}><strong>Token:</strong> USDC &nbsp;|&nbsp; <strong>Network:</strong> Base (Coinbase L2)</p>
                             <div className="payment-note">⚠️ Only send <strong>USDC on the Base network</strong>. Sending other tokens or using a different network may result in permanent loss of funds.</div>
                         </div>
@@ -1137,7 +1244,7 @@
                                 <div className="hero-below scroll-reveal glow-visible">
                                     <p className="landing-subhead">We have built many businesses. In the process, we came up with an automated way to run them. That is how we created Quantum Agent Forge — by automating the setup and startup so more time goes to <em>doing</em> the business, not setting it up or running it. Our agents are quantum-enabled.</p>
                                     <div className="landing-cta">
-                                        <button type="button" className="nav-button primary brutal-cta" style={{padding:'14px 28px',fontSize:'1.05rem'}} onClick={(e)=>{ particleBurst(e, ()=>{ var el = document.getElementById('pay-usdc'); if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' }); }); }}>Start with Quantum Agent Forge – Pay USDC Now or Request Quote</button>
+                                        <button type="button" className="nav-button primary brutal-cta" style={{padding:'14px 28px',fontSize:'1.05rem'}} onClick={(e)=>{ particleBurst(e, ()=>{ var el = document.getElementById('pay-instant') || document.getElementById('pay-usdc'); if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' }); }); }}>Start with Quantum Agent Forge – Venmo, Cash App, USDC, or Request Quote</button>
                                         <button className="nav-button" onClick={() => setPage('products')} style={{padding:'12px 24px',fontSize:'1rem'}}>See All Products</button>
                                         <button className="nav-button" onClick={() => setPage('quantumAgentHealth')} style={{padding:'12px 24px',fontSize:'1rem',background:'#6f42c1'}}>Quantum Agent Health</button>
                                         <button className="nav-button" onClick={() => setPage('groundchiflow')} style={{padding:'12px 24px',fontSize:'1rem',background:'#28a745'}}>GroundChiFlow App</button>
@@ -1205,6 +1312,7 @@
                                     <p className="testimonial-quote">Product claims and marketing copy are under active validation.</p>
                                     <p className="testimonial-attribution">– Howell Forge staging policy</p>
                                 </div>
+                                <InstantPaySection />
                                 <div id="pay-usdc" className="scroll-reveal"><UsdcPaymentSection /></div>
                                 <div className="scroll-reveal"><WalletSection /></div>
                                 <div className="scroll-reveal"><QuoteForm user={authUser} /></div>
