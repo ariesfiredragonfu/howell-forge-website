@@ -68,9 +68,10 @@ jobs:
             const app = JSON.parse(fs.readFileSync('app.json', 'utf8'));
             if (!app.expo) app.expo = {};
             if (!app.expo.experiments) app.expo.experiments = {};
-            app.expo.experiments.baseUrl = '/howell-forge-website/gcf';
+            // Custom domain (howell-forge.com) serves from site root; use /gcf not /howell-forge-website/gcf
+            app.expo.experiments.baseUrl = '/gcf';
             fs.writeFileSync('app.json', JSON.stringify(app, null, 2));
-            console.log('Set baseUrl for GitHub Pages subpath');
+            console.log('Set baseUrl for custom-domain root (/gcf)');
             "
           fi
           # Force bridge URL into .env so Expo web build definitely sees it (avoids CI env not inlining)
