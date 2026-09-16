@@ -1,0 +1,44 @@
+name: assemble-index
+on:
+  push:
+    branches: [tidy/voice-product-2026-09-16]
+    paths:
+      - '_assemble/**'
+      - '.github/workflows/assemble-index.yml'
+jobs:
+  assemble:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: tidy/voice-product-2026-09-16
+      - name: Assemble index.html from parts
+        run: |
+          python3 << 'PY'
+          import base64, gzip, pathlib, glob, hashlib
+          parts = sorted(glob.glob('_assemble/index.part-*.b64'))
+          assert parts, 'missing parts'
+          print('parts', parts)
+          b64 = ''.join(pathlib.Path(p).read_text().strip() for p in parts)
+          # Fix known single-char corruption if present (Wzij -> Wwij)
+          b64 = b64.replace('kka+9Wzij6pnkMHqMuPto', 'kka+9Wwij6pnkMHqMuPto')
+          # Fix known single-char MCP transcription errors in parts 13/15/16 if present
+          b64 = b64.replace('zh1FqYZR3KWE7KrMjGCL', 'zh1FqTZR3KWE7KrMjGCL')
+          b64 = b64.replace('uvf/tvpXCAHHGUbRY54', 'uvf/vvpXCAHHGUbRY54')
+          b64 = b64.replace('Fl1Rsxqt5yNWcX1rosbh', 'Fl1Rsxqd5yNWcX1rosbh')
+          data = gzip.decompress(base64.b64decode(b64)).rstrip(b'\n')
+          pathlib.Path('index.html').write_bytes(data)
+          print('wrote index.html', len(data), hashlib.sha256(data).hexdigest())
+          assert data.startswith(b'<!DOCTYPE html>')
+          assert data.rstrip().endswith(b'</html>')
+          PY
+      - name: Commit restored index.html
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.html
+          git diff --cached --quiet && echo 'no change' && exit 0
+          git commit -m "tidy: assemble restored index.html Voice/product polish"
+          git push

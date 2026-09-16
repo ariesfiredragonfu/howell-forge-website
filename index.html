@@ -709,7 +709,7 @@
         </ul>
 
         <h3>Offers and how to engage</h3>
-        <p>This site highlights Voice-to-Part services, AI ecosystem bundles in staging, and pathways like the Business AI Audit where the deliverable is clarity: what to automate first, what to measure, and what to defer. Stripe links are used for transparent checkout when a product is live; staging and test flows are labeled so you always know which environment you are in.</p>
+        <p>This site highlights Voice-to-Part services and pathways like Quantum Agent Health and GroundChiFlow where the deliverable is clarity: what to automate first, what to measure, and what to defer. Stripe links are used for transparent checkout when a product is live; staging and test flows are labeled so you always know which environment you are in.</p>
         <p>GroundChiFlow, where featured, points to our health-and-longevity product lane—separate from metal work but aligned on the same principle: build calm systems people can sustain. Across lanes we avoid hype language about guaranteed outcomes; we prefer checklists, runbooks, and evidence you can verify.</p>
 
         <h3>Quality, safety, and ethics</h3>
@@ -836,15 +836,18 @@
 
         function handleVoicePartStarterMonthly(e) {
             e.preventDefault();
-            particleBurst(e, () => { window.open(STRIPE_VOICE_PART_STARTER_MONTHLY, '_blank'); });
+            const url = e.currentTarget.href || STRIPE_VOICE_PART_STARTER_MONTHLY;
+            particleBurst(e, () => { window.open(url, '_blank'); });
         }
         function handleVoicePartStarterYearly(e) {
             e.preventDefault();
-            particleBurst(e, () => { window.open(STRIPE_VOICE_PART_STARTER_YEARLY, '_blank'); });
+            const url = e.currentTarget.href || STRIPE_VOICE_PART_STARTER_YEARLY;
+            particleBurst(e, () => { window.open(url, '_blank'); });
         }
         function handleVoicePartPro(e) {
             e.preventDefault();
-            particleBurst(e, () => { window.open(STRIPE_VOICE_PART_PRO, '_blank'); });
+            const url = e.currentTarget.href || STRIPE_VOICE_PART_PRO;
+            particleBurst(e, () => { window.open(url, '_blank'); });
         }
 
         async function apiFetch(path, options = {}) {
@@ -983,7 +986,19 @@
         }
 
         const App = () => {
-            const [page, setPage] = React.useState('home');
+            const initialPage = (() => {
+                try {
+                    const params = new URLSearchParams(window.location.search);
+                    const q = (params.get('page') || '').toLowerCase();
+                    if (q === 'products' || q === 'voice' || q === 'voice-to-part') return 'products';
+                    if (q === 'qah' || q === 'quantumagenthealth') return 'quantumAgentHealth';
+                    if (q === 'gcf' || q === 'groundchiflow') return 'groundchiflow';
+                    const hash = (window.location.hash || '').replace(/^#/, '').toLowerCase();
+                    if (hash === 'voice-to-part' || hash === 'voice' || hash === 'products') return 'products';
+                } catch (e) {}
+                return 'home';
+            })();
+            const [page, setPage] = React.useState(initialPage);
             const [expandedAgent, setExpandedAgent] = React.useState(null);
             const [authUser, setAuthUser] = React.useState(getUser);
             const [showAuth, setShowAuth] = React.useState(false);
@@ -1043,6 +1058,19 @@
                 }, { threshold: 0.2 });
                 els.forEach(el => obs.observe(el));
                 return () => obs.disconnect();
+            }, [page]);
+
+            React.useEffect(() => {
+                if (page !== 'products') return;
+                const hash = (window.location.hash || '').replace(/^#/, '').toLowerCase();
+                const params = new URLSearchParams(window.location.search);
+                const q = (params.get('page') || '').toLowerCase();
+                if (hash === 'voice-to-part' || hash === 'voice' || q === 'voice' || q === 'voice-to-part') {
+                    requestAnimationFrame(() => {
+                        const el = document.getElementById('voice-to-part');
+                        if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    });
+                }
             }, [page]);
 
             const handleLogout = () => { clearAuth(); setAuthUser(null); setPage('home'); };
@@ -1177,14 +1205,6 @@
                         <div className="nav-buttons">
                             <button className="nav-button" onClick={() => setPage('home')} style={page === 'home' ? { background: '#0052ff' } : {}}>Home</button>
                             <button className="nav-button" onClick={() => setPage('products')} style={{ background: '#0052ff', opacity: page === 'products' ? 1 : 0.92 }}>AI Forge</button>
-                            <button
-                                type="button"
-                                className="nav-button"
-                                onClick={() => setPage('aiEcosystem')}
-                                style={AI_ECOSYSTEM_PAGE_KEYS.includes(page) ? { background: '#0052ff' } : {}}
-                            >
-                                AI Ecosystem
-                            </button>
                             <button className="nav-button" onClick={() => setPage('quantumAgentHealth')} style={page === 'quantumAgentHealth' ? { background: '#0052ff' } : {}}>Quantum Agent Health</button>
                             <button className="nav-button" onClick={() => setPage('groundchiflow')} style={page === 'groundchiflow' ? { background: '#0052ff' } : {}}>GroundChiFlow</button>
                             <button className="nav-button" onClick={() => setPage('contact')} style={page === 'contact' ? { background: '#0052ff' } : {}}>Connect</button>
@@ -1225,22 +1245,21 @@
                                 <div className="landing-hero scroll-reveal glow-visible" role="img" aria-label="Howell Forge — metal fabrication and AI automation">
                                     <img id="hero-parallax-img" className="hero-parallax-layer" src="og-image-small.jpg" alt="" decoding="async" />
                                 </div>
+                                {(STRIPE_AI_AUDIT_CORE_TEST && STRIPE_AI_AUDIT_DEEP_TEST) ? (
                                 <div className="audit-spotlight scroll-reveal glow-visible" style={{marginTop:'0.35rem'}}>
                                     <h3>Business AI Audit</h3>
-                                    <p className="price">$397 · $997 one-time (staging)</p>
+                                    <p className="price">$397 · $997 one-time</p>
                                     <ul>
                                         <li>Agent Forge–powered structured audit &amp; prioritized fixes</li>
                                         <li>Core vs deep dive — implementation sold separately</li>
                                         <li>Not legal or tax advice</li>
                                     </ul>
                                     <div className="audit-cta-row">
-                                        <a href={STRIPE_AI_AUDIT_CORE_TEST || '#'} className="card-cta" target="_blank" rel="noopener" onClick={(e)=>{e.preventDefault(); if (!STRIPE_AI_AUDIT_CORE_TEST) { window.alert('Add test Payment Links: run Hardware_Factory/scripts/stripe_create_business_ai_audit_test.py'); return; } particleBurst(e,()=>window.open(STRIPE_AI_AUDIT_CORE_TEST,'_blank'));}}>Book — Core ($397)</a>
-                                        <a href={STRIPE_AI_AUDIT_DEEP_TEST || '#'} className="card-cta" style={{background:'#0040a8'}} target="_blank" rel="noopener" onClick={(e)=>{e.preventDefault(); if (!STRIPE_AI_AUDIT_DEEP_TEST) { window.alert('Add test Payment Links: run Hardware_Factory/scripts/stripe_create_business_ai_audit_test.py'); return; } particleBurst(e,()=>window.open(STRIPE_AI_AUDIT_DEEP_TEST,'_blank'));}}>Book — Deep dive ($997)</a>
+                                        <a href={STRIPE_AI_AUDIT_CORE_TEST} className="card-cta" target="_blank" rel="noopener" onClick={(e)=>{e.preventDefault(); particleBurst(e,()=>window.open(STRIPE_AI_AUDIT_CORE_TEST,'_blank'));}}>Book — Core ($397)</a>
+                                        <a href={STRIPE_AI_AUDIT_DEEP_TEST} className="card-cta" style={{background:'#0040a8'}} target="_blank" rel="noopener" onClick={(e)=>{e.preventDefault(); particleBurst(e,()=>window.open(STRIPE_AI_AUDIT_DEEP_TEST,'_blank'));}}>Book — Deep dive ($997)</a>
                                     </div>
-                                    {(!STRIPE_AI_AUDIT_CORE_TEST || !STRIPE_AI_AUDIT_DEEP_TEST) ? (
-                                        <p style={{fontSize:'0.72rem',color:'#888',marginTop:'0.65rem',lineHeight:1.4}}>Local staging: paste URLs from <code style={{fontSize:'0.65rem'}}>stripe_ai_audit_links.staging.txt</code> after creating test products.</p>
-                                    ) : null}
                                 </div>
+                                ) : null}
                                 <div className="hero-below scroll-reveal glow-visible">
                                     <p className="landing-subhead">We have built many businesses. In the process, we came up with an automated way to run them. That is how we created Quantum Agent Forge — by automating the setup and startup so more time goes to <em>doing</em> the business, not setting it up or running it. Our agents are quantum-enabled.</p>
                                     <div className="landing-cta">
@@ -1407,7 +1426,7 @@
                                 <div className="readability-panel" style={{textAlign:'center',padding:'1rem 1.25rem 1.5rem',marginBottom:'2rem',maxWidth:'720px',color:'#b0b0b0',fontSize:'0.82rem'}}>
                                     Questions? <a href="mailto:chrishowell@howell-forge.com" style={{color:'#4d9fff'}}>chrishowell@howell-forge.com</a>
                                 </div>
-                                <p className="landing-section-title scroll-reveal glow-visible" style={{marginTop:0}}>Voice-to-Part</p>
+                                <p id="voice-to-part" className="landing-section-title scroll-reveal glow-visible" style={{marginTop:0}}>Voice-to-Part</p>
                                 <div className="products-hero scroll-reveal glow-visible">
                                     <h2 className="typography-pulse-trigger">Voice-to-Part — <span className="highlight">Say It. Get the Part.</span></h2>
                                     <p>Turn spoken or typed descriptions into real parts: STL and STEP files, ready for your CNC or 3D printer. Works with Blender or FreeCAD. No CAD experience required.</p>
@@ -1433,8 +1452,8 @@
                                             <li>Same 14-day trial whether you pick monthly or yearly</li>
                                         </ul>
                                         <div className="vtp-starter-ctas">
-                                            <a href="#" className="buy-btn primary brutal-cta" target="_blank" rel="noopener" onClick={handleVoicePartStarterYearly}>Best deal — $199/year (14-day trial)</a>
-                                            <a href="#" className="buy-btn outline" target="_blank" rel="noopener" onClick={handleVoicePartStarterMonthly}>Or $19/month (14-day trial)</a>
+                                            <a href={STRIPE_VOICE_PART_STARTER_YEARLY} className="buy-btn primary brutal-cta" target="_blank" rel="noopener" onClick={handleVoicePartStarterYearly}>Best deal — $199/year (14-day trial)</a>
+                                            <a href={STRIPE_VOICE_PART_STARTER_MONTHLY} className="buy-btn outline" target="_blank" rel="noopener" onClick={handleVoicePartStarterMonthly}>Or $19/month (14-day trial)</a>
                                         </div>
                                     </div>
                                     <div className="pricing-card">
@@ -1452,13 +1471,13 @@
                                         <div className="featured-badge">BEST VALUE</div>
                                         <p className="tier-name">Pro</p>
                                         <p className="price">$49 <span>/ mo</span></p>
-                                        <p className="price-sub">or $499/year</p>
+                                        <p className="price-sub">Monthly subscription</p>
                                         <ul className="feature-list">
                                             <li>Everything in Starter</li>
                                             <li>Higher volume, priority support</li>
                                             <li>For shops and makers</li>
                                         </ul>
-                                        <a href="#" className="buy-btn primary brutal-cta" target="_blank" rel="noopener" onClick={handleVoicePartPro}>Get Voice-to-Part Pro — $49/mo</a>
+                                        <a href={STRIPE_VOICE_PART_PRO} className="buy-btn primary brutal-cta" target="_blank" rel="noopener" onClick={handleVoicePartPro}>Get Voice-to-Part Pro — $49/mo</a>
                                     </div>
                                 </div>
                                 <p className="landing-section-title scroll-reveal glow-visible" style={{marginTop:'2rem'}}>Voice-to-PCB</p>
@@ -1476,26 +1495,26 @@
                                     <div className="pricing-card">
                                         <p className="tier-name">Starter</p>
                                         <p className="price-coming-soon">Coming soon</p>
-                                        <p className="price-coming-soon-sub">No checkout yet — join the waitlist via email</p>
+                                        <p className="price-coming-soon-sub">Not for purchase yet — email us if you want early access</p>
                                         <ul className="feature-list">
                                             <li>Voice or text → board requirements and constraints</li>
                                             <li>Schematic-first workflow (when launched)</li>
                                             <li>BOM and design-rules guidance</li>
                                             <li>Aligned with Howell Forge fab pipeline</li>
                                         </ul>
-                                        <span className="buy-btn outline disabled-soon" role="status" aria-label="Voice-to-PCB Starter coming soon">Coming soon</span>
+                                        <a href="mailto:chrishowell@howell-forge.com?subject=Voice-to-PCB%20Starter%20interest" className="buy-btn outline">Email about Starter</a>
                                     </div>
                                     <div className="pricing-card featured">
                                         <div className="featured-badge">COMING SOON</div>
                                         <p className="tier-name">Pro</p>
                                         <p className="price-coming-soon">Coming soon</p>
-                                        <p className="price-coming-soon-sub">No checkout yet — join the waitlist via email</p>
+                                        <p className="price-coming-soon-sub">Not for purchase yet — email us if you want early access</p>
                                         <ul className="feature-list">
                                             <li>Everything in Starter</li>
                                             <li>Higher complexity boards &amp; revisions</li>
                                             <li>Priority support when we launch</li>
                                         </ul>
-                                        <span className="buy-btn primary disabled-soon brutal-cta" role="status" aria-label="Voice-to-PCB Pro coming soon">Coming soon</span>
+                                        <a href="mailto:chrishowell@howell-forge.com?subject=Voice-to-PCB%20Pro%20interest" className="buy-btn primary brutal-cta">Email about Pro</a>
                                     </div>
                                 </div>
                                 <div className="stripe-callout scroll-reveal glow-visible">
@@ -1517,7 +1536,7 @@
                                 <p className="landing-section-title scroll-reveal glow-visible" style={{marginTop:0}}>Clinicians · ReForge</p>
                                 <div className="products-hero scroll-reveal glow-visible">
                                     <h2 className="typography-pulse-trigger">Quantum Agent Health — <span className="highlight">Rehab planning · Quantum-informed risk · GCF handoff</span></h2>
-                                    <p>ReForge: structured rehab planning, patient handoff into Ground Chi Flow, and quantum-informed analysis (QAH) for clinic-adjacent workflows — protocols, modifiers, coaching export, and Streamlit-friendly handoff.</p>
+                                    <p>ReForge: structured rehab planning, patient handoff into GroundChiFlow, and quantum-informed analysis (QAH) for clinic-adjacent workflows — protocols, modifiers, coaching export, and Streamlit-friendly handoff.</p>
                                     <p style={{marginTop:'1rem',marginBottom:0,fontSize:'0.95rem'}}>
                                         <a href="/qah.html" style={{color:'#7bc67e'}}>Dedicated QAH page</a>
                                         {' '}— focused overview + fit check + direct monthly/annual checkout.
@@ -1544,7 +1563,7 @@
                                         <p className="price-sub">Founding · cancel anytime</p>
                                         <ul className="feature-list">
                                             <li>Clinician planning workspace &amp; QAH workflow access</li>
-                                            <li>Ground Chi Flow handoff export &amp; JSON for GCF</li>
+                                            <li>GroundChiFlow handoff export &amp; JSON for GCF</li>
                                             <li>Protocol library, modifiers, safety guardrails</li>
                                             <li>Quantum-informed risk (simulator backends)</li>
                                             <li>Exercise video library — on the roadmap</li>
@@ -1612,7 +1631,7 @@
                                             <li>Longevity & blood work insights</li>
                                             <li>Use in browser — no app store needed</li>
                                         </ul>
-                                        <a href="https://ariesfiredragonfu.github.io/howell-forge-website/gcf/" target="_blank" rel="noopener" className="buy-btn primary" style={{marginBottom:'0.5rem'}}>Open GroundChiFlow App</a>
+                                        <a href="https://howell-forge.com/gcf/" target="_blank" rel="noopener" className="buy-btn primary" style={{marginBottom:'0.5rem'}}>Open GroundChiFlow App</a>
                                         <a href="https://buy.stripe.com/3cIbIUf7Xbmq5Gw1TS7Zu03" className="buy-btn outline" target="_blank" rel="noopener" onClick={(e)=>{e.preventDefault();particleBurst(e,()=>window.open(e.currentTarget.href,'_blank'));}}>Subscribe — $9.99/mo</a>
                                     </div>
                                     <div className="pricing-card featured">
