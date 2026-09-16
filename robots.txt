@@ -1,4 +1,6 @@
 User-agent: *
 Allow: /
+Disallow: /ai-ecosystem/
+Disallow: /index-to-restore.html
 
 Sitemap: https://howell-forge.com/sitemap.xml

@@ -1,17 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://howell-forge.com/</loc><lastmod>2026-05-12</lastmod><changefreq>weekly</changefreq><priority>1.0</priority></url>
-  <url><loc>https://howell-forge.com/funnel-gcf.html</loc><lastmod>2026-05-12</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://howell-forge.com/qah.html</loc><lastmod>2026-05-12</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://howell-forge.com/groundchiflow/</loc><lastmod>2026-05-12</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
-  <url><loc>https://howell-forge.com/ai-ecosystem/index.html</loc><lastmod>2026-05-12</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://howell-forge.com/ai-ecosystem/startup-package.html</loc><lastmod>2026-05-12</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://howell-forge.com/ai-ecosystem/growth-package.html</loc><lastmod>2026-05-12</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://howell-forge.com/ai-ecosystem/enterprise-solution.html</loc><lastmod>2026-05-12</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://howell-forge.com/ai-ecosystem/features-comparison.html</loc><lastmod>2026-05-12</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://howell-forge.com/ai-ecosystem/technical-specifications.html</loc><lastmod>2026-05-12</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://howell-forge.com/ai-ecosystem/integration-guides.html</loc><lastmod>2026-05-12</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://howell-forge.com/ai-ecosystem/demo-request.html</loc><lastmod>2026-05-12</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://howell-forge.com/ai-ecosystem/contact-sales.html</loc><lastmod>2026-05-12</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://howell-forge.com/ai-ecosystem/testimonials.html</loc><lastmod>2026-05-12</lastmod><changefreq>monthly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://howell-forge.com/</loc><lastmod>2026-09-16</lastmod><changefreq>weekly</changefreq><priority>1.0</priority></url>
+  <url><loc>https://howell-forge.com/voice/</loc><lastmod>2026-09-16</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://howell-forge.com/funnel-gcf.html</loc><lastmod>2026-09-16</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://howell-forge.com/qah.html</loc><lastmod>2026-09-16</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://howell-forge.com/gcf/</loc><lastmod>2026-09-16</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
 </urlset>
