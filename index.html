@@ -1,1 +1,1690 @@
-file:///workspace/howell-forge-website/index.html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="Permissions-Policy" content="geolocation=(), microphone=self, camera=()">
+    <meta name="referrer" content="strict-origin">
+
+    <title>Howell Forge — From Cursor to CNC | Precision Metal & AI Automation</title>
+    <meta name="description" content="Howell Forge — precision metal fabrication and AI business automation. Deploy an 8-agent AI crew for your business. Custom CNC parts. Get a quote today.">
+    <meta property="og:title" content="Howell Forge — From Cursor to CNC | Precision Metal & AI Automation">
+    <meta property="og:description" content="Precision metal fabrication and AI-powered business automation. Built by makers, for makers and entrepreneurs.">
+    <meta property="og:image" content="https://howell-forge.com/og-image.jpg">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://howell-forge.com/og-image.jpg">
+    <meta property="og:url" content="https://howell-forge.com/">
+    <link rel="canonical" href="https://howell-forge.com/">
+
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <meta name="theme-color" content="#111111">
+    <link rel="sitemap" type="application/xml" title="Sitemap" href="https://howell-forge.com/sitemap.xml">
+
+    <meta name="keywords" content="Howell Forge, Voice to Part, CNC machining, precision metal fabrication, G-code, CAM, CAD, prototyping, sheet metal, job shop, US manufacturing, hardware startup, maker, indie maker, build in public, business automation, AI agents, agent orchestration, Stripe checkout, GroundChiFlow, health coaching app, industrial automation, shop floor, mechanical engineering, product design, small batch, metal fab, toolpath, fixture design, enclosure, bracket, audit, Business AI Audit, Fortress, Grok bridge, voice UI, MQTT, n8n, ElizaOS, Agent Forge, Cursor to CNC, SaaS, B2B, manufacturing software">
+    <meta property="article:tag" content="Howell Forge">
+    <meta property="article:tag" content="Voice to Part">
+    <meta property="article:tag" content="CNC machining">
+    <meta property="article:tag" content="precision metal fabrication">
+    <meta property="article:tag" content="AI business automation">
+    <meta property="article:tag" content="hardware startup">
+    <meta property="article:tag" content="GroundChiFlow">
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "name": "Howell Forge — From Cursor to CNC",
+      "url": "https://howell-forge.com/",
+      "description": "Precision metal fabrication and AI-powered business automation for makers and operators.",
+      "inLanguage": "en-US",
+      "keywords": [
+        "Howell Forge", "Voice to Part", "CNC", "precision metal", "G-code", "CAM", "CAD", "prototyping",
+        "manufacturing", "hardware startup", "AI agents", "business automation", "GroundChiFlow",
+        "industrial automation", "shop floor", "Stripe", "Business AI Audit", "US manufacturing"
+      ]
+    }
+    </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js" integrity="sha384-tMH8h3BGESGckSAVGZ82T9n90ztNXxvdwvdM6UoR56cYcf+0iGXBliJ29D+wZ/x8" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js" integrity="sha384-bm7MnzvK++ykSwVJ2tynSE5TRdN+xL418osEVF2DE/L/gfWHj91J2Sphe582B1Bh" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/web3@1.10.0/dist/web3.min.js" integrity="sha384-uDUzAob8VRybYi68YL5W/y5Uel6PtqYSI0YHiTQB400WGPc/TVqL2dHYDkGKdBnw" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.23.5/babel.min.js" integrity="sha384-1qlE7MZPM2pHD/pBZCU/yB8UCP52RYL8bge/qNdfNBCWToySp8/M+JL2waXU4hjJ" crossorigin="anonymous"></script>
+
+    <!-- ARIA chat (do not remove) -->
+    <script>if (typeof window !== "undefined" && (window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1" || window.location.hostname.startsWith("192.168."))) { window.ARIA_CHAT_WS_URL = ""; }</script>
+    <script src="aria-chat.js?v=19" defer></script>
+
+    <style>
+        @keyframes pulse {
+            0% { opacity: 0.6; }
+            50% { opacity: 1; }
+            100% { opacity: 0.6; }
+        }
+        @keyframes modalIn {
+            from { opacity: 0; transform: translateY(-20px) scale(0.97); }
+            to   { opacity: 1; transform: translateY(0) scale(1); }
+        }
+
+        *, *::before, *::after { box-sizing: border-box; }
+
+        :root {
+            /* Staging: ~halfway between airy glass and original live panels (readability) */
+            --hf-panel-banner: rgba(32, 32, 40, 0.02);
+            --hf-panel: rgba(20, 20, 28, 0.21);
+            --hf-panel-soft: rgba(20, 20, 28, 0.195);
+            --hf-panel-mute: rgba(18, 18, 24, 0.16);
+            --hf-panel-hero-lead: rgba(22, 22, 32, 0.18);
+            --hf-panel-border: 1px solid rgba(160, 160, 178, 0.155);
+            --hf-panel-shadow: 0 2px 12px rgba(0, 0, 0, 0.045);
+            --hf-panel-radius: 14px;
+            --hf-panel-radius-sm: 10px;
+            --hf-glass: blur(6px) saturate(1.03);
+            /* Top/bottom bar only — light glass (not content panels) */
+            --hf-chrome-fill: rgba(0, 0, 0, 0.14);
+            --hf-chrome-border: 1px solid rgba(255, 255, 255, 0.07);
+            --hf-chrome-shadow: none;
+            --hf-chrome-glass: blur(2px) saturate(1.02);
+        }
+
+        body { font-family: Arial, sans-serif; margin: 0; padding: 0; line-height: 1.6; background-color: #111; background-image: url('3d-background.png'); background-size: cover; background-position: center; background-repeat: no-repeat; background-attachment: fixed; color: #eee; }
+        .header {
+            background: var(--hf-chrome-fill);
+            color: white;
+            padding: 1rem;
+            text-align: center;
+            border-bottom: var(--hf-chrome-border);
+            box-shadow: var(--hf-chrome-shadow);
+            backdrop-filter: var(--hf-chrome-glass);
+            -webkit-backdrop-filter: var(--hf-chrome-glass);
+        }
+        .header h1 { margin: 0 0 0.25rem 0; font-size: 1.8rem; letter-spacing: 0.05em; text-shadow: 0 2px 20px rgba(0, 0, 0, 0.78), 0 0 3px rgba(0, 0, 0, 0.92); }
+        .header-tagline { margin: 0 0 0.65rem 0; font-size: 0.95rem; font-weight: normal; color: #d4d4dc; letter-spacing: 0.04em; text-shadow: 0 1px 14px rgba(0, 0, 0, 0.75), 0 0 1px rgba(0, 0, 0, 0.9); }
+        .nav-buttons { display: flex; justify-content: center; align-items: center; gap: 0.75rem; padding: 0.5rem 1rem; flex-wrap: wrap; }
+        .main-content { padding: 2rem; max-width: 1200px; margin: 0 auto; min-height: calc(100vh - 200px); padding-bottom: 5rem; }
+        .footer {
+            background: var(--hf-chrome-fill);
+            color: #aaa;
+            padding: 1rem;
+            text-align: center;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            font-size: 0.85rem;
+            border-top: var(--hf-chrome-border);
+            box-shadow: var(--hf-chrome-shadow);
+            backdrop-filter: var(--hf-chrome-glass);
+            -webkit-backdrop-filter: var(--hf-chrome-glass);
+        }
+
+        /* AI Ecosystem embedded in main shell (iframe — inner topnav hidden via ai-ecosystem/app.js) */
+        .ae-shell-subnav {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 0.45rem;
+            margin-bottom: 1rem;
+            padding: 0.35rem 0.25rem;
+        }
+        .ae-embed-shell { padding: 0.75rem !important; }
+        .ae-embed-frame {
+            width: 100%;
+            min-height: 74vh;
+            border: none;
+            border-radius: var(--hf-panel-radius-sm);
+            display: block;
+            background: rgba(0, 0, 0, 0.15);
+        }
+        .nav-button { display: inline-block; color: white; text-decoration: none; padding: 8px 16px; border-radius: 6px; background: rgba(0, 0, 0, 0.20); cursor: pointer; border: var(--hf-chrome-border); font-size: 0.9rem; transition: all 0.2s ease; backdrop-filter: var(--hf-chrome-glass); -webkit-backdrop-filter: var(--hf-chrome-glass); box-shadow: var(--hf-chrome-shadow); text-shadow: 0 1px 12px rgba(0, 0, 0, 0.68); }
+        .nav-button:hover { background-color: #666; transform: translateY(-1px); }
+        .nav-button:active { transform: translateY(1px); }
+        .nav-button.primary { background-color: #0052ff; }
+        .nav-button.primary:hover { background-color: #0040cc; }
+        .nav-button.success { background-color: #28a745; }
+        .nav-button.success:hover { background-color: #218838; }
+        .nav-button.danger { background-color: #666; font-size: 0.8rem; padding: 6px 12px; }
+        .nav-button.danger:hover { background-color: #c0392b; }
+        .loading { text-align: center; padding: 2rem 1.5rem; font-size: 1.2rem; color: #aaa; animation: pulse 1.5s infinite; background: var(--hf-panel-soft); border: var(--hf-panel-border); border-radius: var(--hf-panel-radius); max-width: 520px; margin: 2rem auto; box-shadow: var(--hf-panel-shadow); backdrop-filter: var(--hf-glass); -webkit-backdrop-filter: var(--hf-glass); }
+        .error-boundary { padding: 20px; text-align: center; background: rgba(42, 0, 0, 0.92); color: #ff6b6b; border-radius: var(--hf-panel-radius-sm); margin: 20px auto; max-width: 560px; border: 1px solid #662222; box-shadow: var(--hf-panel-shadow); backdrop-filter: var(--hf-glass); -webkit-backdrop-filter: var(--hf-glass); }
+
+        /* ── Auth Modal ── */
+        .modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.82); display: flex; align-items: center; justify-content: center; z-index: 1000; padding: 1rem; }
+        .modal { background: var(--hf-panel); border: var(--hf-panel-border); border-radius: var(--hf-panel-radius); padding: 2rem; width: 100%; max-width: 420px; animation: modalIn 0.2s ease; position: relative; box-shadow: var(--hf-panel-shadow); backdrop-filter: var(--hf-glass); -webkit-backdrop-filter: var(--hf-glass); }
+        .modal h2 { margin: 0 0 1.25rem 0; color: #fff; font-size: 1.4rem; }
+        .modal-close { position: absolute; top: 1rem; right: 1rem; background: none; border: none; color: #888; font-size: 1.4rem; cursor: pointer; line-height: 1; }
+        .modal-close:hover { color: #fff; }
+        .modal-tabs { display: flex; gap: 0; margin-bottom: 1.5rem; border-bottom: 1px solid #333; }
+        .modal-tab { flex: 1; padding: 0.6rem; background: none; border: none; color: #888; cursor: pointer; font-size: 0.95rem; border-bottom: 2px solid transparent; transition: all 0.2s; }
+        .modal-tab.active { color: #0052ff; border-bottom-color: #0052ff; }
+        .modal-tab:hover:not(.active) { color: #ccc; }
+        .form-group { margin-bottom: 1rem; }
+        .form-group label { display: block; color: #aaa; font-size: 0.85rem; margin-bottom: 0.3rem; }
+        .form-group input { width: 100%; padding: 0.6rem 0.8rem; background: var(--hf-panel-mute); border: var(--hf-panel-border); border-radius: 6px; color: #fff; font-size: 0.95rem; transition: border-color 0.2s; }
+        .form-group input:focus { outline: none; border-color: #0052ff; }
+        .form-error { color: #ff6b6b; font-size: 0.82rem; margin: -0.5rem 0 0.75rem 0; }
+        .form-success { color: #51cf66; font-size: 0.85rem; margin: 0.5rem 0; }
+        .btn-full { width: 100%; padding: 0.7rem; background: #0052ff; color: white; border: none; border-radius: 6px; font-size: 1rem; cursor: pointer; margin-top: 0.5rem; transition: background 0.2s; }
+        .btn-full:hover { background: #0040cc; }
+        .btn-full:disabled { background: #333; color: #666; cursor: not-allowed; }
+        .auth-divider { text-align: center; color: #555; font-size: 0.8rem; margin: 0.75rem 0; }
+        .guest-link { color: #888; font-size: 0.82rem; text-align: center; margin-top: 0.75rem; }
+        .guest-link a { color: #0052ff; cursor: pointer; text-decoration: underline; }
+
+        /* ── Account Banner ── */
+        .account-banner { background: var(--hf-panel); border: var(--hf-panel-border); border-radius: var(--hf-panel-radius-sm); padding: 1rem 1.25rem; margin-bottom: 1.5rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.75rem; box-shadow: var(--hf-panel-shadow); backdrop-filter: var(--hf-glass); -webkit-backdrop-filter: var(--hf-glass); }
+        .account-banner .welcome { color: #cce0ff; font-size: 0.95rem; }
+        .account-banner .welcome strong { color: #fff; }
+        .account-badge { background: #0052ff; color: white; font-size: 0.7rem; padding: 2px 8px; border-radius: 20px; margin-left: 0.5rem; vertical-align: middle; }
+        .account-badge.admin { background: #e67e22; }
+        .account-section { margin-top: 1.5rem; }
+        .account-section h2 { color: #fff; margin-bottom: 1rem; }
+        .account-card { background: var(--hf-panel); border: var(--hf-panel-border); border-radius: var(--hf-panel-radius-sm); padding: 1.25rem; margin-bottom: 1rem; box-shadow: var(--hf-panel-shadow); backdrop-filter: var(--hf-glass); -webkit-backdrop-filter: var(--hf-glass); }
+        .account-card h3 { color: #ccc; margin: 0 0 0.75rem 0; font-size: 1rem; }
+        .account-info-row { display: flex; justify-content: space-between; padding: 0.4rem 0; border-bottom: 1px solid #222; font-size: 0.9rem; }
+        .account-info-row:last-child { border-bottom: none; }
+        .account-info-row .label { color: #888; }
+        .account-info-row .value { color: #eee; }
+        .empty-state { color: #555; font-size: 0.9rem; text-align: center; padding: 1.5rem 0; }
+
+        /* ── Quote Form ── */
+        .quote-section { background: var(--hf-panel); border: var(--hf-panel-border); border-radius: var(--hf-panel-radius); padding: 1.5rem; margin-top: 2rem; box-shadow: var(--hf-panel-shadow); backdrop-filter: var(--hf-glass); -webkit-backdrop-filter: var(--hf-glass); }
+        .quote-section h3 { color: #fff; margin: 0 0 1rem 0; }
+        .quote-section textarea { width: 100%; padding: 0.6rem 0.8rem; background: var(--hf-panel-mute); border: var(--hf-panel-border); border-radius: 6px; color: #fff; font-size: 0.9rem; resize: vertical; min-height: 100px; font-family: Arial, sans-serif; }
+        .quote-section textarea:focus { outline: none; border-color: #0052ff; }
+
+        /* ── USDC Payment ── */
+        .payment-section { margin-top: 2rem; padding: 1.5rem; background: var(--hf-panel); border: var(--hf-panel-border); border-radius: var(--hf-panel-radius); box-shadow: var(--hf-panel-shadow); backdrop-filter: var(--hf-glass); -webkit-backdrop-filter: var(--hf-glass); }
+        .payment-section h3 { margin: 0 0 0.4rem 0; color: #4d9fff; font-size: 1.15rem; }
+        .network-badge { display: inline-block; background: #0052ff; color: white; font-size: 0.72rem; font-weight: bold; padding: 2px 8px; border-radius: 20px; margin-bottom: 1rem; letter-spacing: 0.05em; }
+        .payment-layout { display: flex; gap: 1.5rem; align-items: flex-start; flex-wrap: wrap; }
+        .payment-qr img { width: 130px; height: 130px; border: 3px solid #0052ff33; border-radius: 8px; display: block; }
+        .payment-qr p { text-align: center; font-size: 0.7rem; color: #888; margin: 4px 0 0 0; }
+        .payment-details { flex: 1; min-width: 200px; }
+        .payment-details p { margin: 0 0 0.5rem 0; font-size: 0.9rem; color: #ccc; }
+        .address-box { display: flex; align-items: center; gap: 8px; background: var(--hf-panel-mute); border: var(--hf-panel-border); border-radius: 6px; padding: 8px 12px; margin: 0.5rem 0; backdrop-filter: var(--hf-glass); -webkit-backdrop-filter: var(--hf-glass); }
+        .address-box code { font-size: 0.75rem; color: #4d9fff; word-break: break-all; flex: 1; }
+        .copy-btn { background: #0052ff; color: white; border: none; border-radius: 4px; padding: 4px 10px; font-size: 0.75rem; cursor: pointer; white-space: nowrap; transition: background 0.2s; }
+        .copy-btn:hover { background: #0040cc; }
+        .copy-btn.copied { background: #28a745; }
+        .payment-note { font-size: 0.78rem; color: #ddd; margin-top: 0.75rem; padding: 8px 10px; background: var(--hf-panel-mute); border: var(--hf-panel-border); border-left: 3px solid #f0ad00; border-radius: 6px; backdrop-filter: var(--hf-glass); -webkit-backdrop-filter: var(--hf-glass); }
+
+        /* ── Venmo / Cash App ── */
+        .pay-methods { margin-top: 2rem; }
+        .pay-methods > h3 { margin: 0 0 0.35rem 0; color: #fff; font-size: 1.25rem; text-shadow: 0 2px 12px rgba(0,0,0,0.55); }
+        .pay-methods > .pay-methods-lead { margin: 0 0 1rem 0; color: #ccc; font-size: 0.95rem; line-height: 1.5; }
+        .pay-methods-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1rem; }
+        .pay-method-card { padding: 1.35rem 1.25rem; background: var(--hf-panel); border: var(--hf-panel-border); border-radius: var(--hf-panel-radius); box-shadow: var(--hf-panel-shadow); backdrop-filter: var(--hf-glass); -webkit-backdrop-filter: var(--hf-glass); display: flex; flex-direction: column; gap: 0.85rem; }
+        .pay-method-card.venmo { border-color: rgba(61, 149, 255, 0.35); }
+        .pay-method-card.cashapp { border-color: rgba(0, 200, 100, 0.35); }
+        .pay-method-head { display: flex; align-items: center; gap: 0.65rem; }
+        .pay-method-logo { width: 36px; height: 36px; border-radius: 10px; display: grid; place-items: center; flex-shrink: 0; font-weight: 800; font-size: 0.95rem; color: #fff; letter-spacing: -0.02em; }
+        .pay-method-logo.venmo { background: linear-gradient(145deg, #008cff, #3d95ff); }
+        .pay-method-logo.cashapp { background: linear-gradient(145deg, #00d632, #00a824); }
+        .pay-method-head h4 { margin: 0; color: #fff; font-size: 1.05rem; }
+        .pay-method-head span { display: block; color: #999; font-size: 0.75rem; margin-top: 2px; }
+        .pay-method-body { display: flex; gap: 1rem; align-items: flex-start; flex-wrap: wrap; }
+        .pay-method-qr img { width: 110px; height: 110px; border-radius: 8px; display: block; background: #fff; }
+        .pay-method-card.venmo .pay-method-qr img { border: 3px solid rgba(61, 149, 255, 0.35); }
+        .pay-method-card.cashapp .pay-method-qr img { border: 3px solid rgba(0, 200, 100, 0.35); }
+        .pay-method-meta { flex: 1; min-width: 140px; }
+        .pay-method-meta p { margin: 0 0 0.45rem 0; font-size: 0.88rem; color: #ccc; }
+        .pay-method-actions { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-top: 0.35rem; }
+        .pay-method-actions a, .pay-method-actions button { text-decoration: none; font-size: 0.8rem; padding: 7px 12px; border-radius: 6px; border: none; cursor: pointer; font-family: inherit; font-weight: 600; }
+        .pay-open-venmo { background: #008cff; color: #fff; }
+        .pay-open-venmo:hover { background: #0070d6; }
+        .pay-open-cashapp { background: #00c853; color: #fff; }
+        .pay-open-cashapp:hover { background: #00a844; }
+        .pay-mock-banner { font-size: 0.78rem; color: #f0d080; margin: 0 0 1rem 0; padding: 8px 10px; background: var(--hf-panel-mute); border: var(--hf-panel-border); border-left: 3px solid #f0ad00; border-radius: 6px; }
+        .wallet-section { text-align: center; margin: 1.5rem 0 0 0; padding: 1rem 1.25rem; background: var(--hf-panel); border: var(--hf-panel-border); border-radius: var(--hf-panel-radius-sm); box-shadow: var(--hf-panel-shadow); backdrop-filter: var(--hf-glass); -webkit-backdrop-filter: var(--hf-glass); }
+        .wallet-option { background-color: #4CAF50; color: white; padding: 10px 24px; border: none; border-radius: 4px; cursor: pointer; font-size: 15px; }
+        .wallet-option:hover { background-color: #45a049; }
+        .wallet-option:disabled { background-color: #333; color: #666; cursor: not-allowed; }
+        .wallet-option.metamask { background-color: #f6851b; }
+        .wallet-option.metamask:hover { background-color: #e67e22; }
+
+        /* ── Products / Pricing ── */
+        .products-hero {
+            text-align: center;
+            padding: 1.65rem 1.35rem;
+            margin-left: auto;
+            margin-right: auto;
+            margin-bottom: 1rem;
+            max-width: 940px;
+            background: var(--hf-panel);
+            border: var(--hf-panel-border);
+            border-radius: var(--hf-panel-radius);
+            box-shadow: var(--hf-panel-shadow);
+            backdrop-filter: var(--hf-glass);
+            -webkit-backdrop-filter: var(--hf-glass);
+        }
+        .products-hero h2 { color: #fff; font-size: 2rem; margin: 0 0 0.5rem 0; text-shadow: 0 2px 18px rgba(0, 0, 0, 0.65), 0 0 1px rgba(0, 0, 0, 0.9); }
+        .products-hero p { color: #d0d0d0; font-size: 1.1rem; max-width: 600px; margin: 0 auto 0.5rem auto; line-height: 1.6; }
+        .products-hero .highlight { color: #4d9fff; font-weight: bold; }
+        .crew-badge { display: inline-flex; gap: 0.4rem; flex-wrap: wrap; justify-content: center; margin: 1rem 0 2rem 0; }
+        .crew-badge span { background: var(--hf-panel-mute); border: var(--hf-panel-border); color: #4d9fff; font-size: 0.75rem; padding: 3px 10px; border-radius: 20px; letter-spacing: 0.04em; backdrop-filter: var(--hf-glass); -webkit-backdrop-filter: var(--hf-glass); }
+        .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin: 0 0 2rem 0; }
+        .pricing-card { background: var(--hf-panel); border: var(--hf-panel-border); border-radius: var(--hf-panel-radius); padding: 1.75rem 1.5rem; display: flex; flex-direction: column; position: relative; transition: border-color 0.2s, transform 0.2s; box-shadow: var(--hf-panel-shadow); backdrop-filter: var(--hf-glass); -webkit-backdrop-filter: var(--hf-glass); }
+        .pricing-card:hover { border-color: #0052ff88; transform: translateY(-3px); }
+        .pricing-card.featured { border: 2px solid rgba(0, 82, 255, 0.38); background: linear-gradient(135deg, rgba(22, 24, 42, 0.22), rgba(12, 18, 52, 0.18)); box-shadow: var(--hf-panel-shadow), 0 0 14px rgba(0, 82, 255, 0.07); backdrop-filter: var(--hf-glass); -webkit-backdrop-filter: var(--hf-glass); }
+        .featured-badge { position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: #0052ff; color: white; font-size: 0.72rem; font-weight: bold; padding: 3px 14px; border-radius: 20px; letter-spacing: 0.06em; white-space: nowrap; }
+        .pricing-card .tier-name { color: #aaa; font-size: 0.85rem; letter-spacing: 0.08em; text-transform: uppercase; margin: 0 0 0.4rem 0; }
+        .pricing-card .price { font-size: 2.4rem; font-weight: bold; color: #fff; margin: 0 0 0.2rem 0; line-height: 1; }
+        .pricing-card .price span { font-size: 1rem; color: #888; font-weight: normal; }
+        .pricing-card .price-sub { color: #888; font-size: 0.82rem; margin: 0 0 1.25rem 0; }
+        .pricing-card .price-coming-soon { font-size: 1.65rem; font-weight: bold; color: #888; margin: 0 0 0.2rem 0; letter-spacing: 0.04em; text-transform: uppercase; }
+        .pricing-card .price-coming-soon-sub { color: #666; font-size: 0.82rem; margin: 0 0 1.25rem 0; }
+        .pricing-card .buy-btn.disabled-soon { background: #2a2a2a !important; color: #777 !important; border-color: #444 !important; cursor: default; pointer-events: none; }
+        .pricing-card .feature-list { list-style: none; padding: 0; margin: 0 0 1.5rem 0; flex: 1; }
+        .pricing-card .feature-list li { color: #ccc; font-size: 0.88rem; padding: 0.35rem 0; border-bottom: 1px solid #222; display: flex; align-items: flex-start; gap: 0.5rem; }
+        .pricing-card .feature-list li:last-child { border-bottom: none; }
+        .pricing-card .feature-list li::before { content: "✓"; color: #0052ff; font-weight: bold; flex-shrink: 0; }
+        .pricing-card .buy-btn { display: block; text-align: center; padding: 0.75rem; border-radius: 8px; font-size: 1rem; font-weight: bold; text-decoration: none; transition: background 0.2s; cursor: pointer; }
+        .pricing-card .buy-btn.primary { background: #0052ff; color: white; }
+        .pricing-card .buy-btn.primary:hover { background: #0040cc; }
+        .pricing-card .buy-btn.outline { background: transparent; color: #0052ff; border: 2px solid #0052ff; }
+        .pricing-card .buy-btn.outline:hover { background: #0052ff22; }
+        .vtp-starter-ctas { display: flex; flex-direction: column; gap: 0.65rem; width: 100%; margin-top: 0.25rem; }
+        .vtp-starter-ctas .buy-btn { margin: 0; }
+        .value-callout { background: var(--hf-panel); border: var(--hf-panel-border); border-radius: var(--hf-panel-radius-sm); padding: 1.25rem 1.5rem; margin-bottom: 2rem; text-align: center; box-shadow: var(--hf-panel-shadow); backdrop-filter: var(--hf-glass); -webkit-backdrop-filter: var(--hf-glass); }
+        .value-callout p { margin: 0; color: #ccc; font-size: 0.95rem; }
+        .value-callout strong { color: #7bc67e; }
+        /* Full-width playbook row — same max-width as .products-hero, above 3-tier pricing grid */
+        .playbook-wide {
+            max-width: 940px;
+            margin-left: auto;
+            margin-right: auto;
+            margin-bottom: 1.5rem;
+            padding: 1.35rem 1.5rem;
+            text-align: center;
+            background: var(--hf-panel);
+            border: var(--hf-panel-border);
+            border-radius: var(--hf-panel-radius);
+            box-shadow: var(--hf-panel-shadow);
+            backdrop-filter: var(--hf-glass);
+            -webkit-backdrop-filter: var(--hf-glass);
+        }
+        .playbook-wide h3 { color: #fff; font-size: 1.35rem; margin: 0 0 0.5rem 0; letter-spacing: 0.03em; text-shadow: 0 2px 14px rgba(0, 0, 0, 0.65); }
+        .playbook-wide .playbook-lede { margin: 0 0 1.1rem 0; color: #c8c8d0; font-size: 0.98rem; line-height: 1.55; max-width: 640px; margin-left: auto; margin-right: auto; }
+        .playbook-wide .playbook-cta {
+            display: block; width: 100%; box-sizing: border-box;
+            padding: 1.05rem 1.25rem; font-size: 1.12rem; font-weight: bold; border-radius: 10px;
+            background: #0052ff; color: #fff; text-decoration: none; text-align: center;
+            border: 3px solid rgba(0, 82, 255, 0.85); cursor: pointer;
+            transition: background 0.2s, border-color 0.2s;
+            text-shadow: 0 1px 10px rgba(0, 0, 0, 0.45);
+        }
+        .playbook-wide .playbook-cta:hover { background: #0040cc; border-color: #00d4ff99; }
+        .includes-section { margin-bottom: 2rem; }
+        .includes-section h3 {
+            color: #fff;
+            margin: 0 0 1rem 0;
+            font-size: 1.1rem;
+            display: inline-block;
+            padding: 0.45rem 1rem;
+            background: var(--hf-panel);
+            border: var(--hf-panel-border);
+            border-radius: var(--hf-panel-radius-sm);
+            box-shadow: var(--hf-panel-shadow);
+            backdrop-filter: var(--hf-glass);
+            -webkit-backdrop-filter: var(--hf-glass);
+        }
+        .includes-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 0.75rem; }
+        .include-item { background: var(--hf-panel-soft); border: var(--hf-panel-border); border-radius: var(--hf-panel-radius-sm); padding: 0.75rem 1rem; display: flex; align-items: flex-start; gap: 0.6rem; box-shadow: none; backdrop-filter: var(--hf-glass); -webkit-backdrop-filter: var(--hf-glass); }
+        .include-item .icon { font-size: 1.2rem; flex-shrink: 0; }
+        .include-item .text { font-size: 0.85rem; color: #ccc; }
+        .include-item .text strong { color: #fff; display: block; margin-bottom: 0.1rem; }
+
+        /* ── Landing / Home ── */
+        .hero-above {
+            text-align: center;
+            color: #fff;
+            font-size: 2.2rem;
+            margin: 0 auto 1rem auto;
+            max-width: 920px;
+            padding: 1.1rem 1.25rem;
+            line-height: 1.2;
+            letter-spacing: 0.02em;
+            background: var(--hf-panel-hero-lead);
+            border: var(--hf-panel-border);
+            border-radius: var(--hf-panel-radius);
+            box-shadow: var(--hf-panel-shadow);
+            backdrop-filter: var(--hf-glass);
+            -webkit-backdrop-filter: var(--hf-glass);
+            text-shadow: 0 2px 22px rgba(0, 0, 0, 0.84), 0 0 3px rgba(0, 0, 0, 0.95);
+        }
+        .landing-hero {
+            position: relative;
+            min-height: 280px;
+            aspect-ratio: 1129/630;
+            border-radius: var(--hf-panel-radius);
+            overflow: hidden;
+            margin: 0 auto 1.5rem auto;
+            max-width: 960px;
+            background-color: #1a1a22;
+            background-image: url('og-image-small.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            border: var(--hf-panel-border);
+            box-shadow: var(--hf-panel-shadow);
+        }
+        .landing-hero .hero-parallax-layer {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            pointer-events: none;
+            z-index: 0;
+            will-change: transform;
+        }
+        .staging-banner {
+            width: 100%;
+            background: linear-gradient(90deg, #92400e, #f59e0b, #92400e);
+            background-size: 200% 100%;
+            animation: stagingShine 8s ease infinite;
+            color: #111;
+            text-align: center;
+            font-weight: bold;
+            font-size: 0.72rem;
+            letter-spacing: 0.18em;
+            padding: 0.4rem 1rem;
+            text-transform: uppercase;
+            border-bottom: 1px solid rgba(0,0,0,0.2);
+        }
+        @keyframes stagingShine {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+        .hero-below {
+            text-align: center;
+            padding: 1.2rem 1.35rem 1.5rem;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+            background: var(--hf-panel);
+            border: var(--hf-panel-border);
+            border-radius: var(--hf-panel-radius);
+            box-shadow: var(--hf-panel-shadow);
+            backdrop-filter: var(--hf-glass);
+            -webkit-backdrop-filter: var(--hf-glass);
+        }
+        .hero-below .landing-subhead { margin-bottom: 1rem; }
+        .landing-subhead { color: #d8d8d8; font-size: 1.1rem; max-width: 640px; margin: 0 auto 1.5rem auto; line-height: 1.65; }
+        .landing-cta { display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; margin-bottom: 2rem; }
+        .landing-cta .nav-button { padding: 12px 24px; font-size: 1rem; }
+        .stripe-callout { background: var(--hf-panel); border: var(--hf-panel-border); border-radius: var(--hf-panel-radius-sm); padding: 1rem 1.25rem; margin-bottom: 1.5rem; text-align: center; box-shadow: var(--hf-panel-shadow); backdrop-filter: var(--hf-glass); -webkit-backdrop-filter: var(--hf-glass); }
+        .stripe-callout p { margin: 0; color: #ccc; font-size: 0.95rem; }
+        .stripe-callout a { color: #4d9fff; font-weight: bold; text-decoration: none; }
+        .stripe-callout a:hover { text-decoration: underline; }
+        .landing-section-title {
+            color: #c8c8c8;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin: 2rem auto 0.75rem auto;
+            display: table;
+            padding: 0.4rem 1rem;
+            background: var(--hf-panel);
+            border: var(--hf-panel-border);
+            border-radius: var(--hf-panel-radius-sm);
+            box-shadow: var(--hf-panel-shadow);
+            backdrop-filter: var(--hf-glass);
+            -webkit-backdrop-filter: var(--hf-glass);
+        }
+        .readability-panel {
+            background: var(--hf-panel);
+            border: var(--hf-panel-border);
+            border-radius: var(--hf-panel-radius);
+            padding: 1.35rem 1.5rem;
+            margin-left: auto;
+            margin-right: auto;
+            margin-bottom: 1.5rem;
+            max-width: 920px;
+            box-shadow: var(--hf-panel-shadow);
+            backdrop-filter: var(--hf-glass);
+            -webkit-backdrop-filter: var(--hf-glass);
+        }
+        .readability-panel h2 { color: #fff; margin: 0 0 0.75rem 0; }
+        .readability-panel p { color: #d8d8d8; margin: 0 0 0.75rem 0; line-height: 1.65; }
+        .readability-panel p:last-child { margin-bottom: 0; }
+        .home-products { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.25rem; margin: 2rem 0; }
+        .home-product-card { background: var(--hf-panel); border: var(--hf-panel-border); border-radius: var(--hf-panel-radius); padding: 1.25rem; transition: border-color 0.2s, transform 0.2s; box-shadow: var(--hf-panel-shadow); backdrop-filter: var(--hf-glass); -webkit-backdrop-filter: var(--hf-glass); }
+        .home-product-card:hover { border-color: #0052ff66; transform: translateY(-2px); }
+        .home-product-card h3 { color: #fff; margin: 0 0 0.5rem 0; font-size: 1.15rem; }
+        .home-product-card .price { color: #4d9fff; font-weight: bold; font-size: 1.1rem; margin: 0 0 0.75rem 0; }
+        .home-product-card ul { margin: 0 0 1rem 0; padding-left: 1.25rem; color: #ccc; font-size: 0.9rem; line-height: 1.6; }
+        .home-product-card ul li { margin-bottom: 0.35rem; }
+        .home-product-card .card-cta { display: inline-block; margin-top: 0.5rem; padding: 0.5rem 1rem; border-radius: 6px; font-size: 0.9rem; text-decoration: none; background: #0052ff; color: white; transition: background 0.2s; }
+        .home-product-card .card-cta:hover { background: #0040cc; }
+        /* Lead offer — between hero and Products grid */
+        .audit-spotlight {
+            max-width: 920px;
+            margin: 0 auto 1.5rem auto;
+            padding: 1.35rem 1.5rem;
+            background: var(--hf-panel);
+            border: 1px solid rgba(0, 82, 255, 0.28);
+            border-radius: var(--hf-panel-radius);
+            box-shadow: var(--hf-panel-shadow);
+            backdrop-filter: var(--hf-glass);
+            -webkit-backdrop-filter: var(--hf-glass);
+        }
+        .audit-spotlight h3 { color: #fff; margin: 0 0 0.35rem 0; font-size: 1.2rem; }
+        .audit-spotlight .price { color: #4d9fff; font-weight: bold; font-size: 1.05rem; margin: 0 0 0.65rem 0; }
+        .audit-spotlight ul { margin: 0 0 1rem 0; padding-left: 1.25rem; color: #ccc; font-size: 0.9rem; line-height: 1.55; }
+        .audit-spotlight .audit-cta-row { display: flex; flex-wrap: wrap; gap: 0.45rem; align-items: center; }
+        .audit-spotlight .card-cta { display: inline-block; padding: 0.5rem 1rem; border-radius: 6px; font-size: 0.9rem; text-decoration: none; background: #0052ff; color: white; transition: background 0.2s; border: none; cursor: pointer; font-family: inherit; }
+        .audit-spotlight .card-cta:hover { background: #0040cc; }
+        .testimonials-placeholder { background: var(--hf-panel); border: var(--hf-panel-border); border-radius: var(--hf-panel-radius); padding: 2rem; margin: 2rem 0; text-align: center; box-shadow: var(--hf-panel-shadow); backdrop-filter: var(--hf-glass); -webkit-backdrop-filter: var(--hf-glass); }
+        .testimonials-placeholder h3 { color: #aaa; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.1em; margin: 0 0 1rem 0; }
+        .testimonials-placeholder p { color: #b0b0b0; font-size: 0.9rem; margin: 0; }
+        .testimonial-quote { font-style: italic; color: #aaa !important; margin-bottom: 0.35rem !important; }
+        .testimonial-attribution { color: #888 !important; font-size: 0.85rem !important; }
+
+        /* ── Quick Wins ── */
+        .current-build { background: var(--hf-panel); border: var(--hf-panel-border); border-radius: var(--hf-panel-radius-sm); padding: 0.6rem 1rem; margin: 1rem 0; display: inline-flex; align-items: center; gap: 0.5rem; font-size: 0.88rem; color: #ddd; box-shadow: var(--hf-panel-shadow); backdrop-filter: var(--hf-glass); -webkit-backdrop-filter: var(--hf-glass); }
+        .current-build .dot { width: 6px; height: 6px; background: #28a745; border-radius: 50%; animation: pulse 2s infinite; }
+        .stack-icons { display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem; margin: 1.5rem 0; padding: 1rem 1.25rem; background: var(--hf-panel-soft); border: var(--hf-panel-border); border-radius: var(--hf-panel-radius-sm); box-shadow: var(--hf-panel-shadow); max-width: 520px; margin-left: auto; margin-right: auto; backdrop-filter: var(--hf-glass); -webkit-backdrop-filter: var(--hf-glass); }
+        .stack-icons a { color: #aaa; text-decoration: none; font-size: 0.8rem; padding: 4px 10px; border-radius: 4px; border: var(--hf-panel-border); transition: color 0.2s, border-color 0.2s; background: var(--hf-panel-mute); backdrop-filter: var(--hf-glass); -webkit-backdrop-filter: var(--hf-glass); }
+        .stack-icons a:hover { color: #4d9fff; border-color: #0052ff44; }
+        .automation-hint {
+            text-align: center;
+            color: #9a9aaa;
+            font-size: 0.88rem;
+            margin: 1rem auto 0 auto;
+            max-width: 640px;
+            line-height: 1.5;
+            padding: 0.65rem 1rem;
+            background: var(--hf-panel-mute);
+            border: var(--hf-panel-border);
+            border-radius: var(--hf-panel-radius-sm);
+            box-shadow: var(--hf-panel-shadow);
+        }
+        .automation-hint strong { color: #c8c8d4; }
+
+        /* ── Phase 1: Grok enhancements ── */
+        html { scroll-behavior: smooth; }
+        .dither-accent {
+            height: 4px;
+            background: linear-gradient(to right, #000 50%, #333 50%);
+            background-size: 4px 4px;
+            image-rendering: pixelated;
+            margin: 1rem 0;
+        }
+        .stack-icons a, .footer a { position: relative; display: inline-block; }
+        .stack-icons a::after, .footer a::after {
+            content: '';
+            position: absolute;
+            left: 0; bottom: -2px;
+            width: 100%; height: 2px;
+            background: #00d4ff;
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+        .stack-icons a:hover, .footer a:hover { color: #00d4ff; }
+        .stack-icons a:hover::after, .footer a:hover::after { transform: scaleX(1); box-shadow: 0 0 8px rgba(0, 212, 255, 0.6); }
+        .nav-button:hover { box-shadow: 0 0 10px rgba(0, 212, 255, 0.3); }
+        .brutal-cta {
+            border: 3px solid rgba(0, 82, 255, 0.8);
+            position: relative;
+        }
+        .brutal-cta:hover {
+            animation: brutal-flash 0.6s ease;
+        }
+        @keyframes brutal-flash {
+            0%, 100% { border-color: rgba(0, 82, 255, 0.8); box-shadow: 0 0 0 rgba(0, 82, 255, 0); }
+            50% { border-color: #00d4ff; box-shadow: 0 0 12px rgba(0, 212, 255, 0.5); }
+        }
+
+        /* ── Phase 2: Scroll reveal + Text wipe ── */
+        .scroll-reveal {
+            opacity: 0;
+            transform: translateY(24px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out, box-shadow 0.6s ease-out;
+        }
+        .scroll-reveal.glow-visible {
+            opacity: 1;
+            transform: translateY(0);
+            box-shadow: 0 0 16px rgba(0, 212, 255, 0.1);
+        }
+        /* No cyan halo on glass panels — match unified light blocks */
+        .products-hero.scroll-reveal.glow-visible,
+        .pricing-card.scroll-reveal.glow-visible,
+        .pricing-grid.scroll-reveal.glow-visible,
+        .readability-panel.scroll-reveal.glow-visible,
+        .home-product-card.scroll-reveal.glow-visible,
+        .include-item.scroll-reveal.glow-visible,
+        .stripe-callout.scroll-reveal.glow-visible,
+        .value-callout.scroll-reveal.glow-visible,
+        .playbook-wide.scroll-reveal.glow-visible,
+        .audit-spotlight.scroll-reveal.glow-visible,
+        .testimonials-placeholder.scroll-reveal.glow-visible {
+            box-shadow: var(--hf-panel-shadow);
+        }
+        .reveal-text {
+            animation: textWipe 1.2s ease-out forwards;
+        }
+        @keyframes textWipe {
+            from { opacity: 0; transform: translateX(-24px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        /* ── Phase 3: Save spinner (A2) ── */
+        .btn-full.saving { display: flex; align-items: center; justify-content: center; gap: 0.5rem; }
+        .btn-full.saving .save-spinner {
+            width: 18px; height: 18px;
+            border: 2px solid rgba(255,255,255,0.3);
+            border-top-color: #fff;
+            border-radius: 50%;
+            animation: saveSpin 0.7s linear infinite;
+        }
+        @keyframes saveSpin { to { transform: rotate(360deg); } }
+        .btn-full.saved { background: #28a745 !important; color: white; }
+        .btn-full.saved:hover { background: #28a745 !important; }
+
+        /* ── Phase 3: Particle burst (A6) ── */
+        .particle-burst { position: fixed; pointer-events: none; z-index: 9999; transform: translate(-50%, -50%); }
+        .particle-burst .particle {
+            position: absolute; width: 6px; height: 6px; border-radius: 50%;
+            animation: particleOut 0.5s ease-out forwards;
+        }
+        @keyframes particleOut {
+            to { opacity: 0; transform: translate(var(--tx), var(--ty)) scale(0); }
+        }
+
+        /* ── Phase 4: Bento layout (#4) ── */
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-auto-rows: minmax(100px, auto);
+            gap: 1rem;
+        }
+        @media (min-width: 900px) {
+            .bento-grid .bento-span-2 { grid-column: span 2; }
+        }
+        @media (max-width: 768px) {
+            .bento-grid { grid-template-columns: repeat(2, 1fr); }
+            .bento-grid .bento-span-2 { grid-column: span 2; }
+        }
+        @media (max-width: 480px) {
+            .bento-grid { grid-template-columns: 1fr; }
+            .bento-grid .bento-span-2 { grid-column: span 1; }
+        }
+
+        /* ── Phase 4: Expand cards (A8) ── */
+        .include-item.expandable { cursor: pointer; transition: border-color 0.2s, background 0.2s; }
+        .include-item.expandable:hover { border-color: #0052ff66; background: var(--hf-panel); }
+        .include-item.expandable .expand-content {
+            max-height: 0; overflow: hidden; transition: max-height 0.35s ease-out;
+        }
+        .include-item.expandable.active .expand-content { max-height: 120px; }
+        .include-item.expandable .expand-content { margin-top: 0.5rem; padding-top: 0.5rem; border-top: 1px solid #333; font-size: 0.8rem; color: #888; }
+
+        /* ── Phase 4: Typography pulse (A9) ── */
+        .typography-pulse-trigger { transition: transform 0.3s, filter 0.3s; }
+        .typography-pulse-trigger.typography-pulse-active {
+            animation: typographyPulse 1.5s ease-out;
+        }
+        @keyframes typographyPulse {
+            0% { transform: scale(1); filter: brightness(1); }
+            25% { transform: scale(1.02); filter: brightness(1.15); }
+            50% { transform: scale(1); filter: brightness(1); }
+            75% { transform: scale(1.01); filter: brightness(1.08); }
+            100% { transform: scale(1); filter: brightness(1); }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            html { scroll-behavior: auto; }
+            .header, .footer, .modal, .products-hero, .hero-above, .hero-below, .playbook-wide, .pricing-card, .home-product-card, .audit-spotlight, .readability-panel, .include-item, .stack-icons, .nav-button, .landing-hero { backdrop-filter: none !important; -webkit-backdrop-filter: none !important; }
+            .nav-button, .loading, .modal { transition: none; animation: none; }
+            .brutal-cta:hover { animation: none; }
+            .scroll-reveal { opacity: 1; transform: none; }
+            .scroll-reveal.glow-visible { box-shadow: none; }
+            .reveal-text { animation: none; opacity: 1; transform: none; }
+            .btn-full.saving .save-spinner { animation: none; }
+            .particle-burst .particle { animation: none; }
+            .include-item.expandable .expand-content { transition: none; }
+            .typography-pulse-trigger.typography-pulse-active { animation: none; }
+            .landing-hero { background-attachment: scroll; }
+            .staging-banner { animation: none; background: #b45309; }
+        }
+        @media (max-width: 600px) { .payment-layout { flex-direction: column; } .payment-qr img { width: 100px; height: 100px; } .account-banner { flex-direction: column; align-items: flex-start; } .hero-above { font-size: 1.6rem; } .header-tagline { font-size: 0.85rem; } .home-products { grid-template-columns: 1fr; } .landing-cta { flex-direction: column; } .landing-cta .nav-button, .landing-cta a { width: 100%; text-align: center; box-sizing: border-box; } }
+
+        /* Site overview for crawlers and SEO audits (visible below the interactive app) */
+        .hf-seo-narrative {
+            max-width: 760px;
+            margin: 0 auto 3rem;
+            padding: 2rem 1.5rem 2.5rem;
+            background: var(--hf-panel);
+            border: var(--hf-panel-border);
+            border-radius: var(--hf-panel-radius);
+            box-shadow: var(--hf-panel-shadow);
+            color: #d8d8e0;
+            font-size: 0.95rem;
+            line-height: 1.7;
+            backdrop-filter: var(--hf-glass);
+            -webkit-backdrop-filter: var(--hf-glass);
+        }
+        .hf-seo-narrative h2 { color: #fff; font-size: 1.35rem; margin-top: 0; letter-spacing: 0.02em; }
+        .hf-seo-narrative h3 { color: #e8e8f0; font-size: 1.05rem; margin: 1.5rem 0 0.5rem; }
+        .hf-seo-narrative p { margin: 0.75rem 0; }
+        .hf-seo-narrative ul { margin: 0.5rem 0 0.75rem 1.2rem; }
+        .hf-seo-hashtags {
+            font-size: 0.82rem;
+            color: #a8a8bc;
+            line-height: 1.7;
+            word-break: break-word;
+            margin-top: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+    <div id="root"><div class="loading" id="loading-msg">Loading...</div></div>
+
+    <article class="hf-seo-narrative" id="site-overview">
+        <h2>About Howell Forge</h2>
+        <p>Howell Forge is a precision metal fabrication and software studio built for makers, hardware startups, and operators who want serious manufacturing without losing velocity. We combine CNC-ready workflows, careful tolerances, and modern automation so you can move from idea to cutting code with fewer surprises on the shop floor.</p>
+        <p>Our roots are in real parts: fixtures, brackets, enclosures, and one-off components where fit and finish matter. Whether you are iterating on a prototype or locking a release for production, we care about traceable steps, clear drawings, and honest communication about what the machines can and cannot promise.</p>
+
+        <h3>From design intent to toolpaths</h3>
+        <p>Voice-to-Part and related tooling are part of our broader story: reduce friction between intent and execution. The goal is not novelty for its own sake; it is to shorten the loop between what you say you need and what the CAM stack can safely produce. Along the way we emphasize guardrails, human review at the right checkpoints, and documentation that survives handoff to another engineer six months later.</p>
+
+        <h3>AI automation that respects boundaries</h3>
+        <p>On the automation side, Howell Forge packages an eight-agent crew concept—command, monitoring, security, marketing, shop floor, finance, development, and analytics personas—so business owners can see a coherent system instead of a pile of disconnected bots. We are explicit about human-in-the-loop approvals for outbound content, financial moves, and anything that touches customer trust.</p>
+        <p>Security and reliability are treated as product features, not afterthoughts. HTTPS, sane headers, Stripe-backed checkout where payments apply, and operational habits like monitoring and alerting are described in plain language so non-specialists can understand what is automated and what still needs a human signature.</p>
+
+        <h3>Who we work best with</h3>
+        <ul>
+            <li>Founders shipping a first hardware SKU who need a partner that speaks both G-code and go-to-market.</li>
+            <li>Small teams modernizing quoting, intake, and follow-up without hiring a full internal IT department.</li>
+            <li>Shops that want repeatable packaging around audits, assessments, and improvement backlogs.</li>
+        </ul>
+
+        <h3>Offers and how to engage</h3>
+        <p>This site highlights Voice-to-Part services and pathways like Quantum Agent Health and GroundChiFlow where the deliverable is clarity: what to automate first, what to measure, and what to defer. Stripe links are used for transparent checkout when a product is live; staging and test flows are labeled so you always know which environment you are in.</p>
+        <p>GroundChiFlow, where featured, points to our health-and-longevity product lane—separate from metal work but aligned on the same principle: build calm systems people can sustain. Across lanes we avoid hype language about guaranteed outcomes; we prefer checklists, runbooks, and evidence you can verify.</p>
+
+        <h3>Quality, safety, and ethics</h3>
+        <p>Manufacturing guidance on this site is general in nature until a formal engineering review is contracted for your specific geometry, material lot, and machine envelope. We do not substitute marketing copy for signed drawings. For AI features, we follow provider terms of service and encourage customers to run their own legal and compliance review where regulated industries apply.</p>
+        <p>If you are comparing vendors, ask about revision policy, source file handoff, and how changes propagate from CAD to CAM to QC. Those answers matter more than buzzwords. Howell Forge is happiest when expectations are written down early and updated as the design evolves.</p>
+
+        <h3>Contact and next steps</h3>
+        <p>Email remains the most reliable way to reach us for quotes, partnerships, and technical questions: use the contact page linked in the header when the app has finished loading, or write directly if you already have a thread. We read every serious inquiry and will tell you quickly if a job is outside our sweet spot rather than overpromising capacity.</p>
+        <p>Thank you for reading this far. Whether you came for metal, for automation, or for both, we built Howell Forge to reward careful operators—people who measure twice, automate once, and still leave room for craftsmanship.</p>
+
+        <h3>Topics for search and social</h3>
+        <p class="hf-seo-hashtags" aria-label="Suggested hashtags for social posts">Suggested hashtags when you share Howell Forge (copy as needed): #HowellForge #VoiceToPart #CursorToCNC #CNC #CNCMachining #PrecisionMetal #MetalFabrication #Manufacturing #USManufacturing #HardwareStartup #IndieMaker #BuildInPublic #MakerMovement #GCode #CAM #CAD #Prototype #Prototyping #Toolpath #MachineShop #JobShop #FabLab #SheetMetal #MechanicalEngineering #ProductDesign #IndustrialAutomation #ShopFloor #BusinessAutomation #AIAgents #AgentOrchestration #SaaS #B2B #Stripe #GroundChiFlow #HealthTech #VoiceUI #StartupLife #Metalworking #SmallBatch #QualityManufacturing #EngineeringTwitter #TechForGood</p>
+    </article>
+
+    <script>
+        setTimeout(function() {
+            var root = document.getElementById('root');
+            var msg = document.getElementById('loading-msg');
+            if (msg && root && root.children.length === 1 && msg.textContent.indexOf('Loading') !== -1) {
+                msg.innerHTML = 'Taking a while? This site compiles in the browser (first load can take 15–30 sec). <br>Wait a bit longer or press <kbd>F12</kbd> → Console to check for errors.';
+                msg.style.maxWidth = '420px';
+                msg.style.margin = '2rem auto';
+            }
+        }, 15000);
+    </script>
+
+    <script type="text/babel">
+        const BUSINESS_WALLET = "0x62eF356e555BCb06E4aD3328367df9e2d9d74168";
+        const QR_URL = `https://api.qrserver.com/v1/create-qr-code/?size=130x130&data=${BUSINESS_WALLET}`;
+        const VENMO_HANDLE = "ChrisHowell76";
+        const CASHAPP_CASHTAG = "$ChristopherHowell50";
+        const VENMO_URL = `https://venmo.com/u/${encodeURIComponent(VENMO_HANDLE)}`;
+        const CASHAPP_URL = `https://cash.app/${encodeURIComponent(CASHAPP_CASHTAG)}`;
+        const VENMO_QR_URL = `https://api.qrserver.com/v1/create-qr-code/?size=110x110&data=${encodeURIComponent(VENMO_URL)}`;
+        const CASHAPP_QR_URL = `https://api.qrserver.com/v1/create-qr-code/?size=110x110&data=${encodeURIComponent(CASHAPP_URL)}`;
+        const PAY_HANDLES_ARE_MOCK = false;
+        const API = "https://howell-forge-shop-production.up.railway.app";
+        const STRIPE_PLAYBOOK = "https://buy.stripe.com/3cIfZa1h7cqu8SI8ig7Zu05";
+        const STRIPE_VOICE_PART_PER_JOB = "https://buy.stripe.com/cNi3co4tj76ad8Yaqo7Zu06";
+        const STRIPE_VOICE_PART_STARTER_MONTHLY = "https://buy.stripe.com/fZuaEQaRHaim9WM0PO7Zu07";
+        const STRIPE_VOICE_PART_STARTER_YEARLY = "https://buy.stripe.com/5kQaEQ3pf2PU6KAfKI7Zu09";
+        const STRIPE_VOICE_PART_PRO = "https://buy.stripe.com/8x200c5xn0HMb0Q4207Zu08";
+        // Staging / test checkout — create links: Hardware_Factory/scripts/stripe_create_business_ai_audit_test.py
+        // Snippet file: Hardware_Factory/fulfillment/stripe_ai_audit_links.staging.txt (after running script)
+        const STRIPE_AI_AUDIT_CORE_TEST = "";
+        const STRIPE_AI_AUDIT_DEEP_TEST = "";
+        const getToken = () => localStorage.getItem('hf_token');
+        const getUser  = () => { try { return JSON.parse(localStorage.getItem('hf_user') || 'null'); } catch { return null; } };
+        const saveAuth = (token, user) => { localStorage.setItem('hf_token', token); localStorage.setItem('hf_user', JSON.stringify(user)); };
+        const clearAuth = () => { localStorage.removeItem('hf_token'); localStorage.removeItem('hf_user'); };
+
+        const AI_ECOSYSTEM_IFRAME_SRC = {
+            aiEcosystem: 'ai-ecosystem/index.html',
+            aiEcosystemStartup: 'ai-ecosystem/startup-package.html',
+            aiEcosystemGrowth: 'ai-ecosystem/growth-package.html',
+            aiEcosystemEnterprise: 'ai-ecosystem/enterprise-solution.html',
+            aiEcosystemCompare: 'ai-ecosystem/features-comparison.html',
+            aiEcosystemTechnical: 'ai-ecosystem/technical-specifications.html',
+            aiEcosystemGuides: 'ai-ecosystem/integration-guides.html',
+            aiEcosystemDemo: 'ai-ecosystem/demo-request.html',
+            aiEcosystemSales: 'ai-ecosystem/contact-sales.html',
+        };
+        const AI_ECOSYSTEM_PAGE_KEYS = Object.keys(AI_ECOSYSTEM_IFRAME_SRC);
+        const AI_ECOSYSTEM_SUBNAV = [
+            { key: 'aiEcosystem', label: 'Overview' },
+            { key: 'aiEcosystemStartup', label: 'Startup' },
+            { key: 'aiEcosystemGrowth', label: 'Growth' },
+            { key: 'aiEcosystemEnterprise', label: 'Enterprise' },
+            { key: 'aiEcosystemCompare', label: 'Compare' },
+            { key: 'aiEcosystemTechnical', label: 'Technical' },
+            { key: 'aiEcosystemGuides', label: 'Guides' },
+            { key: 'aiEcosystemDemo', label: 'Demo' },
+            { key: 'aiEcosystemSales', label: 'Sales' },
+        ];
+
+        function AiEcosystemShell({ page, setPage }) {
+            const src = AI_ECOSYSTEM_IFRAME_SRC[page];
+            if (!src) return null;
+            return (
+                <>
+                    <div className="ae-shell-subnav scroll-reveal glow-visible" role="navigation" aria-label="AI Ecosystem sections">
+                        {AI_ECOSYSTEM_SUBNAV.map(({ key, label }) => (
+                            <button
+                                key={key}
+                                type="button"
+                                className="nav-button"
+                                style={{
+                                    fontSize: '0.78rem',
+                                    padding: '5px 10px',
+                                    ...(page === key ? { background: '#0052ff' } : {}),
+                                }}
+                                onClick={() => setPage(key)}
+                            >
+                                {label}
+                            </button>
+                        ))}
+                    </div>
+                    <div className="readability-panel ae-embed-shell scroll-reveal glow-visible">
+                        <iframe key={page} className="ae-embed-frame" title="AI Ecosystem" src={src} />
+                    </div>
+                </>
+            );
+        }
+
+        function particleBurst(e, onComplete) {
+            if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) { onComplete?.(); return; }
+            const colors = ['#00d4ff', '#ff9500', '#ffd700', '#ff6b35'];
+            const container = document.createElement('div');
+            container.className = 'particle-burst';
+            container.style.cssText = `left:${e.clientX}px;top:${e.clientY}px;`;
+            for (let i = 0; i < 12; i++) {
+                const angle = (i / 12) * Math.PI * 2 + Math.random() * 0.5;
+                const dist = 60 + Math.random() * 40;
+                const tx = Math.cos(angle) * dist;
+                const ty = Math.sin(angle) * dist;
+                const p = document.createElement('div');
+                p.className = 'particle';
+                p.style.cssText = `--tx:${tx}px;--ty:${ty}px;background:${colors[i % colors.length]};box-shadow:0 0 6px ${colors[i % colors.length]};`;
+                container.appendChild(p);
+            }
+            document.body.appendChild(container);
+            setTimeout(() => { container.remove(); onComplete?.(); }, 520);
+        }
+
+        function handleVoicePartStarterMonthly(e) {
+            e.preventDefault();
+            const url = e.currentTarget.href || STRIPE_VOICE_PART_STARTER_MONTHLY;
+            particleBurst(e, () => { window.open(url, '_blank'); });
+        }
+        function handleVoicePartStarterYearly(e) {
+            e.preventDefault();
+            const url = e.currentTarget.href || STRIPE_VOICE_PART_STARTER_YEARLY;
+            particleBurst(e, () => { window.open(url, '_blank'); });
+        }
+        function handleVoicePartPro(e) {
+            e.preventDefault();
+            const url = e.currentTarget.href || STRIPE_VOICE_PART_PRO;
+            particleBurst(e, () => { window.open(url, '_blank'); });
+        }
+
+        async function apiFetch(path, options = {}) {
+            const token = getToken();
+            const res = await fetch(`${API}${path}`, {
+                ...options,
+                headers: { 'Content-Type': 'application/json', ...(token ? { Authorization: `Bearer ${token}` } : {}), ...(options.headers || {}) },
+            });
+            return res.json();
+        }
+
+        class ErrorBoundary extends React.Component {
+            constructor(props) { super(props); this.state = { hasError: false, error: null }; }
+            static getDerivedStateFromError(error) { return { hasError: true, error }; }
+            componentDidCatch(error, info) { console.error('Error:', error, info); }
+            render() {
+                if (this.state.hasError) return (<div className="error-boundary"><h3>Something went wrong</h3><p>{this.state.error?.message}</p><button onClick={() => window.location.reload()}>Refresh</button></div>);
+                return this.props.children;
+            }
+        }
+
+        function AuthModal({ onClose, onAuth }) {
+            const [tab, setTab] = React.useState('login');
+            const [form, setForm] = React.useState({ name: '', email: '', password: '' });
+            const [error, setError] = React.useState('');
+            const [loading, setLoading] = React.useState(false);
+            const set = (k) => (e) => setForm(f => ({ ...f, [k]: e.target.value }));
+            const submit = async (e) => {
+                e.preventDefault(); setError(''); setLoading(true);
+                try {
+                    const body = tab === 'login' ? { email: form.email, password: form.password } : { name: form.name, email: form.email, password: form.password };
+                    const data = await apiFetch(`/auth/${tab}`, { method: 'POST', body: JSON.stringify(body) });
+                    if (data.error) { setError(data.error); return; }
+                    saveAuth(data.token, data.user); onAuth(data.user); onClose();
+                } catch (err) { setError('Connection error. Please try again.'); } finally { setLoading(false); }
+            };
+            return (
+                <div className="modal-overlay" onClick={(e) => e.target === e.currentTarget && onClose()}>
+                    <div className="modal">
+                        <button className="modal-close" onClick={onClose}>✕</button>
+                        <h2>Howell Forge Account</h2>
+                        <div className="modal-tabs">
+                            <button className={`modal-tab${tab === 'login' ? ' active' : ''}`} onClick={() => { setTab('login'); setError(''); }}>Sign In</button>
+                            <button className={`modal-tab${tab === 'register' ? ' active' : ''}`} onClick={() => { setTab('register'); setError(''); }}>Create Account</button>
+                        </div>
+                        <form onSubmit={submit}>
+                            {tab === 'register' && (<div className="form-group"><label>Full Name</label><input type="text" value={form.name} onChange={set('name')} placeholder="Your name" required autoFocus /></div>)}
+                            <div className="form-group"><label>Email</label><input type="email" value={form.email} onChange={set('email')} placeholder="you@example.com" required autoFocus={tab === 'login'} /></div>
+                            <div className="form-group"><label>Password {tab === 'register' && <span style={{color:'#555',fontSize:'0.75rem'}}>(min 8 characters)</span>}</label><input type="password" value={form.password} onChange={set('password')} placeholder="••••••••" required minLength={tab === 'register' ? 8 : 1} /></div>
+                            {error && <p className="form-error">{error}</p>}
+                            <button type="submit" className="btn-full" disabled={loading}>{loading ? 'Please wait...' : tab === 'login' ? 'Sign In' : 'Create Account'}</button>
+                        </form>
+                        <div className="auth-divider">or</div>
+                        <div className="guest-link"><a onClick={onClose}>Continue as guest →</a></div>
+                    </div>
+                </div>
+            );
+        }
+
+        function QuoteForm({ user }) {
+            const [form, setForm] = React.useState({ name: user?.name || '', email: user?.email || '', details: '' });
+            const [status, setStatus] = React.useState(null);
+            const [loading, setLoading] = React.useState(false);
+            const [saved, setSaved] = React.useState(false);
+            const set = (k) => (e) => setForm(f => ({ ...f, [k]: e.target.value }));
+            const submit = async (e) => {
+                e.preventDefault(); setLoading(true); setStatus(null); setSaved(false);
+                try {
+                    const data = await apiFetch('/api/quote', { method: 'POST', body: JSON.stringify(form) });
+                    if (data.error) { setStatus({ type: 'error', msg: data.error }); return; }
+                    setStatus({ type: 'success', msg: data.message }); setForm(f => ({ ...f, details: '' })); setSaved(true);
+                    setTimeout(() => setSaved(false), 2200);
+                } catch { setStatus({ type: 'error', msg: 'Failed to send. Please email us directly.' }); } finally { setLoading(false); }
+            };
+            const btnClass = ['btn-full', loading && 'saving', saved && 'saved'].filter(Boolean).join(' ');
+            return (
+                <div className="quote-section">
+                    <h3>Request a Quote</h3>
+                    <form onSubmit={submit}>
+                        {!user && (
+                            <div style={{display:'flex',gap:'1rem',flexWrap:'wrap',marginBottom:'0.5rem'}}>
+                                <div className="form-group" style={{flex:1,minWidth:'140px'}}><label>Your Name</label><input type="text" value={form.name} onChange={set('name')} placeholder="Full name" required /></div>
+                                <div className="form-group" style={{flex:1,minWidth:'140px'}}><label>Email</label><input type="email" value={form.email} onChange={set('email')} placeholder="you@example.com" required /></div>
+                            </div>
+                        )}
+                        {user && <p style={{color:'#888',fontSize:'0.85rem',marginBottom:'0.75rem'}}>Submitting as <strong style={{color:'#ccc'}}>{user.name}</strong> ({user.email})</p>}
+                        <div className="form-group"><label>Project Details</label><textarea value={form.details} onChange={set('details')} placeholder="Describe your part: material, dimensions, quantity, tolerances, finish, timeline..." required /></div>
+                        {status && <p className={status.type === 'success' ? 'form-success' : 'form-error'}>{status.msg}</p>}
+                        <button type="submit" className={btnClass} disabled={loading}>
+                            {loading && <span className="save-spinner" />}
+                            {loading ? 'Sending...' : saved ? 'Saved ✓' : 'Send Quote Request'}
+                        </button>
+                    </form>
+                </div>
+            );
+        }
+
+        function AccountPage({ user, onLogout }) {
+            const [orders, setOrders] = React.useState([]);
+            const [quotes, setQuotes] = React.useState([]);
+            const [loading, setLoading] = React.useState(true);
+            React.useEffect(() => {
+                Promise.all([apiFetch('/auth/orders'), apiFetch('/auth/quotes')]).then(([o, q]) => { setOrders(o.orders || []); setQuotes(q.quotes || []); }).finally(() => setLoading(false));
+            }, []);
+            return (
+                <div className="account-section">
+                    <h2>My Account {user.role === 'admin' && <span className="account-badge admin">ADMIN</span>}</h2>
+                    <div className="account-card">
+                        <h3>Account Details</h3>
+                        <div className="account-info-row"><span className="label">Name</span><span className="value">{user.name}</span></div>
+                        <div className="account-info-row"><span className="label">Email</span><span className="value">{user.email}</span></div>
+                        <div className="account-info-row"><span className="label">Role</span><span className="value" style={{textTransform:'capitalize'}}>{user.role}</span></div>
+                    </div>
+                    {loading ? <p className="loading">Loading your history...</p> : (<>
+                        <div className="account-card">
+                            <h3>Quote Requests ({quotes.length})</h3>
+                            {quotes.length === 0 ? <p className="empty-state">No quote requests yet.</p> : quotes.map(q => (<div key={q.id} className="account-info-row"><span className="label" style={{fontSize:'0.8rem'}}>{new Date(q.created_at).toLocaleDateString()}</span><span className="value" style={{fontSize:'0.8rem',textTransform:'capitalize'}}>{q.status}</span></div>))}
+                        </div>
+                        <div className="account-card">
+                            <h3>Orders ({orders.length})</h3>
+                            {orders.length === 0 ? <p className="empty-state">No orders yet.</p> : orders.map(o => (<div key={o.id} className="account-info-row"><span className="label" style={{fontSize:'0.8rem'}}>{new Date(o.created_at).toLocaleDateString()} — {o.amount_usdc ? `${o.amount_usdc} USDC` : 'Pending'}</span><span className="value" style={{fontSize:'0.8rem',textTransform:'capitalize'}}>{o.status}</span></div>))}
+                        </div>
+                    </>)}
+                    {user.role === 'admin' && (
+                        <div className="account-card">
+                            <h3>Admin</h3>
+                            <div style={{display:'flex',gap:'0.5rem',flexWrap:'wrap'}}>
+                                <a href="https://howell-forge-shop-production.up.railway.app/admin/stats" target="_blank" rel="noopener" className="nav-button primary" style={{fontSize:'0.82rem',padding:'6px 12px'}}>Shop Stats API</a>
+                                <a href="https://railway.app" target="_blank" rel="noopener" className="nav-button" style={{fontSize:'0.82rem',padding:'6px 12px'}}>Railway</a>
+                            </div>
+                        </div>
+                    )}
+                    <button className="nav-button danger" onClick={onLogout} style={{marginTop:'0.5rem'}}>Sign Out</button>
+                </div>
+            );
+        }
+
+        const App = () => {
+            const initialPage = (() => {
+                try {
+                    const params = new URLSearchParams(window.location.search);
+                    const q = (params.get('page') || '').toLowerCase();
+                    if (q === 'products' || q === 'voice' || q === 'voice-to-part') return 'products';
+                    if (q === 'qah' || q === 'quantumagenthealth') return 'quantumAgentHealth';
+                    if (q === 'gcf' || q === 'groundchiflow') return 'groundchiflow';
+                    const hash = (window.location.hash || '').replace(/^#/, '').toLowerCase();
+                    if (hash === 'voice-to-part' || hash === 'voice' || hash === 'products') return 'products';
+                } catch (e) {}
+                return 'home';
+            })();
+            const [page, setPage] = React.useState(initialPage);
+            const [expandedAgent, setExpandedAgent] = React.useState(null);
+            const [authUser, setAuthUser] = React.useState(getUser);
+            const [showAuth, setShowAuth] = React.useState(false);
+            const [account, setAccount] = React.useState(null);
+            const [isConnecting, setIsConnecting] = React.useState(false);
+            const [error, setError] = React.useState(null);
+            const [web3, setWeb3] = React.useState(null);
+            const [providerType, setProviderType] = React.useState(null);
+            const [copiedKey, setCopiedKey] = React.useState(null);
+
+            React.useEffect(() => {
+                if (window.ethereum) { const w = new Web3(window.ethereum); setWeb3(w); setProviderType(window.ethereum.isMetaMask ? 'MetaMask' : window.ethereum.isBraveWallet ? 'Brave' : 'Wallet'); }
+                else if (window.web3) { setWeb3(new Web3(window.web3.currentProvider)); setProviderType('Legacy'); }
+            }, []);
+
+            React.useEffect(() => {
+                if (authUser && getToken()) { apiFetch('/auth/me').then(data => { if (data.error) { clearAuth(); setAuthUser(null); } }).catch(() => {}); }
+            }, []);
+
+            React.useEffect(() => {
+                const els = document.querySelectorAll('.scroll-reveal');
+                if (!els.length) return;
+                const obs = new IntersectionObserver((entries) => {
+                    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('glow-visible'); });
+                }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+                els.forEach(el => obs.observe(el));
+                return () => obs.disconnect();
+            }, [page]);
+
+            React.useEffect(() => { setExpandedAgent(null); }, [page]);
+
+            React.useEffect(() => {
+                if (page !== 'home') return;
+                const img = document.getElementById('hero-parallax-img');
+                if (!img || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+                const hero = img.closest('.landing-hero');
+                if (!hero) return;
+                const onScroll = () => {
+                    const rect = hero.getBoundingClientRect();
+                    const rate = 0.35;
+                    let offset = -rect.top * rate;
+                    if (rect.top > window.innerHeight) offset = 0;
+                    else if (rect.bottom < 0) offset = 100;
+                    else offset = Math.max(0, Math.min(100, offset));
+                    img.style.transform = `translateY(${offset}px)`;
+                };
+                onScroll();
+                window.addEventListener('scroll', onScroll, { passive: true });
+                return () => window.removeEventListener('scroll', onScroll);
+            }, [page]);
+
+            React.useEffect(() => {
+                const els = document.querySelectorAll('.typography-pulse-trigger');
+                if (!els.length) return;
+                const obs = new IntersectionObserver((entries) => {
+                    entries.forEach(e => { if (e.isIntersecting && !e.target.classList.contains('typography-pulse-active')) e.target.classList.add('typography-pulse-active'); });
+                }, { threshold: 0.2 });
+                els.forEach(el => obs.observe(el));
+                return () => obs.disconnect();
+            }, [page]);
+
+            React.useEffect(() => {
+                if (page !== 'products') return;
+                const hash = (window.location.hash || '').replace(/^#/, '').toLowerCase();
+                const params = new URLSearchParams(window.location.search);
+                const q = (params.get('page') || '').toLowerCase();
+                if (hash === 'voice-to-part' || hash === 'voice' || q === 'voice' || q === 'voice-to-part') {
+                    requestAnimationFrame(() => {
+                        const el = document.getElementById('voice-to-part');
+                        if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    });
+                }
+            }, [page]);
+
+            const handleLogout = () => { clearAuth(); setAuthUser(null); setPage('home'); };
+            const copyText = (key, text) => {
+                navigator.clipboard.writeText(text).then(() => {
+                    setCopiedKey(key);
+                    setTimeout(() => setCopiedKey(null), 2000);
+                });
+            };
+            const copyAddress = () => copyText('usdc', BUSINESS_WALLET);
+            const connectWallet = async () => {
+                if (!web3) { setError('Please install MetaMask or use Brave Browser'); return; }
+                setIsConnecting(true); setError(null);
+                try {
+                    const accounts = await web3.eth.requestAccounts();
+                    if (!accounts?.length) throw new Error('No accounts found. Please unlock your wallet.');
+                    setAccount(accounts[0]);
+                    if (window.ethereum) { window.ethereum.on('accountsChanged', a => a?.length ? setAccount(a[0]) : setAccount(null)); window.ethereum.on('chainChanged', () => window.location.reload()); }
+                } catch (err) { setError(err.code === 4001 ? 'Connection rejected.' : err.message || 'Failed to connect'); } finally { setIsConnecting(false); }
+            };
+
+            const InstantPaySection = () => (
+                <div className="pay-methods scroll-reveal" id="pay-instant">
+                    <h3>Pay with Venmo or Cash App</h3>
+                    <p className="pay-methods-lead">Quick peer-to-peer options for deposits, invoices, and small jobs. Include your name or invoice # in the note.</p>
+                    {PAY_HANDLES_ARE_MOCK && (
+                        <p className="pay-mock-banner" role="status">
+                            Local mock — handles are placeholders (<code>@{VENMO_HANDLE}</code> / <code>{CASHAPP_CASHTAG}</code>). Tell me your real Venmo username and Cash App $Cashtag and I will swap them in before live.
+                        </p>
+                    )}
+                    <div className="pay-methods-grid">
+                        <div className="pay-method-card venmo">
+                            <div className="pay-method-head">
+                                <div className="pay-method-logo venmo" aria-hidden="true">V</div>
+                                <div>
+                                    <h4>Venmo</h4>
+                                    <span>@{VENMO_HANDLE}</span>
+                                </div>
+                            </div>
+                            <div className="pay-method-body">
+                                <div className="pay-method-qr">
+                                    <img src={VENMO_QR_URL} alt={`Venmo QR for @${VENMO_HANDLE}`} />
+                                </div>
+                                <div className="pay-method-meta">
+                                    <p>Scan or open Venmo, then send to <strong>@{VENMO_HANDLE}</strong>.</p>
+                                    <div className="address-box">
+                                        <code>@{VENMO_HANDLE}</code>
+                                        <button type="button" className={`copy-btn${copiedKey === 'venmo' ? ' copied' : ''}`} onClick={() => copyText('venmo', `@${VENMO_HANDLE}`)}>
+                                            {copiedKey === 'venmo' ? '✓ Copied' : 'Copy'}
+                                        </button>
+                                    </div>
+                                    <div className="pay-method-actions">
+                                        <a className="pay-open-venmo" href={VENMO_URL} target="_blank" rel="noopener noreferrer">Open Venmo</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="pay-method-card cashapp">
+                            <div className="pay-method-head">
+                                <div className="pay-method-logo cashapp" aria-hidden="true">$</div>
+                                <div>
+                                    <h4>Cash App</h4>
+                                    <span>{CASHAPP_CASHTAG}</span>
+                                </div>
+                            </div>
+                            <div className="pay-method-body">
+                                <div className="pay-method-qr">
+                                    <img src={CASHAPP_QR_URL} alt={`Cash App QR for ${CASHAPP_CASHTAG}`} />
+                                </div>
+                                <div className="pay-method-meta">
+                                    <p>Scan or open Cash App, then send to <strong>{CASHAPP_CASHTAG}</strong>.</p>
+                                    <div className="address-box">
+                                        <code>{CASHAPP_CASHTAG}</code>
+                                        <button type="button" className={`copy-btn${copiedKey === 'cashapp' ? ' copied' : ''}`} onClick={() => copyText('cashapp', CASHAPP_CASHTAG)}>
+                                            {copiedKey === 'cashapp' ? '✓ Copied' : 'Copy'}
+                                        </button>
+                                    </div>
+                                    <div className="pay-method-actions">
+                                        <a className="pay-open-cashapp" href={CASHAPP_URL} target="_blank" rel="noopener noreferrer">Open Cash App</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            );
+
+            const UsdcPaymentSection = () => (
+                <div className="payment-section">
+                    <h3>Pay with USDC</h3>
+                    <span className="network-badge">BASE NETWORK</span>
+                    <div className="payment-layout">
+                        <div className="payment-qr"><img src={QR_URL} alt="Scan to pay with USDC on Base" /><p>Scan to pay</p></div>
+                        <div className="payment-details">
+                            <p><strong>Send USDC to this address on Base:</strong></p>
+                            <div className="address-box"><code>{BUSINESS_WALLET}</code><button className={`copy-btn${copiedKey === 'usdc' ? ' copied' : ''}`} onClick={copyAddress}>{copiedKey === 'usdc' ? '✓ Copied' : 'Copy'}</button></div>
+                            <p style={{fontSize:'0.85rem',color:'#888',marginTop:'0.75rem'}}><strong>Token:</strong> USDC &nbsp;|&nbsp; <strong>Network:</strong> Base (Coinbase L2)</p>
+                            <div className="payment-note">⚠️ Only send <strong>USDC on the Base network</strong>. Sending other tokens or using a different network may result in permanent loss of funds.</div>
+                        </div>
+                    </div>
+                </div>
+            );
+
+            const WalletSection = () => {
+                const shortAddr = account ? `${account.slice(0,6)}...${account.slice(-4)}` : '';
+                return (
+                    <div className="wallet-section">
+                        <p style={{marginBottom:'0.75rem',color:'#888'}}>Or connect your Web3 wallet to pay directly from your browser.</p>
+                        {error && <p style={{color:'#ff6b6b',fontSize:'0.85rem',marginBottom:'0.5rem'}}>{error}</p>}
+                        <button className={`wallet-option${providerType === 'MetaMask' ? ' metamask' : ''}`} onClick={connectWallet} disabled={isConnecting || !web3}>
+                            {isConnecting ? 'Connecting...' : account ? `✓ Connected: ${shortAddr}` : !web3 ? 'Install Web3 Wallet' : `Connect ${providerType || 'Wallet'}`}
+                        </button>
+                    </div>
+                );
+            };
+
+            function Header() {
+                const showStaging =
+                    typeof window !== 'undefined' &&
+                    (window.location.hostname === 'localhost' ||
+                        window.location.hostname === '127.0.0.1' ||
+                        window.location.hostname.startsWith('192.168.'));
+                return (
+                    <div className="header">
+                        {showStaging && (
+                            <div className="staging-banner" role="status">
+                                Staging — local preview · animations on · not production
+                            </div>
+                        )}
+                        <h1>Howell Forge</h1>
+                        <p className="header-tagline">Metal parts &amp; AI business tools</p>
+                        <div className="nav-buttons">
+                            <button className="nav-button" onClick={() => setPage('home')} style={page === 'home' ? { background: '#0052ff' } : {}}>Home</button>
+                            <button className="nav-button" onClick={() => setPage('products')} style={{ background: '#0052ff', opacity: page === 'products' ? 1 : 0.92 }}>AI Forge</button>
+                            <button className="nav-button" onClick={() => setPage('quantumAgentHealth')} style={page === 'quantumAgentHealth' ? { background: '#0052ff' } : {}}>Quantum Agent Health</button>
+                            <button className="nav-button" onClick={() => setPage('groundchiflow')} style={page === 'groundchiflow' ? { background: '#0052ff' } : {}}>GroundChiFlow</button>
+                            <button className="nav-button" onClick={() => setPage('contact')} style={page === 'contact' ? { background: '#0052ff' } : {}}>Connect</button>
+                            <button className="nav-button" onClick={() => setPage('about')} style={page === 'about' ? { background: '#0052ff' } : {}}>About</button>
+                            {authUser ? (
+                                <button className="nav-button success" onClick={() => setPage('account')}>
+                                    {authUser.name.split(' ')[0]}
+                                    {authUser.role === 'admin' && <span className="account-badge admin" style={{marginLeft:'6px'}}>ADMIN</span>}
+                                </button>
+                            ) : (
+                                <button className="nav-button primary" onClick={() => setShowAuth(true)}>Sign In</button>
+                            )}
+                        </div>
+                    </div>
+                );
+            }
+
+            function MainContent() {
+                return (
+                    <div className="main-content">
+                        {authUser && page !== 'account' && (
+                            <div className="account-banner">
+                                <span className="welcome">Welcome back, <strong>{authUser.name.split(' ')[0]}</strong>{authUser.role === 'admin' && <span className="account-badge admin">ADMIN</span>}</span>
+                                <div style={{display:'flex',gap:'0.5rem'}}>
+                                    <button className="nav-button" style={{fontSize:'0.8rem',padding:'5px 12px'}} onClick={() => setPage('account')}>My Account</button>
+                                    <button className="nav-button danger" onClick={handleLogout}>Sign Out</button>
+                                </div>
+                            </div>
+                        )}
+
+                        {page === 'account' && authUser && <AccountPage user={authUser} onLogout={handleLogout} />}
+
+                        {AI_ECOSYSTEM_PAGE_KEYS.includes(page) && <AiEcosystemShell page={page} setPage={setPage} />}
+
+                        {page === 'home' && (
+                            <>
+                                <h2 className="hero-above reveal-text">From Cursor to CNC: Bridging the Gap Between Code and Cold Steel.</h2>
+                                <div className="landing-hero scroll-reveal glow-visible" role="img" aria-label="Howell Forge — metal fabrication and AI automation">
+                                    <img id="hero-parallax-img" className="hero-parallax-layer" src="og-image-small.jpg" alt="" decoding="async" />
+                                </div>
+                                {(STRIPE_AI_AUDIT_CORE_TEST && STRIPE_AI_AUDIT_DEEP_TEST) ? (
+                                <div className="audit-spotlight scroll-reveal glow-visible" style={{marginTop:'0.35rem'}}>
+                                    <h3>Business AI Audit</h3>
+                                    <p className="price">$397 · $997 one-time</p>
+                                    <ul>
+                                        <li>Agent Forge–powered structured audit &amp; prioritized fixes</li>
+                                        <li>Core vs deep dive — implementation sold separately</li>
+                                        <li>Not legal or tax advice</li>
+                                    </ul>
+                                    <div className="audit-cta-row">
+                                        <a href={STRIPE_AI_AUDIT_CORE_TEST} className="card-cta" target="_blank" rel="noopener" onClick={(e)=>{e.preventDefault(); particleBurst(e,()=>window.open(STRIPE_AI_AUDIT_CORE_TEST,'_blank'));}}>Book — Core ($397)</a>
+                                        <a href={STRIPE_AI_AUDIT_DEEP_TEST} className="card-cta" style={{background:'#0040a8'}} target="_blank" rel="noopener" onClick={(e)=>{e.preventDefault(); particleBurst(e,()=>window.open(STRIPE_AI_AUDIT_DEEP_TEST,'_blank'));}}>Book — Deep dive ($997)</a>
+                                    </div>
+                                </div>
+                                ) : null}
+                                <div className="hero-below scroll-reveal glow-visible">
+                                    <p className="landing-subhead">We have built many businesses. In the process, we came up with an automated way to run them. That is how we created Quantum Agent Forge — by automating the setup and startup so more time goes to <em>doing</em> the business, not setting it up or running it. Our agents are quantum-enabled.</p>
+                                    <div className="landing-cta">
+                                        <button type="button" className="nav-button primary brutal-cta" style={{padding:'14px 28px',fontSize:'1.05rem'}} onClick={(e)=>{ particleBurst(e, ()=>{ var el = document.getElementById('pay-instant') || document.getElementById('pay-usdc'); if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' }); }); }}>Start with Quantum Agent Forge – Venmo, Cash App, USDC, or Request Quote</button>
+                                        <button className="nav-button" onClick={() => setPage('products')} style={{padding:'12px 24px',fontSize:'1rem'}}>See All Products</button>
+                                        <button className="nav-button" onClick={() => setPage('quantumAgentHealth')} style={{padding:'12px 24px',fontSize:'1rem',background:'#6f42c1'}}>Quantum Agent Health</button>
+                                        <button className="nav-button" onClick={() => setPage('groundchiflow')} style={{padding:'12px 24px',fontSize:'1rem',background:'#28a745'}}>GroundChiFlow App</button>
+                                        <button className="nav-button" onClick={() => setPage('contact')} style={{padding:'12px 24px',fontSize:'1rem'}}>Get a Quote</button>
+                                    </div>
+                                    <div className="stripe-callout scroll-reveal glow-visible" style={{marginTop:'0.5rem',marginBottom:'1rem'}}><p>Secure checkout via Stripe — pay with card on AI Forge, Quantum Agent Health, &amp; GroundChiFlow.</p></div>
+                                    <div className="current-build"><span className="dot"></span>Current Build: Quantum Agent Forge template — MAVEN copy pass</div>
+                                    <div className="stack-icons">
+                                        <a href="https://railway.app" target="_blank" rel="noopener">Railway</a>
+                                        <a href="https://elizaos.ai" target="_blank" rel="noopener">ElizaOS</a>
+                                        <a href="https://buildbear.io" target="_blank" rel="noopener">BuildBear</a>
+                                    </div>
+                                    <p className="automation-hint" role="note">
+                                        <strong>Where the automations live on this site:</strong> the 8-agent Quantum Agent Forge crew (FORGE, ARIA, MAVEN, KAITO, …), pricing, and &ldquo;what each agent does&rdquo; are all under <strong>AI Forge</strong> in the bar above. The floating <strong>blue chat</strong> button (lower-right, above the footer) is <strong>ARIA</strong> — answers questions about products and the forge; on localhost it runs in demo mode unless you point <code style={{fontSize:'0.8rem',color:'#6b9fff'}}>ARIA_CHAT_WS_URL</code> at a live backend.
+                                    </p>
+                                </div>
+                                <div className="landing-section-title scroll-reveal glow-visible">Products</div>
+                                <div className="home-products scroll-reveal glow-visible">
+                                    <div className="home-product-card">
+                                        <h3>Health App (GroundChiFlow)</h3>
+                                        <p className="price">$9.99/mo</p>
+                                        <ul>
+                                            <li>Breathwork &amp; nervous system regulation</li>
+                                            <li>Tai chi &amp; rehab routines</li>
+                                            <li>Gut health &amp; nutrition tracking</li>
+                                            <li>Longevity &amp; blood work insights</li>
+                                            <li>Use in browser — no app store needed</li>
+                                        </ul>
+                                        <a href="https://buy.stripe.com/3cIbIUf7Xbmq5Gw1TS7Zu03" className="card-cta" target="_blank" rel="noopener" onClick={(e)=>{e.preventDefault();particleBurst(e,()=>window.open('https://buy.stripe.com/3cIbIUf7Xbmq5Gw1TS7Zu03','_blank'));}}>Subscribe — $9.99/mo</a>
+                                    </div>
+                                    <div className="home-product-card">
+                                        <h3>Quantum Agent Health (ReForge)</h3>
+                                        <p className="price">$25/mo · $250/yr founding</p>
+                                        <ul>
+                                            <li>PT-adjacent rehab planning &amp; protocols</li>
+                                            <li>Quantum-informed setback risk (PennyLane simulators)</li>
+                                            <li>Clinical modifiers &amp; GCF handoff</li>
+                                            <li>Founding pricing — see Quantum Agent Health tab</li>
+                                        </ul>
+                                        <button type="button" className="card-cta" style={{border:'none',cursor:'pointer',fontFamily:'inherit',background:'#6f42c1',color:'#fff'}} onClick={() => setPage('quantumAgentHealth')}>Quantum Agent Health — pricing</button>
+                                    </div>
+                                    <div className="home-product-card">
+                                        <h3>Kaito Template</h3>
+                                        <p className="price">$49 one-time</p>
+                                        <ul>
+                                            <li>CFO agent template — Stripe revenue, ledger, reporting</li>
+                                            <li>Drop-in for your stack</li>
+                                            <li>Documentation and .env template</li>
+                                        </ul>
+                                        <button type="button" className="card-cta" style={{border:'none',cursor:'pointer',fontFamily:'inherit'}} onClick={() => setPage('products')}>See AI Forge — Kaito from $49</button>
+                                    </div>
+                                    <div className="home-product-card">
+                                        <h3>Voice-to-Part</h3>
+                                        <p className="price">$20/job</p>
+                                        <ul>
+                                            <li>Say it or type it — get STL and STEP</li>
+                                            <li>Blender or FreeCAD output</li>
+                                            <li>Manufacturing Sim add-on included</li>
+                                        </ul>
+                                        <a href={STRIPE_VOICE_PART_PER_JOB} className="card-cta" target="_blank" rel="noopener" onClick={(e)=>{e.preventDefault();particleBurst(e,()=>window.open(STRIPE_VOICE_PART_PER_JOB,'_blank'));}}>Start — $20/job</a>
+                                    </div>
+                                </div>
+                                <div className="testimonials-placeholder scroll-reveal glow-visible">
+                                    <h3>Validation status</h3>
+                                    <p className="testimonial-quote">Product claims and marketing copy are under active validation.</p>
+                                    <p className="testimonial-attribution">– Howell Forge staging policy</p>
+                                </div>
+                                <InstantPaySection />
+                                <div id="pay-usdc" className="scroll-reveal"><UsdcPaymentSection /></div>
+                                <div className="scroll-reveal"><WalletSection /></div>
+                                <div className="scroll-reveal"><QuoteForm user={authUser} /></div>
+                            </>
+                        )}
+
+                        {page === 'products' && (
+                            <>
+                                <div className="products-hero scroll-reveal glow-visible">
+                                    <h2 className="typography-pulse-trigger">Quantum Agent Forge — <span className="highlight">Your Business Crew, Ready to Deploy</span></h2>
+                                    <p>8 quantum-enabled AI agents forged for your business. Telegram-connected and Stripe-integrated, with implementation scope finalized during onboarding.</p>
+                                    <div className="crew-badge">
+                                        <span>FORGE Commander</span>
+                                        <span>ARIA Monitor</span>
+                                        <span>NOVA Security</span>
+                                        <span>MAVEN Marketing</span>
+                                        <span>REX Shop Floor</span>
+                                        <span>KAITO CFO</span>
+                                        <span>FLUX Dev</span>
+                                        <span>SAGE Analytics</span>
+                                    </div>
+                                </div>
+                                <div className="value-callout scroll-reveal glow-visible">
+                                    <p>This package is intended to reduce repetitive setup and operations work. Final outcomes depend on implementation quality, business process fit, and ongoing use.</p>
+                                </div>
+                                <div className="playbook-wide scroll-reveal glow-visible">
+                                    <h3 className="typography-pulse-trigger">The Playbook</h3>
+                                    <p className="playbook-lede">The same playbook we use to stand up agents, ops, and revenue rails—condensed into one guide. <strong style={{color:'#e8e8ec'}}>$39</strong> one-time; instant access after checkout.</p>
+                                    <a href={STRIPE_PLAYBOOK} className="playbook-cta brutal-cta" target="_blank" rel="noopener" onClick={(e)=>{e.preventDefault();particleBurst(e,()=>window.open(STRIPE_PLAYBOOK,'_blank'));}}>Get The Playbook — $39</a>
+                                </div>
+                                <div className="pricing-grid scroll-reveal glow-visible">
+                                    <div className="pricing-card">
+                                        <p className="tier-name">Starter</p>
+                                        <p className="price">$497</p>
+                                        <p className="price-sub">One-time — yours forever</p>
+                                        <ul className="feature-list">
+                                            <li>Full 8 quantum-enabled agent ElizaOS crew (source code)</li>
+                                            <li>FORGE, ARIA, NOVA, MAVEN, REX, KAITO, FLUX, SAGE</li>
+                                            <li>Step-by-step setup guide</li>
+                                            <li>.env template — drop in your keys</li>
+                                            <li>Railway deployment config included</li>
+                                            <li>Telegram command center</li>
+                                            <li>Stripe payment integration</li>
+                                            <li>Self-healing Monitor + Security loop</li>
+                                        </ul>
+                                        <a href="https://buy.stripe.com/bJecMYcZPaimc4U5647Zu00" className="buy-btn outline" target="_blank" rel="noopener" onClick={(e)=>{e.preventDefault();particleBurst(e,()=>window.open(e.currentTarget.href,'_blank'));}}>Get Quantum Agent Forge Starter — $497</a>
+                                    </div>
+                                    <div className="pricing-card featured">
+                                        <div className="featured-badge">MOST POPULAR</div>
+                                        <p className="tier-name">Done For You</p>
+                                        <p className="price">$1,497</p>
+                                        <p className="price-sub">One-time — we deploy everything</p>
+                                        <ul className="feature-list">
+                                            <li>Everything in Starter</li>
+                                            <li>We deploy it — your brand, your domain</li>
+                                            <li>All API keys configured for you</li>
+                                            <li>Live deployment session with Howell Forge</li>
+                                            <li>All 8 quantum-enabled agents tested and running</li>
+                                            <li>Telegram connected and verified</li>
+                                            <li>Stripe live checkout configured</li>
+                                            <li>30-day post-launch support</li>
+                                        </ul>
+                                        <a href="https://buy.stripe.com/14A7sEcZP0HM4Cs0PO7Zu01" className="buy-btn primary brutal-cta" target="_blank" rel="noopener" onClick={(e)=>{e.preventDefault();particleBurst(e,()=>window.open(e.currentTarget.href,'_blank'));}}>Get Quantum Agent Forge Done For You — $1,497</a>
+                                    </div>
+                                    <div className="pricing-card">
+                                        <p className="tier-name">Monthly Retainer</p>
+                                        <p className="price">$97 <span>/ mo</span></p>
+                                        <p className="price-sub">Ongoing — cancel anytime</p>
+                                        <ul className="feature-list">
+                                            <li>Monthly agent updates and upgrades</li>
+                                            <li>New agents as AI evolves</li>
+                                            <li>Priority Cursor sessions</li>
+                                            <li>Bug fixes and troubleshooting</li>
+                                            <li>Keep your crew sharp</li>
+                                        </ul>
+                                        <a href="https://buy.stripe.com/00waEQgc176a5Gw2XW7Zu02" className="buy-btn outline" target="_blank" rel="noopener" onClick={(e)=>{e.preventDefault();particleBurst(e,()=>window.open(e.currentTarget.href,'_blank'));}}>Subscribe — $97/mo</a>
+                                    </div>
+                                </div>
+                                <div className="includes-section scroll-reveal glow-visible">
+                                    <h3 className="typography-pulse-trigger">What is Inside Quantum Agent Forge</h3>
+                                    <div className="includes-grid bento-grid">
+                                        <div className={`include-item expandable bento-span-2${expandedAgent === 'forge' ? ' active' : ''}`} onClick={() => setExpandedAgent(expandedAgent === 'forge' ? null : 'forge')}><span className="icon">⚔️</span><div className="text"><strong>FORGE — Commander</strong> Your direct Telegram line. Oversees the crew. Speaks with authority.</div><div className="expand-content">Primary interface for your crew. Routes commands, coordinates agents, and reports status.</div></div>
+                                        <div className={`include-item expandable bento-span-2${expandedAgent === 'aria' ? ' active' : ''}`} onClick={() => setExpandedAgent(expandedAgent === 'aria' ? null : 'aria')}><span className="icon">📡</span><div className="text"><strong>ARIA — Monitor</strong> Tracks uptime, SSL, Stripe status, and latency with alerting.</div><div className="expand-content">Health checks, SSL expiry, payment status. Telegram alerts when something needs attention.</div></div>
+                                        <div className={`include-item expandable${expandedAgent === 'nova' ? ' active' : ''}`} onClick={() => setExpandedAgent(expandedAgent === 'nova' ? null : 'nova')}><span className="icon">🛡️</span><div className="text"><strong>NOVA — Security</strong> HTTPS, headers, CSP. Paranoid so you do not have to be.</div><div className="expand-content">Headers, CSP, security headers. Keeps your stack locked down.</div></div>
+                                        <div className={`include-item expandable${expandedAgent === 'maven' ? ' active' : ''}`} onClick={() => setExpandedAgent(expandedAgent === 'maven' ? null : 'maven')}><span className="icon">📣</span><div className="text"><strong>MAVEN — Marketing</strong> Drafts content and monitors brand. You approve before anything posts.</div><div className="expand-content">Social drafts, brand monitoring. Human-in-the-loop for all outbound content.</div></div>
+                                        <div className={`include-item expandable${expandedAgent === 'rex' ? ' active' : ''}`} onClick={() => setExpandedAgent(expandedAgent === 'rex' ? null : 'rex')}><span className="icon">🏭</span><div className="text"><strong>REX — Shop Floor</strong> Tracks orders and production pipeline. Keeps things moving.</div><div className="expand-content">Order tracking, inventory, production pipeline. Built for makers.</div></div>
+                                        <div className={`include-item expandable${expandedAgent === 'kaito' ? ' active' : ''}`} onClick={() => setExpandedAgent(expandedAgent === 'kaito' ? null : 'kaito')}><span className="icon">💰</span><div className="text"><strong>KAITO — CFO</strong> Stripe revenue, wallet watch, Nest Egg monitoring. Cold precision.</div><div className="expand-content">Revenue dashboards, USDC tracking, financial health. Numbers you can trust.</div></div>
+                                        <div className={`include-item expandable${expandedAgent === 'flux' ? ' active' : ''}`} onClick={() => setExpandedAgent(expandedAgent === 'flux' ? null : 'flux')}><span className="icon">⚡</span><div className="text"><strong>FLUX — Dev Agent</strong> Code fixes, deployments, GitHub ops. Keeps the stack healthy.</div><div className="expand-content">Deploys, fixes, GitHub ops. Your dev agent that never sleeps.</div></div>
+                                        <div className={`include-item expandable${expandedAgent === 'sage' ? ' active' : ''}`} onClick={() => setExpandedAgent(expandedAgent === 'sage' ? null : 'sage')}><span className="icon">🔭</span><div className="text"><strong>SAGE — Analytics</strong> Patterns, insights, and strategic signals from your data.</div><div className="expand-content">Patterns, trends, insights. Turns data into decisions.</div></div>
+                                    </div>
+                                </div>
+                                <div className="readability-panel" style={{textAlign:'center',padding:'1rem 1.25rem 1.5rem',marginBottom:'2rem',maxWidth:'720px',color:'#b0b0b0',fontSize:'0.82rem'}}>
+                                    Questions? <a href="mailto:chrishowell@howell-forge.com" style={{color:'#4d9fff'}}>chrishowell@howell-forge.com</a>
+                                </div>
+                                <p id="voice-to-part" className="landing-section-title scroll-reveal glow-visible" style={{marginTop:0}}>Voice-to-Part</p>
+                                <div className="products-hero scroll-reveal glow-visible">
+                                    <h2 className="typography-pulse-trigger">Voice-to-Part — <span className="highlight">Say It. Get the Part.</span></h2>
+                                    <p>Turn spoken or typed descriptions into real parts: STL and STEP files, ready for your CNC or 3D printer. Works with Blender or FreeCAD. No CAD experience required.</p>
+                                    <div className="crew-badge">
+                                        <span>Voice or text</span>
+                                        <span>Blender / FreeCAD</span>
+                                        <span>STL + STEP</span>
+                                        <span>Manufacturing Sim</span>
+                                    </div>
+                                </div>
+                                <div className="value-callout scroll-reveal glow-visible">
+                                    <p>Competitors charge <strong>$20–60/mo</strong> for voice-to-CAD. Voice-to-Part gives you the full pipeline plus a <strong>free</strong> Blender add-on for toolpath simulation.</p>
+                                </div>
+                                <div className="pricing-grid scroll-reveal glow-visible">
+                                    <div className="pricing-card">
+                                        <p className="tier-name">Starter</p>
+                                        <p className="price">$19 <span>/ mo</span> &nbsp;·&nbsp; $199 <span>/ yr</span></p>
+                                        <p className="price-sub">14-day free trial on both monthly and yearly plans.</p>
+                                        <ul className="feature-list">
+                                            <li>Voice or text → part script</li>
+                                            <li>Blender or FreeCAD output (STL + STEP)</li>
+                                            <li>Manufacturing Sim add-on (free, open source)</li>
+                                            <li>Same 14-day trial whether you pick monthly or yearly</li>
+                                        </ul>
+                                        <div className="vtp-starter-ctas">
+                                            <a href={STRIPE_VOICE_PART_STARTER_YEARLY} className="buy-btn primary brutal-cta" target="_blank" rel="noopener" onClick={handleVoicePartStarterYearly}>Best deal — $199/year (14-day trial)</a>
+                                            <a href={STRIPE_VOICE_PART_STARTER_MONTHLY} className="buy-btn outline" target="_blank" rel="noopener" onClick={handleVoicePartStarterMonthly}>Or $19/month (14-day trial)</a>
+                                        </div>
+                                    </div>
+                                    <div className="pricing-card">
+                                        <p className="tier-name">Pay per job</p>
+                                        <p className="price">$20 <span>/ job</span></p>
+                                        <p className="price-sub">No subscription — one checkout per part</p>
+                                        <ul className="feature-list">
+                                            <li>Voice or text → STL + STEP</li>
+                                            <li>Blender or FreeCAD output</li>
+                                            <li>Manufacturing Sim add-on included</li>
+                                        </ul>
+                                        <a href={STRIPE_VOICE_PART_PER_JOB} className="buy-btn outline" target="_blank" rel="noopener" onClick={(e)=>{e.preventDefault();particleBurst(e,()=>window.open(STRIPE_VOICE_PART_PER_JOB,'_blank'));}}>Start — $20/job</a>
+                                    </div>
+                                    <div className="pricing-card featured">
+                                        <div className="featured-badge">BEST VALUE</div>
+                                        <p className="tier-name">Pro</p>
+                                        <p className="price">$49 <span>/ mo</span></p>
+                                        <p className="price-sub">Monthly subscription</p>
+                                        <ul className="feature-list">
+                                            <li>Everything in Starter</li>
+                                            <li>Higher volume, priority support</li>
+                                            <li>For shops and makers</li>
+                                        </ul>
+                                        <a href={STRIPE_VOICE_PART_PRO} className="buy-btn primary brutal-cta" target="_blank" rel="noopener" onClick={handleVoicePartPro}>Get Voice-to-Part Pro — $49/mo</a>
+                                    </div>
+                                </div>
+                                <p className="landing-section-title scroll-reveal glow-visible" style={{marginTop:'2rem'}}>Voice-to-PCB</p>
+                                <div className="products-hero scroll-reveal glow-visible" style={{paddingTop:'0.35rem'}}>
+                                    <h2 className="typography-pulse-trigger">Voice-to-PCB — <span className="highlight">Power Control Board</span></h2>
+                                    <p>Turn spoken or typed requirements into PCB-oriented deliverables — schematics, layout direction, and manufacturing handoff. Same philosophy as Voice-to-Part; not available for purchase yet.</p>
+                                    <div className="crew-badge">
+                                        <span>Voice or text</span>
+                                        <span>Schematic + layout</span>
+                                        <span>BOM aware</span>
+                                        <span>Manufacturing ready</span>
+                                    </div>
+                                </div>
+                                <div className="pricing-grid scroll-reveal glow-visible">
+                                    <div className="pricing-card">
+                                        <p className="tier-name">Starter</p>
+                                        <p className="price-coming-soon">Coming soon</p>
+                                        <p className="price-coming-soon-sub">Not for purchase yet — email us if you want early access</p>
+                                        <ul className="feature-list">
+                                            <li>Voice or text → board requirements and constraints</li>
+                                            <li>Schematic-first workflow (when launched)</li>
+                                            <li>BOM and design-rules guidance</li>
+                                            <li>Aligned with Howell Forge fab pipeline</li>
+                                        </ul>
+                                        <a href="mailto:chrishowell@howell-forge.com?subject=Voice-to-PCB%20Starter%20interest" className="buy-btn outline">Email about Starter</a>
+                                    </div>
+                                    <div className="pricing-card featured">
+                                        <div className="featured-badge">COMING SOON</div>
+                                        <p className="tier-name">Pro</p>
+                                        <p className="price-coming-soon">Coming soon</p>
+                                        <p className="price-coming-soon-sub">Not for purchase yet — email us if you want early access</p>
+                                        <ul className="feature-list">
+                                            <li>Everything in Starter</li>
+                                            <li>Higher complexity boards &amp; revisions</li>
+                                            <li>Priority support when we launch</li>
+                                        </ul>
+                                        <a href="mailto:chrishowell@howell-forge.com?subject=Voice-to-PCB%20Pro%20interest" className="buy-btn primary brutal-cta">Email about Pro</a>
+                                    </div>
+                                </div>
+                                <div className="stripe-callout scroll-reveal glow-visible">
+                                    <p>Secure checkout via Stripe.</p>
+                                </div>
+                            </>
+                        )}
+
+                        {page === 'about' && (
+                            <div className="scroll-reveal readability-panel">
+                                <h2>About Howell Forge</h2>
+                                <p>We have built many businesses — precision metal, fabrication, software. In the process, we automated the setup and startup so we could focus on the actual work. That is Quantum Agent Forge (Q Agent Forge): the same 8 quantum-enabled agents we run our own business with, packaged for yours.</p>
+                                <p>Quantum Agent Forge runs on ElizaOS, powered by Grok-3. Every agent is quantum-enabled — built, tested, and battle-hardened on our own live business before we packaged it for yours.</p>
+                            </div>
+                        )}
+
+                        {page === 'quantumAgentHealth' && (
+                            <>
+                                <p className="landing-section-title scroll-reveal glow-visible" style={{marginTop:0}}>Clinicians · ReForge</p>
+                                <div className="products-hero scroll-reveal glow-visible">
+                                    <h2 className="typography-pulse-trigger">Quantum Agent Health — <span className="highlight">Rehab planning · Quantum-informed risk · GCF handoff</span></h2>
+                                    <p>ReForge: structured rehab planning, patient handoff into GroundChiFlow, and quantum-informed analysis (QAH) for clinic-adjacent workflows — protocols, modifiers, coaching export, and Streamlit-friendly handoff.</p>
+                                    <p style={{marginTop:'1rem',marginBottom:0,fontSize:'0.95rem'}}>
+                                        <a href="/qah.html" style={{color:'#7bc67e'}}>Dedicated QAH page</a>
+                                        {' '}— focused overview + fit check + direct monthly/annual checkout.
+                                    </p>
+                                    <div className="crew-badge">
+                                        <span>Protocols</span>
+                                        <span>Handoff</span>
+                                        <span>PennyLane risk</span>
+                                        <span>GCF</span>
+                                        <span>Roadmap</span>
+                                    </div>
+                                </div>
+                                <div className="value-callout scroll-reveal glow-visible">
+                                    <p><strong>Quantum, accurately:</strong> Setback-risk uses <strong>variational quantum circuits</strong> (PennyLane). Default runs on <strong>high-fidelity simulators</strong>. With an <strong>IBM Quantum</strong> token and optional add-on, the <strong>final circuit readout</strong> can run on <strong>real cloud quantum hardware</strong> (typically <strong>your IBM account</strong> / your usage billing). We do not claim FDA clearance or exclusive hardware access.</p>
+                                </div>
+                                <div className="testimonials-placeholder scroll-reveal glow-visible" style={{maxWidth:'720px',marginLeft:'auto',marginRight:'auto'}}>
+                                    <h3>Founding pricing</h3>
+                                    <p className="testimonial-quote">Early pricing while we continue expanding the exercise video library. Cancel anytime on monthly.</p>
+                                </div>
+                                <div className="pricing-grid scroll-reveal glow-visible">
+                                    <div className="pricing-card">
+                                        <p className="tier-name">Monthly</p>
+                                        <p className="price">$25 <span>/ mo</span></p>
+                                        <p className="price-sub">Founding · cancel anytime</p>
+                                        <ul className="feature-list">
+                                            <li>Clinician planning workspace &amp; QAH workflow access</li>
+                                            <li>GroundChiFlow handoff export &amp; JSON for GCF</li>
+                                            <li>Protocol library, modifiers, safety guardrails</li>
+                                            <li>Quantum-informed risk (simulator backends)</li>
+                                            <li>Exercise video library — on the roadmap</li>
+                                        </ul>
+                                        <a href="https://buy.stripe.com/eVq28kbVLaimglafKI7Zu0a" className="buy-btn primary" target="_blank" rel="noopener" onClick={(e)=>{e.preventDefault();particleBurst(e,()=>window.open(e.currentTarget.href,'_blank'));}}>Subscribe — $25/mo</a>
+                                    </div>
+                                    <div className="pricing-card featured">
+                                        <div className="featured-badge">FOUNDING</div>
+                                        <p className="tier-name">Annual</p>
+                                        <p className="price">$250 <span>/ yr</span></p>
+                                        <p className="price-sub">Annual plan option</p>
+                                        <ul className="feature-list">
+                                            <li>Everything in Monthly</li>
+                                            <li>About two months free vs monthly</li>
+                                            <li>Founding rate locked while subscription stays active</li>
+                                        </ul>
+                                        <a href="https://buy.stripe.com/8x214g4tj0HM3yodCA7Zu0b" className="buy-btn primary brutal-cta" target="_blank" rel="noopener" onClick={(e)=>{e.preventDefault();particleBurst(e,()=>window.open(e.currentTarget.href,'_blank'));}}>Subscribe — $250/yr</a>
+                                    </div>
+                                </div>
+                                <div className="value-callout scroll-reveal glow-visible" style={{marginBottom:'2rem'}}>
+                                    <p><strong>Founding price:</strong> $25/mo or $250/yr while your subscription stays active and in good standing. If you cancel and subscribe again later, current public pricing applies.</p>
+                                </div>
+                                <div className="stripe-callout scroll-reveal glow-visible">
+                                    <p>Secure checkout via Stripe.</p>
+                                </div>
+                                <div className="readability-panel" style={{textAlign:'center',padding:'1rem 1.25rem 1.5rem',marginBottom:'2rem',maxWidth:'720px',color:'#b0b0b0',fontSize:'0.82rem'}}>
+                                    Questions? <a href="mailto:chrishowell@howell-forge.com" style={{color:'#4d9fff'}}>chrishowell@howell-forge.com</a>
+                                </div>
+                            </>
+                        )}
+
+                        {page === 'groundchiflow' && (
+                            <>
+                                <p className="landing-section-title scroll-reveal glow-visible" style={{marginTop:0}}>Members · GroundChiFlow</p>
+                                <div className="products-hero scroll-reveal glow-visible">
+                                    <h2 className="typography-pulse-trigger">GroundChiFlow — <span className="highlight">Nervous System · Breathwork · Gut · Longevity</span></h2>
+                                    <p>Evidence-based wellness in one app. Breathwork, tai chi, rehab routines, gut health, nutrition, and longevity tools. No one else combines all of this.</p>
+                                    <div className="crew-badge">
+                                        <span>Breathwork</span>
+                                        <span>Tai Chi</span>
+                                        <span>Rehab Routines</span>
+                                        <span>Gut Health</span>
+                                        <span>Nutrition</span>
+                                        <span>Longevity</span>
+                                    </div>
+                                </div>
+                                <div className="value-callout scroll-reveal glow-visible">
+                                    <p>GroundChiFlow combines breathwork, tai chi, rehab routines, gut health, nutrition, and longevity tools in one browser-based app.</p>
+                                </div>
+                                <div className="testimonials-placeholder scroll-reveal glow-visible" style={{maxWidth:'640px',marginLeft:'auto',marginRight:'auto'}}>
+                                    <h3>Founder story</h3>
+                                    <p className="testimonial-quote">Built a Health App that helped me rehab from injury and stay strong enough to work daily. AI tracks wellness + finances in one place.</p>
+                                    <p className="testimonial-attribution">Beta open: $9.99/mo via Stripe. <a href="https://howell-forge.com" style={{color:'#4d9fff'}}>howell-forge.com</a> · #HealthTech #AI #Wellness</p>
+                                </div>
+                                <div className="pricing-grid scroll-reveal glow-visible">
+                                    <div className="pricing-card">
+                                        <p className="tier-name">Monthly</p>
+                                        <p className="price">$9.99 <span>/ mo</span></p>
+                                        <p className="price-sub">Cancel anytime</p>
+                                        <ul className="feature-list">
+                                            <li>Full app access — all routines and tools</li>
+                                            <li>Breathwork & nervous system regulation</li>
+                                            <li>Tai chi & rehab routines</li>
+                                            <li>Gut health & nutrition tracking</li>
+                                            <li>Longevity & blood work insights</li>
+                                            <li>Use in browser — no app store needed</li>
+                                        </ul>
+                                        <a href="https://howell-forge.com/gcf/" target="_blank" rel="noopener" className="buy-btn primary" style={{marginBottom:'0.5rem'}}>Open GroundChiFlow App</a>
+                                        <a href="https://buy.stripe.com/3cIbIUf7Xbmq5Gw1TS7Zu03" className="buy-btn outline" target="_blank" rel="noopener" onClick={(e)=>{e.preventDefault();particleBurst(e,()=>window.open(e.currentTarget.href,'_blank'));}}>Subscribe — $9.99/mo</a>
+                                    </div>
+                                    <div className="pricing-card featured">
+                                        <div className="featured-badge">BEST VALUE</div>
+                                        <p className="tier-name">Annual</p>
+                                        <p className="price">$79.99 <span>/ yr</span></p>
+                                        <p className="price-sub">Annual plan option</p>
+                                        <ul className="feature-list">
+                                            <li>Everything in Monthly</li>
+                                            <li>Annual billing option</li>
+                                            <li>Lock in this price</li>
+                                            <li>Cancel anytime — no commitment</li>
+                                        </ul>
+                                        <a href="https://buy.stripe.com/14A3co7Fv76a4Cs6a87Zu04" className="buy-btn primary brutal-cta" target="_blank" rel="noopener" onClick={(e)=>{e.preventDefault();particleBurst(e,()=>window.open(e.currentTarget.href,'_blank'));}}>Subscribe — $79.99/yr</a>
+                                    </div>
+                                </div>
+                                <div className="stripe-callout scroll-reveal glow-visible">
+                                    <p>Secure checkout via Stripe. After subscribing, sign in to the app with the same email to access your subscription.</p>
+                                </div>
+                                <div className="readability-panel" style={{textAlign:'center',padding:'1rem 1.25rem 1.5rem',marginBottom:'2rem',maxWidth:'720px',color:'#b0b0b0',fontSize:'0.82rem'}}>
+                                    Questions? <a href="mailto:chrishowell@howell-forge.com" style={{color:'#4d9fff'}}>chrishowell@howell-forge.com</a>
+                                </div>
+                            </>
+                        )}
+
+                        {page === 'contact' && (
+                            <>
+                                <div className="scroll-reveal readability-panel">
+                                    <h2>Contact Us</h2>
+                                    <p>We are here to help with your metal parts production needs or AI business setup.</p>
+                                    <p>Email: <a href="mailto:chrishowell@howell-forge.com" style={{color:'#4d9fff'}}>chrishowell@howell-forge.com</a></p>
+                                    <p>Business Hours: Monday - Friday, 9:00 AM - 5:00 PM EST</p>
+                                </div>
+                                <div className="scroll-reveal"><QuoteForm user={authUser} /></div>
+                            </>
+                        )}
+                    </div>
+                );
+            }
+
+            return (
+                <ErrorBoundary>
+                    <div>
+                        <Header />
+                        <MainContent />
+                        <div className="footer">&copy; 2026 Howell Forge. All rights reserved. &nbsp;|&nbsp; Website created by Agent Forge. Created by Chris Howell. &nbsp;|&nbsp; Powered by <a href="https://elizaos.ai" target="_blank" rel="noopener" style={{color:'#4d9fff'}}>ElizaOS</a> &mdash; created by <a href="https://github.com/lalalune" target="_blank" rel="noopener" style={{color:'#4d9fff'}}>Shaw Walters</a></div>
+                        {showAuth && <AuthModal onClose={() => setShowAuth(false)} onAuth={(user) => { setAuthUser(user); setPage('home'); }} />}
+                    </div>
+                </ErrorBoundary>
+            );
+        };
+
+        ReactDOM.render(<ErrorBoundary><App /></ErrorBoundary>, document.getElementById('root'));
+    </script>
+</body>
+</html>
