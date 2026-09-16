@@ -37,7 +37,7 @@
     wrap.innerHTML = [
         '<div id="aria-chat-panel">',
         '  <div class="head">Chat <span>— ARIA</span><button type="button" class="aria-close" id="aria-close-btn" aria-label="Minimize chat">×</button></div>',
-        '  <div class="msgs" id="aria-msgs"><div class="aria-msg bot">Hi, I\'m ARIA. Ask about metal parts, Quantum Agent Forge, pricing, or anything else.</div></div>',
+        '  <div class="msgs" id="aria-msgs"><div class="aria-msg bot">Hi, I\'m ARIA. Ask about GroundChiFlow, shop-floor CAM, quotes, or Agent Forge ops.</div></div>',
         '  <div class="row">',
         '    <input type="text" id="aria-input" placeholder="Type a message..." />',
         '    <button type="button" class="send" id="aria-send">Send</button>',
@@ -78,33 +78,41 @@
     function stubReply(text) {
         var lower = text.toLowerCase().trim();
 
+        /* GroundChiFlow first */
+        if (/\bgcf\b|groundchiflow|ground chi|breathwork|tai chi|wellness app|health app/.test(lower))
+            return 'GroundChiFlow is the public product: nervous system, breathwork, gut, tai chi, rehab, and nutrition in one browser app. Open howell-forge.com/gcf/ or the GroundChiFlow tab. Subscribe $9.99/mo or $79.99/yr via the existing Stripe links on that page. Wellness/education only — not a medical device.';
+
+        /* Withdrawn / hidden lanes — do not sell */
+        if (/voice-?to-?part|voice-?to-?pcb|business ai audit|keyguard|ai ecosystem/.test(lower))
+            return 'That lane is not a public sellable on this site. Start with GroundChiFlow (howell-forge.com/gcf/) or request a metal/CAM quote. Agent Forge is listed as honest ops tooling only — not a quantum-enabled product.';
+
         /* Quantum Agent Health (before generic “quantum” / forge) */
         if (/\bquantum agent health\b|\bqah\b|reforge|rehab planning agent|pennylane.*rehab|rehab.*pennylane/.test(lower))
-            return 'Quantum Agent Health / ReForge is PT-adjacent rehab planning: evidence-based protocols, clinical modifiers, variational-circuit setback risk (PennyLane on high-quality simulators in the default product path), and handoff to GroundChiFlow. Founding: $25/mo or $250/yr on the Quantum Agent Health tab. We do not claim FDA clearance or exclusive quantum hardware.';
+            return 'Quantum Agent Health / ReForge is optional rehab-planning with simulator-first, caveated language (PennyLane on high-fidelity simulators by default). Founding $25/mo or $250/yr on the Quantum Agent Health tab, using existing Stripe links. We do not claim FDA clearance, exclusive hardware, or quantum-enabled Agent Forge.';
 
         /* Pricing / cost */
-        if (/price|pricing|cost|how much|497|1497|97\/?mo|monthly|one-?time|playbook|39|voice|20\/?job|19|49|\b25\b|\b250\b/.test(lower))
-            return 'Pricing: Quantum Agent Health / ReForge founding $25/mo or $250/yr (Quantum Agent Health tab). AI Forge: Playbook $39; Voice-to-Part $20/job; Starter $19/mo or $199/yr (14-day trial); Pro $49/mo; Q Agent Forge Starter $497, Done For You $1,497, Retainer $97/mo. GroundChiFlow $9.99/mo. Stripe checkout on the site.';
+        if (/price|pricing|cost|how much|497|1497|97\/?mo|monthly|one-?time|playbook|39|\b25\b|\b250\b|9\.99/.test(lower))
+            return 'Public focus: GroundChiFlow $9.99/mo or $79.99/yr (GroundChiFlow tab / howell-forge.com/gcf/). Agent Forge ops packages (Playbook $39; Starter $497; Done For You $1,497; Retainer $97/mo) stay on the Agent Forge tab with honest, non-quantum copy. Quantum Agent Health founding $25/mo or $250/yr, caveated. We do not sell Voice-to-Part, Voice-to-PCB, or Business AI Audit here.';
 
-        /* Quote / metal / fabrication */
-        if (/quote|metal|part|cnc|machining|fabricat|order|prototype|custom part/.test(lower))
-            return "For metal parts or CNC work: use the Get a Quote form on this site. Include material, dimensions, quantity, tolerances, and timeline. We'll reply within one business day.";
+        /* Quote / metal / fabrication / Picatinny / SurfNDive */
+        if (/quote|metal|part|cnc|machining|fabricat|order|prototype|custom part|picatinny|surfn ?dive|4-?axis|fixture/.test(lower))
+            return 'Shop-floor verified: Picatinny Rail CAM on 3-axis. SurfNDive hull is design exploration only — we do not claim 4-axis, adaptive clearing, or a production fixture. For a quote, use Get a Quote: material, dimensions, quantity, tolerances, timeline.';
 
         /* Contact / email */
         if (/contact|email|reach|phone|call|hours|est/.test(lower))
             return 'Email chrishowell@howell-forge.com. Business hours: Mon–Fri 9–5 EST.';
 
-        /* Quantum Agent Forge / Q Agent Forge / agents / crew */
+        /* Agent Forge / agents / crew — honest, no quantum-enabled */
         if (/quantum agent forge|q agent forge|agentforge|agent forge|agents?|crew|elizaos|eliza|deploy|forged?|business crew/.test(lower))
-            return 'Quantum Agent Forge (Q Agent Forge) is an 8-agent crew of quantum-enabled AI agents for your business: FORGE (Commander), ARIA (Monitor), NOVA (Security), MAVEN (Marketing), REX (Shop Floor), KAITO (CFO), FLUX (Dev), SAGE (Analytics). Running 24/7, Telegram-connected, Stripe-integrated. Deploy in a day. See the AI Forge page for details.';
+            return 'Agent Forge is a practical ops crew (monitors, security scripts, customer lookup, marketing drafts with human approval). Not quantum-enabled. See the Agent Forge tab for existing packages. Public sellable focus is GroundChiFlow.';
 
         /* What is / how does / explain */
         if (/what is|what\'s|howell forge|who are you|tell me about/.test(lower))
-            return 'Howell Forge combines precision metal fabrication with AI business automation. We build custom CNC parts and deploy Quantum Agent Forge (Q Agent Forge) — an 8-agent crew of quantum-enabled AI agents for entrepreneurs. Built by makers, for makers.';
+            return 'Howell Forge: GroundChiFlow (the public app), 3-axis Picatinny Rail CAM verified on the shop floor, and honest Agent Forge ops tooling. We do not sell quantum-enabled agents or unverified 4-axis/fixture production.';
 
         /* Stripe / payment / buy */
         if (/stripe|payment|pay|buy|purchase|checkout|card/.test(lower))
-            return 'Stripe checkout on the site: AI Forge, Quantum Agent Health / ReForge ($25/mo or $250/yr founding), GroundChiFlow, Voice-to-Part. For metal parts we also accept USDC on Base — see Pay with USDC on the home page.';
+            return 'Stripe on this site uses existing Payment Links only: GroundChiFlow, Agent Forge ops packages, and caveated Quantum Agent Health. Venmo, Cash App, and USDC on Base are on the home page for metal/jobs. We do not invent new checkout URLs.';
 
         /* USDC / crypto */
         if (/usdc|crypto|base|wallet|0x/.test(lower))
@@ -112,14 +120,14 @@
 
         /* Greetings */
         if (/^(hi|hello|hey|howdy|yo)\s*!?$|^hi there|good (morning|afternoon|evening)/.test(lower))
-            return "Hi! I'm ARIA. I can help with metal parts, Quantum Agent Forge pricing, quotes, or how to get started. What would you like to know?";
+            return "Hi! I'm ARIA. Ask about GroundChiFlow, a shop-floor quote, or Agent Forge ops. What would you like to know?";
 
         /* Help */
         if (/help|what can you|what do you|options?|assist/.test(lower))
-            return "I can answer about: Quantum Agent Forge (8 agents), Quantum Agent Health / ReForge (rehab planning, $25/mo founding), metal parts, quotes, Stripe/USDC, and contact. Just ask!";
+            return 'I can answer about GroundChiFlow, 3-axis Picatinny CAM, quotes, Agent Forge ops (not quantum-enabled), caveated Quantum Agent Health, and contact.';
 
-        /* Default — offer specific next steps */
-        return "I'm ARIA. I can help with metal fabrication, Quantum Agent Forge, pricing, and quotes. Try asking: \"What is Quantum Agent Forge?\" or \"How much does Q Agent Forge cost?\" or \"How do I get a quote for metal parts?\"";
+        /* Default */
+        return "I'm ARIA. Try: GroundChiFlow, a metal/CAM quote, or Agent Forge ops. Public focus is GroundChiFlow at howell-forge.com/gcf/.";
     }
 
     var ws = null;
