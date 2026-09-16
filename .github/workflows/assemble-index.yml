@@ -4,6 +4,7 @@ on:
     branches: [tidy/voice-product-2026-09-16]
     paths:
       - '_assemble/**'
+      - '.github/workflows/assemble-index.yml'
 jobs:
   assemble:
     runs-on: ubuntu-latest
@@ -16,13 +17,18 @@ jobs:
       - name: Assemble index.html from parts
         run: |
           python3 << 'PY'
-          import base64, gzip, pathlib, glob
+          import base64, gzip, pathlib, glob, hashlib
           parts = sorted(glob.glob('_assemble/index.part-*.b64'))
           assert parts, 'missing parts'
+          print('parts', parts)
           b64 = ''.join(pathlib.Path(p).read_text().strip() for p in parts)
-          data = gzip.decompress(base64.b64decode(b64))
+          # Fix known single-char corruption if present (Wzij -> Wwij)
+          b64 = b64.replace('kka+9Wzij6pnkMHqMuPto', 'kka+9Wwij6pnkMHqMuPto')
+          data = gzip.decompress(base64.b64decode(b64)).rstrip(b'\n')
           pathlib.Path('index.html').write_bytes(data)
-          print('wrote index.html', len(data))
+          print('wrote index.html', len(data), hashlib.sha256(data).hexdigest())
+          assert data.startswith(b'<!DOCTYPE html>')
+          assert data.rstrip().endswith(b'</html>')
           PY
       - name: Commit restored index.html
         run: |
