@@ -709,7 +709,7 @@
         </ul>
 
         <h3>Offers and how to engage</h3>
-        <p>This site highlights Agent Forge ops tooling and pathways like Quantum Agent Health and GroundChiFlow where the deliverable is clarity: what to automate first, what to measure, and what to defer. Stripe links are used for transparent checkout when a product is live; staging and test flows are labeled so you always know which environment you are in.</p>
+        <p>This site highlights Agent Forge ops tooling and GroundChiFlow where the deliverable is clarity: what to automate first, what to measure, and what to defer. Stripe links are used for transparent checkout when a product is live; staging and test flows are labeled so you always know which environment you are in.</p>
         <p>GroundChiFlow, where featured, points to our health-and-longevity product lane—separate from metal work but aligned on the same principle: build calm systems people can sustain. Across lanes we avoid hype language about guaranteed outcomes; we prefer checklists, runbooks, and evidence you can verify.</p>
 
         <h3>Quality, safety, and ethics</h3>
@@ -1115,7 +1115,6 @@
                         <div className="nav-buttons">
                             <button className="nav-button" onClick={() => setPage('home')} style={page === 'home' ? { background: '#0052ff' } : {}}>Home</button>
                             <button className="nav-button" onClick={() => setPage('products')} style={{ background: '#0052ff', opacity: page === 'products' ? 1 : 0.92 }}>AI Forge</button>
-                            <button className="nav-button" onClick={() => setPage('quantumAgentHealth')} style={page === 'quantumAgentHealth' ? { background: '#0052ff' } : {}}>Quantum Agent Health</button>
                             <button className="nav-button" onClick={() => setPage('groundchiflow')} style={page === 'groundchiflow' ? { background: '#0052ff' } : {}}>GroundChiFlow</button>
                             <button className="nav-button" onClick={() => setPage('contact')} style={page === 'contact' ? { background: '#0052ff' } : {}}>Connect</button>
                             <button className="nav-button" onClick={() => setPage('about')} style={page === 'about' ? { background: '#0052ff' } : {}}>About</button>
@@ -1158,11 +1157,10 @@
                                     <div className="landing-cta">
                                         <button type="button" className="nav-button primary brutal-cta" style={{padding:'14px 28px',fontSize:'1.05rem'}} onClick={(e)=>{ particleBurst(e, ()=>{ var el = document.getElementById('pay-instant') || document.getElementById('pay-usdc'); if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' }); }); }}>Start with Agent Forge – Venmo, Cash App, USDC, or Request Quote</button>
                                         <button className="nav-button" onClick={() => setPage('products')} style={{padding:'12px 24px',fontSize:'1rem'}}>See Agent Forge</button>
-                                        <button className="nav-button" onClick={() => setPage('quantumAgentHealth')} style={{padding:'12px 24px',fontSize:'1rem',background:'#6f42c1'}}>Quantum Agent Health</button>
                                         <button className="nav-button" onClick={() => setPage('groundchiflow')} style={{padding:'12px 24px',fontSize:'1rem',background:'#28a745'}}>GroundChiFlow App</button>
                                         <button className="nav-button" onClick={() => setPage('contact')} style={{padding:'12px 24px',fontSize:'1rem'}}>Get a Quote</button>
                                     </div>
-                                    <div className="stripe-callout scroll-reveal glow-visible" style={{marginTop:'0.5rem',marginBottom:'1rem'}}><p>Secure checkout via Stripe — pay with card on AI Forge, Quantum Agent Health, &amp; GroundChiFlow.</p></div>
+                                    <div className="stripe-callout scroll-reveal glow-visible" style={{marginTop:'0.5rem',marginBottom:'1rem'}}><p>Secure checkout via Stripe — pay with card on Agent Forge &amp; GroundChiFlow.</p></div>
                                     <div className="current-build"><span className="dot"></span>Current Build: Agent Forge template — honest ops story</div>
                                     <div className="stack-icons">
                                         <a href="https://railway.app" target="_blank" rel="noopener">Railway</a>
@@ -1186,17 +1184,6 @@
                                             <li>Use in browser — no app store needed</li>
                                         </ul>
                                         <a href="https://buy.stripe.com/3cIbIUf7Xbmq5Gw1TS7Zu03" className="card-cta" target="_blank" rel="noopener" onClick={(e)=>{e.preventDefault();particleBurst(e,()=>window.open('https://buy.stripe.com/3cIbIUf7Xbmq5Gw1TS7Zu03','_blank'));}}>Subscribe — $9.99/mo</a>
-                                    </div>
-                                    <div className="home-product-card">
-                                        <h3>Quantum Agent Health (ReForge)</h3>
-                                        <p className="price">$25/mo · $250/yr founding</p>
-                                        <ul>
-                                            <li>PT-adjacent rehab planning &amp; protocols</li>
-                                            <li>Quantum-informed setback risk (PennyLane simulators)</li>
-                                            <li>Clinical modifiers &amp; GCF handoff</li>
-                                            <li>Founding pricing — see Quantum Agent Health tab</li>
-                                        </ul>
-                                        <button type="button" className="card-cta" style={{border:'none',cursor:'pointer',fontFamily:'inherit',background:'#6f42c1',color:'#fff'}} onClick={() => setPage('quantumAgentHealth')}>Quantum Agent Health — pricing</button>
                                     </div>
                                     <div className="home-product-card">
                                         <h3>Kaito Template</h3>
@@ -1325,13 +1312,13 @@
 
                         {page === 'quantumAgentHealth' && (
                             <>
-                                <p className="landing-section-title scroll-reveal glow-visible" style={{marginTop:0}}>Clinicians · ReForge</p>
+                                <p className="landing-section-title scroll-reveal glow-visible" style={{marginTop:0}}>Secondary · Soft / caveated</p>
                                 <div className="products-hero scroll-reveal glow-visible">
-                                    <h2 className="typography-pulse-trigger">Quantum Agent Health — <span className="highlight">Rehab planning · Quantum-informed risk · GCF handoff</span></h2>
-                                    <p>ReForge: structured rehab planning, patient handoff into GroundChiFlow, and quantum-informed analysis (QAH) for clinic-adjacent workflows — protocols, modifiers, coaching export, and Streamlit-friendly handoff.</p>
+                                    <h2 className="typography-pulse-trigger">Quantum Agent Health — <span className="highlight">soft secondary pathway</span></h2>
+                                    <p><strong>Not a primary public offer.</strong> Agent Forge and GroundChiFlow are the main products on this site. QAH remains reachable for visitors who already have the link: clinic-adjacent rehab planning notes, GroundChiFlow handoff export, and simulator-first quantum-informed risk — with clear caveats.</p>
                                     <p style={{marginTop:'1rem',marginBottom:0,fontSize:'0.95rem'}}>
                                         <a href="/qah.html" style={{color:'#7bc67e'}}>Dedicated QAH page</a>
-                                        {' '}— focused overview + fit check + direct monthly/annual checkout.
+                                        {' '}— soft overview, fit check, and optional Stripe checkout (same caveats).
                                     </p>
                                     <div className="crew-badge">
                                         <span>Protocols</span>
@@ -1342,11 +1329,11 @@
                                     </div>
                                 </div>
                                 <div className="value-callout scroll-reveal glow-visible">
-                                    <p><strong>Quantum, accurately:</strong> Setback-risk uses <strong>variational quantum circuits</strong> (PennyLane). Default runs on <strong>high-fidelity simulators</strong>. With an <strong>IBM Quantum</strong> token and optional add-on, the <strong>final circuit readout</strong> can run on <strong>real cloud quantum hardware</strong> (typically <strong>your IBM account</strong> / your usage billing). We do not claim FDA clearance or exclusive hardware access.</p>
+                                    <p><strong>Soft quantum language only:</strong> Setback-risk exploration uses <strong>variational circuits</strong> (PennyLane) on <strong>high-fidelity simulators by default</strong>. Optional IBM Quantum readout (your token / your billing) is experimental — not a &quot;quantum-enabled agents&quot; claim, not FDA clearance, and not exclusive hardware access.</p>
                                 </div>
                                 <div className="testimonials-placeholder scroll-reveal glow-visible" style={{maxWidth:'720px',marginLeft:'auto',marginRight:'auto'}}>
-                                    <h3>Founding pricing</h3>
-                                    <p className="testimonial-quote">Early pricing while we continue expanding the exercise video library. Cancel anytime on monthly.</p>
+                                    <h3>Optional founding pricing (secondary)</h3>
+                                    <p className="testimonial-quote">Checkout links remain for early access while the exercise video library expands. Prefer Agent Forge or GroundChiFlow if you are choosing a primary product. Cancel anytime on monthly.</p>
                                 </div>
                                 <div className="pricing-grid scroll-reveal glow-visible">
                                     <div className="pricing-card">
