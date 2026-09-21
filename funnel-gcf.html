@@ -81,22 +81,71 @@
             -webkit-backdrop-filter: var(--hf-glass);
         }
         .hero h2 {
-            margin: 0 0 0.75rem 0;
+            margin: 0 0 0.5rem 0;
             font-size: 1.75rem;
             line-height: 1.25;
             color: #fff;
             text-shadow: 0 2px 18px rgba(0, 0, 0, 0.7);
         }
-        .hero .lead { color: #c8c8d0; font-size: 1.05rem; margin: 0 0 1.25rem 0; }
+        .hero .lead { color: #c8c8d0; font-size: 1.05rem; margin: 1rem 0 0 0; }
         .hero .highlight { color: #4d9fff; font-weight: bold; }
+        .share-line {
+            font-size: 0.82rem;
+            color: #b8ffd9;
+            margin: 0 0 1rem 0;
+            padding: 0.55rem 0.65rem;
+            background: rgba(13, 74, 46, 0.45);
+            border-radius: 8px;
+            border: 1px solid rgba(46, 204, 113, 0.35);
+            word-break: break-all;
+        }
+        .hero-cta {
+            width: 100%;
+            padding: 1.05rem 1.25rem;
+            font-size: 1.12rem;
+            min-height: 3.25rem;
+            box-shadow: 0 4px 24px rgba(0, 82, 255, 0.45);
+        }
+        .hero-alt {
+            margin: 0.65rem 0 0 0;
+            text-align: center;
+            font-size: 0.95rem;
+        }
+        .hero-alt a {
+            color: #7dffb0;
+            font-weight: 600;
+            text-decoration: underline;
+            text-underline-offset: 0.15em;
+        }
         .stripe-note {
             font-size: 0.82rem;
             color: #aaa;
-            margin: 0 0 1rem 0;
+            margin: 0.85rem 0 0 0;
             padding: 0.65rem 0.75rem;
             background: rgba(0, 0, 0, 0.2);
             border-radius: 8px;
             border: var(--hf-panel-border);
+        }
+        .sticky-pay {
+            display: none;
+        }
+        @media (max-width: 519px) {
+            .wrap { padding: 1.25rem 1rem 5.5rem; }
+            .hero h2 { font-size: 1.45rem; }
+            .funnel-ribbon { font-size: 0.78rem; padding: 0.5rem 0.75rem; }
+            .sticky-pay {
+                display: block;
+                position: fixed;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                z-index: 100;
+                padding: 0.75rem 1rem calc(0.75rem + env(safe-area-inset-bottom, 0px));
+                background: rgba(8, 8, 12, 0.96);
+                border-top: 2px solid #0052ff;
+                box-shadow: 0 -8px 32px rgba(0, 0, 0, 0.55);
+            }
+            .sticky-pay .buy-btn { margin: 0; }
         }
         .cta-row {
             display: flex;
@@ -181,13 +230,12 @@
 
     <main class="wrap">
         <section class="panel hero" id="top">
-            <h2>Daily movement &amp; calm — <span class="highlight">GroundChiFlow</span></h2>
-            <p class="lead">Breathwork, gut health, tai chi, rehab, nutrition &amp; nervous-system care in <strong>one</strong> app — paired with <span class="highlight">Quantum Agent Health</span> thinking for your long-game. Built by someone who uses it every day.</p>
+            <h2>Subscribe to <span class="highlight">GroundChiFlow</span></h2>
+            <p class="share-line">Start GroundChiFlow now: https://howell-forge.com/funnel-gcf.html</p>
+            <a class="buy-btn primary hero-cta" href="https://buy.stripe.com/3cIbIUf7Xbmq5Gw1TS7Zu03" target="_blank" rel="noopener noreferrer">Pay on Stripe — $9.99/mo</a>
+            <p class="hero-alt"><a href="https://buy.stripe.com/14A3co7Fv76a4Cs6a87Zu04" target="_blank" rel="noopener noreferrer">Or pay annual — $79.99/yr on Stripe</a></p>
             <p class="stripe-note">Secure checkout via Stripe. Card on file — cancel anytime in the customer portal.</p>
-            <div class="cta-row dual">
-                <a class="buy-btn primary" href="https://buy.stripe.com/3cIbIUf7Xbmq5Gw1TS7Zu03" target="_blank" rel="noopener noreferrer">Start GroundChiFlow — $9.99/mo</a>
-                <a class="buy-btn brutal" href="https://buy.stripe.com/14A3co7Fv76a4Cs6a87Zu04" target="_blank" rel="noopener noreferrer">Save with annual — $79.99/yr</a>
-            </div>
+            <p class="lead">Breathwork, gut health, tai chi, rehab, nutrition &amp; nervous-system care in <strong>one</strong> app — paired with <span class="highlight">Quantum Agent Health</span> thinking for your long-game. Built by someone who uses it every day.</p>
         </section>
 
         <section class="panel">
@@ -220,6 +268,10 @@
             <p class="fine-print">GroundChiFlow is a wellness and education product. We do not claim to diagnose, treat, or cure disease. For medical decisions, consult a licensed professional.</p>
         </section>
     </main>
+
+    <div class="sticky-pay" aria-label="Subscribe">
+        <a class="buy-btn primary hero-cta" href="https://buy.stripe.com/3cIbIUf7Xbmq5Gw1TS7Zu03" target="_blank" rel="noopener noreferrer">Pay on Stripe — $9.99/mo</a>
+    </div>
 
     <footer class="footer">
         <p><a href="index.html">howell-forge.com</a> · <a href="mailto:chrishowell@howell-forge.com">Support</a></p>
