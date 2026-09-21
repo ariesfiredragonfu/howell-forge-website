@@ -746,7 +746,7 @@
         const VENMO_QR_URL = `https://api.qrserver.com/v1/create-qr-code/?size=110x110&data=${encodeURIComponent(VENMO_URL)}`;
         const CASHAPP_QR_URL = `https://api.qrserver.com/v1/create-qr-code/?size=110x110&data=${encodeURIComponent(CASHAPP_URL)}`;
         const PAY_HANDLES_ARE_MOCK = false;
-        const API = "https://howell-forge-shop-production.up.railway.app";
+        const API = ""; // Railway shop retired 2026-09-20 — no replacement host
         const STRIPE_PLAYBOOK = "https://buy.stripe.com/3cIfZa1h7cqu8SI8ig7Zu05";
         const getToken = () => localStorage.getItem('hf_token');
         const getUser  = () => { try { return JSON.parse(localStorage.getItem('hf_user') || 'null'); } catch { return null; } };
@@ -897,10 +897,7 @@
                     {user.role === 'admin' && (
                         <div className="account-card">
                             <h3>Admin</h3>
-                            <div style={{display:'flex',gap:'0.5rem',flexWrap:'wrap'}}>
-                                <a href="https://howell-forge-shop-production.up.railway.app/admin/stats" target="_blank" rel="noopener" className="nav-button primary" style={{fontSize:'0.82rem',padding:'6px 12px'}}>Shop Stats API</a>
-                                <a href="https://railway.app" target="_blank" rel="noopener" className="nav-button" style={{fontSize:'0.82rem',padding:'6px 12px'}}>Railway</a>
-                            </div>
+                            <p className="empty-state" style={{fontSize:'0.85rem',opacity:0.85}}>Shop admin tools retired with the Railway shop. Stripe Payment Links and fulfillment remain on Dell.</p>
                         </div>
                     )}
                     <button className="nav-button danger" onClick={onLogout} style={{marginTop:'0.5rem'}}>Sign Out</button>
@@ -1163,7 +1160,6 @@
                                     <div className="stripe-callout scroll-reveal glow-visible" style={{marginTop:'0.5rem',marginBottom:'1rem'}}><p>Secure checkout via Stripe — pay with card on Agent Forge &amp; GroundChiFlow.</p></div>
                                     <div className="current-build"><span className="dot"></span>Current Build: Agent Forge template — honest ops story</div>
                                     <div className="stack-icons">
-                                        <a href="https://railway.app" target="_blank" rel="noopener">Railway</a>
                                         <a href="https://elizaos.ai" target="_blank" rel="noopener">ElizaOS</a>
                                         <a href="https://buildbear.io" target="_blank" rel="noopener">BuildBear</a>
                                     </div>
