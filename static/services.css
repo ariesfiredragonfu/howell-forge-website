@@ -114,6 +114,20 @@ section { padding: 2rem 0; border-top: var(--hf-panel-border); }
   background: rgba(0, 0, 0, 0.25);
 }
 
+.media { margin: 0 0 12px; }
+.media video {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  background: #000;
+}
+.media figcaption {
+  font-size: 0.85rem;
+  color: #b0b0bc;
+  margin-top: 6px;
+}
+
 .facts { list-style: none; padding: 0; margin: 12px 0 0; font-size: 0.9rem; color: #b0b0bc; }
 .facts li { padding: 4px 0; border-top: 1px solid rgba(160, 160, 178, 0.2); }
 
