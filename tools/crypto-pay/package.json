@@ -1,0 +1,17 @@
+{
+  "name": "howell-forge-crypto-pay",
+  "version": "1.0.0",
+  "private": true,
+  "description": "esbuild bundle for /crypto-pay.html (Phantom + Solana Pay QR)",
+  "scripts": {
+    "build": "esbuild src/main.js --bundle --minify --format=esm --platform=browser --target=es2020 --define:process.env.NODE_ENV='\"production\"' --outfile=../../static/crypto-pay/crypto-pay.bundle.js",
+    "build:check": "npm run build && git diff --exit-code ../../static/crypto-pay/crypto-pay.bundle.js"
+  },
+  "dependencies": {
+    "@phantom/browser-sdk": "2.0.4",
+    "qrcode": "1.5.4"
+  },
+  "devDependencies": {
+    "esbuild": "0.28.2"
+  }
+}
