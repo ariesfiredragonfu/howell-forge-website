@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Howell Forge — Pay with USDC (Solana)</title>
+  <meta name="description" content="Pay Howell Forge any amount in USDC on Solana (devnet testing)." />
+  <meta name="robots" content="noindex" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; connect-src 'self' http://127.0.0.1:8781 http://localhost:8781 https://fulfillment.howell-forge.com; img-src 'self' data:; style-src 'self' 'unsafe-inline'; base-uri 'none'; form-action 'none'" />
+  <meta name="crypto-pay-api" content="http://127.0.0.1:8781/crypto" />
+  <meta name="crypto-pay-network" content="devnet" />
+  <link rel="icon" href="/favicon.ico" />
+  <link rel="stylesheet" href="/static/crypto-pay/crypto-pay.css" />
+</head>
+<body>
+  <p class="devnet-banner" role="status">DEVNET — test payments only</p>
+  <div class="wrap">
+    <h1 class="brand">Howell Forge</h1>
+    <p class="lead">Pay any amount in USDC on Solana. Email required for your receipt.</p>
+
+    <section id="form-section" class="card" aria-labelledby="form-heading">
+      <h2 id="form-heading" class="visually-hidden">Payment details</h2>
+      <p id="form-error" class="form-error" role="alert"></p>
+      <form id="pay-form" novalidate>
+        <div class="field">
+          <label for="amount-usd">Amount (USD, paid as USDC)</label>
+          <input id="amount-usd" name="amountUsd" type="text" inputmode="decimal" autocomplete="off" required aria-describedby="amount-hint" placeholder="25.00" />
+          <p id="amount-hint" class="hint">Loading limits…</p>
+        </div>
+        <div class="field">
+          <div class="note-row">
+            <label for="pay-note">What&apos;s this for?</label>
+            <span class="hint" aria-live="polite"><span id="note-count">0</span>/140</span>
+          </div>
+          <textarea id="pay-note" name="note" maxlength="140" required placeholder="Brief description of this payment"></textarea>
+        </div>
+        <div class="field">
+          <label for="pay-email">Email</label>
+          <input id="pay-email" name="email" type="email" autocomplete="email" required maxlength="254" placeholder="you@example.com" />
+        </div>
+        <button type="submit" class="btn btn-primary">Continue to payment</button>
+      </form>
+    </section>
+
+    <section id="checkout-section" class="card" hidden aria-labelledby="checkout-heading">
+      <div class="checkout-head">
+        <h2 id="checkout-heading">Send exactly</h2>
+        <p id="order-amount" class="amount">—</p>
+        <div class="recipient-row">
+          <span>To</span>
+          <span id="recipient">—</span>
+          <button type="button" id="copy-recipient" class="btn btn-ghost">Copy</button>
+        </div>
+        <p id="expiry-countdown" class="expiry">—</p>
+      </div>
+      <div class="qr-wrap">
+        <canvas id="qr-canvas" width="280" height="280" role="img" aria-label="Solana Pay QR code"></canvas>
+      </div>
+      <a id="open-in-phantom" class="open-phantom" href="#" rel="noopener noreferrer" hidden>Open in Phantom</a>
+      <p id="qr-only-hint" class="qr-only-hint" hidden>Scan with any Solana wallet, or install the Phantom extension on desktop.</p>
+      <div id="phantom-panel" class="phantom-panel" hidden>
+        <p id="phantom-wallet" class="wallet-chip" hidden></p>
+        <button type="button" id="phantom-connect" class="btn btn-primary">Connect Phantom</button>
+        <button type="button" id="phantom-pay" class="btn btn-primary" hidden>Pay with Phantom</button>
+        <button type="button" id="phantom-disconnect" class="btn btn-secondary" hidden>Disconnect</button>
+      </div>
+      <div id="status-live" class="status-live" aria-live="polite" aria-atomic="true"></div>
+      <div id="paid-block" class="paid-block" hidden>
+        <a id="explorer-link" href="#" target="_blank" rel="noopener noreferrer">View on Solana Explorer</a>
+      </div>
+      <button type="button" id="start-over" class="btn btn-secondary" hidden>Start over</button>
+    </section>
+
+    <a class="back-link" href="/pay.html">← Other payment options</a>
+  </div>
+  <script type="module" src="/static/crypto-pay/crypto-pay.bundle.js"></script>
+</body>
+</html>
