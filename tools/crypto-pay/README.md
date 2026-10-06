@@ -22,6 +22,27 @@ npm run build:check    # rebuild + fail if committed bundle differs
 
 Latest committed bundle size: **~619 KB** minified (~**185 KB** gzip). No Buffer/process shims required.
 
+## API contract (fulfillment backend)
+
+Base URL: `{FULFILLMENT_ORIGIN}/crypto` (local default in `crypto-pay.html` meta:
+`http://127.0.0.1:8781/crypto`).
+
+**CORS:** the backend allows only `CRYPTO_ALLOWED_ORIGINS`. Dev defaults are
+`http://127.0.0.1:8899` and `http://localhost:8899` — run the static site on **port 8899**
+(not 8000) when testing against a local fulfillment app.
+
+| Method | Path | Body / response |
+|--------|------|-----------------|
+| GET | `/config` | `{network, mint, merchant, minUsd, maxUsd, ttlMin, label}` |
+| POST | `/orders` | Body: `{amountUsd:"25.00", note, email}` only → 201 `{orderId, amount, amountUnits, recipient, splToken, reference, expiresAt, solanaPayUrl}` |
+| GET | `/orders/{orderId}` | `{status, amount, expiresAt, receivedAmount?, signature?, explorerUrl?}` |
+| POST | `/orders/{orderId}/tx` | Body: `{account}` → `{transaction, message}` |
+
+Order statuses: `pending`, `seen`, `paid`, `expired`, `needs_review`, `refunded`.
+
+Errors: `{error, message}` — e.g. `insufficient_usdc`, `insufficient_sol`, `merchant_not_ready` (503),
+`order_expired` / `order_not_pending` (409), `rate_limited` (429).
+
 ## Local test (devnet)
 
 ### Backend (`howell-forge-business`, branch `cursor/crypto-pay-devnet`)

@@ -117,11 +117,22 @@ function validateForm() {
   return null;
 }
 
+async function parseApiResponse(r) {
+  const data = await r.json().catch(() => ({}));
+  if (!r.ok) {
+    const err =
+      data && typeof data === "object" && !Array.isArray(data)
+        ? { ...data }
+        : { error: "request_failed", message: r.statusText || "Request failed" };
+    err._httpStatus = r.status;
+    throw err;
+  }
+  return data;
+}
+
 async function apiGet(path) {
   const r = await fetch(`${API}${path}`, { method: "GET", headers: { Accept: "application/json" } });
-  const data = await r.json().catch(() => ({}));
-  if (!r.ok) throw data;
-  return data;
+  return parseApiResponse(r);
 }
 
 async function apiPost(path, body) {
@@ -130,15 +141,16 @@ async function apiPost(path, body) {
     headers: { "Content-Type": "application/json", Accept: "application/json" },
     body: JSON.stringify(body),
   });
-  const data = await r.json().catch(() => ({}));
-  if (!r.ok) throw data;
-  return data;
+  return parseApiResponse(r);
 }
 
 function friendlyApi(err) {
   if (!err || typeof err !== "object") return "Something went wrong. Please try again.";
   const code = err.error || err.code;
   const msg = err.message || "";
+  if (err._httpStatus === 429 || code === "rate_limited") {
+    return "Too many payment requests. Please wait a minute and try again.";
+  }
   switch (code) {
     case "insufficient_usdc":
       return "Not enough devnet USDC in your wallet for this payment.";
@@ -149,6 +161,8 @@ function friendlyApi(err) {
     case "order_expired":
     case "expired":
       return "This order expired. Start over with a new payment.";
+    case "order_not_pending":
+      return "This order is no longer open for payment. Start over if you need a new checkout.";
     default:
       return msg || code || "Request failed.";
   }
@@ -168,18 +182,27 @@ function shortenAddress(addr) {
   return `${addr.slice(0, 4)}…${addr.slice(-4)}`;
 }
 
-function statusLabel(status) {
+const TERMINAL_ORDER_STATUSES = ["paid", "expired", "needs_review", "refunded"];
+
+function statusLabel(status, orderStatus) {
   switch (status) {
     case "pending":
       return "Waiting for payment…";
     case "seen":
       return "Payment seen — confirming on chain…";
-    case "paid":
-      return "Paid ✓";
+    case "paid": {
+      const base = "Paid ✓";
+      if (orderStatus?.receivedAmount && orderStatus.receivedAmount !== orderStatus.amount) {
+        return `${base} (${orderStatus.receivedAmount} USDC received)`;
+      }
+      return base;
+    }
     case "expired":
       return "Order expired";
     case "needs_review":
       return "Payment needs review — we'll email you.";
+    case "refunded":
+      return "This payment was marked refunded.";
     default:
       return status || "…";
   }
@@ -209,8 +232,10 @@ function setPhantomUi(mode) {
 
 async function loadConfig() {
   config = await apiGet("/config");
+  const net = config.network || NETWORK;
   if (els.amountHint && config.minUsd && config.maxUsd) {
-    els.amountHint.textContent = `USDC on Solana (${NETWORK}). $${config.minUsd} – $${config.maxUsd} per payment.`;
+    const label = config.label ? `${config.label} · ` : "";
+    els.amountHint.textContent = `${label}USDC on Solana (${net}). $${config.minUsd} – $${config.maxUsd} per payment.`;
   }
   if (els.amount) {
     els.amount.min = config.minUsd;
@@ -227,6 +252,7 @@ async function createOrder(ev) {
     return;
   }
   const amountR = parseAmountUsd(els.amount.value);
+  // API: POST /orders — only amountUsd, note, email (extra fields → 422)
   const body = {
     amountUsd: amountR.value,
     note: stripControl(els.note.value),
@@ -243,6 +269,7 @@ async function createOrder(ev) {
 async function enterCheckout() {
   showSection("checkout");
   els.paidBlock.hidden = true;
+  if (els.explorerLink) els.explorerLink.hidden = false;
   els.orderAmount.textContent = `${order.amount || order.amountUsd} USDC`;
   els.recipient.textContent = shortenAddress(order.recipient);
   els.recipient.dataset.full = order.recipient;
@@ -319,8 +346,12 @@ async function payWithPhantom() {
     showStatus(`Transaction sent: ${shortenAddress(signature)}`, "info");
     if (message) console.info(message);
   } catch (e) {
-    if (e && e.error) showStatus(friendlyApi(e), "error");
-    else showStatus(friendlyPhantom(e), "error");
+    if (e && (e.error || e._httpStatus)) {
+      showStatus(friendlyApi(e), "error");
+      if (e.error === "order_expired" || e.error === "order_not_pending" || e._httpStatus === 409) {
+        if (els.startOver) els.startOver.hidden = false;
+      }
+    } else showStatus(friendlyPhantom(e), "error");
   }
 }
 
@@ -344,7 +375,7 @@ async function pollOrder() {
   try {
     const s = await apiGet(`/orders/${order.orderId}`);
     handleOrderStatus(s);
-    if (!["paid", "expired", "needs_review"].includes(s.status)) schedulePoll();
+    if (!TERMINAL_ORDER_STATUSES.includes(s.status)) schedulePoll();
   } catch (e) {
     showStatus(friendlyApi(e), "error");
     schedulePoll();
@@ -352,16 +383,18 @@ async function pollOrder() {
 }
 
 function handleOrderStatus(s) {
-  showStatus(statusLabel(s.status), s.status === "paid" ? "success" : "info");
+  showStatus(statusLabel(s.status, s), s.status === "paid" ? "success" : "info");
   if (s.status === "paid") {
     els.paidBlock.hidden = false;
     if (s.explorerUrl && els.explorerLink) {
       els.explorerLink.href = s.explorerUrl;
       els.explorerLink.textContent = "View on Solana Explorer";
+    } else {
+      els.explorerLink.hidden = true;
     }
     clearTimers();
   }
-  if (s.status === "expired") {
+  if (s.status === "expired" || s.status === "refunded") {
     clearTimers();
     if (els.startOver) els.startOver.hidden = false;
   }
