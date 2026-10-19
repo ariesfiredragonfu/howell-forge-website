@@ -1,6 +1,8 @@
 # Final Copy Library (Compliance-First)
 
-Use this library for staging/live copy where claims must stay factual, conservative, and verifiable.
+> **Staging only — not public.** The `ai-ecosystem/` tree is disallowed in `robots.txt`. Do not link draft packages or prices from production pages. Public products: Agent Forge, Forge Lens, GroundChiFlow, QAH (secondary), Fusion 360 portfolio.
+
+Use this library for staging copy where claims must stay factual, conservative, and verifiable.
 
 ## Global Copy Rules
 - No testimonials unless explicitly verified and approved.

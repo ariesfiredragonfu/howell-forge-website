@@ -27,14 +27,7 @@
     <meta name="theme-color" content="#111111">
     <link rel="sitemap" type="application/xml" title="Sitemap" href="https://howell-forge.com/sitemap.xml">
 
-    <meta name="keywords" content="Howell Forge, CNC machining, Fusion 360, STEP file, STL file, 3-axis CNC, mounts, accessory rail, Sylva NC, G-code, CAM, CAD, prototyping, US manufacturing, hardware startup, maker, indie maker, build in public, business automation, AI agents, agent orchestration, Stripe checkout, GroundChiFlow, health coaching app, industrial automation, shop floor, mechanical engineering, product design, toolpath, bracket, ElizaOS, Agent Forge, Cursor to CNC, SaaS, B2B, manufacturing software">
-    <meta property="article:tag" content="Howell Forge">
-    <meta property="article:tag" content="CNC machining">
-    <meta property="article:tag" content="Fusion 360 CAD modeling">
-    <meta property="article:tag" content="AI business automation">
-    <meta property="article:tag" content="hardware startup">
-    <meta property="article:tag" content="GroundChiFlow">
-    <meta property="article:tag" content="Agent Forge">
+    <meta name="keywords" content="Howell Forge, Fusion 360, 3-axis CNC, Agent Forge, GroundChiFlow, Forge Lens, ElizaOS, Sylva NC">
 
     <script type="application/ld+json">
     {
@@ -59,7 +52,7 @@
 
     <!-- ARIA chat (do not remove) -->
     <script>if (typeof window !== "undefined" && (window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1" || window.location.hostname.startsWith("192.168."))) { window.ARIA_CHAT_WS_URL = ""; }</script>
-    <script src="aria-chat.js?v=19" defer></script>
+    <script src="aria-chat.js?v=20" defer></script>
 
     <style>
         @keyframes pulse {
@@ -94,6 +87,9 @@
         }
 
         body { font-family: Arial, sans-serif; margin: 0; padding: 0; line-height: 1.6; background-color: #111; background-image: url('3d-background.png'); background-size: cover; background-position: center; background-repeat: no-repeat; background-attachment: fixed; color: #eee; }
+        @media (max-width: 768px) {
+            body { background-attachment: scroll; }
+        }
         .header {
             background: var(--hf-chrome-fill);
             color: white;
@@ -656,7 +652,7 @@
             .landing-hero { background-attachment: scroll; }
             .staging-banner { animation: none; background: #b45309; }
         }
-        @media (max-width: 600px) { .payment-layout { flex-direction: column; } .payment-qr img { width: 100px; height: 100px; } .account-banner { flex-direction: column; align-items: flex-start; } .hero-above { font-size: 1.6rem; } .header-tagline { font-size: 0.85rem; } .home-products { grid-template-columns: 1fr; } .landing-cta { flex-direction: column; } .landing-cta .nav-button, .landing-cta a { width: 100%; text-align: center; box-sizing: border-box; } }
+        @media (max-width: 600px) { .payment-layout { flex-direction: column; } .payment-qr img { width: 140px; height: 140px; } .account-banner { flex-direction: column; align-items: flex-start; } .hero-above { font-size: 1.6rem; } .header-tagline { font-size: 0.85rem; } .home-products { grid-template-columns: 1fr; } .landing-cta { flex-direction: column; } .landing-cta .nav-button, .landing-cta a { width: 100%; text-align: center; box-sizing: border-box; } }
 
         /* Site overview for crawlers and SEO audits (visible below the interactive app) */
         .hf-seo-narrative {
@@ -677,13 +673,6 @@
         .hf-seo-narrative h3 { color: #e8e8f0; font-size: 1.05rem; margin: 1.5rem 0 0.5rem; }
         .hf-seo-narrative p { margin: 0.75rem 0; }
         .hf-seo-narrative ul { margin: 0.5rem 0 0.75rem 1.2rem; }
-        .hf-seo-hashtags {
-            font-size: 0.82rem;
-            color: #a8a8bc;
-            line-height: 1.7;
-            word-break: break-word;
-            margin-top: 0.5rem;
-        }
     </style>
 </head>
 <body>
@@ -721,7 +710,7 @@
         <p>Thank you for reading this far. Whether you came for metal, for automation, or for both, we built Howell Forge to reward careful operators—people who measure twice, automate once, and still leave room for craftsmanship.</p>
 
         <h3>Topics for search and social</h3>
-        <p class="hf-seo-hashtags" aria-label="Suggested hashtags for social posts">Suggested hashtags when you share Howell Forge (copy as needed): #HowellForge #CursorToCNC #CNC #CNCMachining #Fusion360 #CADDesign #3AxisCNC #Manufacturing #USManufacturing #HardwareStartup #IndieMaker #BuildInPublic #MakerMovement #GCode #CAM #CAD #Prototype #Prototyping #Toolpath #MachineShop #FabLab #MechanicalEngineering #ProductDesign #IndustrialAutomation #ShopFloor #BusinessAutomation #AIAgents #AgentOrchestration #AgentForge #SaaS #B2B #Stripe #GroundChiFlow #HealthTech #StartupLife #Metalworking #EngineeringTwitter #TechForGood</p>
+        <p>Forge Lens Web3 Agent Kit (read-only ElizaOS templates, local fork) is described at <a href="/forge-lens/">/forge-lens/</a>; Stripe checkout for that kit is coming soon.</p>
     </article>
 
     <script>
@@ -1171,14 +1160,15 @@
                                         <a href="https://buy.stripe.com/3cIbIUf7Xbmq5Gw1TS7Zu03" className="card-cta" target="_blank" rel="noopener" onClick={(e)=>{e.preventDefault();particleBurst(e,()=>window.open('https://buy.stripe.com/3cIbIUf7Xbmq5Gw1TS7Zu03','_blank'));}}>Subscribe — $9.99/mo</a>
                                     </div>
                                     <div className="home-product-card">
-                                        <h3>Kaito Template</h3>
-                                        <p className="price">$49 one-time</p>
+                                        <h3>Forge Lens Web3 Agent Kit</h3>
+                                        <p className="price">Lite free · Playbook $29 · Starter $297</p>
                                         <ul>
-                                            <li>CFO agent template — Stripe revenue, ledger, reporting</li>
-                                            <li>Drop-in for your stack</li>
-                                            <li>Documentation and .env template</li>
+                                            <li>Read-only templates — study before you deploy</li>
+                                            <li>Local fork on your machine</li>
+                                            <li>Built on ElizaOS</li>
+                                            <li>Web3-aware ops patterns (wallet / on-chain adjacent)</li>
                                         </ul>
-                                        <button type="button" className="card-cta" style={{border:'none',cursor:'pointer',fontFamily:'inherit'}} onClick={() => setPage('products')}>See AI Forge — Kaito from $49</button>
+                                        <a href="/forge-lens/" className="card-cta">Forge Lens — buy coming soon</a>
                                     </div>
                                 </div>
                                 <div className="testimonials-placeholder scroll-reveal glow-visible">
@@ -1291,7 +1281,7 @@
                             <div className="scroll-reveal readability-panel">
                                 <h2>About Howell Forge</h2>
                                 <p>We have built many businesses. On the parts side, my main proof is an accessory rail I modeled in Fusion 360 and cut on a 3-axis machine (<a href="/portfolio/" style={{color:'#4d9fff'}}>portfolio</a>). In the process, we automated setup and ops so we could focus on the actual work. That is Agent Forge: the same practical crew we use ourselves — monitors, security scripts, customer lookup, marketing drafts with human approval — packaged for yours.</p>
-                                <p>Agent Forge runs on ElizaOS with Grok-backed agents where configured. Each agent is built, tested, and battle-hardened on our own live business before we package it for yours. No quantum-enabled claims — just concrete install and operations capability.</p>
+                                <p>Agent Forge runs on ElizaOS with Grok-backed agents where configured. Each agent is built and tested on our own live business before we package it for yours. No quantum-enabled claims — just concrete install and operations capability.</p>
                             </div>
                         )}
 
@@ -1364,7 +1354,7 @@
                                 <p className="landing-section-title scroll-reveal glow-visible" style={{marginTop:0}}>Members · GroundChiFlow</p>
                                 <div className="products-hero scroll-reveal glow-visible">
                                     <h2 className="typography-pulse-trigger">GroundChiFlow — <span className="highlight">Nervous System · Breathwork · Gut · Longevity</span></h2>
-                                    <p>Evidence-based wellness in one app. Breathwork, tai chi, rehab routines, gut health, nutrition, and longevity tools. No one else combines all of this.</p>
+                                    <p>Evidence-based wellness in one browser app: breathwork, tai chi, rehab routines, gut health, nutrition, and longevity tools in one place — fewer logins than juggling separate single-topic apps.</p>
                                     <div className="crew-badge">
                                         <span>Breathwork</span>
                                         <span>Tai Chi</span>
