@@ -1,5 +1,7 @@
 # Voice-to-Part: Stripe + Staging + Live Checklist
 
+> **Internal / archived — not a public product.** Voice-to-Part was removed from howell-forge.com. Do not use this checklist for live marketing or Stripe setup unless the product is explicitly revived.
+
 Use this after adding Voice-to-Part to the products page.
 
 ---

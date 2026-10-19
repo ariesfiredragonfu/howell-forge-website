@@ -11,7 +11,14 @@ IONOS Deploy Now / Docker isn’t available on the current hosting plan. The sit
 ## Contents
 
 - **index.html** — Main site (React + Web3 wallet connect, Home/About/Contact)
+- **agent-forge/**, **forge-lens/**, **portfolio/**, **contact/** — Static product and services pages
+- **aria-chat.js** — ARIA chat widget (demo stubs on localhost unless `ARIA_CHAT_WS_URL` is set)
 - **.htaccess** — IONOS-compatible SPA routing (fixes 500 on /about, /contact)
+
+### Not public marketing (do not link from production nav)
+
+- **ai-ecosystem/** — Staging copy and draft pricing; blocked in `robots.txt`. Not approved for live claims.
+- **VOICE_TO_PART_STRIPE_CHECKLIST.md** — Archived checklist; Voice-to-Part is not sold on the site.
 
 ## Connecting GitHub to IONOS (Deploy Now) — *paused*
 

@@ -26,6 +26,10 @@ body {
   padding-bottom: 4.5rem;
 }
 
+@media (max-width: 768px) {
+  body { background-attachment: scroll; }
+}
+
 a { color: var(--link); }
 
 .site-header {
