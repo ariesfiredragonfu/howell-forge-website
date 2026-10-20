@@ -85,7 +85,7 @@
             return 'Quantum Agent Health (QAH) is a soft, secondary offer: clinic-adjacent rehab planning, GroundChiFlow handoff export, and simulator-first quantum-informed risk (PennyLane). Founding: $25/mo or $250/yr via ?page=qah or qah.html. Not FDA clearance; not a quantum-enabled-agents claim.';
 
         if (/price|pricing|cost|how much|497|1497|97\/?mo|monthly|one-?time|playbook|39|297|29|\b25\b|\b250\b|9\.99|79\.99/.test(lower))
-            return 'Pricing on the site: GroundChiFlow $9.99/mo or $79.99/yr. Agent Forge — Starter $497, Done For You $1,497, Retainer $97/mo (Stripe). QAH founding $25/mo or $250/yr. Forge Lens (coming soon): Lite free, Playbook $29, Starter $297. Metal parts: quote via contact or USDC on Base on the home page.';
+            return 'Pricing on the site: GroundChiFlow $9.99/mo or $79.99/yr. Agent Forge — Starter $497, Done For You $1,497 (Stripe). QAH founding $25/mo or $250/yr. Forge Lens (coming soon): Lite free, Playbook $29, Starter $297. Metal parts: quote via contact or USDC on Base on the home page.';
 
         if (/quote|metal|part|cnc|machining|fabricat|order|prototype|custom part/.test(lower))
             return "For metal parts or CNC modeling: use the contact page or the quote section on the home page. Include material, dimensions, quantity, tolerances, and timeline. We'll reply within one business day.";
