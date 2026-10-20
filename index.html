@@ -9,7 +9,7 @@
     <meta name="referrer" content="strict-origin">
 
     <title>Howell Forge — From Cursor to CNC | Fusion 360 Parts & AI Automation</title>
-    <meta name="description" content="Howell Forge — Fusion 360 modeling for mounts, brackets and rails (STEP, STL and 3-axis CNC-ready files) and AI business automation. Deploy an 8-agent AI crew for your business. Send a part request today.">
+    <meta name="description" content="Howell Forge — Fusion 360 modeling for mounts, brackets and rails (STEP, STL and 3-axis CNC-ready files), GroundChiFlow wellness app, and AI automation in development. Send a part request today.">
     <meta property="og:title" content="Howell Forge — From Cursor to CNC | Fusion 360 Parts & AI Automation">
     <meta property="og:description" content="Fusion 360 part modeling and AI-powered business automation. Built by makers, for makers and entrepreneurs.">
     <meta property="og:image" content="https://howell-forge.com/og-image.jpg">
@@ -687,7 +687,7 @@
         <p>Our broader story is reducing friction between intent and execution. The goal is not novelty for its own sake; it is to shorten the loop between what you need and what the CAM stack can safely produce. Along the way we emphasize guardrails, human review at the right checkpoints, and documentation that survives handoff to another engineer six months later.</p>
 
         <h3>AI automation that respects boundaries</h3>
-        <p>On the automation side, Howell Forge packages an eight-agent crew concept—command, monitoring, security, marketing, shop floor, finance, development, and analytics personas—so business owners can see a coherent system instead of a pile of disconnected bots. We are explicit about human-in-the-loop approvals for outbound content, financial moves, and anything that touches customer trust.</p>
+        <p>On the automation side, Howell Forge is building Agent Forge — a Python agent crew with Eliza-style memory — in active development. Public sales stay paused until the shipped product matches what we describe. We are explicit about human-in-the-loop approvals for outbound content, financial moves, and anything that touches customer trust.</p>
         <p>Security and reliability are treated as product features, not afterthoughts. HTTPS, sane headers, Stripe-backed checkout where payments apply, and operational habits like monitoring and alerting are described in plain language so non-specialists can understand what is automated and what still needs a human signature.</p>
 
         <h3>Who we work best with</h3>
@@ -698,7 +698,7 @@
         </ul>
 
         <h3>Offers and how to engage</h3>
-        <p>This site highlights Agent Forge ops tooling and GroundChiFlow where the deliverable is clarity: what to automate first, what to measure, and what to defer. Stripe links are used for transparent checkout when a product is live; staging and test flows are labeled so you always know which environment you are in.</p>
+        <p>This site highlights GroundChiFlow and honest status for Agent Forge (in development at <a href="/agent-forge/">/agent-forge/</a>). Stripe links are used for transparent checkout when a product is live; staging and test flows are labeled so you always know which environment you are in.</p>
         <p>GroundChiFlow, where featured, points to our health-and-longevity product lane—separate from metal work but aligned on the same principle: build calm systems people can sustain. Across lanes we avoid hype language about guaranteed outcomes; we prefer checklists, runbooks, and evidence you can verify.</p>
 
         <h3>Quality, safety, and ethics</h3>
@@ -736,7 +736,6 @@
         const CASHAPP_QR_URL = `https://api.qrserver.com/v1/create-qr-code/?size=110x110&data=${encodeURIComponent(CASHAPP_URL)}`;
         const PAY_HANDLES_ARE_MOCK = false;
         const API = ""; // Railway shop retired 2026-09-20 — no replacement host
-        const STRIPE_PLAYBOOK = "https://buy.stripe.com/3cIfZa1h7cqu8SI8ig7Zu05";
         const getToken = () => localStorage.getItem('hf_token');
         const getUser  = () => { try { return JSON.parse(localStorage.getItem('hf_user') || 'null'); } catch { return null; } };
         const saveAuth = (token, user) => { localStorage.setItem('hf_token', token); localStorage.setItem('hf_user', JSON.stringify(user)); };
@@ -1114,22 +1113,22 @@
                                 </div>
                                 <div className="hero-below scroll-reveal glow-visible">
                                     <p className="landing-subhead" style={{ marginBottom: '0.75rem' }}>Need a simple part modeled? I turn sketches and photos into clean Fusion 360 models with STEP, STL and 3-axis CNC-ready files.</p>
-                                    <p className="landing-subhead">We have built many businesses. In the process, we automated setup and day-to-day ops so more time goes to <em>doing</em> the work. That became Agent Forge — monitors, security scripts, customer lookup, and a practical crew you can deploy — not a pile of disconnected bots.</p>
+                                    <p className="landing-subhead">We have built many businesses. In the process, we automated setup and day-to-day ops so more time goes to <em>doing</em> the work. <strong>Agent Forge</strong> — a Python agent crew with Eliza-style memory — is in active development; sales are paused until we can deliver what we describe.</p>
                                     <div className="landing-cta">
-                                        <button type="button" className="nav-button primary brutal-cta" style={{padding:'14px 28px',fontSize:'1.05rem'}} onClick={(e)=>{ particleBurst(e, ()=>{ var el = document.getElementById('pay-instant') || document.getElementById('pay-usdc'); if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' }); }); }}>Start with Agent Forge – Venmo, Cash App, USDC, or Request Quote</button>
-                                        <button className="nav-button" onClick={() => setPage('products')} style={{padding:'12px 24px',fontSize:'1rem'}}>See Agent Forge</button>
+                                        <button type="button" className="nav-button primary brutal-cta" style={{padding:'14px 28px',fontSize:'1.05rem'}} onClick={(e)=>{ particleBurst(e, ()=>{ var el = document.getElementById('pay-instant') || document.getElementById('pay-usdc'); if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' }); }); }}>Pay for parts — Venmo, Cash App, USDC, or Request Quote</button>
+                                        <a className="nav-button" href="/agent-forge/" style={{padding:'12px 24px',fontSize:'1rem'}}>Agent Forge status</a>
                                         <button className="nav-button" onClick={() => setPage('groundchiflow')} style={{padding:'12px 24px',fontSize:'1rem',background:'#28a745'}}>GroundChiFlow App</button>
                                         <a className="nav-button" href="/contact/" style={{padding:'12px 24px',fontSize:'1rem'}}>Send me your part</a>
                                         <a className="nav-button" href="/portfolio/" style={{padding:'12px 24px',fontSize:'1rem'}}>See the work</a>
                                     </div>
-                                    <div className="stripe-callout scroll-reveal glow-visible" style={{marginTop:'0.5rem',marginBottom:'1rem'}}><p>Secure checkout via Stripe — pay with card on Agent Forge &amp; GroundChiFlow.</p></div>
-                                    <div className="current-build"><span className="dot"></span>Current Build: Agent Forge template — honest ops story</div>
+                                    <div className="stripe-callout scroll-reveal glow-visible" style={{marginTop:'0.5rem',marginBottom:'1rem'}}><p>Secure checkout via Stripe — GroundChiFlow and QAH (where linked).</p></div>
+                                    <div className="current-build"><span className="dot"></span>Current Build: Agent Forge — in development (sales paused)</div>
                                     <div className="stack-icons">
                                         <a href="https://elizaos.ai" target="_blank" rel="noopener">ElizaOS</a>
                                         <a href="https://buildbear.io" target="_blank" rel="noopener">BuildBear</a>
                                     </div>
                                     <p className="automation-hint" role="note">
-                                        <strong>Where the automations live on this site:</strong> the 8-agent Agent Forge crew (FORGE, ARIA, MAVEN, KAITO, …), pricing, and &ldquo;what each agent does&rdquo; are all under <strong>AI Forge</strong> in the bar above. The floating <strong>blue chat</strong> button (lower-right, above the footer) is <strong>ARIA</strong> — answers questions about products and the forge; on localhost it runs in demo mode unless you point <code style={{fontSize:'0.8rem',color:'#6b9fff'}}>ARIA_CHAT_WS_URL</code> at a live backend.
+                                        <strong>Agent Forge status:</strong> honest &ldquo;in development&rdquo; page at <a href="/agent-forge/" style={{color:'#4d9fff'}}>/agent-forge/</a> (or <strong>AI Forge</strong> in the nav). The floating <strong>blue chat</strong> button (lower-right, above the footer) is <strong>ARIA</strong> — answers questions about products and the forge; on localhost it runs in demo mode unless you point <code style={{fontSize:'0.8rem',color:'#6b9fff'}}>ARIA_CHAT_WS_URL</code> at a live backend.
                                     </p>
                                 </div>
                                 <div className="landing-section-title scroll-reveal glow-visible">Featured work</div>
@@ -1186,93 +1185,24 @@
                         {page === 'products' && (
                             <>
                                 <div className="products-hero scroll-reveal glow-visible">
-                                    <h2 className="typography-pulse-trigger">Agent Forge — <span className="highlight">Your Business Crew, Ready to Deploy</span></h2>
-                                    <p>Eight practical AI agents for ops: monitoring, security scripts, marketing drafts with human approval, shop-floor tracking, Stripe-aware finance, and more. Telegram-connected and Stripe-integrated, with implementation scope finalized during onboarding.</p>
-                                    <div className="crew-badge">
-                                        <span>FORGE Commander</span>
-                                        <span>ARIA Monitor</span>
-                                        <span>NOVA Security</span>
-                                        <span>MAVEN Marketing</span>
-                                        <span>REX Shop Floor</span>
-                                        <span>KAITO CFO</span>
-                                        <span>FLUX Dev</span>
-                                        <span>SAGE Analytics</span>
-                                    </div>
+                                    <h2 className="typography-pulse-trigger">Agent Forge — <span className="highlight">In development, coming soon</span></h2>
+                                    <p>Public sales are paused until the shipped product matches what we describe. Today Agent Forge is a <strong>Python agent crew with Eliza-style memory</strong> that we are building and testing internally — not a finished package ready for checkout.</p>
                                 </div>
                                 <div className="value-callout scroll-reveal glow-visible">
-                                    <p>This package is intended to reduce repetitive setup and operations work. Final outcomes depend on implementation quality, business process fit, and ongoing use.</p>
+                                    <p>We will turn sales back on when we can stand behind every claim. GroundChiFlow and other live Stripe products on this site are unchanged.</p>
                                 </div>
-                                <div className="playbook-wide scroll-reveal glow-visible">
-                                    <h3 className="typography-pulse-trigger">The Playbook</h3>
-                                    <p className="playbook-lede">The same playbook we use to stand up agents, ops, and revenue rails—condensed into one guide. <strong style={{color:'#e8e8ec'}}>$39</strong> one-time; instant access after checkout.</p>
-                                    <a href={STRIPE_PLAYBOOK} className="playbook-cta brutal-cta" target="_blank" rel="noopener" onClick={(e)=>{e.preventDefault();particleBurst(e,()=>window.open(STRIPE_PLAYBOOK,'_blank'));}}>Get The Playbook — $39</a>
-                                </div>
-                                <div className="pricing-grid scroll-reveal glow-visible">
-                                    <div className="pricing-card">
-                                        <p className="tier-name">Starter</p>
-                                        <p className="price">$497</p>
-                                        <p className="price-sub">One-time — yours forever</p>
-                                        <ul className="feature-list">
-                                            <li>Full 8-agent ElizaOS crew (source code)</li>
-                                            <li>FORGE, ARIA, NOVA, MAVEN, REX, KAITO, FLUX, SAGE</li>
-                                            <li>Step-by-step setup guide</li>
-                                            <li>.env template — drop in your keys</li>
-                                            <li>Deployment guide included (self-host / Docker)</li>
-                                            <li>Telegram command center</li>
-                                            <li>Stripe payment integration</li>
-                                            <li>Self-healing Monitor + Security loop</li>
-                                        </ul>
-                                        <a href="https://buy.stripe.com/bJecMYcZPaimc4U5647Zu00" className="buy-btn outline" target="_blank" rel="noopener" onClick={(e)=>{e.preventDefault();particleBurst(e,()=>window.open(e.currentTarget.href,'_blank'));}}>Get Agent Forge Starter — $497</a>
-                                    </div>
-                                    <div className="pricing-card featured">
-                                        <div className="featured-badge">MOST POPULAR</div>
-                                        <p className="tier-name">Done For You</p>
-                                        <p className="price">$1,497</p>
-                                        <p className="price-sub">One-time — we deploy everything</p>
-                                        <ul className="feature-list">
-                                            <li>Everything in Starter</li>
-                                            <li>We deploy it — your brand, your domain</li>
-                                            <li>All API keys configured for you</li>
-                                            <li>Live deployment session with Howell Forge</li>
-                                            <li>All 8 agents tested and running</li>
-                                            <li>Telegram connected and verified</li>
-                                            <li>Stripe live checkout configured</li>
-                                            <li>30-day post-launch support</li>
-                                        </ul>
-                                        <a href="https://buy.stripe.com/14A7sEcZP0HM4Cs0PO7Zu01" className="buy-btn primary brutal-cta" target="_blank" rel="noopener" onClick={(e)=>{e.preventDefault();particleBurst(e,()=>window.open(e.currentTarget.href,'_blank'));}}>Get Agent Forge Done For You — $1,497</a>
-                                    </div>
-                                    <div className="pricing-card">
-                                        <p className="tier-name">Monthly Retainer</p>
-                                        <p className="price">$97 <span>/ mo</span></p>
-                                        <p className="price-sub">Ongoing — cancel anytime</p>
-                                        <ul className="feature-list">
-                                            <li>Monthly agent updates and upgrades</li>
-                                            <li>New agents as AI evolves</li>
-                                            <li>Priority Cursor sessions</li>
-                                            <li>Bug fixes and troubleshooting</li>
-                                            <li>Keep your crew sharp</li>
-                                        </ul>
-                                        <a href="https://buy.stripe.com/00waEQgc176a5Gw2XW7Zu02" className="buy-btn outline" target="_blank" rel="noopener" onClick={(e)=>{e.preventDefault();particleBurst(e,()=>window.open(e.currentTarget.href,'_blank'));}}>Subscribe — $97/mo</a>
-                                    </div>
-                                </div>
-                                <div className="includes-section scroll-reveal glow-visible">
-                                    <h3 className="typography-pulse-trigger">What is Inside Agent Forge</h3>
-                                    <div className="includes-grid bento-grid">
-                                        <div className={`include-item expandable bento-span-2${expandedAgent === 'forge' ? ' active' : ''}`} onClick={() => setExpandedAgent(expandedAgent === 'forge' ? null : 'forge')}><span className="icon">⚔️</span><div className="text"><strong>FORGE — Commander</strong> Your direct Telegram line. Oversees the crew. Speaks with authority.</div><div className="expand-content">Primary interface for your crew. Routes commands, coordinates agents, and reports status.</div></div>
-                                        <div className={`include-item expandable bento-span-2${expandedAgent === 'aria' ? ' active' : ''}`} onClick={() => setExpandedAgent(expandedAgent === 'aria' ? null : 'aria')}><span className="icon">📡</span><div className="text"><strong>ARIA — Monitor</strong> Tracks uptime, SSL, Stripe status, and latency with alerting.</div><div className="expand-content">Health checks, SSL expiry, payment status. Telegram alerts when something needs attention.</div></div>
-                                        <div className={`include-item expandable${expandedAgent === 'nova' ? ' active' : ''}`} onClick={() => setExpandedAgent(expandedAgent === 'nova' ? null : 'nova')}><span className="icon">🛡️</span><div className="text"><strong>NOVA — Security</strong> HTTPS, headers, CSP. Paranoid so you do not have to be.</div><div className="expand-content">Headers, CSP, security headers. Keeps your stack locked down.</div></div>
-                                        <div className={`include-item expandable${expandedAgent === 'maven' ? ' active' : ''}`} onClick={() => setExpandedAgent(expandedAgent === 'maven' ? null : 'maven')}><span className="icon">📣</span><div className="text"><strong>MAVEN — Marketing</strong> Drafts content and monitors brand. You approve before anything posts.</div><div className="expand-content">Social drafts, brand monitoring. Human-in-the-loop for all outbound content.</div></div>
-                                        <div className={`include-item expandable${expandedAgent === 'rex' ? ' active' : ''}`} onClick={() => setExpandedAgent(expandedAgent === 'rex' ? null : 'rex')}><span className="icon">🏭</span><div className="text"><strong>REX — Shop Floor</strong> Tracks orders and production pipeline. Keeps things moving.</div><div className="expand-content">Order tracking, inventory, production pipeline. Built for makers.</div></div>
-                                        <div className={`include-item expandable${expandedAgent === 'kaito' ? ' active' : ''}`} onClick={() => setExpandedAgent(expandedAgent === 'kaito' ? null : 'kaito')}><span className="icon">💰</span><div className="text"><strong>KAITO — CFO</strong> Stripe revenue, wallet watch, Nest Egg monitoring. Cold precision.</div><div className="expand-content">Revenue dashboards, USDC tracking, financial health. Numbers you can trust.</div></div>
-                                        <div className={`include-item expandable${expandedAgent === 'flux' ? ' active' : ''}`} onClick={() => setExpandedAgent(expandedAgent === 'flux' ? null : 'flux')}><span className="icon">⚡</span><div className="text"><strong>FLUX — Dev Agent</strong> Code fixes, deployments, GitHub ops. Keeps the stack healthy.</div><div className="expand-content">Deploys, fixes, GitHub ops. Your dev agent that never sleeps.</div></div>
-                                        <div className={`include-item expandable${expandedAgent === 'sage' ? ' active' : ''}`} onClick={() => setExpandedAgent(expandedAgent === 'sage' ? null : 'sage')}><span className="icon">🔭</span><div className="text"><strong>SAGE — Analytics</strong> Patterns, insights, and strategic signals from your data.</div><div className="expand-content">Patterns, trends, insights. Turns data into decisions.</div></div>
+                                <div className="readability-panel scroll-reveal glow-visible" style={{maxWidth:'720px',margin:'0 auto 2rem'}}>
+                                    <h3 style={{color:'#fff',marginTop:0}}>What exists today</h3>
+                                    <p>Work in progress includes Python agents, Eliza-style memory patterns, and ops-focused building blocks (monitoring habits, security checks, draft-and-approve workflows). Scope and packaging are still moving.</p>
+                                    <p>Want read-only templates to study while we finish? See <a href="/forge-lens/" style={{color:'#4d9fff'}}>Forge Lens Web3 Agent Kit</a> (checkout coming soon).</p>
+                                    <div style={{display:'flex',flexWrap:'wrap',gap:'0.75rem',marginTop:'1.25rem'}}>
+                                        <a href="/agent-forge/" className="nav-button primary" style={{padding:'12px 20px'}}>Full status page</a>
+                                        <a href="/contact/" className="nav-button" style={{padding:'12px 20px'}}>Contact for updates</a>
+                                        <a href="/forge-lens/" className="nav-button" style={{padding:'12px 20px'}}>Forge Lens</a>
                                     </div>
                                 </div>
                                 <div className="readability-panel" style={{textAlign:'center',padding:'1rem 1.25rem 1.5rem',marginBottom:'2rem',maxWidth:'720px',color:'#b0b0b0',fontSize:'0.82rem'}}>
                                     Questions? <a href="mailto:chrishowell@howell-forge.com" style={{color:'#4d9fff'}}>chrishowell@howell-forge.com</a>
-                                </div>
-                                <div className="stripe-callout scroll-reveal glow-visible">
-                                    <p>Secure checkout via Stripe.</p>
                                 </div>
                             </>
                         )}
@@ -1280,8 +1210,8 @@
                         {page === 'about' && (
                             <div className="scroll-reveal readability-panel">
                                 <h2>About Howell Forge</h2>
-                                <p>We have built many businesses. On the parts side, my main proof is an accessory rail I modeled in Fusion 360 and cut on a 3-axis machine (<a href="/portfolio/" style={{color:'#4d9fff'}}>portfolio</a>). In the process, we automated setup and ops so we could focus on the actual work. That is Agent Forge: the same practical crew we use ourselves — monitors, security scripts, customer lookup, marketing drafts with human approval — packaged for yours.</p>
-                                <p>Agent Forge runs on ElizaOS with Grok-backed agents where configured. Each agent is built and tested on our own live business before we package it for yours. No quantum-enabled claims — just concrete install and operations capability.</p>
+                                <p>We have built many businesses. On the parts side, my main proof is an accessory rail I modeled in Fusion 360 and cut on a 3-axis machine (<a href="/portfolio/" style={{color:'#4d9fff'}}>portfolio</a>). In the process, we automated setup and ops so we could focus on the actual work. Agent Forge — a Python agent crew with Eliza-style memory — is where that automation work is headed; it is in active development and sales are paused until we can deliver what we describe (<a href="/agent-forge/" style={{color:'#4d9fff'}}>status</a>).</p>
+                                <p>No quantum-enabled claims on Agent Forge — just honest build status and concrete ops habits where they already exist in our stack.</p>
                             </div>
                         )}
 

@@ -79,13 +79,13 @@
         var lower = text.toLowerCase().trim();
 
         if (/\bforge lens\b|forgelens|web3 agent kit/.test(lower))
-            return 'Forge Lens Web3 Agent Kit is a read-only, local-fork ElizaOS agent kit for study and extension. Planned pricing: Lite free, Playbook $29, Starter $297. Stripe checkout is coming soon — see /forge-lens/ for details. For a full deployed crew, see Agent Forge on the AI Forge page.';
+            return 'Forge Lens Web3 Agent Kit is a read-only, local-fork ElizaOS agent kit for study and extension. Planned pricing: Lite free, Playbook $29, Starter $297. Stripe checkout is coming soon — see /forge-lens/ for details. Agent Forge ops crew is in development; see /agent-forge/ for status.';
 
         if (/\bquantum agent health\b|\bqah\b|reforge|rehab planning agent|pennylane.*rehab|rehab.*pennylane/.test(lower))
             return 'Quantum Agent Health (QAH) is a soft, secondary offer: clinic-adjacent rehab planning, GroundChiFlow handoff export, and simulator-first quantum-informed risk (PennyLane). Founding: $25/mo or $250/yr via ?page=qah or qah.html. Not FDA clearance; not a quantum-enabled-agents claim.';
 
         if (/price|pricing|cost|how much|497|1497|97\/?mo|monthly|one-?time|playbook|39|297|29|\b25\b|\b250\b|9\.99|79\.99/.test(lower))
-            return 'Pricing on the site: GroundChiFlow $9.99/mo or $79.99/yr. Agent Forge — Playbook $39, Starter $497, Done For You $1,497, Retainer $97/mo (Stripe). QAH founding $25/mo or $250/yr. Forge Lens (coming soon): Lite free, Playbook $29, Starter $297. Metal parts: quote via contact or USDC on Base on the home page.';
+            return 'Pricing on the site: GroundChiFlow $9.99/mo or $79.99/yr (Stripe). QAH founding $25/mo or $250/yr. Forge Lens (coming soon): Lite free, Playbook $29, Starter $297. Agent Forge sales are paused — no checkout until the product is ready. Metal parts: quote via contact or USDC on Base on the home page.';
 
         if (/quote|metal|part|cnc|machining|fabricat|order|prototype|custom part/.test(lower))
             return "For metal parts or CNC modeling: use the contact page or the quote section on the home page. Include material, dimensions, quantity, tolerances, and timeline. We'll reply within one business day.";
@@ -94,13 +94,13 @@
             return 'Email chrishowell@howell-forge.com. Business hours: Mon–Fri 9–5 EST.';
 
         if (/agent forge|agentforge|agents?|crew|elizaos|eliza|deploy|forged?|business crew/.test(lower))
-            return 'Agent Forge is an 8-agent ElizaOS crew for business ops: FORGE (Commander), ARIA (Monitor), NOVA (Security), MAVEN (Marketing), REX (Shop Floor), KAITO (CFO), FLUX (Dev), SAGE (Analytics). Telegram-connected and Stripe-integrated where configured. See the AI Forge page for packages and checkout.';
+            return 'Agent Forge is a Python agent crew with Eliza-style memory — in active development at Howell Forge. Public sales are paused until we can deliver what we describe. Status: /agent-forge/. For read-only study templates, see Forge Lens at /forge-lens/.';
 
         if (/what is|what\'s|howell forge|who are you|tell me about/.test(lower))
-            return 'Howell Forge combines Fusion 360 part modeling with Agent Forge (ElizaOS ops agents), GroundChiFlow (wellness app), optional QAH (soft secondary), and Forge Lens (read-only Web3 agent kit, checkout coming soon). Built by makers, for makers.';
+            return 'Howell Forge combines Fusion 360 part modeling with Agent Forge (ops agents in development), GroundChiFlow (wellness app), optional QAH (soft secondary), and Forge Lens (read-only Web3 agent kit, checkout coming soon). Built by makers, for makers.';
 
         if (/stripe|payment|pay|buy|purchase|checkout|card/.test(lower))
-            return 'Stripe checkout is live for Agent Forge, GroundChiFlow, and QAH (secondary). Forge Lens checkout is coming soon. For metal parts we also accept USDC on Base — see Pay with USDC on the home page.';
+            return 'Stripe checkout is live for GroundChiFlow and QAH (secondary). Agent Forge checkout is paused. Forge Lens checkout is coming soon. For metal parts we also accept USDC on Base — see Pay with USDC on the home page.';
 
         if (/usdc|crypto|base|wallet|0x/.test(lower))
             return 'We accept USDC on the Base network for metal parts. Send to the address shown on the home page. Only USDC on Base — other tokens or networks may result in loss of funds.';
@@ -109,7 +109,7 @@
             return "Hi! I'm ARIA. I can help with metal parts, Agent Forge, Forge Lens, GroundChiFlow, QAH, pricing, or quotes. What would you like to know?";
 
         if (/help|what can you|what do you|options?|assist/.test(lower))
-            return "I can answer about: Agent Forge (8 agents), Forge Lens Web3 kit, Quantum Agent Health / QAH ($25/mo founding), GroundChiFlow, metal parts, quotes, Stripe/USDC, and contact.";
+            return "I can answer about: Agent Forge (in development), Forge Lens Web3 kit, Quantum Agent Health / QAH ($25/mo founding), GroundChiFlow, metal parts, quotes, Stripe/USDC, and contact.";
 
         return "I'm ARIA. Try asking: \"What is Agent Forge?\" \"Forge Lens pricing?\" \"GroundChiFlow cost?\" or \"How do I get a quote for a part?\"";
     }
