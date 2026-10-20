@@ -736,7 +736,6 @@
         const CASHAPP_QR_URL = `https://api.qrserver.com/v1/create-qr-code/?size=110x110&data=${encodeURIComponent(CASHAPP_URL)}`;
         const PAY_HANDLES_ARE_MOCK = false;
         const API = ""; // Railway shop retired 2026-09-20 — no replacement host
-        const STRIPE_PLAYBOOK = "https://buy.stripe.com/3cIfZa1h7cqu8SI8ig7Zu05";
         const getToken = () => localStorage.getItem('hf_token');
         const getUser  = () => { try { return JSON.parse(localStorage.getItem('hf_user') || 'null'); } catch { return null; } };
         const saveAuth = (token, user) => { localStorage.setItem('hf_token', token); localStorage.setItem('hf_user', JSON.stringify(user)); };
@@ -1201,11 +1200,6 @@
                                 </div>
                                 <div className="value-callout scroll-reveal glow-visible">
                                     <p>This package is intended to reduce repetitive setup and operations work. Final outcomes depend on implementation quality, business process fit, and ongoing use.</p>
-                                </div>
-                                <div className="playbook-wide scroll-reveal glow-visible">
-                                    <h3 className="typography-pulse-trigger">The Playbook</h3>
-                                    <p className="playbook-lede">The same playbook we use to stand up agents, ops, and revenue rails—condensed into one guide. <strong style={{color:'#e8e8ec'}}>$39</strong> one-time; instant access after checkout.</p>
-                                    <a href={STRIPE_PLAYBOOK} className="playbook-cta brutal-cta" target="_blank" rel="noopener" onClick={(e)=>{e.preventDefault();particleBurst(e,()=>window.open(STRIPE_PLAYBOOK,'_blank'));}}>Get The Playbook — $39</a>
                                 </div>
                                 <div className="pricing-grid scroll-reveal glow-visible">
                                     <div className="pricing-card">
