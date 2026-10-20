@@ -79,13 +79,13 @@
         var lower = text.toLowerCase().trim();
 
         if (/\bforge lens\b|forgelens|web3 agent kit/.test(lower))
-            return 'Forge Lens Web3 Agent Kit is a read-only, local-fork ElizaOS agent kit for study and extension. Planned pricing: Lite free, Playbook $29, Starter $297. Stripe checkout is coming soon — see /forge-lens/ for details. Agent Forge ops crew is in development; see /agent-forge/ for status.';
+            return 'Forge Lens is a read-only Web3 agent kit (local fork, ElizaOS templates). Example agents are hard-coded to refuse moving funds. Planned pricing: Lite free, Playbook $29, assisted setup $297. Stripe checkout is coming soon — see /forge-lens/ for details. Agent Forge ops crew is in development; see /agent-forge/ for status.';
 
         if (/\bquantum agent health\b|\bqah\b|reforge|rehab planning agent|pennylane.*rehab|rehab.*pennylane/.test(lower))
             return 'Quantum Agent Health (QAH) is a soft, secondary offer: clinic-adjacent rehab planning, GroundChiFlow handoff export, and simulator-first quantum-informed risk (PennyLane). Founding: $25/mo or $250/yr via ?page=qah or qah.html. Not FDA clearance; not a quantum-enabled-agents claim.';
 
         if (/price|pricing|cost|how much|497|1497|97\/?mo|monthly|one-?time|playbook|39|297|29|\b25\b|\b250\b|9\.99|79\.99/.test(lower))
-            return 'Pricing on the site: GroundChiFlow $9.99/mo or $79.99/yr (Stripe). QAH founding $25/mo or $250/yr. Forge Lens (coming soon): Lite free, Playbook $29, Starter $297. Agent Forge sales are paused — no checkout until the product is ready. Metal parts: quote via contact or USDC on Base on the home page.';
+            return 'Pricing on the site: GroundChiFlow $9.99/mo or $79.99/yr (Stripe). QAH founding $25/mo or $250/yr. Forge Lens (coming soon): Lite free, Playbook $29, assisted setup $297. Agent Forge sales are paused — no checkout until the product is ready. Metal parts: quote via contact or USDC on Base on the home page.';
 
         if (/quote|metal|part|cnc|machining|fabricat|order|prototype|custom part/.test(lower))
             return "For metal parts or CNC modeling: use the contact page or the quote section on the home page. Include material, dimensions, quantity, tolerances, and timeline. We'll reply within one business day.";

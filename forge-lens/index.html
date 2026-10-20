@@ -3,14 +3,18 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Forge Lens Web3 Agent Kit | Howell Forge</title>
-  <meta name="description" content="Forge Lens Web3 Agent Kit — read-only ElizaOS agent templates for local fork and study. Lite free, Playbook $29, Starter $297. Stripe checkout coming soon.">
+  <title>Forge Lens — Read-Only Web3 Agent Kit | Howell Forge</title>
+  <meta name="description" content="Forge Lens is a read-only Web3 agent kit for local fork and study. Agents are hard-coded to refuse moving funds. Lite free, Playbook $29, assisted setup $297. Stripe checkout coming soon — no buy links yet.">
   <link rel="canonical" href="https://howell-forge.com/forge-lens/">
-  <meta property="og:title" content="Forge Lens Web3 Agent Kit | Howell Forge">
-  <meta property="og:description" content="Read-only, local-fork ElizaOS agent kit. Lite free · Playbook $29 · Starter $297.">
+  <meta property="og:title" content="Forge Lens — Read-Only Web3 Agent Kit | Howell Forge">
+  <meta property="og:description" content="Read-only Web3 agent templates for local study. Hard-coded refusal to move funds. Playbook $29 · assisted setup $297. Checkout coming soon.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://howell-forge.com/forge-lens/">
   <meta property="og:image" content="https://howell-forge.com/og-image.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Forge Lens — Read-Only Web3 Agent Kit">
+  <meta name="twitter:description" content="Read-only Web3 agent kit. Refuses to move funds. Playbook $29, assisted setup $297. Stripe coming soon.">
+  <meta name="twitter:image" content="https://howell-forge.com/og-image.jpg">
   <link rel="icon" href="/favicon.ico" sizes="any">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
@@ -22,18 +26,19 @@
     "@context": "https://schema.org",
     "@type": "Product",
     "name": "Forge Lens Web3 Agent Kit",
-    "description": "Read-only ElizaOS agent kit for local fork and study. Lite free; Playbook and Starter tiers listed on site. Built on ElizaOS.",
+    "description": "Read-only Web3 agent kit for local fork and study. Templates include a hard-coded refusal to move funds. Lite free; Playbook $29; assisted setup $297.",
     "brand": { "@type": "Brand", "name": "Howell Forge" },
     "url": "https://howell-forge.com/forge-lens/",
     "offers": [
-      { "@type": "Offer", "name": "Lite", "price": "0", "priceCurrency": "USD", "availability": "https://schema.org/InStock" },
+      { "@type": "Offer", "name": "Lite", "price": "0", "priceCurrency": "USD", "availability": "https://schema.org/PreOrder" },
       { "@type": "Offer", "name": "Playbook", "price": "29", "priceCurrency": "USD", "availability": "https://schema.org/PreOrder" },
-      { "@type": "Offer", "name": "Starter", "price": "297", "priceCurrency": "USD", "availability": "https://schema.org/PreOrder" }
+      { "@type": "Offer", "name": "Assisted setup", "price": "297", "priceCurrency": "USD", "availability": "https://schema.org/PreOrder" }
     ]
   }
   </script>
 </head>
 <body>
+  <a class="skip-link" href="#main-content">Skip to main content</a>
   <header class="site-header">
     <h1>Howell Forge</h1>
     <p class="site-tagline">Fusion 360 parts &amp; AI business tools</p>
@@ -41,62 +46,83 @@
       <a href="/">Home</a>
       <a href="/agent-forge/">AI Forge</a>
       <a href="/?page=groundchiflow">GroundChiFlow</a>
-      <a href="/forge-lens/" class="active">Forge Lens</a>
+      <a href="/forge-lens/" class="active" aria-current="page">Forge Lens</a>
       <a href="/portfolio/">Portfolio</a>
       <a href="/contact/">Contact</a>
     </nav>
   </header>
 
-  <main class="wrap">
+  <main id="main-content" class="wrap" tabindex="-1">
     <div class="hero">
-      <p class="eyebrow">Forge Lens</p>
-      <h1>Forge Lens Web3 Agent Kit</h1>
-      <p class="sub">A read-only, local-fork ElizaOS agent kit for builders who want to study Web3-aware ops patterns before they deploy. Built on ElizaOS — not a hosted crew and not quantum-enabled marketing.</p>
-      <div class="btns">
-        <span class="btn" style="opacity:0.85;cursor:default" aria-disabled="true">Buy — coming soon (Stripe setup in progress)</span>
+      <p class="eyebrow" id="forge-lens-eyebrow">Forge Lens</p>
+      <h2 id="forge-lens-title">Read-only Web3 agent kit</h2>
+      <p class="sub" id="forge-lens-lede">Forge Lens is a <strong>read-only Web3 agent</strong> template set for builders who want to study wallet-adjacent ops patterns on a <strong>local fork</strong> before they ship anything. It is not a hosted crew, not live trading software, and not quantum marketing.</p>
+      <p class="muted"><strong>Safety boundary:</strong> example agents are <strong>hard-coded to refuse moving funds</strong>—no signing or sending transactions as part of the kit positioning. You inspect prompts, roles, and wiring; you add keys and scope only when you deliberately extend the fork on your machine.</p>
+      <div class="btns" role="group" aria-label="Purchase actions">
+        <span class="btn btn-disabled" aria-disabled="true" title="Stripe checkout is not live yet">Buy — coming soon (Stripe setup in progress)</span>
         <a class="btn" href="mailto:chrishowell@howell-forge.com?subject=Forge%20Lens%20Web3%20Agent%20Kit">Ask a question</a>
       </div>
     </div>
 
-    <section>
-      <h2>What you get</h2>
+    <section aria-labelledby="what-you-get-heading">
+      <h2 id="what-you-get-heading">What you get</h2>
       <ul class="steps">
-        <li><strong>Read-only templates</strong> — inspect agent roles, prompts, and wiring without live keys baked in.</li>
+        <li><strong>Read-only Web3 agent templates</strong> — study roles, prompts, and wiring without live keys baked in.</li>
         <li><strong>Local fork</strong> — clone, run, and experiment on your machine or your infra.</li>
-        <li><strong>ElizaOS foundation</strong> — same ecosystem as Agent Forge, scoped for study and extension.</li>
-        <li><strong>Web3 lane</strong> — patterns for wallet-aware finance and on-chain adjacent workflows (scope finalized at release).</li>
+        <li><strong>Hard-coded refusal to move funds</strong> — templates are positioned for observation and learning, not autonomous transfers.</li>
+        <li><strong>ElizaOS foundation</strong> — same ecosystem family as Agent Forge, scoped for study rather than production ops.</li>
       </ul>
-      <p class="muted">When Agent Forge ops crew is ready for customers, status will be at <a href="/agent-forge/">/agent-forge/</a> (in development today).</p>
+      <p class="muted">Agent Forge (ops crew) is <a href="/agent-forge/">in development — coming soon</a>; sales stay paused until we can deliver what we describe.</p>
     </section>
 
-    <section>
-      <h2>Pricing (planned)</h2>
-      <table>
-        <tr><th>Tier</th><th>What it covers</th><th>Price</th><th>Checkout</th></tr>
-        <tr>
-          <td><strong>Lite</strong></td>
-          <td>Read-only sample agents and docs for local evaluation.</td>
-          <td>Free</td>
-          <td>Coming soon</td>
-        </tr>
-        <tr>
-          <td><strong>Playbook</strong></td>
-          <td>Guide + template bundle for standing up a read-only fork and understanding the Web3 agent layout.</td>
-          <td>$29 one-time</td>
-          <td>Coming soon</td>
-        </tr>
-        <tr>
-          <td><strong>Starter</strong></td>
-          <td>Expanded read-only kit, local fork package, and setup notes for builders ready to customize.</td>
-          <td>$297 one-time</td>
-          <td>Coming soon</td>
-        </tr>
+    <section aria-labelledby="pricing-heading">
+      <h2 id="pricing-heading">Pricing (planned)</h2>
+      <p class="muted" id="pricing-summary">No buy links on this page yet. When Stripe is ready, checkout will match these list prices.</p>
+      <table aria-describedby="pricing-summary">
+        <caption class="table-caption">Forge Lens planned tiers and checkout status</caption>
+        <thead>
+          <tr>
+            <th scope="col">Tier</th>
+            <th scope="col">What it covers</th>
+            <th scope="col">Price</th>
+            <th scope="col">Checkout</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">Lite</th>
+            <td>Read-only sample agents and docs for local evaluation.</td>
+            <td>Free</td>
+            <td>Coming soon</td>
+          </tr>
+          <tr>
+            <th scope="row">Playbook</th>
+            <td>Written guide plus template bundle for standing up a read-only fork and understanding the Web3 agent layout.</td>
+            <td>$29 one-time</td>
+            <td>Coming soon</td>
+          </tr>
+          <tr>
+            <th scope="row">Assisted setup</th>
+            <td>Live help walking through the read-only fork on your machine—still not a hosted crew or fund-moving agent.</td>
+            <td>$297 one-time</td>
+            <td>Coming soon</td>
+          </tr>
+        </tbody>
       </table>
-      <p class="note">Stripe Payment Links are not wired yet. Prices above are what we intend to charge when checkout goes live. Agent Forge ops crew is in development — see <a href="/agent-forge/">/agent-forge/</a> for status (sales paused).</p>
+      <p class="note">Stripe Payment Links are not wired yet. Prices above are what we intend to charge when checkout goes live.</p>
     </section>
 
-    <section class="cta-block">
-      <h2>Want early access?</h2>
+    <section aria-labelledby="not-included-heading">
+      <h2 id="not-included-heading">What this kit is not</h2>
+      <ul class="steps">
+        <li>Not an offer to move, custody, or invest customer funds.</li>
+        <li>Not Agent Forge production ops—see <a href="/agent-forge/">Agent Forge status</a>.</li>
+        <li>Not a replacement for your own security, compliance, or wallet reviews before you ship code.</li>
+      </ul>
+    </section>
+
+    <section class="cta-block" aria-labelledby="early-access-heading">
+      <h2 id="early-access-heading">Want early access?</h2>
       <p class="muted">Email me and I will put you on the list for Lite and Playbook when Stripe is ready.</p>
       <div class="btns" style="justify-content:center">
         <a class="btn primary" href="mailto:chrishowell@howell-forge.com?subject=Forge%20Lens%20early%20access">Email for early access</a>
