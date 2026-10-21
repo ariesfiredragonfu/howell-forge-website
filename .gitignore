@@ -22,3 +22,5 @@ secrets.json
 
 # Local HTML/JS snapshots (not for deploy)
 backups/
+# Stripe test-mode preview. Not for GitHub Pages.
+staging/
