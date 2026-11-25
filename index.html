@@ -760,9 +760,7 @@
         const PAY_HANDLES_ARE_MOCK = false;
         const API = "https://howell-forge-shop-production.up.railway.app";
         const PLAYBOOK_CHECKOUT_URL = "https://payhip.com/b/drRaG";
-        // Unset until Chris publishes the $79 Master Playbook. Do not put the hidden Payhip URL here yet.
-        const MASTER_PLAYBOOK_CHECKOUT_URL = "";
-        // Free sample Payhip URL. Keep the CTA disabled until Chris publishes. Do not wire this into an href yet.
+        const MASTER_PLAYBOOK_CHECKOUT_URL = "https://payhip.com/b/9hEAw";
         const FREE_SAMPLE_URL = "https://payhip.com/b/EPIeH";
         const getToken = () => localStorage.getItem('hf_token');
         const getUser  = () => { try { return JSON.parse(localStorage.getItem('hf_user') || 'null'); } catch { return null; } };
@@ -1249,15 +1247,10 @@
                                 </div>
                                 <div className="playbook-wide scroll-reveal glow-visible">
                                     <h3 className="typography-pulse-trigger">Master Playbook</h3>
-                                    <p className="playbook-lede">A docs-and-templates kit for a local-first multi-agent setup: one Foreman, specialist roles, weekday routines, a local model router with a verify loop, a dashboard, backups, CAD over MCP, shop fulfillment, finance agents, and a PR-only way to build and ship with Cursor. You bring the machines and the tools. It is not a hosted crew and not a one-click install. The full kit is <strong style={{color:'#e8e8ec'}}>$79</strong> when it is published. Sellable CAD in the kit is FreeCAD, or another commercially cleared tool. <a href="/playbooks/" style={{color:'#4d9fff'}}>Read the Playbooks page</a>.</p>
+                                    <p className="playbook-lede">A docs-and-templates kit for a local-first multi-agent setup: one Foreman, specialist roles, weekday routines, a local model router with a verify loop, a dashboard, backups, CAD over MCP, shop fulfillment, finance agents, and a PR-only way to build and ship with Cursor. You bring the machines and the tools. It is not a hosted crew and not a one-click install. The full kit is <strong style={{color:'#e8e8ec'}}>$79</strong>. Sellable CAD in the kit is FreeCAD, or another commercially cleared tool. <a href="/playbooks/" style={{color:'#4d9fff'}}>Read the Playbooks page</a>.</p>
                                     <div className="playbook-actions">
-                                        {/* FREE_SAMPLE_URL is set (https://payhip.com/b/EPIeH) but the CTA stays disabled until Chris publishes. */}
-                                        <span className="playbook-cta-pending" aria-disabled="true" title="Free sample will be clickable when Chris publishes">Get the free sample (available when published)</span>
-                                        {MASTER_PLAYBOOK_CHECKOUT_URL ? (
-                                            <a href={MASTER_PLAYBOOK_CHECKOUT_URL} className="playbook-cta outline" target="_blank" rel="noopener" onClick={(e)=>{e.preventDefault();particleBurst(e,()=>window.open(MASTER_PLAYBOOK_CHECKOUT_URL,'_blank'));}}>Get the Master Playbook, $79</a>
-                                        ) : (
-                                            <span className="playbook-cta-pending" aria-disabled="true" title="Checkout link will be added when the $79 kit is published">Master Playbook, $79 (available when published)</span>
-                                        )}
+                                        <a href={FREE_SAMPLE_URL} className="playbook-cta" target="_blank" rel="noopener" onClick={(e)=>{e.preventDefault();particleBurst(e,()=>window.open(FREE_SAMPLE_URL,'_blank'));}}>Get the free sample</a>
+                                        <a href={MASTER_PLAYBOOK_CHECKOUT_URL} className="playbook-cta outline" target="_blank" rel="noopener" onClick={(e)=>{e.preventDefault();particleBurst(e,()=>window.open(MASTER_PLAYBOOK_CHECKOUT_URL,'_blank'));}}>Get the Master Playbook, $79</a>
                                     </div>
                                 </div>
                                 <div className="value-callout scroll-reveal glow-visible">
