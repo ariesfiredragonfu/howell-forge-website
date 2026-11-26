@@ -731,9 +731,6 @@
         <h3>Contact and next steps</h3>
         <p>Email remains the most reliable way to reach us for quotes, partnerships, and technical questions: use the contact page linked in the header when the app has finished loading, or write directly if you already have a thread. We read every serious inquiry and will tell you quickly if a job is outside our sweet spot rather than overpromising capacity.</p>
         <p>Thank you for reading this far. Whether you came for metal, for automation, or for both, we built Howell Forge to reward careful operators—people who measure twice, automate once, and still leave room for craftsmanship.</p>
-
-        <h3>Topics for search and social</h3>
-        <p class="hf-seo-hashtags" aria-label="Suggested hashtags for social posts">Suggested hashtags when you share Howell Forge (copy as needed): #HowellForge #CursorToCNC #CNC #CNCMachining #PrecisionMetal #MetalFabrication #Manufacturing #USManufacturing #HardwareStartup #IndieMaker #BuildInPublic #MakerMovement #GCode #CAM #CAD #Prototype #Prototyping #Toolpath #MachineShop #JobShop #FabLab #SheetMetal #MechanicalEngineering #ProductDesign #IndustrialAutomation #ShopFloor #BusinessAutomation #AIAgents #AgentOrchestration #AgentForge #SaaS #B2B #Stripe #GroundChiFlow #HealthTech #StartupLife #Metalworking #SmallBatch #QualityManufacturing #EngineeringTwitter #TechForGood</p>
     </article>
 
     <script>
@@ -1165,30 +1162,45 @@
                         {page === 'home' && (
                             <>
                                 <h2 className="hero-above reveal-text">From Cursor to CNC: Bridging the Gap Between Code and Cold Steel.</h2>
+                                <div className="hero-below scroll-reveal glow-visible">
+                                    <p className="landing-subhead">The playbook I run my own shop and AI crew on: one Foreman agent, specialist roles, local models with a second check, CAD over MCP, and a PR-only way to ship with Cursor. Docs and templates you set up on your own machines. Nothing ships without your yes.</p>
+                                    <div className="landing-cta">
+                                        <a className="nav-button primary brutal-cta" href={FREE_SAMPLE_URL} target="_blank" rel="noopener" style={{padding:'14px 28px',fontSize:'1.05rem',textDecoration:'none',display:'inline-flex',alignItems:'center'}} onClick={(e)=>{e.preventDefault();particleBurst(e,()=>window.open(FREE_SAMPLE_URL,'_blank'));}}>Get the free sample</a>
+                                        <a className="nav-button" href={MASTER_PLAYBOOK_CHECKOUT_URL} target="_blank" rel="noopener" style={{padding:'12px 24px',fontSize:'1rem',textDecoration:'none',display:'inline-flex',alignItems:'center'}} onClick={(e)=>{e.preventDefault();particleBurst(e,()=>window.open(MASTER_PLAYBOOK_CHECKOUT_URL,'_blank'));}}>Master Playbook, $79</a>
+                                        <button className="nav-button" onClick={() => setPage('contact')} style={{padding:'12px 24px',fontSize:'1rem'}}>Metal parts? Get a quote</button>
+                                    </div>
+                                    <p className="automation-hint" role="note">Free sample: Chapter 01 (Architecture and Guardrails), Chapter 12 (Building and Shipping with Cursor), and starter templates. Instant download from Payhip. No income claims, no hosted crew.</p>
+                                </div>
                                 <div className="landing-hero scroll-reveal glow-visible" role="img" aria-label="Howell Forge — metal fabrication and AI automation">
                                     <img id="hero-parallax-img" className="hero-parallax-layer" src="og-image-small.jpg" alt="" decoding="async" />
                                 </div>
-                                <div className="hero-below scroll-reveal glow-visible">
-                                    <p className="landing-subhead">We have built many businesses. In the process, we automated setup and day-to-day ops so more time goes to <em>doing</em> the work. That became Agent Forge — monitors, security scripts, customer lookup, and a practical crew you can deploy — not a pile of disconnected bots.</p>
-                                    <div className="landing-cta">
-                                        <button type="button" className="nav-button primary brutal-cta" style={{padding:'14px 28px',fontSize:'1.05rem'}} onClick={(e)=>{ particleBurst(e, ()=>{ var el = document.getElementById('pay-instant') || document.getElementById('pay-usdc'); if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' }); }); }}>Pay a deposit: Venmo, Cash App, or USDC</button>
-                                        <a className="nav-button" href="/agent-forge/" style={{padding:'12px 24px',fontSize:'1rem',textDecoration:'none',display:'inline-flex',alignItems:'center'}}>See Agent Forge status</a>
-                                        <button className="nav-button" onClick={() => setPage('groundchiflow')} style={{padding:'12px 24px',fontSize:'1rem',background:'#28a745'}}>GroundChiFlow App</button>
-                                        <button className="nav-button" onClick={() => setPage('contact')} style={{padding:'12px 24px',fontSize:'1rem'}}>Get a Quote</button>
-                                    </div>
-                                    <div className="stripe-callout scroll-reveal glow-visible" style={{marginTop:'0.5rem',marginBottom:'1rem'}}><p>GroundChiFlow uses Stripe for app subscriptions. Agent Forge public sales are paused. See the <a href="/agent-forge/" style={{color:'#4d9fff'}}>status page</a>.</p></div>
-                                    <div className="current-build"><span className="dot"></span>Current Build: Agent Forge template — honest ops story</div>
-                                    <div className="stack-icons">
-                                        <a href="https://railway.app" target="_blank" rel="noopener">Railway</a>
-                                        <a href="https://elizaos.ai" target="_blank" rel="noopener">ElizaOS</a>
-                                        <a href="https://buildbear.io" target="_blank" rel="noopener">BuildBear</a>
-                                    </div>
-                                    <p className="automation-hint" role="note">
-                                        <strong>Where the automations live on this site:</strong> the Agent Forge status page is at <a href="/agent-forge/" style={{color:'#4d9fff'}}>/agent-forge/</a>, and playbooks are under <strong>Playbooks</strong> and <strong>Forge Lens</strong> in the bar above. The floating <strong>blue chat</strong> button (lower-right, above the footer) is <strong>ARIA</strong> and answers questions about products and the forge; on localhost it runs in demo mode unless you point <code style={{fontSize:'0.8rem',color:'#6b9fff'}}>ARIA_CHAT_WS_URL</code> at a live backend.
-                                    </p>
-                                </div>
-                                <div className="landing-section-title scroll-reveal glow-visible">Products</div>
+                                <div className="landing-section-title scroll-reveal glow-visible">Digital products</div>
                                 <div className="home-products scroll-reveal glow-visible">
+                                    <div className="home-product-card">
+                                        <h3>Master Playbook</h3>
+                                        <p className="price">$79 one-time</p>
+                                        <ul>
+                                            <li>Outline plus 12 Markdown chapters</li>
+                                            <li>11 specialist agent profile templates</li>
+                                            <li>7 scheduled routine prompt templates</li>
+                                            <li>Local router, backup, shop, CFO, and CAD-over-MCP templates</li>
+                                            <li>PR-only shipping workflow for Cursor</li>
+                                        </ul>
+                                        <a href={MASTER_PLAYBOOK_CHECKOUT_URL} className="card-cta" target="_blank" rel="noopener" onClick={(e)=>{e.preventDefault();particleBurst(e,()=>window.open(MASTER_PLAYBOOK_CHECKOUT_URL,'_blank'));}}>Get the Master Playbook, $79</a>
+                                        {' '}<a href="/playbooks/" style={{color:'#4d9fff',fontSize:'0.9rem'}}>Details</a>
+                                    </div>
+                                    <div className="home-product-card">
+                                        <h3>Forge Lens Playbook</h3>
+                                        <p className="price">$29 one-time</p>
+                                        <ul>
+                                            <li>Set up one read-only Web3 agent on your own machine</li>
+                                            <li>Roles, prompts, and wiring you can inspect</li>
+                                            <li>Hard-coded refusal to move funds</li>
+                                            <li>Built on ElizaOS</li>
+                                        </ul>
+                                        <a href={PLAYBOOK_CHECKOUT_URL} className="card-cta" target="_blank" rel="noopener" onClick={(e)=>{e.preventDefault();particleBurst(e,()=>window.open(PLAYBOOK_CHECKOUT_URL,'_blank'));}}>Buy the Forge Lens Playbook, $29</a>
+                                        {' '}<a href="/forge-lens/" style={{color:'#4d9fff',fontSize:'0.9rem'}}>Details</a>
+                                    </div>
                                     <div className="home-product-card">
                                         <h3>Health App (GroundChiFlow)</h3>
                                         <p className="price">$9.99/mo</p>
@@ -1201,16 +1213,6 @@
                                         </ul>
                                         <a href="https://buy.stripe.com/3cIbIUf7Xbmq5Gw1TS7Zu03" className="card-cta" target="_blank" rel="noopener" onClick={(e)=>{e.preventDefault();particleBurst(e,()=>window.open('https://buy.stripe.com/3cIbIUf7Xbmq5Gw1TS7Zu03','_blank'));}}>Subscribe — $9.99/mo</a>
                                     </div>
-                                    <div className="home-product-card">
-                                        <h3>Agent Forge</h3>
-                                        <p>Public sales are paused. See the status page for what exists today.</p>
-                                        <a className="card-cta" href="/agent-forge/" style={{display:'inline-block',textDecoration:'none',fontFamily:'inherit'}}>Agent Forge status</a>
-                                    </div>
-                                </div>
-                                <div className="testimonials-placeholder scroll-reveal glow-visible">
-                                    <h3>Validation status</h3>
-                                    <p className="testimonial-quote">Product claims and marketing copy are under active validation.</p>
-                                    <p className="testimonial-attribution">– Howell Forge staging policy</p>
                                 </div>
                                 <InstantPaySection />
                                 <div id="pay-usdc" className="scroll-reveal"><UsdcPaymentSection /></div>
